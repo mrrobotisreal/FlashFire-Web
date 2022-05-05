@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 const CollectionDiv = styled.div`
   text-align: center;
   top: 0;
   left: 0;
   position: relative;
-  /* background-image: linear-gradient(to bottom, black, orangered, yellow); */
-  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');
+  background-image: linear-gradient(to bottom, black, orangered, yellow);
+  /* background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif'); */
   background-size: cover;
   padding: 3%;
   margin-top: 10%;
@@ -33,6 +34,8 @@ const PrevButton = styled.button`
   padding-right: 2%;
   &:hover {
     transform: scale(1.25);
+    border: 2px ridge green;
+    color: green;
   }
 `;
 
@@ -48,6 +51,8 @@ const NextButton = styled.button`
   padding-right: 2%;
   &:hover {
     transform: scale(1.25);
+    border: 2px ridge green;
+    color: green;
   }
 `;
 
@@ -84,6 +89,8 @@ const FlashCardDiv = styled.div`
 `;
 
 const QuestionAndAnswerDiv = styled.div`
+  display: flex;
+  justify-content: center;
   border: 2px ridge orangered;
   border-radius: 12px;
   background-image: linear-gradient(to bottom, black, darkred);
@@ -92,6 +99,7 @@ const QuestionAndAnswerDiv = styled.div`
   padding: 2%;
   overflow: break-word;
   margin-bottom: 2%;
+  transition: .2s;
 `;
 
 const RevealButton = styled.button`
@@ -100,6 +108,13 @@ const RevealButton = styled.button`
   font-family: 'Bangers', cursive;
   border-radius: 12px;
   margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge green;
+    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  }
 `;
 
 const FailSuccessDiv = styled.div`
@@ -115,12 +130,35 @@ const FailSuccessIndividualDiv = styled.div`
 const FailSuccessButton = styled.button`
   border: 2px ridge darkred;
   border-radius: 12px;
+  background-color: black;
   box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;
   width: fit-content;
-  padding: 2%;
+  padding: 4%;
   display: flex;
   justify-content: center;
   margin-bottom: 3%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;
+  }
+`;
+
+const SuccessButton = styled.button`
+  border: 2px ridge green;
+  border-radius: 12px;
+  background-color: black;
+  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  width: fit-content;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;
+  }
 `;
 
 const FailSuccessCount = styled.span`
@@ -134,6 +172,11 @@ const FailSuccessCount = styled.span`
   justify-content: center;
 `;
 
+const MainMenuDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const MainMenuButton = styled.button`
   border-radius: 12px;
   background-color: black;
@@ -142,6 +185,12 @@ const MainMenuButton = styled.button`
   width: fit-content;
   padding: 2%;
   margin-top: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    color: yellow;
+    border: 2px ridge yellow;
+  }
 `;
 
 class FlashCards extends React.Component {
@@ -154,6 +203,7 @@ class FlashCards extends React.Component {
       currentCard: 0,
       success: 0,
       fail: 0,
+      answerDisplay: 'none',
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -166,15 +216,101 @@ class FlashCards extends React.Component {
 
   }
 
-  nextCard() {}
+  nextCard() {
+    if (this.state.currentCard === this.state.totalCards - 1) {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: 0,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+      });
+    } else {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard += 1,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+      });
+    }
+  }
 
-  prevCard() {}
+  prevCard() {
+    if (this.state.currentCard === 0) {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.totalCards - 1,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+      });
+    } else {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard -= 1,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+      });
+    }
+  }
 
-  reveal() {}
+  reveal() {
+    if (this.state.answerDisplay === 'none') {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: 'flex',
+      })
+    } else {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: 'none',
+      })
+    }
+  }
 
-  handleFail() {}
+  handleFail() {
+    this.setState({
+      cardList: this.state.cardList,
+      collectionName: this.state.collectionName,
+      totalCards: this.state.cardList.length,
+      currentCard: this.state.currentCard,
+      success: this.state.success,
+      fail: this.state.fail += 1,
+      answerDisplay: this.state.answerDisplay,
+    });
+  }
 
-  handleSuccess() {}
+  handleSuccess() {
+    this.setState({
+      cardList: this.state.cardList,
+      collectionName: this.state.collectionName,
+      totalCards: this.state.cardList.length,
+      currentCard: this.state.currentCard,
+      success: this.state.success += 1,
+      fail: this.state.fail,
+      answerDisplay: this.state.answerDisplay,
+    });
+  }
 
   render() {
     return (
@@ -188,7 +324,7 @@ class FlashCards extends React.Component {
         <CollectionDiv>
           <CardNumber>
             {
-              `Card ${this.state.currentCard} of ${this.state.totalCards}`
+              `Card ${this.state.currentCard + 1} of ${this.state.totalCards}`
             }
           </CardNumber>
           <FlashCardDiv>
@@ -197,17 +333,17 @@ class FlashCards extends React.Component {
                 this.state.cardList[this.state.currentCard].question
               }
             </QuestionAndAnswerDiv>
-            <QuestionAndAnswerDiv>
+            <QuestionAndAnswerDiv style={{display: this.state.answerDisplay,   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen'}} id="answer">
               {
                 this.state.cardList[this.state.currentCard].answer
               }
             </QuestionAndAnswerDiv>
-            <RevealButton>
+            <RevealButton type="button" onClick={this.reveal}>
               Reveal
             </RevealButton>
             <FailSuccessDiv>
               <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1'}}>
-                <FailSuccessButton>
+                <FailSuccessButton onClick={this.handleFail}>
                   <b>❌</b>
                 </FailSuccessButton>
               </FailSuccessIndividualDiv>
@@ -217,9 +353,9 @@ class FlashCards extends React.Component {
                 </FailSuccessCount>
               </FailSuccessIndividualDiv>
               <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1'}}>
-                <FailSuccessButton>
+                <SuccessButton onClick={this.handleSuccess}>
                 <b>✔️</b>
-                </FailSuccessButton>
+                </SuccessButton>
               </FailSuccessIndividualDiv>
               <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '2'}}>
                 <FailSuccessCount>
@@ -228,15 +364,17 @@ class FlashCards extends React.Component {
               </FailSuccessIndividualDiv>
             </FailSuccessDiv>
           </FlashCardDiv>
-          <MainMenuButton>
-            Main Menu
-          </MainMenuButton>
+          <MainMenuDiv>
+            <MainMenuButton onClick={this.props.goBack}>
+              Main Menu
+            </MainMenuButton>
+          </MainMenuDiv>
         </CollectionDiv>
         <PrevNextDiv>
-          <PrevButton>
+          <PrevButton onClick={this.prevCard}>
             <b>{`<`}</b>
           </PrevButton>
-          <NextButton>
+          <NextButton onClick={this.nextCard}>
             <b>{`>`}</b>
           </NextButton>
         </PrevNextDiv>

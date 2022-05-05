@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
+const moment = require('moment');
 
 const MainMenuDiv = styled.div`
   text-align: center;
@@ -46,7 +47,7 @@ const UserCollectionsDiv = styled.div`
   margin-bottom: 4%;
   border: 2px ridge darkred;
   border-radius: 12px;
-  padding: 2%;
+  padding: 6%;
   text-align: center;
   width: 40%;
   display: flex;
@@ -62,11 +63,62 @@ const UserCollections = styled.h4`
   font-family: 'Bangers', cursive;
   &:hover {
     border-bottom: 3px ridge darkred;
-    /* border-left: 1px ridge darkred;
-    border-right: 1px ridge darkred; */
     border-radius: 12px;
     color: red;
     transform: scale(1.25);
+  }
+`;
+
+const TimeFormatDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px ridge white;
+  border-radius: 12px;
+  padding: 2%;
+  margin: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;
+  }
+`;
+
+const ArrowDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+`;
+
+const UpButton = styled.button`
+  width: fit-content;
+  padding: 1%;
+  background-color: black;
+  transition: .2s;
+  margin: 4%;
+  border-radius: 8px;
+  color: white;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;
+    color: yellow;
+  }
+`;
+
+const DownButton = styled.button`
+  width: fit-content;
+  padding: 1%;
+  background-color: black;
+  margin: 4%;
+  transition: .2s;
+  border-radius: 8px;
+  color: white;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;
+    color: yellow;
   }
 `;
 
@@ -80,13 +132,18 @@ const CollectionsTitle = styled.h3`
 `;
 
 const CreateCollectionButton = styled.button`
+  border: 2px ridge green;
   border-radius: 12px;
+  background-color: black;
+  color: white;
   width: fit-content;
   transition: .2s;
   margin-top: 4%;
   font-family: 'Bangers', cursive;
   &:hover {
     transform: scale(1.15);
+    color: green;
+    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
   }
 `;
 
@@ -170,6 +227,27 @@ const CollCountSpan = styled.span`
   color: yellow;
 `;
 
+const LogoutDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const LogoutButton = styled.button`
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  width: fit-content;
+  transition: .2s;
+  margin-top: 4%;
+  font-family: 'Bangers', cursive;
+  &:hover {
+    transform: scale(1.15);
+    color: red;
+    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;
+  }
+`;
+
 class MainMenu2 extends React.Component {
   constructor(props) {
     super(props);
@@ -184,6 +262,7 @@ class MainMenu2 extends React.Component {
       cardCount: 0,
       flash: false,
       currentCollection: [],
+      selectedCollection: 0
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -194,6 +273,8 @@ class MainMenu2 extends React.Component {
     this.submitCard = this.submitCard.bind(this);
     this.finishCollection = this.finishCollection.bind(this);
     this.goToMainMenu = this.goToMainMenu.bind(this);
+    this.goBack = this.goBack.bind(this);
+    this.moveUp = this.moveUp.bind(this);
   }
 
   componentDidMount() {
@@ -211,7 +292,8 @@ class MainMenu2 extends React.Component {
             cardList: this.state.cardList,
             cardCount: this.state.cardCount,
             flash: this.state.flash,
-            currentCollection: this.state.currentCollection
+            currentCollection: this.state.currentCollection,
+            selectedCollection: this.state.selectedCollection
           })
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
@@ -246,7 +328,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: true,
-      currentCollection: choice
+      currentCollection: choice,
+      selectedCollection: this.state.selectedCollection
     });
   }
 
@@ -261,7 +344,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
   }
 
@@ -276,7 +360,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
   }
 
@@ -291,7 +376,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
   }
 
@@ -306,7 +392,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
   }
 
@@ -321,7 +408,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
   }
 
@@ -341,18 +429,31 @@ class MainMenu2 extends React.Component {
       cardList: [newCard, ...this.state.cardList],
       cardCount: newCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
     document.getElementById('question').value = '';
     document.getElementById('answer').value = '';
   }
 
   finishCollection() {
-    // send new collection to /collections/:user/add-collection server route
+    let d = new Date();
+    let year = String(d.getFullYear()), month = d.getMonth(), day = String(d.getDate());
+    month += 1;
+    month = String(month);
+    if (month.length === 1) {
+      month = '0' + month;
+    }
+    if (day.length === 1) {
+      day = '0' + day;
+    }
+    d = year + month + day;
+
     let newCollection = {
       name: this.state.collectionName,
       category: this.state.category,
-      cardList: this.state.cardList
+      cardList: this.state.cardList,
+      creationDate: d
     };
     axios.post(`/collections/${this.props.user}/add`, newCollection)
       .then((res) => {
@@ -367,14 +468,28 @@ class MainMenu2 extends React.Component {
           cardList: this.state.cardList,
           cardCount: this.state.cardCount,
           flash: this.state.flash,
-          currentCollection: this.state.currentCollection
+          currentCollection: this.state.currentCollection,
+          selectedCollection: this.state.selectedCollection
         });
         alert('Collection was added to your profile!');
-        // axios.get(`/collections/${this.props.user}`)
-        //   .then((res) => {
-        //     console.log('res -> ', res);
-        //   })
-        //   .catch((err) => console.error(err));
+        axios.get(`/collections/${this.props.user}`)
+          .then(({ data }) => {
+            console.log('res -> ', data);
+            this.setState({
+              userCollections: data,
+              isCreating: this.state.isCreating,
+              collectionName: this.state.collectionName,
+              category: this.state.category,
+              question: this.state.question,
+              answer: this.state.answer,
+              cardList: this.state.cardList,
+              cardCount: this.state.cardCount,
+              flash: this.state.flash,
+              currentCollection: this.state.currentCollection,
+              selectedCollection: this.state.selectedCollection
+            })
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
   }
@@ -390,7 +505,8 @@ class MainMenu2 extends React.Component {
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
       flash: this.state.flash,
-      currentCollection: this.state.currentCollection
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
     });
     axios.get(`/collections/${this.props.user}`)
       .then((res) => {
@@ -404,10 +520,31 @@ class MainMenu2 extends React.Component {
           cardList: this.state.cardList,
           cardCount: this.state.cardCount,
           flash: this.state.flash,
-          currentCollection: this.state.currentCollection
+          currentCollection: this.state.currentCollection,
+          selectedCollection: this.state.selectedCollection
         });
       })
       .catch((err) => console.error(err));
+  }
+
+  goBack() {
+    this.setState({
+      userCollections: this.state.userCollections,
+      isCreating: this.state.isCreating,
+      collectionName: this.state.collectionName,
+      category: this.state.category,
+      question: this.state.question,
+      answer: this.state.answer,
+      cardList: this.state.cardList,
+      cardCount: this.state.cardCount,
+      flash: false,
+      currentCollection: this.state.currentCollection,
+      selectedCollection: this.state.selectedCollection
+    });
+  }
+
+  moveUp() {
+
   }
 
   render() {
@@ -431,6 +568,9 @@ class MainMenu2 extends React.Component {
                         </CollCountSpan>:</u></b>
                       </CollectionsTitle>
                       <UserCollectionsDiv>
+                        <ArrowDiv>
+                          <UpButton>{`⬆`}</UpButton>
+                        </ArrowDiv>
                         {
                           // map over the collections
                           this.state.userCollections.length === 0
@@ -446,23 +586,46 @@ class MainMenu2 extends React.Component {
                             this.state.userCollections.map((collection, index) => {
                               let collString = collection.name;
                               return (
-                                <UserCollections key={index + collection.name} onClick={this.chooseCollection} id={collString}>
-                                  {collection.name}
-                                </UserCollections>
+                                <TimeFormatDiv>
+                                  <UserCollections key={index + collection.name} onClick={this.chooseCollection} id={collString}>
+                                    {collection.name}
+                                  </UserCollections>
+                                  <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
+                                    {`Created ${moment(collection.creationDate, "YYYYMMDD").fromNow()}`}
+                                  </span></b>
+                                </TimeFormatDiv>
                               )
                             })
+                            // <TimeFormatDiv>
+                            //   <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
+                            //     {
+                            //       this.state.userCollections[this.state.selectedCollection].name
+                            //     }
+                            //   </UserCollections>
+                            //   <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
+                            //         {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "YYYYMMDD").fromNow()}`}
+                            //   </span></b>
+                            // </TimeFormatDiv>
                           )
                         }
+                        <ArrowDiv>
+                          <DownButton>{`⬇`}</DownButton>
+                        </ArrowDiv>
                       </UserCollectionsDiv>
                       <CreateCollectionButton onClick={this.createCollection}>
                         Create New Collection
                       </CreateCollectionButton>
                     </CollectionsDiv>
+                    <LogoutDiv>
+                      <LogoutButton onClick={this.props.logout}>
+                        Logout
+                      </LogoutButton>
+                    </LogoutDiv>
                   </>
                 )
                 :
                 (
-                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} />
+                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} />
                 )
               }
             </>

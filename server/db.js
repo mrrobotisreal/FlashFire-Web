@@ -12,7 +12,8 @@ const cardSchema = new Schema({
 const cardListSchema = new Schema({
   name: String,
   category: String,
-  cardList: []
+  cardList: [],
+  creationDate: String
 });
 const userSchema = new Schema({
   name: String,
@@ -42,7 +43,8 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   let collection = new CardList({
     name: newColl.name,
     category: newColl.category,
-    cardList: newColl.cardList
+    cardList: newColl.cardList,
+    creationDate: newColl.creationDate
   });
   let oldColl = User.findOne({'username': user});
   oldColl.exec((err, doc) => {

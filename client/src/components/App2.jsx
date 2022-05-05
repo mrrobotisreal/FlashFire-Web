@@ -117,6 +117,7 @@ class App2 extends React.Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.showLoginForm = this.showLoginForm.bind(this);
     this.showSignupForm = this.showSignupForm.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   handleSignupSubmit(e) {
@@ -232,6 +233,18 @@ class App2 extends React.Component {
     });
   }
 
+  logout() {
+    this.setState({
+      isAlreadyAMember: true,
+      showLoginForm: this.state.showLoginForm,
+      signupName: this.state.signupName,
+      signupEmail: this.state.signupEmail,
+      username: this.state.username,
+      password: this.state.password,
+      showMainMenu: false,
+    });
+  }
+
   render() {
     return (
       <>
@@ -302,7 +315,7 @@ class App2 extends React.Component {
           :
           (
             // null
-            <MainMenu user={this.state.username} />
+            <MainMenu logout={this.logout} user={this.state.username} />
           )
         }
     </>

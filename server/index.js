@@ -31,9 +31,9 @@ app.get('/collections/:user', (req, res) => {
       // console.log('doc in general -> ', doc);
       // console.log('collections doc -> ', doc[0].collections);
       // console.log('cardList -> ', doc[0].collections[0].cardList);
-      if (doc.length === 0) {
-        res.send(false);
-      }
+      // if (doc.length === 0) {
+      //   res.send(false);
+      // }
       res.send(doc[0].collections);
     }
   });
