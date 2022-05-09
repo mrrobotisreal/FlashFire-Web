@@ -60,6 +60,18 @@ app.post('/collections/:user/add', (req, res) => {
   // })
 });
 
+app.post('/collections/:user/set-view-date', (req, res) => {
+  console.log('server data be like -> ', req.body);
+  db.setViewDate(req.body, req.params.user, (err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('date doc be like -> ', doc);
+      res.send(doc);
+    }
+  });
+});
+
 // app.post('/cards', (req, res) => {
 //   console.log('Successfully POSTed! searchyyy -> ', req.body);
 //   let search = req.body.search;

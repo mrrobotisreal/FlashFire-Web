@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Editor from 'react-run-code';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
@@ -248,6 +249,11 @@ const LogoutButton = styled.button`
   }
 `;
 
+const LastViewSpan = styled.span`
+  font-family: 'Shadows Into Light';
+  color: yellow;
+`;
+
 class MainMenu2 extends React.Component {
   constructor(props) {
     super(props);
@@ -262,7 +268,8 @@ class MainMenu2 extends React.Component {
       cardCount: 0,
       flash: false,
       currentCollection: [],
-      selectedCollection: 0
+      selectedCollection: 0,
+      lastView: '',
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -275,12 +282,12 @@ class MainMenu2 extends React.Component {
     this.goToMainMenu = this.goToMainMenu.bind(this);
     this.goBack = this.goBack.bind(this);
     this.moveUp = this.moveUp.bind(this);
+    this.moveDown = this.moveDown.bind(this);
   }
 
   componentDidMount() {
     axios.get(`/collections/${this.props.user}`)
       .then(({ data }) => {
-        console.log('component did res -> ', data);
         if (data.length !== 0) {
           this.setState({
             userCollections: data,
@@ -293,7 +300,8 @@ class MainMenu2 extends React.Component {
             cardCount: this.state.cardCount,
             flash: this.state.flash,
             currentCollection: this.state.currentCollection,
-            selectedCollection: this.state.selectedCollection
+            selectedCollection: this.state.selectedCollection,
+            lastView: this.state.lastView,
           })
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
@@ -309,9 +317,17 @@ class MainMenu2 extends React.Component {
   }
 
   chooseCollection(e) {
-    console.log('id collection is -> ', e.target.id);
+    var tweetDate = 'Mon Dec 02 23:45:49 +0000 2013';
+    console.log('tweetdate -> ', moment(tweetDate, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow());
     let choice;
     let choiceName;
+    let d = new Date();
+    d = d.toString();
+    console.log('d be like -> ', d);
+    // console.log('d string be like -> ', d.toString());
+    console.log('today be like -> ', moment(d, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow());
+    console.log('userCollections -> ', this.state.userCollections);
+
     for (let i = 0; i < this.state.userCollections.length; i++) {
       if (this.state.userCollections[i].name === e.target.id) {
         choice = this.state.userCollections[i].cardList;
@@ -329,8 +345,18 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: true,
       currentCollection: choice,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: d,
     });
+    axios.post(`/collections/${this.props.user}/set-view-date`, {
+      data: {
+        lastView: d,
+        collectionName: choiceName
+      }
+    })
+      .then(({ data }) => {
+      })
+      .catch((err) => console.error(err));
   }
 
   createCollection() {
@@ -345,7 +371,8 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
   }
 
@@ -361,7 +388,8 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
   }
 
@@ -377,7 +405,8 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
   }
 
@@ -393,7 +422,8 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
   }
 
@@ -409,7 +439,8 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
   }
 
@@ -430,7 +461,8 @@ class MainMenu2 extends React.Component {
       cardCount: newCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
     document.getElementById('question').value = '';
     document.getElementById('answer').value = '';
@@ -438,22 +470,14 @@ class MainMenu2 extends React.Component {
 
   finishCollection() {
     let d = new Date();
-    let year = String(d.getFullYear()), month = d.getMonth(), day = String(d.getDate());
-    month += 1;
-    month = String(month);
-    if (month.length === 1) {
-      month = '0' + month;
-    }
-    if (day.length === 1) {
-      day = '0' + day;
-    }
-    d = year + month + day;
+    d = d.toString();
 
     let newCollection = {
       name: this.state.collectionName,
       category: this.state.category,
       cardList: this.state.cardList,
-      creationDate: d
+      creationDate: d,
+      lastView: d
     };
     axios.post(`/collections/${this.props.user}/add`, newCollection)
       .then((res) => {
@@ -466,10 +490,11 @@ class MainMenu2 extends React.Component {
           question: this.state.question,
           answer: this.state.answer,
           cardList: this.state.cardList,
-          cardCount: this.state.cardCount,
+          cardCount: 0,
           flash: this.state.flash,
           currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.selectedCollection
+          selectedCollection: this.state.selectedCollection,
+          lastView: d,
         });
         alert('Collection was added to your profile!');
         axios.get(`/collections/${this.props.user}`)
@@ -486,7 +511,8 @@ class MainMenu2 extends React.Component {
               cardCount: this.state.cardCount,
               flash: this.state.flash,
               currentCollection: this.state.currentCollection,
-              selectedCollection: this.state.selectedCollection
+              selectedCollection: this.state.selectedCollection,
+              lastView: this.state.lastView,
             })
           })
           .catch((err) => console.error(err));
@@ -506,7 +532,8 @@ class MainMenu2 extends React.Component {
       cardCount: this.state.cardCount,
       flash: this.state.flash,
       currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
+      selectedCollection: this.state.selectedCollection,
+      lastView: this.state.lastView,
     });
     axios.get(`/collections/${this.props.user}`)
       .then((res) => {
@@ -521,30 +548,117 @@ class MainMenu2 extends React.Component {
           cardCount: this.state.cardCount,
           flash: this.state.flash,
           currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.selectedCollection
+          selectedCollection: this.state.selectedCollection,
+          lastView: this.state.lastView,
         });
       })
       .catch((err) => console.error(err));
   }
 
   goBack() {
-    this.setState({
-      userCollections: this.state.userCollections,
-      isCreating: this.state.isCreating,
-      collectionName: this.state.collectionName,
-      category: this.state.category,
-      question: this.state.question,
-      answer: this.state.answer,
-      cardList: this.state.cardList,
-      cardCount: this.state.cardCount,
-      flash: false,
-      currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection
-    });
+    // this.setState({
+    //   userCollections: this.state.userCollections,
+    //   isCreating: this.state.isCreating,
+    //   collectionName: this.state.collectionName,
+    //   category: this.state.category,
+    //   question: this.state.question,
+    //   answer: this.state.answer,
+    //   cardList: this.state.cardList,
+    //   cardCount: this.state.cardCount,
+    //   flash: false,
+    //   currentCollection: this.state.currentCollection,
+    //   selectedCollection: this.state.selectedCollection,
+    //   lastView: this.state.lastView,
+    // });
+    axios.get(`/collections/${this.props.user}`)
+    .then(({ data }) => {
+      console.log('res -> ', data);
+      this.setState({
+        userCollections: data,
+        isCreating: this.state.isCreating,
+        collectionName: this.state.collectionName,
+        category: this.state.category,
+        question: this.state.question,
+        answer: this.state.answer,
+        cardList: this.state.cardList,
+        cardCount: this.state.cardCount,
+        flash: false,
+        currentCollection: this.state.currentCollection,
+        selectedCollection: this.state.selectedCollection,
+        lastView: this.state.lastView,
+      })
+    })
+    .catch((err) => console.error(err));
   }
 
   moveUp() {
+    if (this.state.selectedCollection  === 0) {
+      this.setState({
+        userCollections: this.state.userCollections,
+        isCreating: this.state.isCreating,
+        collectionName: this.state.collectionName,
+        category: this.state.category,
+        question: this.state.question,
+        answer: this.state.answer,
+        cardList: this.state.cardList,
+        cardCount: this.state.cardCount,
+        flash: this.state.flash,
+        currentCollection: this.state.currentCollection,
+        selectedCollection: this.state.userCollections.length - 1,
+        lastView: this.state.lastView,
+      });
+    } else {
+      this.setState({
+        userCollections: this.state.userCollections,
+        isCreating: this.state.isCreating,
+        collectionName: this.state.collectionName,
+        category: this.state.category,
+        question: this.state.question,
+        answer: this.state.answer,
+        cardList: this.state.cardList,
+        cardCount: this.state.cardCount,
+        flash: this.state.flash,
+        currentCollection: this.state.currentCollection,
+        selectedCollection: this.state.selectedCollection -= 1,
+        lastView: this.state.lastView,
+      })
+    }
+  }
 
+  moveDown() {
+    console.log('usercoll -> ', this.state.userCollections);
+    console.log('selected -> ', this.state.selectedCollection);
+    if (this.state.selectedCollection === this.state.userCollections.length - 1) {
+      this.setState({
+        userCollections: this.state.userCollections,
+        isCreating: this.state.isCreating,
+        collectionName: this.state.collectionName,
+        category: this.state.category,
+        question: this.state.question,
+        answer: this.state.answer,
+        cardList: this.state.cardList,
+        cardCount: this.state.cardCount,
+        flash: this.state.flash,
+        currentCollection: this.state.currentCollection,
+        selectedCollection: 0,
+        lastView: this.state.lastView,
+      });
+    } else {
+      this.setState({
+        userCollections: this.state.userCollections,
+        isCreating: this.state.isCreating,
+        collectionName: this.state.collectionName,
+        category: this.state.category,
+        question: this.state.question,
+        answer: this.state.answer,
+        cardList: this.state.cardList,
+        cardCount: this.state.cardCount,
+        flash: this.state.flash,
+        currentCollection: this.state.currentCollection,
+        selectedCollection: this.state.selectedCollection += 1,
+        lastView: this.state.lastView,
+      })
+    }
   }
 
   render() {
@@ -565,11 +679,11 @@ class MainMenu2 extends React.Component {
                     <CollectionsDiv>
                       <CollectionsTitle>
                         <b><u>Total Collections<CollCountSpan>{` (${this.state.userCollections.length})`}
-                        </CollCountSpan>:</u></b>
+                        </CollCountSpan></u></b>
                       </CollectionsTitle>
                       <UserCollectionsDiv>
                         <ArrowDiv>
-                          <UpButton>{`⬆`}</UpButton>
+                          <UpButton onClick={this.moveUp}>{`⬆`}</UpButton>
                         </ArrowDiv>
                         {
                           // map over the collections
@@ -583,33 +697,40 @@ class MainMenu2 extends React.Component {
                           )
                           :
                           (
-                            this.state.userCollections.map((collection, index) => {
-                              let collString = collection.name;
-                              return (
-                                <TimeFormatDiv>
-                                  <UserCollections key={index + collection.name} onClick={this.chooseCollection} id={collString}>
-                                    {collection.name}
-                                  </UserCollections>
-                                  <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
-                                    {`Created ${moment(collection.creationDate, "YYYYMMDD").fromNow()}`}
-                                  </span></b>
-                                </TimeFormatDiv>
-                              )
-                            })
-                            // <TimeFormatDiv>
-                            //   <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
-                            //     {
-                            //       this.state.userCollections[this.state.selectedCollection].name
-                            //     }
-                            //   </UserCollections>
-                            //   <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
-                            //         {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "YYYYMMDD").fromNow()}`}
-                            //   </span></b>
-                            // </TimeFormatDiv>
+                            //-----------------------------------------------------------------------------
+                            // this.state.userCollections.map((collection, index) => {
+                            //   let collString = collection.name;
+                            //   return (
+                            //     <TimeFormatDiv>
+                            //       <UserCollections key={index + collection.name} onClick={this.chooseCollection} id={collString}>
+                            //         {collection.name}
+                            //       </UserCollections>
+                            //       <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
+                            //         {`Created ${moment(collection.creationDate, "YYYYMMDD").fromNow()}`}
+                            //       </span></b>
+                            //     </TimeFormatDiv>
+                            //   )
+                            // })
+                            //-------------------------------------------------------------------------------
+                            <TimeFormatDiv>
+                              <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
+                                {
+                                  `${this.state.selectedCollection + 1}. ${this.state.userCollections[this.state.selectedCollection].name}`
+                                }
+                              </UserCollections>
+                              <b><span style={{fontFamily: 'Shadows Into Light', color: 'yellow'}}>
+                                    {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
+                              </span></b>
+                              <LastViewSpan>
+                                {`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
+                              </LastViewSpan>
+                            </TimeFormatDiv>
+                            //------------------------------------------------------------------------------------
+                            // <Editor id="10" modelsInfo={[]} />
                           )
                         }
                         <ArrowDiv>
-                          <DownButton>{`⬇`}</DownButton>
+                          <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>
                         </ArrowDiv>
                       </UserCollectionsDiv>
                       <CreateCollectionButton onClick={this.createCollection}>

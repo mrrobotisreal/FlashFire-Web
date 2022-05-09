@@ -13,7 +13,8 @@ const cardListSchema = new Schema({
   name: String,
   category: String,
   cardList: [],
-  creationDate: String
+  creationDate: String,
+  lastView: String
 });
 const userSchema = new Schema({
   name: String,
@@ -44,7 +45,8 @@ const saveCollection = (newColl, user, cb = () => {}) => {
     name: newColl.name,
     category: newColl.category,
     cardList: newColl.cardList,
-    creationDate: newColl.creationDate
+    creationDate: newColl.creationDate,
+    lastView: newColl.lastView
   });
   let oldColl = User.findOne({'username': user});
   oldColl.exec((err, doc) => {
@@ -70,6 +72,86 @@ const saveCollection = (newColl, user, cb = () => {}) => {
     }
   });
 };
+
+ const setViewDate = (data, user, cb = () => {}) => {
+  //  console.log('data data dataa -> ', data)
+  //  let userDate = User.findOne({'username': user});
+  //  userDate.exec((err, doc) => {
+  //    if (err) {
+  //      console.error(err);
+  //    } else {
+  //      console.log('setViewDate Db -> ', doc);
+  //      let newDate = doc.collections;
+  //      console.log('newDate before -> ', newDate)
+  //     //  for (let i = 0; i < doc.collections.length; i++) {
+  //     //    if (newDate[i].name === data.collectionName) {
+  //     //      console.log('Im in!');
+  //     //      newDate[i].lastView = data.lastView;
+  //     //      break;
+  //     //    }
+  //     //  }
+  //     newDate[0].lastView = data.lastView;
+  //      doc.collections = newDate;
+  //      console.log('newDate be like -> ', newDate)
+  //      console.log('collections after -> ', doc.collections);
+  //      let updated = User.findOneAndUpdate({'username': user}, {'collections': newDate}, {new: true})
+  //      updated.exec((err, doc) => {
+  //        if (err) {
+  //          console.error(err);
+  //        } else {
+  //          cb(null, doc);
+  //        }
+  //      });
+  //    }
+  //  });
+
+  let dis = User.findOne({'name': 'f'});
+  dis.exec((err, doc) => {
+   //  console.log('dis be like -> ', doc.collections);
+    let theUser = doc;
+    console.log('user -> ', theUser);
+    let theColl = doc.collections;
+    console.log('coll -> ', theColl);
+    let newCreation = doc.collections[0];
+    newCreation.lastView = new Date().toString();
+    console.log('new creation be like -> ', newCreation);
+    theColl[0] = newCreation;
+    console.log('the coll 0 after -> ', theColl);
+    theUser.collections = theColl;
+    console.log('the user is now like -> ', theUser);
+    let userUpdate = User.findOneAndUpdate({'name': 'f'}, {'collections': theColl}, {new: true});
+    userUpdate.exec((err, doc) => {
+      console.log('updated doc -> ', doc);
+      console.log('updated collections -> ', doc.collections);
+      cb(null, doc);
+    })
+  })
+ };
+
+//  const chickaPow = () => {
+  //  let dis = User.findOne({'name': 'f'});
+  //  dis.exec((err, doc) => {
+  //   //  console.log('dis be like -> ', doc.collections);
+  //    let theUser = doc;
+  //    console.log('user -> ', theUser);
+  //    let theColl = doc.collections;
+  //    console.log('coll -> ', theColl);
+  //    let newCreation = doc.collections[0];
+  //    newCreation.lastView = new Date().toString();
+  //    console.log('new creation be like -> ', newCreation);
+  //    theColl[0] = newCreation;
+  //    console.log('the coll 0 after -> ', theColl);
+  //    theUser.collections = theColl;
+  //    console.log('the user is now like -> ', theUser);
+  //    let userUpdate = User.findOneAndUpdate({'name': 'f'}, {'collections': theColl});
+  //    userUpdate.exec((err, doc) => {
+  //      console.log('updated doc -> ', doc);
+  //      console.log('updated collections -> ', doc.collections);
+  //    })
+  //  })
+//  }
+
+//  chickaPow();
 
 // make appropriate edits to the code below!!!!
 //
@@ -163,6 +245,7 @@ module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;
 module.exports.saveCollection = saveCollection;
+module.exports.setViewDate = setViewDate;
 // module.exports.saveCards = saveCards;
 module.exports.saveSignup = saveSignup;
 // module.exports.deleteWord = deleteWord;

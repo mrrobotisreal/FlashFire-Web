@@ -1,10 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#800080',
+      darker: '#470047',
+    }
+  }
+});
 
 const CollectionDiv = styled.div`
   text-align: center;
+  color: #470047
   top: 0;
   left: 0;
   position: relative;
@@ -365,9 +377,11 @@ class FlashCards extends React.Component {
             </FailSuccessDiv>
           </FlashCardDiv>
           <MainMenuDiv>
-            <MainMenuButton onClick={this.props.goBack}>
-              Main Menu
-            </MainMenuButton>
+            <ThemeProvider theme={theme}>
+              <Button onClick={this.props.goBack} variant="contained" size="large" color="primary">
+                Main Menu
+              </Button>
+            </ThemeProvider>
           </MainMenuDiv>
         </CollectionDiv>
         <PrevNextDiv>
