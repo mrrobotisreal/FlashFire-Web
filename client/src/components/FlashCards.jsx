@@ -8,8 +8,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#800080',
-      darker: '#470047',
+      main: '#040004',
+      darker: '#952800',
     }
   }
 });
@@ -216,63 +216,141 @@ class FlashCards extends React.Component {
       success: 0,
       fail: 0,
       answerDisplay: 'none',
+      score: 0,
+      prevScore: 0
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
     this.reveal = this.reveal.bind(this);
     this.handleFail = this.handleFail.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
+    this.back = this.back.bind(this);
   }
 
   componentDidMount() {
-
+    let prevScore = JSON.parse(localStorage.getItem('score'));
+    if (!prevScore || prevScore === 0) {
+      this.setState({
+        prevScore: 0
+      })
+    } else {
+      this.setState({
+        prevScore: prevScore
+      })
+    }
   }
 
   nextCard() {
+    console.log('nextCard ', this.state.currentCard)
     if (this.state.currentCard === this.state.totalCards - 1) {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: 0,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-      });
+      if (this.state.answerDisplay !== 'none') {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: 0,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: 'none',
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      } else {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: 0,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: this.state.answerDisplay,
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      }
     } else {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard += 1,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-      });
+      if (this.state.answerDisplay !== 'none') {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard += 1,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: 'none',
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      } else {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard += 1,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: this.state.answerDisplay,
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      }
     }
   }
 
   prevCard() {
+    console.log('prevCard ', this.state.currentCard)
     if (this.state.currentCard === 0) {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.totalCards - 1,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-      });
+      if (this.state.answerDisplay !== 'none') {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.totalCards - 1,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: 'none',
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      } else {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.totalCards - 1,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: this.state.answerDisplay,
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      }
     } else {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard -= 1,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-      });
+      if (this.state.answerDisplay !== 'none') {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard -= 1,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: 'none',
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      } else {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard -= 1,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: this.state.answerDisplay,
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+        });
+      }
     }
   }
 
@@ -286,6 +364,8 @@ class FlashCards extends React.Component {
         success: this.state.success,
         fail: this.state.fail,
         answerDisplay: 'flex',
+        score: this.state.score,
+        prevScore: this.state.prevScore,
       })
     } else {
       this.setState({
@@ -296,6 +376,8 @@ class FlashCards extends React.Component {
         success: this.state.success,
         fail: this.state.fail,
         answerDisplay: 'none',
+        score: this.state.score,
+        prevScore: this.state.prevScore,
       })
     }
   }
@@ -309,6 +391,8 @@ class FlashCards extends React.Component {
       success: this.state.success,
       fail: this.state.fail += 1,
       answerDisplay: this.state.answerDisplay,
+      score: this.state.score,
+      prevScore: this.state.prevScore,
     });
   }
 
@@ -321,7 +405,14 @@ class FlashCards extends React.Component {
       success: this.state.success += 1,
       fail: this.state.fail,
       answerDisplay: this.state.answerDisplay,
+      score: this.state.score += 1,
+      prevScore: this.state.prevScore,
     });
+  }
+
+  back(score) {
+    localStorage.setItem('score', JSON.stringify(this.state.score));
+    this.props.goBack();
   }
 
   render() {
@@ -340,15 +431,15 @@ class FlashCards extends React.Component {
             }
           </CardNumber>
           <FlashCardDiv>
-            <QuestionAndAnswerDiv>
-              {
+            <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
+              <b>{
                 this.state.cardList[this.state.currentCard].question
-              }
+              }</b>
             </QuestionAndAnswerDiv>
-            <QuestionAndAnswerDiv style={{display: this.state.answerDisplay,   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen'}} id="answer">
-              {
+            <QuestionAndAnswerDiv style={{display: this.state.answerDisplay,   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
+              <b>{
                 this.state.cardList[this.state.currentCard].answer
-              }
+              }</b>
             </QuestionAndAnswerDiv>
             <RevealButton type="button" onClick={this.reveal}>
               Reveal
@@ -375,10 +466,18 @@ class FlashCards extends React.Component {
                 </FailSuccessCount>
               </FailSuccessIndividualDiv>
             </FailSuccessDiv>
+            <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+              <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
+                <h3>Previous Score</h3>
+              </FailSuccessDiv>
+              <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
+                {this.state.prevScore}
+              </FailSuccessDiv>
+            </FailSuccessDiv>
           </FlashCardDiv>
           <MainMenuDiv>
             <ThemeProvider theme={theme}>
-              <Button onClick={this.props.goBack} variant="contained" size="large" color="primary">
+              <Button onClick={this.back} variant="contained" size="large" color="primary">
                 Main Menu
               </Button>
             </ThemeProvider>

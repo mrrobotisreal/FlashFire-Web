@@ -22,6 +22,18 @@ app.post('/signup', (req, res) => {
   });
 });
 
+app.post('/login', (req, res) => {
+  db.checkLogin(req.body, (err, success) => {
+    if (err) {
+      console.error(err);
+    } else {
+      // console.log('successful login');
+      console.log('success === ', success);
+      res.send(success);
+    }
+  });
+});
+
 app.get('/collections/:user', (req, res) => {
   let user = db.users.find({'username': req.params.user});
   user.exec((err, doc) => {

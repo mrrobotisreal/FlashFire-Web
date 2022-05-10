@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost:27017/flash-fire-webapp', {
   useUnifiedTopology: true
 });
 const { Schema } = mongoose;
+const crypto = require('crypto');
 
 const cardSchema = new Schema({
   question: String,
@@ -28,15 +29,15 @@ const Card = mongoose.model('Card', cardSchema);
 const CardList = mongoose.model('CardList', cardListSchema);
 const User = mongoose.model('User', userSchema);
 
-const hashlator = (str, max) => {
-  let hash = 0;
-  for (var i = 0; i < str.length; i++) {
-    hash = (hash << 5) + hash + str.charCodeAt(i);
-    hash = hash & hash;
-    hash = Math.abs(hash);
-  }
-  return hash % max;
-}
+// const hashlator = (str, max) => {
+//   let hash = 0;
+//   for (var i = 0; i < str.length; i++) {
+//     hash = (hash << 5) + hash + str.charCodeAt(i);
+//     hash = hash & hash;
+//     hash = Math.abs(hash);
+//   }
+//   return hash % max;
+// }
 
 const saveCollection = (newColl, user, cb = () => {}) => {
   console.log('newColl be like -> ', newColl);
@@ -109,20 +110,13 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   dis.exec((err, doc) => {
    //  console.log('dis be like -> ', doc.collections);
     let theUser = doc;
-    console.log('user -> ', theUser);
     let theColl = doc.collections;
-    console.log('coll -> ', theColl);
     let newCreation = doc.collections[0];
     newCreation.lastView = new Date().toString();
-    console.log('new creation be like -> ', newCreation);
     theColl[0] = newCreation;
-    console.log('the coll 0 after -> ', theColl);
     theUser.collections = theColl;
-    console.log('the user is now like -> ', theUser);
     let userUpdate = User.findOneAndUpdate({'name': 'f'}, {'collections': theColl}, {new: true});
     userUpdate.exec((err, doc) => {
-      console.log('updated doc -> ', doc);
-      console.log('updated collections -> ', doc.collections);
       cb(null, doc);
     })
   })
@@ -201,12 +195,19 @@ const saveCollection = (newColl, user, cb = () => {}) => {
 //   }
 // };
 
+const cryptofy = (password) => {
+  let salt = 'winter';
+  let shasum = crypto.createHash('sha256');
+  shasum.update(password + salt);
+  return shasum.digest('hex');
+};
+
 const saveSignup = (signup, cb = () => {}) => {
   let newSignup = new User({
     name: signup.name,
     email: signup.email,
     username: signup.username,
-    password: signup.password,
+    password: cryptofy(signup.password),
     collections: []
   });
   newSignup.save((err, success) => {
@@ -217,6 +218,22 @@ const saveSignup = (signup, cb = () => {}) => {
       cb(null, 'Successful Signup in DB!');
     }
   })
+};
+
+const checkLogin = (userInfo, cb = () => {}) => {
+  let attempt = cryptofy(userInfo.password);
+  let user = User.findOne({'username': userInfo.username});
+  user.exec((err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      if (attempt === doc.password) {
+        cb(null, true);
+      } else {
+        cb(null, false);
+      }
+    }
+  });
 };
 
 // const deleteWord = (word, cb = () => {}) => {
@@ -248,5 +265,6 @@ module.exports.saveCollection = saveCollection;
 module.exports.setViewDate = setViewDate;
 // module.exports.saveCards = saveCards;
 module.exports.saveSignup = saveSignup;
+module.exports.checkLogin = checkLogin;
 // module.exports.deleteWord = deleteWord;
 // module.exports.editMeaning = editMeaning;

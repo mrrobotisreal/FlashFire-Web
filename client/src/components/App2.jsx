@@ -144,20 +144,39 @@ class App2 extends React.Component {
   }
 
   handleLoginSubmit(e) {
-    // axios.get(`/collections/${this.state.username}`)
-    //   .then((res) => {
-    //     //
-    //   })
-    //   .catch((err) => console.error(err));
-    this.setState({
-      isAlreadyAMember: this.state.isAlreadyAMember,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
-      signupEmail: this.state.signupEmail,
+    e.preventDefault();
+    let userInfo = {
       username: this.state.username,
-      password: this.state.password,
-      showMainMenu: true
-    });
+      password: this.state.password
+    };
+    axios.post(`/login`, userInfo)
+      .then(({ data }) => {
+        console.log('res be like -> ', data);
+        if (!data) {
+          alert('Wrong username or password! Please try again')
+        } else {
+          this.setState({
+            isAlreadyAMember: this.state.isAlreadyAMember,
+            showLoginForm: this.state.showLoginForm,
+            signupName: this.state.signupName,
+            signupEmail: this.state.signupEmail,
+            username: this.state.username,
+            password: this.state.password,
+            showMainMenu: true
+          });
+        }
+      })
+      .catch((err) => console.error(err));
+
+    // this.setState({
+    //   isAlreadyAMember: this.state.isAlreadyAMember,
+    //   showLoginForm: this.state.showLoginForm,
+    //   signupName: this.state.signupName,
+    //   signupEmail: this.state.signupEmail,
+    //   username: this.state.username,
+    //   password: this.state.password,
+    //   showMainMenu: true
+    // });
   }
 
   showLoginForm(e) {
@@ -253,7 +272,7 @@ class App2 extends React.Component {
           ?
           (
             <>
-              <Title>🔥Welcome to Flash Fire!🔥</Title>
+              <Title>🔥Flash Fire🔥</Title>
               <LoginSignupDiv>
                 <LoginSignupTitle><b><u>{!this.state.isAlreadyAMember ? 'Sign Up' : 'Log In'}</u></b></LoginSignupTitle>
                 {

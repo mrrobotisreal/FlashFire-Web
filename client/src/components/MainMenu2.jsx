@@ -3,6 +3,7 @@ import Editor from 'react-run-code';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
+import getHostedURL from './library/getHostedURL.js';
 const moment = require('moment');
 
 const MainMenuDiv = styled.div`
@@ -50,7 +51,7 @@ const UserCollectionsDiv = styled.div`
   border-radius: 12px;
   padding: 6%;
   text-align: center;
-  width: 40%;
+  width: 95%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -184,6 +185,14 @@ const CollectionInput = styled.input`
   margin-bottom: 2%;
 `;
 
+const CollectionTextArea = styled.textarea`
+  background-color: darkgrey;
+  color: white;
+  text-align: left;
+  margin-bottom: 2%;
+  width: 90%;
+`;
+
 const CardDiv = styled.div`
   background-image: linear-gradient(to bottom, black, orangered);
   border: 2px ridge darkred;
@@ -193,6 +202,7 @@ const CardDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding: 4%;
+  width: 80%;
 `;
 
 const AddCardButton = styled.button`
@@ -249,6 +259,10 @@ const LogoutButton = styled.button`
   }
 `;
 
+const AddImageInput = styled.input``;
+
+const AddImageDiv = styled.div``;
+
 const LastViewSpan = styled.span`
   font-family: 'Shadows Into Light';
   color: yellow;
@@ -270,6 +284,7 @@ class MainMenu2 extends React.Component {
       currentCollection: [],
       selectedCollection: 0,
       lastView: '',
+      photos: [],
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -283,6 +298,7 @@ class MainMenu2 extends React.Component {
     this.goBack = this.goBack.bind(this);
     this.moveUp = this.moveUp.bind(this);
     this.moveDown = this.moveDown.bind(this);
+    this.setPhotos = this.setPhotos.bind(this);
   }
 
   componentDidMount() {
@@ -302,6 +318,7 @@ class MainMenu2 extends React.Component {
             currentCollection: this.state.currentCollection,
             selectedCollection: this.state.selectedCollection,
             lastView: this.state.lastView,
+            photos: this.state.photos
           })
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
@@ -314,6 +331,18 @@ class MainMenu2 extends React.Component {
     if (prevState.isCreating !== this.state.isCreating) {
       console.log('state is changed');
     }
+  }
+
+  setPhotos(e) {
+    if (e.target.files.length > 5) {
+      alert('Please select up to 5 photos to upload');
+      e.target.value = '';
+      return;
+    }
+
+    this.setState({
+      photos: [...e.target.files]
+    });
   }
 
   chooseCollection(e) {
@@ -347,6 +376,7 @@ class MainMenu2 extends React.Component {
       currentCollection: choice,
       selectedCollection: this.state.selectedCollection,
       lastView: d,
+      photos: this.state.photos
     });
     axios.post(`/collections/${this.props.user}/set-view-date`, {
       data: {
@@ -373,6 +403,7 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: this.state.photos
     });
   }
 
@@ -390,6 +421,7 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: this.state.photos
     });
   }
 
@@ -407,6 +439,7 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: this.state.photos
     });
   }
 
@@ -424,6 +457,7 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: this.state.photos
     });
   }
 
@@ -441,15 +475,18 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: this.state.photos
     });
   }
 
   submitCard() {
     let newCard = {
       question: this.state.question,
-      answer: this.state.answer
+      answer: this.state.answer,
+      photo: getHostedURL(this.state.photos[0])
     };
     let newCount = this.state.cardCount + 1;
+    // let newImage =
     this.setState({
       userCollections: this.state.userCollections,
       isCreating: this.state.isCreating,
@@ -463,6 +500,7 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: []
     });
     document.getElementById('question').value = '';
     document.getElementById('answer').value = '';
@@ -495,6 +533,7 @@ class MainMenu2 extends React.Component {
           currentCollection: this.state.currentCollection,
           selectedCollection: this.state.selectedCollection,
           lastView: d,
+          photos: this.state.photos
         });
         alert('Collection was added to your profile!');
         axios.get(`/collections/${this.props.user}`)
@@ -513,6 +552,7 @@ class MainMenu2 extends React.Component {
               currentCollection: this.state.currentCollection,
               selectedCollection: this.state.selectedCollection,
               lastView: this.state.lastView,
+              photos: this.state.photos
             })
           })
           .catch((err) => console.error(err));
@@ -534,28 +574,30 @@ class MainMenu2 extends React.Component {
       currentCollection: this.state.currentCollection,
       selectedCollection: this.state.selectedCollection,
       lastView: this.state.lastView,
+      photos: this.state.photos
     });
-    axios.get(`/collections/${this.props.user}`)
-      .then((res) => {
-        this.setState({
-          userCollections: res,
-          isCreating: this.state.isCreating,
-          collectionName: this.state.collectionName,
-          category: this.state.category,
-          question: this.state.question,
-          answer: this.state.answer,
-          cardList: this.state.cardList,
-          cardCount: this.state.cardCount,
-          flash: this.state.flash,
-          currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.selectedCollection,
-          lastView: this.state.lastView,
-        });
-      })
-      .catch((err) => console.error(err));
+    // axios.get(`/collections/${this.props.user}`)
+    //   .then((res) => {
+    //     this.setState({
+    //       userCollections: res,
+    //       isCreating: this.state.isCreating,
+    //       collectionName: this.state.collectionName,
+    //       category: this.state.category,
+    //       question: this.state.question,
+    //       answer: this.state.answer,
+    //       cardList: this.state.cardList,
+    //       cardCount: this.state.cardCount,
+    //       flash: this.state.flash,
+    //       currentCollection: this.state.currentCollection,
+    //       selectedCollection: this.state.selectedCollection,
+    //       lastView: this.state.lastView,
+    //       photos: this.state.photos
+    //     });
+    //   })
+    //   .catch((err) => console.error(err));
   }
 
-  goBack() {
+  goBack(score) {
     // this.setState({
     //   userCollections: this.state.userCollections,
     //   isCreating: this.state.isCreating,
@@ -586,7 +628,8 @@ class MainMenu2 extends React.Component {
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.selectedCollection,
         lastView: this.state.lastView,
-      })
+        photos: this.state.photos
+      });
     })
     .catch((err) => console.error(err));
   }
@@ -606,6 +649,7 @@ class MainMenu2 extends React.Component {
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.userCollections.length - 1,
         lastView: this.state.lastView,
+        photos: this.state.photos
       });
     } else {
       this.setState({
@@ -621,6 +665,7 @@ class MainMenu2 extends React.Component {
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.selectedCollection -= 1,
         lastView: this.state.lastView,
+        photos: this.state.photos
       })
     }
   }
@@ -642,6 +687,7 @@ class MainMenu2 extends React.Component {
         currentCollection: this.state.currentCollection,
         selectedCollection: 0,
         lastView: this.state.lastView,
+        photos: this.state.photos
       });
     } else {
       this.setState({
@@ -657,6 +703,7 @@ class MainMenu2 extends React.Component {
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.selectedCollection += 1,
         lastView: this.state.lastView,
+        photos: this.state.photos
       })
     }
   }
@@ -722,7 +769,7 @@ class MainMenu2 extends React.Component {
                                     {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
                               </span></b>
                               <LastViewSpan>
-                                {`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
+                                <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                               </LastViewSpan>
                             </TimeFormatDiv>
                             //------------------------------------------------------------------------------------
@@ -768,14 +815,20 @@ class MainMenu2 extends React.Component {
                   <b>Add Cards:</b>
                 </CollectionLabel>
                 <CardDiv style={{gridRow: '6'}}>
+                  <AddImageDiv>
+                    <CollectionLabel>
+                      <b>Add an image?</b>
+                    </CollectionLabel>
+                    <AddImageInput type="file" accept=".jpg, .png" id="image-input" onChange={this.setPhotos} style={{overflowWrap: 'break-word'}} />
+                  </AddImageDiv>
                   <CollectionLabel style={{gridRow: '1'}}>
                     <b>Question:</b>
                   </CollectionLabel>
-                  <CollectionInput id="question" style={{gridRow: '2'}} onChange={this.handleQuestion} />
+                  <CollectionTextArea type="text" id="question" style={{gridRow: '2'}} onChange={this.handleQuestion} />
                   <CollectionLabel style={{gridRow: '3'}}>
                     <b>Answer:</b>
                   </CollectionLabel>
-                  <CollectionInput id="answer" style={{gridRow: '4'}} onChange={this.handleAnswer} />
+                  <CollectionTextArea type="text" id="answer" style={{gridRow: '4'}} onChange={this.handleAnswer} />
                   <AddCardButton style={{gridRow: '5'}} onClick={this.submitCard}>
                     <b>{`Add Card:`}</b>
                   </AddCardButton>
