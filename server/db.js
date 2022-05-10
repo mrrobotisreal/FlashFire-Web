@@ -147,54 +147,6 @@ const saveCollection = (newColl, user, cb = () => {}) => {
 
 //  chickaPow();
 
-// make appropriate edits to the code below!!!!
-//
-//                  v
-//
-// const saveCards = (cards, cb = () => {}) => {
-//   console.log('words -> ', cards);
-//   if (Array.isArray(card)) {
-//     cards.forEach(card => {
-//       let wordEntry = new Word({
-//         cardId: hashlator(card.que, cards.length ** 2),
-//         word: word.word,
-//         meaning: word.meaning
-//       });
-//       Word.findOneAndDelete({wordId: word.wordId}, (err, success) => {
-//         if (err) {
-//           console.error('database error: ', err);
-//         } else {
-//           console.log('database success: ', success);
-//         }
-//       });
-//       wordEntry.save();
-//       cb();
-//     })
-//   } else {
-//     let cardEntry = new Card({
-//       wordId: hashlator(words.meaning, 10000),
-//       word: words.word,
-//       meaning: words.meaning
-//     });
-//     Word.findOneAndDelete({wordId: hashlator(words.meaning, 10000)}, (err, success) => {
-//       if (err) {
-//         console.error('database error: ', err);
-//       } else {
-//         console.log('database success: ', success)
-//       }
-//     });
-//     wordEntry.save((err, success) => {
-//       if (err) {
-//         console.error(err);
-//       } else {
-//         console.log('Great success!!!! ', success);
-//         cb(null, success);
-//       }
-//     });
-
-//   }
-// };
-
 const cryptofy = (password) => {
   let salt = 'winter';
   let shasum = crypto.createHash('sha256');
@@ -236,35 +188,10 @@ const checkLogin = (userInfo, cb = () => {}) => {
   });
 };
 
-// const deleteWord = (word, cb = () => {}) => {
-//   Word.findOneAndDelete({word: word.word}, (err, success) => {
-//     if (err) {
-//       console.error('Db Delete error: ', err);
-//     } else {
-//       console.log('Db Delete success!');
-//       cb(null, success);
-//     }
-//   });
-// }
-
-// const editMeaning = (word, cb = () => {}) => {
-//   Word.findOneAndUpdate({meaning: word.prev}, {meaning: word.new}, {new: true}, (err, success) => {
-//     if (err) {
-//       console.error('Db edit error: ', err);
-//     } else {
-//       console.log('Db edit success!');
-//       cb(null, success);
-//     }
-//   });
-// }
-
 module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;
 module.exports.saveCollection = saveCollection;
 module.exports.setViewDate = setViewDate;
-// module.exports.saveCards = saveCards;
 module.exports.saveSignup = saveSignup;
 module.exports.checkLogin = checkLogin;
-// module.exports.deleteWord = deleteWord;
-// module.exports.editMeaning = editMeaning;
