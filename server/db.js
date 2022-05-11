@@ -29,16 +29,6 @@ const Card = mongoose.model('Card', cardSchema);
 const CardList = mongoose.model('CardList', cardListSchema);
 const User = mongoose.model('User', userSchema);
 
-// const hashlator = (str, max) => {
-//   let hash = 0;
-//   for (var i = 0; i < str.length; i++) {
-//     hash = (hash << 5) + hash + str.charCodeAt(i);
-//     hash = hash & hash;
-//     hash = Math.abs(hash);
-//   }
-//   return hash % max;
-// }
-
 const saveCollection = (newColl, user, cb = () => {}) => {
   console.log('newColl cardList be like -> ', newColl.cardList);
   console.log('user be like -> ', user);
@@ -54,12 +44,8 @@ const saveCollection = (newColl, user, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('collection be like -> ', collection);
-      console.log('doc be like -> ', doc);
-      console.log('doc collections be like -> ', doc.collections);
       let newCollections = doc.collections;
       newCollections.push(collection);
-      console.log('newCollections be like -> ', newCollections);
       newCollections = newCollections;
       let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': newCollections}, {new: true});
       updatedUser.exec((err, doc) => {
@@ -75,37 +61,6 @@ const saveCollection = (newColl, user, cb = () => {}) => {
 };
 
  const setViewDate = (data, user, cb = () => {}) => {
-  //  console.log('data data dataa -> ', data)
-  //  let userDate = User.findOne({'username': user});
-  //  userDate.exec((err, doc) => {
-  //    if (err) {
-  //      console.error(err);
-  //    } else {
-  //      console.log('setViewDate Db -> ', doc);
-  //      let newDate = doc.collections;
-  //      console.log('newDate before -> ', newDate)
-  //     //  for (let i = 0; i < doc.collections.length; i++) {
-  //     //    if (newDate[i].name === data.collectionName) {
-  //     //      console.log('Im in!');
-  //     //      newDate[i].lastView = data.lastView;
-  //     //      break;
-  //     //    }
-  //     //  }
-  //     newDate[0].lastView = data.lastView;
-  //      doc.collections = newDate;
-  //      console.log('newDate be like -> ', newDate)
-  //      console.log('collections after -> ', doc.collections);
-  //      let updated = User.findOneAndUpdate({'username': user}, {'collections': newDate}, {new: true})
-  //      updated.exec((err, doc) => {
-  //        if (err) {
-  //          console.error(err);
-  //        } else {
-  //          cb(null, doc);
-  //        }
-  //      });
-  //    }
-  //  });
-
   let dis = User.findOne({'username': user});
   dis.exec((err, doc) => {
     console.log('dis be like -> ', doc.collections);
@@ -121,31 +76,6 @@ const saveCollection = (newColl, user, cb = () => {}) => {
     })
   })
  };
-
-//  const chickaPow = () => {
-  //  let dis = User.findOne({'name': 'f'});
-  //  dis.exec((err, doc) => {
-  //   //  console.log('dis be like -> ', doc.collections);
-  //    let theUser = doc;
-  //    console.log('user -> ', theUser);
-  //    let theColl = doc.collections;
-  //    console.log('coll -> ', theColl);
-  //    let newCreation = doc.collections[0];
-  //    newCreation.lastView = new Date().toString();
-  //    console.log('new creation be like -> ', newCreation);
-  //    theColl[0] = newCreation;
-  //    console.log('the coll 0 after -> ', theColl);
-  //    theUser.collections = theColl;
-  //    console.log('the user is now like -> ', theUser);
-  //    let userUpdate = User.findOneAndUpdate({'name': 'f'}, {'collections': theColl});
-  //    userUpdate.exec((err, doc) => {
-  //      console.log('updated doc -> ', doc);
-  //      console.log('updated collections -> ', doc.collections);
-  //    })
-  //  })
-//  }
-
-//  chickaPow();
 
 const cryptofy = (password) => {
   let salt = 'winter';
@@ -166,7 +96,6 @@ const saveSignup = (signup, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('Success!!!');
       cb(null, 'Successful Signup in DB!');
     }
   })

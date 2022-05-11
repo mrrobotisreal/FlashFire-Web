@@ -11,7 +11,6 @@ const MainMenuDiv = styled.div`
   top: 0;
   left: 0;
   position: relative;
-  /* background-image: linear-gradient(to bottom, black, orangered, yellow); */
   background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');
   background-size: cover;
   padding: 3%;
@@ -30,7 +29,6 @@ const MainMenuTitle = styled.h2`
   margin-bottom: 3%;
   text-align: center;
   font-family: 'Luckiest Guy', cursive;
-  /* text-shadow: 1px 1px 2px red, 0 0 1em darkred, 0 0 0.2em darkred; */
 `;
 
 const CollectionsDiv = styled.div`
@@ -490,7 +488,6 @@ class MainMenu2 extends React.Component {
             photo: response.data.url
           };
           let newCount = this.state.cardCount + 1;
-          console.log('newCard -> ', newCard);
           this.setState({
             userCollections: this.state.userCollections,
             isCreating: this.state.isCreating,
@@ -510,11 +507,6 @@ class MainMenu2 extends React.Component {
           document.getElementById('answer').value = '';
         })
         .catch(err => console.log(err));
-      // newCard = {
-      //   question: this.state.question,
-      //   answer: this.state.answer,
-      //   photo: ...
-      // };
     } else {
       newCard = {
         question: this.state.question,
@@ -540,27 +532,6 @@ class MainMenu2 extends React.Component {
       document.getElementById('question').value = '';
       document.getElementById('answer').value = '';
     }
-    // let newCount = this.state.cardCount + 1;
-    // console.log('photos -> ', this.state.photos);
-    // console.log('newCard -> ', newCard);
-    // // let newImage =
-    // this.setState({
-    //   userCollections: this.state.userCollections,
-    //   isCreating: this.state.isCreating,
-    //   collectionName: this.state.collectionName,
-    //   category: this.state.category,
-    //   question: '',
-    //   answer: '',
-    //   cardList: [newCard, ...this.state.cardList],
-    //   cardCount: newCount,
-    //   flash: this.state.flash,
-    //   currentCollection: this.state.currentCollection,
-    //   selectedCollection: this.state.selectedCollection,
-    //   lastView: this.state.lastView,
-    //   photos: []
-    // });
-    // document.getElementById('question').value = '';
-    // document.getElementById('answer').value = '';
   }
 
   finishCollection() {
@@ -633,42 +604,9 @@ class MainMenu2 extends React.Component {
       lastView: this.state.lastView,
       photos: this.state.photos
     });
-    // axios.get(`/collections/${this.props.user}`)
-    //   .then((res) => {
-    //     this.setState({
-    //       userCollections: res,
-    //       isCreating: this.state.isCreating,
-    //       collectionName: this.state.collectionName,
-    //       category: this.state.category,
-    //       question: this.state.question,
-    //       answer: this.state.answer,
-    //       cardList: this.state.cardList,
-    //       cardCount: this.state.cardCount,
-    //       flash: this.state.flash,
-    //       currentCollection: this.state.currentCollection,
-    //       selectedCollection: this.state.selectedCollection,
-    //       lastView: this.state.lastView,
-    //       photos: this.state.photos
-    //     });
-    //   })
-    //   .catch((err) => console.error(err));
   }
 
   goBack() {
-    // this.setState({
-    //   userCollections: this.state.userCollections,
-    //   isCreating: this.state.isCreating,
-    //   collectionName: this.state.collectionName,
-    //   category: this.state.category,
-    //   question: this.state.question,
-    //   answer: this.state.answer,
-    //   cardList: this.state.cardList,
-    //   cardCount: this.state.cardCount,
-    //   flash: false,
-    //   currentCollection: this.state.currentCollection,
-    //   selectedCollection: this.state.selectedCollection,
-    //   lastView: this.state.lastView,
-    // });
     axios.get(`/collections/${this.props.user}`)
     .then(({ data }) => {
       this.setState({
@@ -798,21 +736,6 @@ class MainMenu2 extends React.Component {
                           )
                           :
                           (
-                            //-----------------------------------------------------------------------------
-                            // this.state.userCollections.map((collection, index) => {
-                            //   let collString = collection.name;
-                            //   return (
-                            //     <TimeFormatDiv>
-                            //       <UserCollections key={index + collection.name} onClick={this.chooseCollection} id={collString}>
-                            //         {collection.name}
-                            //       </UserCollections>
-                            //       <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
-                            //         {`Created ${moment(collection.creationDate, "YYYYMMDD").fromNow()}`}
-                            //       </span></b>
-                            //     </TimeFormatDiv>
-                            //   )
-                            // })
-                            //-------------------------------------------------------------------------------
                             <TimeFormatDiv>
                               <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
                                 {
@@ -826,8 +749,6 @@ class MainMenu2 extends React.Component {
                                 <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                               </LastViewSpan>
                             </TimeFormatDiv>
-                            //------------------------------------------------------------------------------------
-                            // <Editor id="10" modelsInfo={[]} />
                           )
                         }
                         <ArrowDiv>

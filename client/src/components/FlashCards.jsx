@@ -21,7 +21,6 @@ const CollectionDiv = styled.div`
   left: 0;
   position: relative;
   background-image: linear-gradient(to bottom, black, orangered, yellow);
-  /* background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif'); */
   background-size: cover;
   padding: 3%;
   margin-top: 10%;

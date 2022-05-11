@@ -47,20 +47,16 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
- // import flameBackground from './assets/flames-small.gif';
-// import db from '../../../server/db.js';
 
 
 
 
 var Title = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h1(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  text-align: center;\n  color: white;\n  font-family: 'Luckiest Guy', cursive;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var LoginSignupDiv = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  /* background-image: linear-gradient(to bottom, black, orangered, yellow); */\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n"])));
+var LoginSignupDiv = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n"])));
 var LoginSignupTitle = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h2(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  font-family: 'Bangers', cursive;\n"])));
 var LoginSignupForm = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].form(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: grid;\n  grid-column: 1;\n  grid-row: 2;\n"])));
-var SignupDiv = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral([""]))); // const SignupForm = styled.form``;
-
-var LoginDiv = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([""]))); // const LoginForm = styled.div``;
-
+var SignupDiv = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral([""])));
+var LoginDiv = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([""])));
 var LoginSignupSubmit = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].button(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  width: 25%;\n  border-radius: 12px;\n  transition: .2s;\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n  }\n"])));
 var AlreadyAMemberButton = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  transition: .2s;\n  color: blue;\n  background-color: black;\n  width: fit-content;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    /* font-size: 1.25rem; */\n    transform: scale(1.15);\n  }\n"])));
 var InputLabel = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].label(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  text-align: left;\n  color: white;\n  background-color: black;\n  width: fit-content;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Shadows Into Light', cursive;\n"])));
@@ -110,8 +106,6 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         username: this.state.username,
         password: this.state.password
       }).then(function (res) {
-        console.log('successful signup!');
-
         _this2.setState({
           isAlreadyAMember: _this2.state.isAlreadyAMember,
           showLoginForm: _this2.state.showLoginForm,
@@ -153,15 +147,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         }
       })["catch"](function (err) {
         return console.error(err);
-      }); // this.setState({
-      //   isAlreadyAMember: this.state.isAlreadyAMember,
-      //   showLoginForm: this.state.showLoginForm,
-      //   signupName: this.state.signupName,
-      //   signupEmail: this.state.signupEmail,
-      //   username: this.state.username,
-      //   password: this.state.password,
-      //   showMainMenu: true
-      // });
+      });
     }
   }, {
     key: "showLoginForm",
@@ -453,10 +439,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
               })]
             })]
           })]
-        }) :
-        /*#__PURE__*/
-        // null
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MainMenu2_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MainMenu2_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
           logout: this.logout,
           user: this.state.username
         })
@@ -535,7 +518,7 @@ var theme = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_4__["default"])({
     }
   }
 });
-var CollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  color: #470047\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  /* background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif'); */\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  /* display: grid; */\n"])));
+var CollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  color: #470047\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  /* display: grid; */\n"])));
 var PrevButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  grid-column: 1;\n  font-size: 2rem;\n  transition: .2s;\n  padding-left: 2%;\n  padding-right: 2%;\n  &:hover {\n    transform: scale(1.25);\n    border: 2px ridge green;\n    color: green;\n  }\n"])));
 var NextButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  grid-column: 3;\n  font-size: 2rem;\n  transition: .2s;\n  padding-left: 2%;\n  padding-right: 2%;\n  &:hover {\n    transform: scale(1.25);\n    border: 2px ridge green;\n    color: green;\n  }\n"])));
 var PrevNextDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  font-family: 'Bangers', cursive;\n  margin-top: 4%;\n"])));
@@ -988,8 +971,8 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
-var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  /* background-image: linear-gradient(to bottom, black, orangered, yellow); */\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n  /* text-shadow: 1px 1px 2px red, 0 0 1em darkred, 0 0 0.2em darkred; */\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
 var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
 var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
 var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
@@ -1262,7 +1245,6 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             photo: response.data.url
           };
           var newCount = _this3.state.cardCount + 1;
-          console.log('newCard -> ', newCard);
 
           _this3.setState({
             userCollections: _this3.state.userCollections,
@@ -1284,11 +1266,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           document.getElementById('answer').value = '';
         })["catch"](function (err) {
           return console.log(err);
-        }); // newCard = {
-        //   question: this.state.question,
-        //   answer: this.state.answer,
-        //   photo: ...
-        // };
+        });
       } else {
         newCard = {
           question: this.state.question,
@@ -1313,28 +1291,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         });
         document.getElementById('question').value = '';
         document.getElementById('answer').value = '';
-      } // let newCount = this.state.cardCount + 1;
-      // console.log('photos -> ', this.state.photos);
-      // console.log('newCard -> ', newCard);
-      // // let newImage =
-      // this.setState({
-      //   userCollections: this.state.userCollections,
-      //   isCreating: this.state.isCreating,
-      //   collectionName: this.state.collectionName,
-      //   category: this.state.category,
-      //   question: '',
-      //   answer: '',
-      //   cardList: [newCard, ...this.state.cardList],
-      //   cardCount: newCount,
-      //   flash: this.state.flash,
-      //   currentCollection: this.state.currentCollection,
-      //   selectedCollection: this.state.selectedCollection,
-      //   lastView: this.state.lastView,
-      //   photos: []
-      // });
-      // document.getElementById('question').value = '';
-      // document.getElementById('answer').value = '';
-
+      }
     }
   }, {
     key: "finishCollection",
@@ -1413,45 +1370,13 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         selectedCollection: this.state.selectedCollection,
         lastView: this.state.lastView,
         photos: this.state.photos
-      }); // axios.get(`/collections/${this.props.user}`)
-      //   .then((res) => {
-      //     this.setState({
-      //       userCollections: res,
-      //       isCreating: this.state.isCreating,
-      //       collectionName: this.state.collectionName,
-      //       category: this.state.category,
-      //       question: this.state.question,
-      //       answer: this.state.answer,
-      //       cardList: this.state.cardList,
-      //       cardCount: this.state.cardCount,
-      //       flash: this.state.flash,
-      //       currentCollection: this.state.currentCollection,
-      //       selectedCollection: this.state.selectedCollection,
-      //       lastView: this.state.lastView,
-      //       photos: this.state.photos
-      //     });
-      //   })
-      //   .catch((err) => console.error(err));
+      });
     }
   }, {
     key: "goBack",
     value: function goBack() {
       var _this5 = this;
 
-      // this.setState({
-      //   userCollections: this.state.userCollections,
-      //   isCreating: this.state.isCreating,
-      //   collectionName: this.state.collectionName,
-      //   category: this.state.category,
-      //   question: this.state.question,
-      //   answer: this.state.answer,
-      //   cardList: this.state.cardList,
-      //   cardCount: this.state.cardCount,
-      //   flash: false,
-      //   currentCollection: this.state.currentCollection,
-      //   selectedCollection: this.state.selectedCollection,
-      //   lastView: this.state.lastView,
-      // });
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/collections/".concat(this.props.user)).then(function (_ref4) {
         var data = _ref4.data;
 
@@ -1589,24 +1514,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                       },
                       children: "Click the button below to create a collection"
                     })]
-                  }) :
-                  /*#__PURE__*/
-                  //-----------------------------------------------------------------------------
-                  // this.state.userCollections.map((collection, index) => {
-                  //   let collString = collection.name;
-                  //   return (
-                  //     <TimeFormatDiv>
-                  //       <UserCollections key={index + collection.name} onClick={this.chooseCollection} id={collString}>
-                  //         {collection.name}
-                  //       </UserCollections>
-                  //       <b><span style={{fontFamily: 'Shadow Into Light', color: 'yellow'}}>
-                  //         {`Created ${moment(collection.creationDate, "YYYYMMDD").fromNow()}`}
-                  //       </span></b>
-                  //     </TimeFormatDiv>
-                  //   )
-                  // })
-                  //-------------------------------------------------------------------------------
-                  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(TimeFormatDiv, {
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(TimeFormatDiv, {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(UserCollections, {
                       onClick: this.chooseCollection,
                       id: this.state.userCollections[this.state.selectedCollection].name,
@@ -1624,9 +1532,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                         children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                       })
                     })]
-                  }) //------------------------------------------------------------------------------------
-                  // <Editor id="10" modelsInfo={[]} />
-                  , /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArrowDiv, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArrowDiv, {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(DownButton, {
                       onClick: this.moveDown,
                       children: "\u2B07"

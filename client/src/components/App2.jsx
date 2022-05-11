@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import MainMenu from './MainMenu2.jsx';
-// import flameBackground from './assets/flames-small.gif';
-// import db from '../../../server/db.js';
 
 const Title = styled.h1`
   display: flex;
@@ -19,7 +17,6 @@ const LoginSignupDiv = styled.div`
   top: 0;
   left: 0;
   position: relative;
-  /* background-image: linear-gradient(to bottom, black, orangered, yellow); */
   background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');
   background-size: cover;
   padding: 3%;
@@ -44,11 +41,7 @@ const LoginSignupForm = styled.form`
 
 const SignupDiv = styled.div``;
 
-// const SignupForm = styled.form``;
-
 const LoginDiv = styled.div``;
-
-// const LoginForm = styled.div``;
 
 const LoginSignupSubmit = styled.button`
   grid-column: 1;
@@ -129,7 +122,6 @@ class App2 extends React.Component {
       password: this.state.password
     })
       .then((res) => {
-        console.log('successful signup!');
         this.setState({
           isAlreadyAMember: this.state.isAlreadyAMember,
           showLoginForm: this.state.showLoginForm,
@@ -166,16 +158,6 @@ class App2 extends React.Component {
         }
       })
       .catch((err) => console.error(err));
-
-    // this.setState({
-    //   isAlreadyAMember: this.state.isAlreadyAMember,
-    //   showLoginForm: this.state.showLoginForm,
-    //   signupName: this.state.signupName,
-    //   signupEmail: this.state.signupEmail,
-    //   username: this.state.username,
-    //   password: this.state.password,
-    //   showMainMenu: true
-    // });
   }
 
   showLoginForm(e) {
@@ -332,7 +314,6 @@ class App2 extends React.Component {
           )
           :
           (
-            // null
             <MainMenu logout={this.logout} user={this.state.username} />
           )
         }
