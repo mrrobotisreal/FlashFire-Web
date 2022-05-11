@@ -918,8 +918,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _FlashCards_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FlashCards.jsx */ "./client/src/components/FlashCards.jsx");
-/* harmony import */ var _library_getHostedURL_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./library/getHostedURL.js */ "./client/src/components/library/getHostedURL.js");
-/* harmony import */ var _library_getHostedURL_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_library_getHostedURL_js__WEBPACK_IMPORTED_MODULE_4__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './library/getHostedURL.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -1684,31 +1683,6 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
 
 ;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainMenu2);
-
-/***/ }),
-
-/***/ "./client/src/components/library/getHostedURL.js":
-/*!*******************************************************!*\
-  !*** ./client/src/components/library/getHostedURL.js ***!
-  \*******************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
-var getHostedURL = function getHostedURL(file) {
-  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  var uploadURL = 'https://api.cloudinary.com/v1_1/dmb8pc511/image/upload';
-  var data = new FormData();
-  data.append('file', file);
-  data.append('upload_preset', 'yoqsoi4s');
-  return axios.post(uploadURL, data).then(function (response) {
-    cb(null, response.data.url); // return response.data.url;
-  })["catch"](function (err) {
-    return console.log(err);
-  });
-};
-
-module.exports = getHostedURL;
 
 /***/ }),
 
