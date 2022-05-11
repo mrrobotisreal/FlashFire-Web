@@ -151,7 +151,6 @@ class App2 extends React.Component {
     };
     axios.post(`/login`, userInfo)
       .then(({ data }) => {
-        console.log('res be like -> ', data);
         if (!data) {
           alert('Wrong username or password! Please try again')
         } else {

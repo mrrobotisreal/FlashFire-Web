@@ -346,16 +346,10 @@ class MainMenu2 extends React.Component {
   }
 
   chooseCollection(e) {
-    var tweetDate = 'Mon Dec 02 23:45:49 +0000 2013';
-    console.log('tweetdate -> ', moment(tweetDate, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow());
     let choice;
     let choiceName;
     let d = new Date();
     d = d.toString();
-    console.log('d be like -> ', d);
-    // console.log('d string be like -> ', d.toString());
-    console.log('today be like -> ', moment(d, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow());
-    console.log('userCollections -> ', this.state.userCollections);
 
     for (let i = 0; i < this.state.userCollections.length; i++) {
       if (this.state.userCollections[i].name === e.target.id) {
@@ -480,30 +474,93 @@ class MainMenu2 extends React.Component {
   }
 
   submitCard() {
-    let newCard = {
-      question: this.state.question,
-      answer: this.state.answer,
-      photo: getHostedURL(this.state.photos[0])
-    };
-    let newCount = this.state.cardCount + 1;
-    // let newImage =
-    this.setState({
-      userCollections: this.state.userCollections,
-      isCreating: this.state.isCreating,
-      collectionName: this.state.collectionName,
-      category: this.state.category,
-      question: '',
-      answer: '',
-      cardList: [newCard, ...this.state.cardList],
-      cardCount: newCount,
-      flash: this.state.flash,
-      currentCollection: this.state.currentCollection,
-      selectedCollection: this.state.selectedCollection,
-      lastView: this.state.lastView,
-      photos: []
-    });
-    document.getElementById('question').value = '';
-    document.getElementById('answer').value = '';
+    let newCard;
+    if (this.state.photos.length > 0) {
+      const uploadURL = 'https://api.cloudinary.com/v1_1/dmb8pc511/image/upload';
+
+      var data = new FormData();
+      data.append('file', this.state.photos[0]);
+      data.append('upload_preset', 'yoqsoi4s');
+
+      axios.post(uploadURL, data)
+        .then((response) => {
+          newCard = {
+            question: this.state.question,
+            answer: this.state.answer,
+            photo: response.data.url
+          };
+          let newCount = this.state.cardCount + 1;
+          console.log('newCard -> ', newCard);
+          this.setState({
+            userCollections: this.state.userCollections,
+            isCreating: this.state.isCreating,
+            collectionName: this.state.collectionName,
+            category: this.state.category,
+            question: '',
+            answer: '',
+            cardList: [newCard, ...this.state.cardList],
+            cardCount: newCount,
+            flash: this.state.flash,
+            currentCollection: this.state.currentCollection,
+            selectedCollection: this.state.selectedCollection,
+            lastView: this.state.lastView,
+            photos: []
+          });
+          document.getElementById('question').value = '';
+          document.getElementById('answer').value = '';
+        })
+        .catch(err => console.log(err));
+      // newCard = {
+      //   question: this.state.question,
+      //   answer: this.state.answer,
+      //   photo: ...
+      // };
+    } else {
+      newCard = {
+        question: this.state.question,
+        answer: this.state.answer,
+        photo: null
+      };
+      let newCount = this.state.cardCount + 1;
+      this.setState({
+        userCollections: this.state.userCollections,
+        isCreating: this.state.isCreating,
+        collectionName: this.state.collectionName,
+        category: this.state.category,
+        question: '',
+        answer: '',
+        cardList: [newCard, ...this.state.cardList],
+        cardCount: newCount,
+        flash: this.state.flash,
+        currentCollection: this.state.currentCollection,
+        selectedCollection: this.state.selectedCollection,
+        lastView: this.state.lastView,
+        photos: []
+      });
+      document.getElementById('question').value = '';
+      document.getElementById('answer').value = '';
+    }
+    // let newCount = this.state.cardCount + 1;
+    // console.log('photos -> ', this.state.photos);
+    // console.log('newCard -> ', newCard);
+    // // let newImage =
+    // this.setState({
+    //   userCollections: this.state.userCollections,
+    //   isCreating: this.state.isCreating,
+    //   collectionName: this.state.collectionName,
+    //   category: this.state.category,
+    //   question: '',
+    //   answer: '',
+    //   cardList: [newCard, ...this.state.cardList],
+    //   cardCount: newCount,
+    //   flash: this.state.flash,
+    //   currentCollection: this.state.currentCollection,
+    //   selectedCollection: this.state.selectedCollection,
+    //   lastView: this.state.lastView,
+    //   photos: []
+    // });
+    // document.getElementById('question').value = '';
+    // document.getElementById('answer').value = '';
   }
 
   finishCollection() {
@@ -597,7 +654,7 @@ class MainMenu2 extends React.Component {
     //   .catch((err) => console.error(err));
   }
 
-  goBack(score) {
+  goBack() {
     // this.setState({
     //   userCollections: this.state.userCollections,
     //   isCreating: this.state.isCreating,
@@ -614,7 +671,6 @@ class MainMenu2 extends React.Component {
     // });
     axios.get(`/collections/${this.props.user}`)
     .then(({ data }) => {
-      console.log('res -> ', data);
       this.setState({
         userCollections: data,
         isCreating: this.state.isCreating,
@@ -671,8 +727,6 @@ class MainMenu2 extends React.Component {
   }
 
   moveDown() {
-    console.log('usercoll -> ', this.state.userCollections);
-    console.log('selected -> ', this.state.selectedCollection);
     if (this.state.selectedCollection === this.state.userCollections.length - 1) {
       this.setState({
         userCollections: this.state.userCollections,

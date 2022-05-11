@@ -40,7 +40,7 @@ const User = mongoose.model('User', userSchema);
 // }
 
 const saveCollection = (newColl, user, cb = () => {}) => {
-  console.log('newColl be like -> ', newColl);
+  console.log('newColl cardList be like -> ', newColl.cardList);
   console.log('user be like -> ', user);
   let collection = new CardList({
     name: newColl.name,
@@ -106,16 +106,16 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   //    }
   //  });
 
-  let dis = User.findOne({'name': 'f'});
+  let dis = User.findOne({'username': user});
   dis.exec((err, doc) => {
-   //  console.log('dis be like -> ', doc.collections);
+    console.log('dis be like -> ', doc.collections);
     let theUser = doc;
     let theColl = doc.collections;
     let newCreation = doc.collections[0];
     newCreation.lastView = new Date().toString();
     theColl[0] = newCreation;
     theUser.collections = theColl;
-    let userUpdate = User.findOneAndUpdate({'name': 'f'}, {'collections': theColl}, {new: true});
+    let userUpdate = User.findOneAndUpdate({'username': user}, {'collections': theColl}, {new: true});
     userUpdate.exec((err, doc) => {
       cb(null, doc);
     })

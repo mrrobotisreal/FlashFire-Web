@@ -137,7 +137,6 @@ var App2 = /*#__PURE__*/function (_React$Component) {
       };
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref) {
         var data = _ref.data;
-        console.log('res be like -> ', data);
 
         if (!data) {
           alert('Wrong username or password! Please try again');
@@ -495,7 +494,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -552,6 +551,8 @@ var SuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].bu
 var FailSuccessCount = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].span(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  color: yellow;\n  background-color: black;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  display: flex;\n  justify-content: center;\n"])));
 var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
 var MainMenuButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  margin-top: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    color: yellow;\n    border: 2px ridge yellow;\n  }\n"])));
+var Image = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].img(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  width: 80%;\n  height: 20%;\n"])));
+var ImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
 
 var FlashCards = /*#__PURE__*/function (_React$Component) {
   _inherits(FlashCards, _React$Component);
@@ -602,8 +603,6 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "nextCard",
     value: function nextCard() {
-      console.log('nextCard ', this.state.currentCard);
-
       if (this.state.currentCard === this.state.totalCards - 1) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
@@ -661,8 +660,6 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "prevCard",
     value: function prevCard() {
-      console.log('prevCard ', this.state.currentCard);
-
       if (this.state.currentCard === 0) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
@@ -793,7 +790,11 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(CardNumber, {
             children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.totalCards)
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(FlashCardDiv, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(QuestionAndAnswerDiv, {
+            children: [this.state.cardList[this.state.currentCard].photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ImageDiv, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Image, {
+                src: this.state.cardList[this.state.currentCard].photo
+              })
+            }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(QuestionAndAnswerDiv, {
               style: {
                 fontFamily: 'Noto Serif SC' || 0,
                 fontSize: '2rem'
@@ -1109,16 +1110,10 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "chooseCollection",
     value: function chooseCollection(e) {
-      var tweetDate = 'Mon Dec 02 23:45:49 +0000 2013';
-      console.log('tweetdate -> ', moment(tweetDate, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow());
       var choice;
       var choiceName;
       var d = new Date();
       d = d.toString();
-      console.log('d be like -> ', d); // console.log('d string be like -> ', d.toString());
-
-      console.log('today be like -> ', moment(d, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow());
-      console.log('userCollections -> ', this.state.userCollections);
 
       for (var i = 0; i < this.state.userCollections.length; i++) {
         if (this.state.userCollections[i].name === e.target.id) {
@@ -1251,35 +1246,100 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "submitCard",
     value: function submitCard() {
-      var newCard = {
-        question: this.state.question,
-        answer: this.state.answer,
-        photo: _library_getHostedURL_js__WEBPACK_IMPORTED_MODULE_4___default()(this.state.photos[0])
-      };
-      var newCount = this.state.cardCount + 1; // let newImage =
+      var _this3 = this;
 
-      this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: this.state.isCreating,
-        collectionName: this.state.collectionName,
-        category: this.state.category,
-        question: '',
-        answer: '',
-        cardList: [newCard].concat(_toConsumableArray(this.state.cardList)),
-        cardCount: newCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: []
-      });
-      document.getElementById('question').value = '';
-      document.getElementById('answer').value = '';
+      var newCard;
+
+      if (this.state.photos.length > 0) {
+        var uploadURL = 'https://api.cloudinary.com/v1_1/dmb8pc511/image/upload';
+        var data = new FormData();
+        data.append('file', this.state.photos[0]);
+        data.append('upload_preset', 'yoqsoi4s');
+        axios__WEBPACK_IMPORTED_MODULE_2___default().post(uploadURL, data).then(function (response) {
+          newCard = {
+            question: _this3.state.question,
+            answer: _this3.state.answer,
+            photo: response.data.url
+          };
+          var newCount = _this3.state.cardCount + 1;
+          console.log('newCard -> ', newCard);
+
+          _this3.setState({
+            userCollections: _this3.state.userCollections,
+            isCreating: _this3.state.isCreating,
+            collectionName: _this3.state.collectionName,
+            category: _this3.state.category,
+            question: '',
+            answer: '',
+            cardList: [newCard].concat(_toConsumableArray(_this3.state.cardList)),
+            cardCount: newCount,
+            flash: _this3.state.flash,
+            currentCollection: _this3.state.currentCollection,
+            selectedCollection: _this3.state.selectedCollection,
+            lastView: _this3.state.lastView,
+            photos: []
+          });
+
+          document.getElementById('question').value = '';
+          document.getElementById('answer').value = '';
+        })["catch"](function (err) {
+          return console.log(err);
+        }); // newCard = {
+        //   question: this.state.question,
+        //   answer: this.state.answer,
+        //   photo: ...
+        // };
+      } else {
+        newCard = {
+          question: this.state.question,
+          answer: this.state.answer,
+          photo: null
+        };
+        var newCount = this.state.cardCount + 1;
+        this.setState({
+          userCollections: this.state.userCollections,
+          isCreating: this.state.isCreating,
+          collectionName: this.state.collectionName,
+          category: this.state.category,
+          question: '',
+          answer: '',
+          cardList: [newCard].concat(_toConsumableArray(this.state.cardList)),
+          cardCount: newCount,
+          flash: this.state.flash,
+          currentCollection: this.state.currentCollection,
+          selectedCollection: this.state.selectedCollection,
+          lastView: this.state.lastView,
+          photos: []
+        });
+        document.getElementById('question').value = '';
+        document.getElementById('answer').value = '';
+      } // let newCount = this.state.cardCount + 1;
+      // console.log('photos -> ', this.state.photos);
+      // console.log('newCard -> ', newCard);
+      // // let newImage =
+      // this.setState({
+      //   userCollections: this.state.userCollections,
+      //   isCreating: this.state.isCreating,
+      //   collectionName: this.state.collectionName,
+      //   category: this.state.category,
+      //   question: '',
+      //   answer: '',
+      //   cardList: [newCard, ...this.state.cardList],
+      //   cardCount: newCount,
+      //   flash: this.state.flash,
+      //   currentCollection: this.state.currentCollection,
+      //   selectedCollection: this.state.selectedCollection,
+      //   lastView: this.state.lastView,
+      //   photos: []
+      // });
+      // document.getElementById('question').value = '';
+      // document.getElementById('answer').value = '';
+
     }
   }, {
     key: "finishCollection",
     value: function finishCollection() {
-      var _this3 = this;
+      var _this4 = this;
 
       var d = new Date();
       d = d.toString();
@@ -1293,41 +1353,41 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_2___default().post("/collections/".concat(this.props.user, "/add"), newCollection).then(function (res) {
         console.log('New collection created!');
 
-        _this3.setState({
-          userCollections: _this3.state.userCollections,
+        _this4.setState({
+          userCollections: _this4.state.userCollections,
           isCreating: false,
-          collectionName: _this3.state.collectionName,
-          category: _this3.state.category,
-          question: _this3.state.question,
-          answer: _this3.state.answer,
-          cardList: _this3.state.cardList,
+          collectionName: _this4.state.collectionName,
+          category: _this4.state.category,
+          question: _this4.state.question,
+          answer: _this4.state.answer,
+          cardList: _this4.state.cardList,
           cardCount: 0,
-          flash: _this3.state.flash,
-          currentCollection: _this3.state.currentCollection,
-          selectedCollection: _this3.state.selectedCollection,
+          flash: _this4.state.flash,
+          currentCollection: _this4.state.currentCollection,
+          selectedCollection: _this4.state.selectedCollection,
           lastView: d,
-          photos: _this3.state.photos
+          photos: _this4.state.photos
         });
 
         alert('Collection was added to your profile!');
-        axios__WEBPACK_IMPORTED_MODULE_2___default().get("/collections/".concat(_this3.props.user)).then(function (_ref3) {
+        axios__WEBPACK_IMPORTED_MODULE_2___default().get("/collections/".concat(_this4.props.user)).then(function (_ref3) {
           var data = _ref3.data;
           console.log('res -> ', data);
 
-          _this3.setState({
+          _this4.setState({
             userCollections: data,
-            isCreating: _this3.state.isCreating,
-            collectionName: _this3.state.collectionName,
-            category: _this3.state.category,
-            question: _this3.state.question,
-            answer: _this3.state.answer,
-            cardList: _this3.state.cardList,
-            cardCount: _this3.state.cardCount,
-            flash: _this3.state.flash,
-            currentCollection: _this3.state.currentCollection,
-            selectedCollection: _this3.state.selectedCollection,
-            lastView: _this3.state.lastView,
-            photos: _this3.state.photos
+            isCreating: _this4.state.isCreating,
+            collectionName: _this4.state.collectionName,
+            category: _this4.state.category,
+            question: _this4.state.question,
+            answer: _this4.state.answer,
+            cardList: _this4.state.cardList,
+            cardCount: _this4.state.cardCount,
+            flash: _this4.state.flash,
+            currentCollection: _this4.state.currentCollection,
+            selectedCollection: _this4.state.selectedCollection,
+            lastView: _this4.state.lastView,
+            photos: _this4.state.photos
           });
         })["catch"](function (err) {
           return console.error(err);
@@ -1375,8 +1435,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "goBack",
-    value: function goBack(score) {
-      var _this4 = this;
+    value: function goBack() {
+      var _this5 = this;
 
       // this.setState({
       //   userCollections: this.state.userCollections,
@@ -1394,22 +1454,21 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       // });
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/collections/".concat(this.props.user)).then(function (_ref4) {
         var data = _ref4.data;
-        console.log('res -> ', data);
 
-        _this4.setState({
+        _this5.setState({
           userCollections: data,
-          isCreating: _this4.state.isCreating,
-          collectionName: _this4.state.collectionName,
-          category: _this4.state.category,
-          question: _this4.state.question,
-          answer: _this4.state.answer,
-          cardList: _this4.state.cardList,
-          cardCount: _this4.state.cardCount,
+          isCreating: _this5.state.isCreating,
+          collectionName: _this5.state.collectionName,
+          category: _this5.state.category,
+          question: _this5.state.question,
+          answer: _this5.state.answer,
+          cardList: _this5.state.cardList,
+          cardCount: _this5.state.cardCount,
           flash: false,
-          currentCollection: _this4.state.currentCollection,
-          selectedCollection: _this4.state.selectedCollection,
-          lastView: _this4.state.lastView,
-          photos: _this4.state.photos
+          currentCollection: _this5.state.currentCollection,
+          selectedCollection: _this5.state.selectedCollection,
+          lastView: _this5.state.lastView,
+          photos: _this5.state.photos
         });
       })["catch"](function (err) {
         return console.error(err);
@@ -1455,9 +1514,6 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "moveDown",
     value: function moveDown() {
-      console.log('usercoll -> ', this.state.userCollections);
-      console.log('selected -> ', this.state.selectedCollection);
-
       if (this.state.selectedCollection === this.state.userCollections.length - 1) {
         this.setState({
           userCollections: this.state.userCollections,
@@ -1734,12 +1790,13 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var getHostedURL = function getHostedURL(file) {
+  var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
   var uploadURL = 'https://api.cloudinary.com/v1_1/dmb8pc511/image/upload';
   var data = new FormData();
   data.append('file', file);
   data.append('upload_preset', 'yoqsoi4s');
   return axios.post(uploadURL, data).then(function (response) {
-    return response.data.url;
+    cb(null, response.data.url); // return response.data.url;
   })["catch"](function (err) {
     return console.log(err);
   });

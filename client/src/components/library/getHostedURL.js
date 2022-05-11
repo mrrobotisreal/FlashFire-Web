@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getHostedURL = function(file) {
+const getHostedURL = function(file, cb = () => {}) {
   const uploadURL = 'https://api.cloudinary.com/v1_1/dmb8pc511/image/upload';
 
   var data = new FormData();
@@ -9,7 +9,8 @@ const getHostedURL = function(file) {
 
   return axios.post(uploadURL, data)
     .then((response) => {
-      return response.data.url;
+      cb(null, response.data.url);
+      // return response.data.url;
     })
     .catch(err => console.log(err));
 };

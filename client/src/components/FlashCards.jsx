@@ -205,6 +205,17 @@ const MainMenuButton = styled.button`
   }
 `;
 
+const Image = styled.img`
+  width: 80%;
+  height: 20%;
+`;
+
+const ImageDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 class FlashCards extends React.Component {
   constructor(props) {
     super(props);
@@ -241,7 +252,6 @@ class FlashCards extends React.Component {
   }
 
   nextCard() {
-    console.log('nextCard ', this.state.currentCard)
     if (this.state.currentCard === this.state.totalCards - 1) {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
@@ -298,7 +308,6 @@ class FlashCards extends React.Component {
   }
 
   prevCard() {
-    console.log('prevCard ', this.state.currentCard)
     if (this.state.currentCard === 0) {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
@@ -431,6 +440,19 @@ class FlashCards extends React.Component {
             }
           </CardNumber>
           <FlashCardDiv>
+            {
+              this.state.cardList[this.state.currentCard].photo
+              ?
+              (
+                <ImageDiv>
+                  <Image src={this.state.cardList[this.state.currentCard].photo} />
+                </ImageDiv>
+              )
+              :
+              (
+                null
+              )
+            }
             <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
               <b>{
                 this.state.cardList[this.state.currentCard].question
