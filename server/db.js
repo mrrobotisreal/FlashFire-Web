@@ -117,6 +117,18 @@ const checkLogin = (userInfo, cb = () => {}) => {
   });
 };
 
+const changePassword = () => {
+  let user = User.findOneAndUpdate({'username': 'security'}, {'password': 'password'}, {new: true});
+  user.exec((err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('password has changed: ', doc);
+    }
+  });
+};
+// changePassword();
+
 module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;

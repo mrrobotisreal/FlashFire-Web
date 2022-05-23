@@ -145,6 +145,16 @@ class App2 extends React.Component {
       .then(({ data }) => {
         if (!data) {
           alert('Wrong username or password! Please try again')
+          // this will need to be removed below
+          this.setState({
+            isAlreadyAMember: this.state.isAlreadyAMember,
+            showLoginForm: this.state.showLoginForm,
+            signupName: this.state.signupName,
+            signupEmail: this.state.signupEmail,
+            username: this.state.username,
+            password: this.state.password,
+            showMainMenu: true
+          });
         } else {
           this.setState({
             isAlreadyAMember: this.state.isAlreadyAMember,

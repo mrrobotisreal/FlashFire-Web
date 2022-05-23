@@ -3,7 +3,8 @@ import Editor from 'react-run-code';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
-import getHostedURL from './library/getHostedURL.js';
+import FlashAudioRecorder from './FlashAudioRecorder.jsx';
+// import ChooseModal from './ChooseModal.jsx';
 const moment = require('moment');
 
 const MainMenuDiv = styled.div`
@@ -283,6 +284,8 @@ class MainMenu2 extends React.Component {
       selectedCollection: 0,
       lastView: '',
       photos: [],
+      isChoosing: false,
+      isEditing: false,
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -297,6 +300,9 @@ class MainMenu2 extends React.Component {
     this.moveUp = this.moveUp.bind(this);
     this.moveDown = this.moveDown.bind(this);
     this.setPhotos = this.setPhotos.bind(this);
+    this.setAudio = this.setAudio.bind(this);
+    this.chooseFlash = this.chooseFlash.bind(this);
+    this.chooseEdit = this.chooseEdit.bind(this);
   }
 
   componentDidMount() {
@@ -316,7 +322,7 @@ class MainMenu2 extends React.Component {
             currentCollection: this.state.currentCollection,
             selectedCollection: this.state.selectedCollection,
             lastView: this.state.lastView,
-            photos: this.state.photos
+            photos: this.state.photos,
           })
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
@@ -343,7 +349,21 @@ class MainMenu2 extends React.Component {
     });
   }
 
+  setAudio(e) {
+    this.setState({
+      audio: e.target.files,
+    })
+  }
+
+  chooseFlash() {}
+
+  chooseEdit() {}
+
   chooseCollection(e) {
+    // this.setState({
+    //   isChoosing: true,
+    // });
+
     let choice;
     let choiceName;
     let d = new Date();
@@ -748,6 +768,20 @@ class MainMenu2 extends React.Component {
                               <LastViewSpan>
                                 <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                               </LastViewSpan>
+                              {/* <ChooseModal open={this.state.isChoosing}
+                              onClose={() => {
+                                this.setState({isChoosing: false});
+                              }} start={() => {
+                                this.setState({
+                                  isChoosing: false,
+                                  flash: true,
+                                });
+                              }} edit={() => {
+                                this.setState({
+                                  isChoosing:false,
+                                  isEditing: true,
+                                })
+                              }} /> */}
                             </TimeFormatDiv>
                           )
                         }
@@ -768,7 +802,7 @@ class MainMenu2 extends React.Component {
                 )
                 :
                 (
-                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} />
+                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} />
                 )
               }
             </>
@@ -776,8 +810,10 @@ class MainMenu2 extends React.Component {
           :
           (
             <>
-              <CreateCollectionsTitle><b><u>Create Collection</u></b></CreateCollectionsTitle>
-              <NewCollectionDiv>
+              <CreateCollectionsTitle style={{fontFamily: 'Luckiest Guy'}}>
+                <b><u>Create Collection</u></b>
+              </CreateCollectionsTitle>
+              <NewCollectionDiv style={{fontFamily: 'Luckiest Guy'}}>
                 <CollectionLabel style={{gridRow: '1'}}>
                   <b>Collection Name:</b>
                 </CollectionLabel>
@@ -790,11 +826,16 @@ class MainMenu2 extends React.Component {
                   <b>Add Cards:</b>
                 </CollectionLabel>
                 <CardDiv style={{gridRow: '6'}}>
+                  {/* <FlashAudioRecorder /> */}
                   <AddImageDiv>
                     <CollectionLabel>
                       <b>Add an image?</b>
                     </CollectionLabel>
                     <AddImageInput type="file" accept=".jpg, .png" id="image-input" onChange={this.setPhotos} style={{overflowWrap: 'break-word'}} />
+                    {/* <CollectionLabel>
+                      <b>Add audio?</b>
+                    </CollectionLabel>
+                    <input type="file" accept=".m4a" id="audio-input" onChange={this.setAudio} /> */}
                   </AddImageDiv>
                   <CollectionLabel style={{gridRow: '1'}}>
                     <b>Question:</b>

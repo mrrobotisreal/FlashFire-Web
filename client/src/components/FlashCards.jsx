@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SetTimer from './SetTimer.jsx';
+import Confetti from 'react-confetti'
 
 const theme = createTheme({
   palette: {
@@ -23,7 +26,7 @@ const CollectionDiv = styled.div`
   background-image: linear-gradient(to bottom, black, orangered, yellow);
   background-size: cover;
   padding: 3%;
-  margin-top: 10%;
+  margin-top: 5%;
   border: 4px ridge darkred;
   border-radius: 12px;
   color: white;
@@ -215,6 +218,24 @@ const ImageDiv = styled.div`
   align-items: center;
 `;
 
+const TimerDiv = styled.div`
+  text-align: center;
+  top: 0;
+  left: 0;
+  position: relative;
+  background-image: linear-gradient(to bottom, black, orangered);
+  background-size: cover;
+  padding: 3%;
+  margin-top: 2%;
+  width: fit-content;
+  border: 4px ridge darkred;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 class FlashCards extends React.Component {
   constructor(props) {
     super(props);
@@ -227,7 +248,8 @@ class FlashCards extends React.Component {
       fail: 0,
       answerDisplay: 'none',
       score: 0,
-      prevScore: 0
+      prevScore: 0,
+      show: false,
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -235,6 +257,8 @@ class FlashCards extends React.Component {
     this.handleFail = this.handleFail.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
     this.back = this.back.bind(this);
+    this.timeExpire = this.timeExpire.bind(this);
+    this.showConfetti = this.showConfetti.bind(this);
   }
 
   componentDidMount() {
@@ -423,15 +447,51 @@ class FlashCards extends React.Component {
     this.props.goBack();
   }
 
+  timeExpire() {
+    if (this.state.score > this.state.prevScore) {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard,
+        success: this.state.success += 1,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+        score: this.state.score += 1,
+        prevScore: this.state.prevScore,
+        show: true,
+      })
+    }
+  }
+
+  showConfetti() {
+    this.setState({
+      cardList: this.state.cardList,
+      collectionName: this.state.collectionName,
+      totalCards: this.state.cardList.length,
+      currentCard: this.state.currentCard,
+      success: this.state.success += 1,
+      fail: this.state.fail,
+      answerDisplay: this.state.answerDisplay,
+      score: this.state.score += 1,
+      prevScore: this.state.prevScore,
+      show: false,
+    })
+  }
+
   render() {
     return (
       <>
         <CollectionNameTitle>
           {
             this.state.collectionName
-            // 'Hello!'
           }
         </CollectionNameTitle>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+          <TimerDiv>
+            <SetTimer expire={this.timeExpire} />
+          </TimerDiv>
+        </div>
         <CollectionDiv>
           <CardNumber>
             {
@@ -512,6 +572,21 @@ class FlashCards extends React.Component {
             <b>{`>`}</b>
           </NextButton>
         </PrevNextDiv>
+        <Modal
+          open={this.state.show}
+          onClick={this.showConfetti}
+        >
+          <div className="PromptSubmit">
+            <Confetti
+              recycle={false}
+              // run={testsPassed}
+              numberOfPieces={1000}
+              gravity={2}
+            />
+            {`Congratulations ${this.props.user}!`}
+            {`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}
+          </div>
+        </Modal>
       </>
     )
   }
