@@ -9,3 +9,4 @@ LoginSignup.jsx
 getHostedURL.js
 library/
 webpackworkshop.js
+*.pem
