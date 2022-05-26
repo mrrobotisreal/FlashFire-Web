@@ -236,6 +236,19 @@ const TimerDiv = styled.div`
   flex-direction: column;
 `;
 
+const HighScoreDiv = styled.div`
+  top: 0;
+  left: 0;
+  background-color: red;
+  color: white;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Luckiest Guy';
+  padding-top: 3%;
+  padding-bottom: 3%;
+`;
+
 class FlashCards extends React.Component {
   constructor(props) {
     super(props);
@@ -572,6 +585,12 @@ class FlashCards extends React.Component {
             <b>{`>`}</b>
           </NextButton>
         </PrevNextDiv>
+        <Modal open={this.state.show}>
+              <HighScoreDiv>
+                <h1>{`Congratulations ${this.props.user}!`}</h1>
+                <h2>{`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}</h2>
+              </HighScoreDiv>
+        </Modal>
         <Modal
           open={this.state.show}
           onClick={this.showConfetti}
@@ -583,8 +602,6 @@ class FlashCards extends React.Component {
               numberOfPieces={1000}
               gravity={2}
             />
-            {`Congratulations ${this.props.user}!`}
-            {`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}
           </div>
         </Modal>
       </>

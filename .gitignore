@@ -1,7 +1,6 @@
 node_modules
 .env
 package-lock.json
-.babelrc
 *.map
 App.jsx
 MainMenu.jsx

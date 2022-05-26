@@ -705,7 +705,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -768,6 +768,7 @@ var MainMenuButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].b
 var Image = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].img(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  width: 80%;\n  height: 20%;\n"])));
 var ImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
 var TimerDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: linear-gradient(to bottom, black, orangered);\n  background-size: cover;\n  padding: 3%;\n  margin-top: 2%;\n  width: fit-content;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
 
 var FlashCards = /*#__PURE__*/function (_React$Component) {
   _inherits(FlashCards, _React$Component);
@@ -1171,15 +1172,24 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_10__["default"], {
           open: this.state.show,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(HighScoreDiv, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+              children: "Congratulations ".concat(this.props.user, "!")
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+              children: "You beat your previous score of ".concat(this.state.prevScore, " with ").concat(this.state.score, "!")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          open: this.state.show,
           onClick: this.showConfetti,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "PromptSubmit",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)((react_confetti__WEBPACK_IMPORTED_MODULE_4___default()), {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)((react_confetti__WEBPACK_IMPORTED_MODULE_4___default()), {
               recycle: false // run={testsPassed}
               ,
               numberOfPieces: 1000,
               gravity: 2
-            }), "Congratulations ".concat(this.props.user, "!"), "You beat your previous score of ".concat(this.state.prevScore, " with ").concat(this.state.score, "!")]
+            })
           })
         })]
       });
