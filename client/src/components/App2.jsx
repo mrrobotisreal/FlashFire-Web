@@ -286,7 +286,7 @@ class App2 extends React.Component {
                       <InputLabel style={{gridColumn: '1', gridRow: '7', textAlign: 'left', backgroundColor: 'black', color: 'white', width: 'fit-content', padding: '1%', borderRadius: '12px'}}>
                         <b>Password:</b>
                       </InputLabel>
-                      <input style={{gridColumn: '1', gridRow: '8', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={this.handlePasswordInput} />
+                      <input type="password" style={{gridColumn: '1', gridRow: '8', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} onChange={this.handlePasswordInput} />
                       <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <LoginSignupSubmit type="submit" onClick={this.handleSignupSubmit}>
                         <b>Submit</b>
@@ -307,7 +307,7 @@ class App2 extends React.Component {
                       <InputLabel style={{gridRow: '3'}}>
                         <b>Password:</b>
                       </InputLabel>
-                      <Input type="text" style={{gridRow: '4'}} onChange={this.handlePasswordInput} />
+                      <Input type="password" style={{gridRow: '4'}} onChange={this.handlePasswordInput} />
                       <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <LoginSignupSubmit type="submit" onClick={this.handleLoginSubmit}>
                           <b>Submit</b>
