@@ -809,6 +809,21 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   _createClass(FlashCards, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var array = this.state.cardList.slice();
+      var currentIndex = array.length,
+          randomIndex;
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        var _ref = [array[randomIndex], array[currentIndex]];
+        array[currentIndex] = _ref[0];
+        array[randomIndex] = _ref[1];
+      }
+
+      this.setState({
+        cardList: array
+      });
       var prevScore = JSON.parse(localStorage.getItem('score'));
 
       if (!prevScore || prevScore === 0) {

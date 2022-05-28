@@ -283,6 +283,16 @@ class FlashCards extends React.Component {
   }
 
   componentDidMount() {
+    let array = this.state.cardList.slice();
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    this.setState({
+      cardList: array,
+    })
     let prevScore = JSON.parse(localStorage.getItem('score'));
     if (!prevScore || prevScore === 0) {
       this.setState({
