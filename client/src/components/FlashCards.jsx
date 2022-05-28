@@ -249,6 +249,13 @@ const HighScoreDiv = styled.div`
   padding-bottom: 3%;
 `;
 
+const KeyReceiver = styled.div`
+  &:focus {
+    outline: none
+  }
+
+`;
+
 class FlashCards extends React.Component {
   constructor(props) {
     super(props);
@@ -272,6 +279,7 @@ class FlashCards extends React.Component {
     this.back = this.back.bind(this);
     this.timeExpire = this.timeExpire.bind(this);
     this.showConfetti = this.showConfetti.bind(this);
+    this.prevNextKeydown = this.prevNextKeydown.bind(this);
   }
 
   componentDidMount() {
@@ -285,6 +293,10 @@ class FlashCards extends React.Component {
         prevScore: prevScore
       })
     }
+  }
+
+  prevNextKeydown(e) {
+    console.log('key is -> ', e.key);
   }
 
   nextCard() {
@@ -495,115 +507,117 @@ class FlashCards extends React.Component {
   render() {
     return (
       <>
-        <CollectionNameTitle>
-          {
-            this.state.collectionName
-          }
-        </CollectionNameTitle>
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-          <TimerDiv>
-            <SetTimer expire={this.timeExpire} />
-          </TimerDiv>
-        </div>
-        <CollectionDiv>
-          <CardNumber>
+        <KeyReceiver onKeyDown={this.prevNextKeydown}>
+          <CollectionNameTitle>
             {
-              `Card ${this.state.currentCard + 1} of ${this.state.totalCards}`
+              this.state.collectionName
             }
-          </CardNumber>
-          <FlashCardDiv>
-            {
-              this.state.cardList[this.state.currentCard].photo
-              ?
-              (
-                <ImageDiv>
-                  <Image src={this.state.cardList[this.state.currentCard].photo} />
-                </ImageDiv>
-              )
-              :
-              (
-                null
-              )
-            }
-            <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
-              <b>{
-                this.state.cardList[this.state.currentCard].question
-              }</b>
-            </QuestionAndAnswerDiv>
-            <QuestionAndAnswerDiv style={{display: this.state.answerDisplay,   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
-              <b>{
-                this.state.cardList[this.state.currentCard].answer
-              }</b>
-            </QuestionAndAnswerDiv>
-            <RevealButton type="button" onClick={this.reveal}>
-              Reveal
-            </RevealButton>
-            <FailSuccessDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1'}}>
-                <FailSuccessButton onClick={this.handleFail}>
-                  <b>❌</b>
-                </FailSuccessButton>
-              </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '2'}}>
-                <FailSuccessCount>
-                  {this.state.fail}
-                </FailSuccessCount>
-              </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1'}}>
-                <SuccessButton onClick={this.handleSuccess}>
-                <b>✔️</b>
-                </SuccessButton>
-              </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '2'}}>
-                <FailSuccessCount>
-                  {this.state.success}
-                </FailSuccessCount>
-              </FailSuccessIndividualDiv>
-            </FailSuccessDiv>
-            <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-              <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                <h3>Previous Score</h3>
-              </FailSuccessDiv>
-              <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                {this.state.prevScore}
-              </FailSuccessDiv>
-            </FailSuccessDiv>
-          </FlashCardDiv>
-          <MainMenuDiv>
-            <ThemeProvider theme={theme}>
-              <Button onClick={this.back} variant="contained" size="large" color="primary">
-                Main Menu
-              </Button>
-            </ThemeProvider>
-          </MainMenuDiv>
-        </CollectionDiv>
-        <PrevNextDiv>
-          <PrevButton onClick={this.prevCard}>
-            <b>{`<`}</b>
-          </PrevButton>
-          <NextButton onClick={this.nextCard}>
-            <b>{`>`}</b>
-          </NextButton>
-        </PrevNextDiv>
-        <Modal open={this.state.show}>
-              <HighScoreDiv>
-                <h1>{`Congratulations ${this.props.user}!`}</h1>
-                <h2>{`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}</h2>
-              </HighScoreDiv>
-        </Modal>
-        <Modal
-          open={this.state.show}
-          onClick={this.showConfetti}
-        >
-          <div className="PromptSubmit">
-            <Confetti
-              recycle={false}
-              // run={testsPassed}
-              numberOfPieces={1000}
-              gravity={2}
-            />
+          </CollectionNameTitle>
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+            <TimerDiv>
+              <SetTimer expire={this.timeExpire} />
+            </TimerDiv>
           </div>
-        </Modal>
+          <CollectionDiv onKeyDown={this.prevNextKeydown}>
+            <CardNumber>
+              {
+                `Card ${this.state.currentCard + 1} of ${this.state.totalCards}`
+              }
+            </CardNumber>
+            <FlashCardDiv>
+              {
+                this.state.cardList[this.state.currentCard].photo
+                ?
+                (
+                  <ImageDiv>
+                    <Image src={this.state.cardList[this.state.currentCard].photo} />
+                  </ImageDiv>
+                )
+                :
+                (
+                  null
+                )
+              }
+              <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
+                <b>{
+                  this.state.cardList[this.state.currentCard].question
+                }</b>
+              </QuestionAndAnswerDiv>
+              <QuestionAndAnswerDiv style={{display: this.state.answerDisplay,   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
+                <b>{
+                  this.state.cardList[this.state.currentCard].answer
+                }</b>
+              </QuestionAndAnswerDiv>
+              <RevealButton type="button" onClick={this.reveal}>
+                Reveal
+              </RevealButton>
+              <FailSuccessDiv>
+                <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1'}}>
+                  <FailSuccessButton onClick={this.handleFail}>
+                    <b>❌</b>
+                  </FailSuccessButton>
+                </FailSuccessIndividualDiv>
+                <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '2'}}>
+                  <FailSuccessCount>
+                    {this.state.fail}
+                  </FailSuccessCount>
+                </FailSuccessIndividualDiv>
+                <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1'}}>
+                  <SuccessButton onClick={this.handleSuccess}>
+                  <b>✔️</b>
+                  </SuccessButton>
+                </FailSuccessIndividualDiv>
+                <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '2'}}>
+                  <FailSuccessCount>
+                    {this.state.success}
+                  </FailSuccessCount>
+                </FailSuccessIndividualDiv>
+              </FailSuccessDiv>
+              <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+                <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
+                  <h3>Previous Score</h3>
+                </FailSuccessDiv>
+                <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
+                  {this.state.prevScore}
+                </FailSuccessDiv>
+              </FailSuccessDiv>
+            </FlashCardDiv>
+            <MainMenuDiv>
+              <ThemeProvider theme={theme}>
+                <Button onClick={this.back} variant="contained" size="large" color="primary">
+                  Main Menu
+                </Button>
+              </ThemeProvider>
+            </MainMenuDiv>
+          </CollectionDiv>
+          <PrevNextDiv>
+            <PrevButton onClick={this.prevCard}>
+              <b>{`<`}</b>
+            </PrevButton>
+            <NextButton onClick={this.nextCard}>
+              <b>{`>`}</b>
+            </NextButton>
+          </PrevNextDiv>
+          <Modal open={this.state.show}>
+                <HighScoreDiv>
+                  <h1>{`Congratulations ${this.props.user}!`}</h1>
+                  <h2>{`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}</h2>
+                </HighScoreDiv>
+          </Modal>
+          <Modal
+            open={this.state.show}
+            onClick={this.showConfetti}
+          >
+            <div className="PromptSubmit">
+              <Confetti
+                recycle={false}
+                // run={testsPassed}
+                numberOfPieces={1000}
+                gravity={2}
+              />
+            </div>
+          </Modal>
+        </KeyReceiver>
       </>
     )
   }
