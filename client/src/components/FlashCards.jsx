@@ -189,6 +189,8 @@ const FailSuccessCount = styled.span`
 const MainMenuDiv = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MainMenuButton = styled.button`
@@ -281,6 +283,7 @@ class FlashCards extends React.Component {
     this.timeExpire = this.timeExpire.bind(this);
     this.showConfetti = this.showConfetti.bind(this);
     this.prevNextKeydown = this.prevNextKeydown.bind(this);
+    this.goToMainMenu = this.goToMainMenu.bind(this);
   }
 
   componentDidMount() {
@@ -304,7 +307,7 @@ class FlashCards extends React.Component {
         prevScore: prevScore
       });
     }
-    axios.get('/scores')
+    axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
         // do stuff
       })
@@ -494,6 +497,10 @@ class FlashCards extends React.Component {
     this.props.goBack();
   }
 
+  goToMainMenu() {
+    this.props.goBack();
+  }
+
   timeExpire() {
     if (this.state.score > this.state.prevScore) {
       this.setState({
@@ -606,7 +613,12 @@ class FlashCards extends React.Component {
             </FlashCardDiv>
             <MainMenuDiv>
               <ThemeProvider theme={theme}>
-                <Button onClick={this.back} variant="contained" size="large" color="primary">
+                <Button onClick={this.back} variant="contained" size="large" color="primary" style={{border: '2px ridge red'}}>
+                  Finish
+                </Button>
+              </ThemeProvider>
+              <ThemeProvider theme={theme}>
+                <Button onClick={this.goToMainMenu} variant="contained" size="large" color="primary" style={{border: '2px ridge red'}}>
                   Main Menu
                 </Button>
               </ThemeProvider>

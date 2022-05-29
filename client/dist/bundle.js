@@ -775,7 +775,7 @@ var FailSuccessIndividualDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["d
 var FailSuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
 var SuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
 var FailSuccessCount = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].span(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  color: yellow;\n  background-color: black;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  display: flex;\n  justify-content: center;\n"])));
-var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n"])));
 var MainMenuButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  margin-top: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    color: yellow;\n    border: 2px ridge yellow;\n  }\n"])));
 var Image = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].img(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  width: 80%;\n  height: 20%;\n"])));
 var ImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
@@ -816,6 +816,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     _this.timeExpire = _this.timeExpire.bind(_assertThisInitialized(_this));
     _this.showConfetti = _this.showConfetti.bind(_assertThisInitialized(_this));
     _this.prevNextKeydown = _this.prevNextKeydown.bind(_assertThisInitialized(_this));
+    _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -849,7 +850,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/scores').then(function (_ref2) {// do stuff
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {// do stuff
 
         var data = _ref2.data;
       })["catch"](function (err) {
@@ -1048,6 +1049,11 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       this.props.goBack();
     }
   }, {
+    key: "goToMainMenu",
+    value: function goToMainMenu() {
+      this.props.goBack();
+    }
+  }, {
     key: "timeExpire",
     value: function timeExpire() {
       if (this.state.score > this.state.prevScore) {
@@ -1198,17 +1204,32 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
                   children: this.state.prevScore
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(MainMenuDiv, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(MainMenuDiv, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_8__["default"], {
                 theme: theme,
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
                   onClick: this.back,
                   variant: "contained",
                   size: "large",
                   color: "primary",
+                  style: {
+                    border: '2px ridge red'
+                  },
+                  children: "Finish"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                theme: theme,
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                  onClick: this.goToMainMenu,
+                  variant: "contained",
+                  size: "large",
+                  color: "primary",
+                  style: {
+                    border: '2px ridge red'
+                  },
                   children: "Main Menu"
                 })
-              })
+              })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(PrevNextDiv, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(PrevButton, {
