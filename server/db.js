@@ -132,6 +132,10 @@ const changePassword = () => {
 };
 // changePassword();
 
+const storeScores = (scores, cb = () => {}) => {
+  console.log('db scores -> ', scores);
+};
+
 module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;
@@ -139,3 +143,4 @@ module.exports.saveCollection = saveCollection;
 module.exports.setViewDate = setViewDate;
 module.exports.saveSignup = saveSignup;
 module.exports.checkLogin = checkLogin;
+module.exports.storeScores = storeScores;

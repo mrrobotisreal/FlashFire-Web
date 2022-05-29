@@ -72,7 +72,7 @@ app.get('/collections/:user/scores/:collection', (req, res) => {
 });
 
 app.post('/collections/:user/scores', (req, res) => {
-  //
+  db.storeScores
 });
 
 app.listen(process.env.PORT);
