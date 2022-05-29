@@ -129,6 +129,9 @@ const RevealButton = styled.button`
     border: 2px ridge green;
     box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
 const FailSuccessDiv = styled.div`
@@ -325,8 +328,10 @@ class FlashCards extends React.Component {
       console.log('the updated key is -> ', this.props.pressedKey);
       if (this.props.pressedKey === 'ArrowLeft') {
         console.log('this will change to left');
+        this.prevCard();
       } else if (this.props.pressedKey === 'ArrowRight') {
         console.log('this will change to right');
+        this.nextCard();
       } else {
         return;
       }
@@ -599,7 +604,7 @@ class FlashCards extends React.Component {
                   this.state.cardList[this.state.currentCard].answer
                 }</b>
               </QuestionAndAnswerDiv>
-              <RevealButton type="button" onClick={this.reveal}>
+              <RevealButton type="button" onClick={this.reveal} autoFocus>
                 Reveal
               </RevealButton>
               <FailSuccessDiv>

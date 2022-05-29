@@ -555,7 +555,7 @@ var CollectionNameTitle = styled_components__WEBPACK_IMPORTED_MODULE_7__["defaul
 var CardNumber = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].h3(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  grid-column: 2;\n  grid-row: 2;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
 var FlashCardDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  padding: 2%;\n"])));
 var QuestionAndAnswerDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  border: 2px ridge orangered;\n  border-radius: 12px;\n  background-image: linear-gradient(to bottom, black, darkred);\n  color: white;\n  font-family: 'Bangers', cursive;\n  padding: 2%;\n  overflow: break-word;\n  margin-bottom: 2%;\n  transition: .2s;\n"])));
-var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
+var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
 var FailSuccessDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  display: grid;\n  margin: 2%;\n"])));
 var FailSuccessIndividualDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
 var FailSuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
@@ -660,8 +660,10 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
 
         if (this.props.pressedKey === 'ArrowLeft') {
           console.log('this will change to left');
+          this.prevCard();
         } else if (this.props.pressedKey === 'ArrowRight') {
           console.log('this will change to right');
+          this.nextCard();
         } else {
           return;
         }
@@ -951,6 +953,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(RevealButton, {
                 type: "button",
                 onClick: this.reveal,
+                autoFocus: true,
                 children: "Reveal"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(FailSuccessDiv, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(FailSuccessIndividualDiv, {
