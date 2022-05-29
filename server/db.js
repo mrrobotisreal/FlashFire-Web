@@ -176,7 +176,28 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
   });
 };
 
-const getScores = (username, cb = () => {}) => {};
+const getScores = (username, collection, cb = () => {}) => {
+  let user = User.findOne({'username': username});
+  user.exec((err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('get doc -> ', doc);
+      let collections = doc.collections;
+      let scoresObj = {};
+      for (let i = 0; i < collections.length; i++) {
+        if (collections[i].name === collection) {
+          scoresObj.highScore = collections[i].highScore;
+          scoresObj.mostRecentScore = collections[i].mostRecentScore;
+          scoresObj.totalScores = collections[i].totalScores;
+          break;
+        }
+      }
+      console.log('scoresObj -> ', scoresObj);
+      cb(null, scoresObj);
+    }
+  });
+};
 
 module.exports.cards = Card;
 module.exports.users = User;
