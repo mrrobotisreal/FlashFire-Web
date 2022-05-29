@@ -707,6 +707,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21;
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -792,7 +804,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       answerDisplay: 'none',
       score: 0,
       prevScore: 0,
-      show: false
+      show: false,
+      totalScores: _this.props.totalScores
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -835,6 +848,13 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
           prevScore: prevScore
         });
       }
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get('/scores').then(function (_ref2) {// do stuff
+
+        var data = _ref2.data;
+      })["catch"](function (err) {
+        return console.error(err);
+      });
     }
   }, {
     key: "prevNextKeydown",
@@ -1017,7 +1037,14 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "back",
     value: function back(score) {
-      localStorage.setItem('score', JSON.stringify(this.state.score));
+      // localStorage.setItem('score', JSON.stringify(this.state.score));
+      var options = {
+        totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
+        score: this.state.score
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores"), options)["catch"](function (err) {
+        return console.error();
+      });
       this.props.goBack();
     }
   }, {

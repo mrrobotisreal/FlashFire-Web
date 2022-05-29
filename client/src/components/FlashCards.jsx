@@ -270,6 +270,7 @@ class FlashCards extends React.Component {
       score: 0,
       prevScore: 0,
       show: false,
+      totalScores: this.props.totalScores,
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -292,17 +293,22 @@ class FlashCards extends React.Component {
     }
     this.setState({
       cardList: array,
-    })
+    });
     let prevScore = JSON.parse(localStorage.getItem('score'));
     if (!prevScore || prevScore === 0) {
       this.setState({
         prevScore: 0
-      })
+      });
     } else {
       this.setState({
         prevScore: prevScore
-      })
+      });
     }
+    axios.get('/scores')
+      .then(({ data }) => {
+        // do stuff
+      })
+      .catch((err) => console.error(err));
   }
 
   prevNextKeydown(e) {
@@ -475,11 +481,16 @@ class FlashCards extends React.Component {
       score: this.state.score += 1,
       prevScore: this.state.prevScore,
     });
-
   }
 
   back(score) {
-    localStorage.setItem('score', JSON.stringify(this.state.score));
+    // localStorage.setItem('score', JSON.stringify(this.state.score));
+    let options = {
+      totalScores: [...this.state.totalScores, this.state.score],
+      score: this.state.score
+    };
+    axios.post(`/collections/${this.props.user}/scores`, options)
+      .catch((err) => console.error());
     this.props.goBack();
   }
 
