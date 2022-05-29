@@ -66,17 +66,43 @@ const saveCollection = (newColl, user, cb = () => {}) => {
  const setViewDate = (user, collection, cb = () => {}) => {
   let dis = User.findOne({'username': user});
   dis.exec((err, doc) => {
-    console.log('dis be like -> ', doc.collections);
-    let theUser = doc;
-    let theColl = doc.collections;
-    let newCreation = doc.collections[0];
-    newCreation.lastView = new Date().toString();
-    theColl[0] = newCreation;
-    theUser.collections = theColl;
-    let userUpdate = User.findOneAndUpdate({'username': user}, {'collections': theColl}, {new: true});
-    userUpdate.exec((err, doc) => {
-      cb(null, doc);
-    })
+    console.log('doc collection -> ', doc.collections);
+    let colls = doc.collections.slice();
+    let updatedCollection;
+    for (let i = 0; i < doc.collections.length; i++) {
+      console.log('loop collection -> ', doc.collections[i]);
+      console.log('collectionName -> ', doc.collections[i].name);
+      console.log('passed in collection -> ', collection);
+      if (doc.collections[i].name === collection) {
+        console.log('name is the same');
+        updatedCollection = doc.collections[i];
+        updatedCollection.lastView = new Date().toString();
+        colls.splice(i, 1, updatedCollection);
+      }
+    }
+    console.log('doc collections again -> ', doc.collections);
+    console.log('updatedCollection', updatedCollection);
+    let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+    updatedUser.exec((err, doc) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log('Successfully updated -> ', doc.collections);
+        cb(null, doc);
+      }
+    });
+
+    // console.log('dis be like -> ', doc.collections);
+    // let theUser = doc;
+    // let theColl = doc.collections;
+    // let newCreation = doc.collections[0];
+    // newCreation.lastView = new Date().toString();
+    // theColl[0] = newCreation;
+    // theUser.collections = theColl;
+    // let userUpdate = User.findOneAndUpdate({'username': user}, {'collections': theColl}, {new: true});
+    // userUpdate.exec((err, doc) => {
+    //   cb(null, doc);
+    // })
   })
  };
 

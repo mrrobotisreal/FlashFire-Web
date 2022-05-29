@@ -57,7 +57,7 @@ app.post('/collections/:user/add', (req, res) => {
 
 app.post('/collections/:user/set-view-date', (req, res) => {
   console.log('server data be like -> ', req.body);
-  db.setViewDate(req.params.user, req.body.collectionName, (err, doc) => {
+  db.setViewDate(req.params.user, req.body.data.collectionName, (err, doc) => {
     if (err) {
       console.error(err);
     } else {
