@@ -286,6 +286,8 @@ class MainMenu2 extends React.Component {
       photos: [],
       isChoosing: false,
       isEditing: false,
+      keyCount: 0,
+      keyPressed: '',
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -303,6 +305,7 @@ class MainMenu2 extends React.Component {
     this.setAudio = this.setAudio.bind(this);
     this.chooseFlash = this.chooseFlash.bind(this);
     this.chooseEdit = this.chooseEdit.bind(this);
+    this.handleFlashKeydown = this.handleFlashKeydown.bind(this);
   }
 
   componentDidMount() {
@@ -720,6 +723,29 @@ class MainMenu2 extends React.Component {
     }
   }
 
+  handleFlashKeydown(key) {
+    // console.log('key pressed is -> ', key);
+    if (this.state.keyCount === 9) {
+      this.setState({
+        keyCount: 0,
+      });
+      return;
+    } else {
+      if (this.state.keyCount % 2 === 0) {
+        console.log('even key press');
+        this.setState({
+          pressedKey: key,
+          keyCount: this.state.keyCount += 1,
+        });
+      } else {
+        this.setState({
+          keyCount: this.state.keyCount += 1,
+        })
+        return;
+      }
+    }
+  }
+
   render() {
     return (
       <MainMenuDiv>
@@ -802,7 +828,7 @@ class MainMenu2 extends React.Component {
                 )
                 :
                 (
-                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} />
+                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                 )
               }
             </>

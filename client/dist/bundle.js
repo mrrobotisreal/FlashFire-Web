@@ -591,7 +591,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       score: 0,
       prevScore: 0,
       show: false,
-      totalScores: []
+      totalScores: [],
+      highScore: 0
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -609,6 +610,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   _createClass(FlashCards, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       var array = this.state.cardList.slice();
       var currentIndex = array.length,
           randomIndex;
@@ -636,17 +639,39 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {// do stuff
-
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
         var data = _ref2.data;
+
+        _this2.setState({
+          prevScore: data.mostRecentScore,
+          totalScores: data.totalScores,
+          highScore: data.highScore
+        });
       })["catch"](function (err) {
         return console.error(err);
       });
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.pressedKey !== prevProps.pressedKey) {
+        console.log('it is different');
+        console.log('the updated key is -> ', this.props.pressedKey);
+
+        if (this.props.pressedKey === 'ArrowLeft') {
+          console.log('this will change to left');
+        } else if (this.props.pressedKey === 'ArrowRight') {
+          console.log('this will change to right');
+        } else {
+          return;
+        }
+      }
+    }
+  }, {
     key: "prevNextKeydown",
     value: function prevNextKeydown(e) {
-      console.log('key is -> ', e.key);
+      e.preventDefault();
+      this.props.keydown(e.key);
     }
   }, {
     key: "nextCard",
@@ -1186,7 +1211,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       lastView: '',
       photos: [],
       isChoosing: false,
-      isEditing: false
+      isEditing: false,
+      keyCount: 0,
+      keyPressed: ''
     };
     _this.chooseCollection = _this.chooseCollection.bind(_assertThisInitialized(_this));
     _this.createCollection = _this.createCollection.bind(_assertThisInitialized(_this));
@@ -1204,6 +1231,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     _this.setAudio = _this.setAudio.bind(_assertThisInitialized(_this));
     _this.chooseFlash = _this.chooseFlash.bind(_assertThisInitialized(_this));
     _this.chooseEdit = _this.chooseEdit.bind(_assertThisInitialized(_this));
+    _this.handleFlashKeydown = _this.handleFlashKeydown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1657,6 +1685,30 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleFlashKeydown",
+    value: function handleFlashKeydown(key) {
+      // console.log('key pressed is -> ', key);
+      if (this.state.keyCount === 9) {
+        this.setState({
+          keyCount: 0
+        });
+        return;
+      } else {
+        if (this.state.keyCount % 2 === 0) {
+          console.log('even key press');
+          this.setState({
+            pressedKey: key,
+            keyCount: this.state.keyCount += 1
+          });
+        } else {
+          this.setState({
+            keyCount: this.state.keyCount += 1
+          });
+          return;
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MainMenuDiv, {
@@ -1735,7 +1787,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               goBack: this.goBack,
-              user: this.props.user
+              user: this.props.user,
+              keydown: this.handleFlashKeydown,
+              pressedKey: this.state.pressedKey
             })
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CreateCollectionsTitle, {

@@ -273,6 +273,7 @@ class FlashCards extends React.Component {
       prevScore: 0,
       show: false,
       totalScores: [],
+      highScore: 0,
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -309,13 +310,32 @@ class FlashCards extends React.Component {
     }
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
-        // do stuff
+        this.setState({
+          prevScore: data.mostRecentScore,
+          totalScores: data.totalScores,
+          highScore: data.highScore,
+        });
       })
       .catch((err) => console.error(err));
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.pressedKey !== prevProps.pressedKey) {
+      console.log('it is different');
+      console.log('the updated key is -> ', this.props.pressedKey);
+      if (this.props.pressedKey === 'ArrowLeft') {
+        console.log('this will change to left');
+      } else if (this.props.pressedKey === 'ArrowRight') {
+        console.log('this will change to right');
+      } else {
+        return;
+      }
+    }
+  }
+
   prevNextKeydown(e) {
-    console.log('key is -> ', e.key);
+    e.preventDefault();
+    this.props.keydown(e.key);
   }
 
   nextCard() {
