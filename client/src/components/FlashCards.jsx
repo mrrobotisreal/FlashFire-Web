@@ -277,6 +277,7 @@ class FlashCards extends React.Component {
       show: false,
       totalScores: [],
       highScore: 0,
+      showStats: false,
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -288,6 +289,8 @@ class FlashCards extends React.Component {
     this.showConfetti = this.showConfetti.bind(this);
     this.prevNextKeydown = this.prevNextKeydown.bind(this);
     this.goToMainMenu = this.goToMainMenu.bind(this);
+    this.showStats = this.showStats.bind(this);
+    this.closeStats = this.closeStats.bind(this);
   }
 
   componentDidMount() {
@@ -335,6 +338,18 @@ class FlashCards extends React.Component {
         return;
       }
     }
+  }
+
+  showStats() {
+    this.setState({
+      showStats: true,
+    });
+  }
+
+  closeStats() {
+    this.setState({
+      showStats: false,
+    });
   }
 
   prevNextKeydown(e) {
@@ -570,6 +585,11 @@ class FlashCards extends React.Component {
             }
           </CollectionNameTitle>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+            <button>
+              Show Stats
+            </button>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
             <TimerDiv>
               <SetTimer expire={this.timeExpire} />
             </TimerDiv>
@@ -659,6 +679,11 @@ class FlashCards extends React.Component {
               <b>{`>`}</b>
             </NextButton>
           </PrevNextDiv>
+          <Modal open={this.state.showStats}>
+            <HighScoreDiv>
+              <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
+            </HighScoreDiv>
+          </Modal>
           <Modal open={this.state.show}>
                 <HighScoreDiv>
                   <h1>{`Congratulations ${this.props.user}!`}</h1>

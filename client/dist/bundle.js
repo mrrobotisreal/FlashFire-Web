@@ -592,7 +592,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       prevScore: 0,
       show: false,
       totalScores: [],
-      highScore: 0
+      highScore: 0,
+      showStats: false
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -604,6 +605,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     _this.showConfetti = _this.showConfetti.bind(_assertThisInitialized(_this));
     _this.prevNextKeydown = _this.prevNextKeydown.bind(_assertThisInitialized(_this));
     _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
+    _this.showStats = _this.showStats.bind(_assertThisInitialized(_this));
+    _this.closeStats = _this.closeStats.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -666,6 +669,20 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
           return;
         }
       }
+    }
+  }, {
+    key: "showStats",
+    value: function showStats() {
+      this.setState({
+        showStats: true
+      });
+    }
+  }, {
+    key: "closeStats",
+    value: function closeStats() {
+      this.setState({
+        showStats: false
+      });
     }
   }, {
     key: "prevNextKeydown",
@@ -915,6 +932,16 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
               alignItems: 'center',
               flexDirection: 'column'
             },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              children: "Show Stats"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column'
+            },
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TimerDiv, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_SetTimer_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 expire: this.timeExpire
@@ -1057,6 +1084,13 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
                 children: ">"
               })
             })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            open: this.state.showStats,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(HighScoreDiv, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+                children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
+              })
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_10__["default"], {
             open: this.state.show,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(HighScoreDiv, {
