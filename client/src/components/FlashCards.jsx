@@ -562,10 +562,10 @@ class FlashCards extends React.Component {
         collectionName: this.state.collectionName,
         totalCards: this.state.cardList.length,
         currentCard: this.state.currentCard,
-        success: this.state.success += 1,
+        success: this.state.success,
         fail: this.state.fail,
         answerDisplay: this.state.answerDisplay,
-        score: this.state.score += 1,
+        score: this.state.score,
         prevScore: this.state.prevScore,
         show: true,
       })
