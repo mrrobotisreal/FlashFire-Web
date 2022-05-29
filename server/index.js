@@ -67,6 +67,10 @@ app.post('/collections/:user/set-view-date', (req, res) => {
   });
 });
 
+app.get('/collections/:user/scores/:collection', (req, res) => {
+  //
+});
+
 app.post('/collections/:user/scores', (req, res) => {
   //
 });
