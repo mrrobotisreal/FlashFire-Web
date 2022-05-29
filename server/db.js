@@ -132,7 +132,7 @@ const changePassword = () => {
 };
 // changePassword();
 
-const storeScores = (scores, cb = () => {}) => {
+const storeScores = (user, collection, scores, cb = () => {}) => {
   console.log('db scores -> ', scores);
 };
 

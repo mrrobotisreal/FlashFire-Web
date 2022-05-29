@@ -71,8 +71,15 @@ app.get('/collections/:user/scores/:collection', (req, res) => {
   //
 });
 
-app.post('/collections/:user/scores', (req, res) => {
-  db.storeScores
+app.post('/collections/:user/scores/:collection', (req, res) => {
+  db.storeScores(req.params.user, req.params.collection, req.body, (err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('doc  be like -> ', doc);
+      res.send(doc);
+    }
+  });
 });
 
 app.listen(process.env.PORT);

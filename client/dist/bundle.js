@@ -1043,7 +1043,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
         score: this.state.score
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores"), options)["catch"](function (err) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options)["catch"](function (err) {
         return console.error();
       });
       this.props.goBack();
