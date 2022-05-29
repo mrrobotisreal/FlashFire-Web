@@ -329,10 +329,13 @@ class FlashCards extends React.Component {
       if (this.props.pressedKey === 'ArrowLeft') {
         console.log('this will change to left');
         this.prevCard();
+        this.props.keydown('ArrowUp');
       } else if (this.props.pressedKey === 'ArrowRight') {
         console.log('this will change to right');
         this.nextCard();
+        this.props.keydown('ArrowUp');
       } else {
+        this.props.keydown('ArrowUp');
         return;
       }
     }
@@ -340,6 +343,7 @@ class FlashCards extends React.Component {
 
   prevNextKeydown(e) {
     e.preventDefault();
+    this.props.keydown('ArrowUp');
     this.props.keydown(e.key);
   }
 
