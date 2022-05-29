@@ -655,15 +655,10 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (this.props.pressedKey !== prevProps.pressedKey) {
-        console.log('it is different');
-        console.log('the updated key is -> ', this.props.pressedKey);
-
         if (this.props.pressedKey === 'ArrowLeft') {
-          console.log('this will change to left');
           this.prevCard();
           this.props.keydown('ArrowUp');
         } else if (this.props.pressedKey === 'ArrowRight') {
-          console.log('this will change to right');
           this.nextCard();
           this.props.keydown('ArrowUp');
         } else {
@@ -1694,7 +1689,6 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleFlashKeydown",
     value: function handleFlashKeydown(key) {
-      // console.log('key pressed is -> ', key);
       if (this.state.keyCount === 9) {
         this.setState({
           keyCount: 0
@@ -1702,7 +1696,6 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         return;
       } else {
         if (this.state.keyCount % 2 === 0) {
-          console.log('even key press');
           this.setState({
             pressedKey: key,
             keyCount: this.state.keyCount += 1

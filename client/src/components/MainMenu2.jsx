@@ -724,7 +724,6 @@ class MainMenu2 extends React.Component {
   }
 
   handleFlashKeydown(key) {
-    // console.log('key pressed is -> ', key);
     if (this.state.keyCount === 9) {
       this.setState({
         keyCount: 0,
@@ -732,7 +731,6 @@ class MainMenu2 extends React.Component {
       return;
     } else {
       if (this.state.keyCount % 2 === 0) {
-        console.log('even key press');
         this.setState({
           pressedKey: key,
           keyCount: this.state.keyCount += 1,
