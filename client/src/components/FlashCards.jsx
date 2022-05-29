@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SetTimer from './SetTimer.jsx';
-import Confetti from 'react-confetti'
+import Confetti from 'react-confetti';
 
 const theme = createTheme({
   palette: {
@@ -258,7 +258,18 @@ const KeyReceiver = styled.div`
   &:focus {
     outline: none
   }
+`;
 
+const ModalButton = styled.button`
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  background-color: white;
+  font-size: 20px;
+  border: 2px ridge grey;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 10px 5px 5px black;
 `;
 
 class FlashCards extends React.Component {
@@ -585,7 +596,7 @@ class FlashCards extends React.Component {
             }
           </CollectionNameTitle>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            <button>
+            <button onClick={this.showStats}>
               Show Stats
             </button>
           </div>
@@ -681,6 +692,7 @@ class FlashCards extends React.Component {
           </PrevNextDiv>
           <Modal open={this.state.showStats}>
             <HighScoreDiv>
+              <ModalButton onClick={this.closeStats}>X</ModalButton>
               <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
             </HighScoreDiv>
           </Modal>
