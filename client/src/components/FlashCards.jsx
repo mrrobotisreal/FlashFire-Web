@@ -695,7 +695,7 @@ class FlashCards extends React.Component {
             <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <ModalButton onClick={this.closeStats}>X</ModalButton>
               <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
-              <div style={{width: 'fit-content', height: 'fit-content', backgroundColor: 'white'}}>
+              <div style={{width: '60%', height: '40%', backgroundColor: 'white', marginTop: '5%'}}>
                 <Stats totalScores={this.state.totalScores} />
               </div>
             </HighScoreDiv>

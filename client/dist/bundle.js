@@ -1104,9 +1104,10 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
                 children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
-                  width: 'fit-content',
-                  height: 'fit-content',
-                  backgroundColor: 'white'
+                  width: '60%',
+                  height: '40%',
+                  backgroundColor: 'white',
+                  marginTop: '5%'
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Stats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
                   totalScores: this.state.totalScores
@@ -2208,8 +2209,8 @@ var Stats = /*#__PURE__*/function (_Component) {
           labels: labels,
           datasets: [{
             label: 'User Stats',
-            backgroundColor: 'rgba(255, 255, 255, 0.74)',
-            borderColor: 'rgb(155, 3, 3)',
+            backgroundColor: 'rgba(2, 0, 0, 0.74)',
+            borderColor: 'rgb(255, 255, 0)',
             data: this.props.totalScores
           }]
         }

@@ -76,8 +76,8 @@ class Stats extends Component {
         datasets: [
           {
             label: 'User Stats',
-            backgroundColor: 'rgba(255, 255, 255, 0.74)',
-            borderColor: 'rgb(155, 3, 3)',
+            backgroundColor: 'rgba(2, 0, 0, 0.74)',
+            borderColor: 'rgb(255, 255, 0)',
             data: this.props.totalScores,
           },
         ],
