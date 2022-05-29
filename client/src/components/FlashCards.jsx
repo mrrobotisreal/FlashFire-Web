@@ -7,6 +7,7 @@ import Modal from '@mui/material/Modal';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SetTimer from './SetTimer.jsx';
 import Confetti from 'react-confetti';
+import Stats from './Stats.jsx';
 
 const theme = createTheme({
   palette: {
@@ -701,6 +702,7 @@ class FlashCards extends React.Component {
                   <h1>{`Congratulations ${this.props.user}!`}</h1>
                   <h2>{`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}</h2>
                 </HighScoreDiv>
+                <Stats totalScores={this.state.totalScores} />
           </Modal>
           <Modal
             open={this.state.show}
