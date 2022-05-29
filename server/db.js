@@ -152,7 +152,7 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
           break;
         }
       }
-      chosenCollection.totalScores = scores.totalScores;
+      chosenCollection.totalScores = [...chosenCollection.totalScores, scores.totalScores];
       chosenCollection.mostRecentScore = scores.score;
       chosenCollection.highScore = Math.max(...scores.totalScores);
       console.log('chosenCollection -> ', chosenCollection);
