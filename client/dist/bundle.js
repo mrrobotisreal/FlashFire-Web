@@ -824,7 +824,6 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "back",
     value: function back(score) {
-      // localStorage.setItem('score', JSON.stringify(this.state.score));
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
         score: this.state.score

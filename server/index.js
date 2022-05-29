@@ -68,7 +68,14 @@ app.post('/collections/:user/set-view-date', (req, res) => {
 });
 
 app.get('/collections/:user/scores/:collection', (req, res) => {
-  //
+  db.getScores(req.params.user, req.params.collection, (err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('scores doc be like -> ', doc);
+      res.send(doc);
+    }
+  });
 });
 
 app.post('/collections/:user/scores/:collection', (req, res) => {

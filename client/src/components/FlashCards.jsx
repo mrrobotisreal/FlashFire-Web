@@ -487,7 +487,6 @@ class FlashCards extends React.Component {
   }
 
   back(score) {
-    // localStorage.setItem('score', JSON.stringify(this.state.score));
     let options = {
       totalScores: [...this.state.totalScores, this.state.score],
       score: this.state.score

@@ -176,6 +176,8 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
   });
 };
 
+const getScores = (username, cb = () => {}) => {};
+
 module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;
@@ -184,3 +186,4 @@ module.exports.setViewDate = setViewDate;
 module.exports.saveSignup = saveSignup;
 module.exports.checkLogin = checkLogin;
 module.exports.storeScores = storeScores;
+module.exports.getScores = getScores;
