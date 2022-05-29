@@ -692,9 +692,12 @@ class FlashCards extends React.Component {
             </NextButton>
           </PrevNextDiv>
           <Modal open={this.state.showStats}>
-            <HighScoreDiv>
+            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <ModalButton onClick={this.closeStats}>X</ModalButton>
               <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
+              <div style={{width: 'fit-content', height: 'fit-content', backgroundColor: 'white'}}>
+                <Stats totalScores={this.state.totalScores} />
+              </div>
             </HighScoreDiv>
           </Modal>
           <Modal open={this.state.show}>
@@ -702,7 +705,6 @@ class FlashCards extends React.Component {
                   <h1>{`Congratulations ${this.props.user}!`}</h1>
                   <h2>{`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}</h2>
                 </HighScoreDiv>
-                <Stats totalScores={this.state.totalScores} />
           </Modal>
           <Modal
             open={this.state.show}

@@ -1091,24 +1091,37 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
             open: this.state.showStats,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(HighScoreDiv, {
+              style: {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column'
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ModalButton, {
                 onClick: this.closeStats,
                 children: "X"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                style: {
+                  width: 'fit-content',
+                  height: 'fit-content',
+                  backgroundColor: 'white'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Stats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  totalScores: this.state.totalScores
+                })
               })]
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
             open: this.state.show,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(HighScoreDiv, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(HighScoreDiv, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 children: "Congratulations ".concat(this.props.user, "!")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
                 children: "You beat your previous score of ".concat(this.state.prevScore, " with ").concat(this.state.score, "!")
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Stats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
-              totalScores: this.state.totalScores
-            })]
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
             open: this.state.show,
             onClick: this.showConfetti,
@@ -2092,8 +2105,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.modern.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2116,6 +2129,41 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// import React, { useState, useEffect } from 'react';
+// import PropTypes from 'prop-types';
+// // eslint-disable-next-line
+// import Chart, { Bar } from 'react-chartjs-2';
+// export default function Stats(props) {
+//   const { totalScores } = props;
+//   const [userData, setUserData] = useState({});
+//   useEffect(() => {
+//     const labels = ['Current Streak', 'Problems Authored', 'Problems Submitted'];
+//     const data = {
+//       labels,
+//       datasets: [
+//         {
+//           label: 'User Stats',
+//           backgroundColor: 'rgba(39, 245, 63, 0.74)',
+//           borderColor: 'rgb(218, 165, 32)',
+//           data: [7, 3, 12],
+//         },
+//       ],
+//     };
+//     setUserData(data);
+//   }, [props]);
+//   return (
+//     <Bar
+//       options={{
+//         plugins: {
+//           legend: {
+//             display: false,
+//           },
+//         },
+//       }}
+//       data={userData}
+//     />
+//   );
+// }
 
 
 
@@ -2131,14 +2179,46 @@ var Stats = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Stats);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      data: {
+        labels: ['Scores'],
+        datasets: [{
+          label: 'User Stats',
+          backgroundColor: 'rgba(255, 255, 255, 0.74)',
+          borderColor: 'rgb(155, 3, 3)',
+          data: _this.props.totalScores
+        }]
+      }
+    };
     return _this;
   }
 
   _createClass(Stats, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var labels = [];
+      var totalScores = this.props.totalScores;
+
+      for (var i = 1; i <= totalScores.length; i++) {
+        labels.push("Score ".concat(i));
+      }
+
+      this.setState({
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'User Stats',
+            backgroundColor: 'rgba(255, 255, 255, 0.74)',
+            borderColor: 'rgb(155, 3, 3)',
+            data: this.props.totalScores
+          }]
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_2__.Line, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__.Line, {
         options: {
           plugins: {
             legend: {
@@ -2146,7 +2226,7 @@ var Stats = /*#__PURE__*/function (_Component) {
             }
           }
         },
-        data: this.props.totalScores
+        data: this.state.data
       });
     }
   }]);
@@ -25132,6 +25212,24 @@ module.exports = {
   trim: trim,
   stripBOM: stripBOM
 };
+
+/***/ }),
+
+/***/ "./node_modules/chart.js/auto/auto.esm.js":
+/*!************************************************!*\
+  !*** ./node_modules/chart.js/auto/auto.esm.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _dist_chart_esm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dist/chart.esm.js */ "./node_modules/chart.js/dist/chart.esm.js");
+
+_dist_chart_esm_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(..._dist_chart_esm_js__WEBPACK_IMPORTED_MODULE_0__.registerables);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_dist_chart_esm_js__WEBPACK_IMPORTED_MODULE_0__.Chart);
 
 /***/ }),
 
@@ -75244,10 +75342,10 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-chartjs-2/dist/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/react-chartjs-2/dist/index.js ***!
-  \****************************************************/
+/***/ "./node_modules/react-chartjs-2/dist/index.modern.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-chartjs-2/dist/index.modern.js ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -75255,22 +75353,112 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Bar": () => (/* binding */ Bar),
 /* harmony export */   "Bubble": () => (/* binding */ Bubble),
-/* harmony export */   "Chart": () => (/* binding */ Chart),
+/* harmony export */   "Chart": () => (/* reexport safe */ chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"]),
 /* harmony export */   "Doughnut": () => (/* binding */ Doughnut),
 /* harmony export */   "Line": () => (/* binding */ Line),
 /* harmony export */   "Pie": () => (/* binding */ Pie),
 /* harmony export */   "PolarArea": () => (/* binding */ PolarArea),
 /* harmony export */   "Radar": () => (/* binding */ Radar),
 /* harmony export */   "Scatter": () => (/* binding */ Scatter),
-/* harmony export */   "getDatasetAtEvent": () => (/* binding */ getDatasetAtEvent),
-/* harmony export */   "getElementAtEvent": () => (/* binding */ getElementAtEvent),
-/* harmony export */   "getElementsAtEvent": () => (/* binding */ getElementsAtEvent)
+/* harmony export */   "default": () => (/* binding */ Chart),
+/* harmony export */   "defaults": () => (/* reexport safe */ chart_js__WEBPACK_IMPORTED_MODULE_1__.defaults)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.esm.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-const defaultDatasetIdKey = 'label';
+
+
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _objectSpread(target) {
+  var _arguments = arguments,
+      _loop = function (i) {
+    var source = _arguments[i] != null ? _arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  };
+
+  for (var i = 1; i < arguments.length; i++) _loop(i);
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArray(arr) || _nonIterableRest();
+}
 
 function reforwardRef(ref, value) {
   if (typeof ref === 'function') {
@@ -75281,8 +75469,7 @@ function reforwardRef(ref, value) {
 }
 
 function setOptions(chart, nextOptions) {
-  chart.options = { ...nextOptions
-  };
+  chart.options = _objectSpread({}, nextOptions);
 }
 
 function setLabels(currentData, nextLabels) {
@@ -75290,101 +75477,75 @@ function setLabels(currentData, nextLabels) {
 }
 
 function setDatasets(currentData, nextDatasets) {
-  let datasetIdKey = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : defaultDatasetIdKey;
-  const addedDatasets = [];
-  currentData.datasets = nextDatasets.map(nextDataset => {
+  currentData.datasets = nextDatasets.map(function (nextDataset) {
     // given the new set, find it's current match
-    const currentDataset = currentData.datasets.find(dataset => dataset[datasetIdKey] === nextDataset[datasetIdKey]); // There is no original to update, so simply add new one
+    var currentDataset = currentData.datasets.find(function (dataset) {
+      return dataset.label === nextDataset.label && dataset.type === nextDataset.type;
+    }); // There is no original to update, so simply add new one
 
-    if (!currentDataset || !nextDataset.data || addedDatasets.includes(currentDataset)) {
-      return { ...nextDataset
-      };
-    }
-
-    addedDatasets.push(currentDataset);
+    if (!currentDataset || !nextDataset.data) return _objectSpread({}, nextDataset);
     Object.assign(currentDataset, nextDataset);
     return currentDataset;
   });
 }
 
 function cloneData(data) {
-  let datasetIdKey = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : defaultDatasetIdKey;
-  const nextData = {
+  var nextData = {
     labels: [],
     datasets: []
   };
   setLabels(nextData, data.labels);
-  setDatasets(nextData, data.datasets, datasetIdKey);
+  setDatasets(nextData, data.datasets);
   return nextData;
 }
-/**
- * Get dataset from mouse click event
- * @param chart - Chart.js instance
- * @param event - Mouse click event
- * @returns Dataset
- */
 
+var noopData = {
+  datasets: []
+};
 
-function getDatasetAtEvent(chart, event) {
-  return chart.getElementsAtEventForMode(event.nativeEvent, 'dataset', {
-    intersect: true
-  }, false);
-}
-/**
- * Get single dataset element from mouse click event
- * @param chart - Chart.js instance
- * @param event - Mouse click event
- * @returns Dataset
- */
+function ChartComponent(_param, ref) {
+  var _height = _param.height,
+      height = _height === void 0 ? 150 : _height,
+      _width = _param.width,
+      width = _width === void 0 ? 300 : _width,
+      _redraw = _param.redraw,
+      redraw = _redraw === void 0 ? false : _redraw,
+      type = _param.type,
+      dataProp = _param.data,
+      options = _param.options,
+      _plugins = _param.plugins,
+      plugins = _plugins === void 0 ? [] : _plugins,
+      getDatasetAtEvent = _param.getDatasetAtEvent,
+      getElementAtEvent = _param.getElementAtEvent,
+      getElementsAtEvent = _param.getElementsAtEvent,
+      fallbackContent = _param.fallbackContent,
+      onClickProp = _param.onClick,
+      props = _objectWithoutProperties(_param, ["height", "width", "redraw", "type", "data", "options", "plugins", "getDatasetAtEvent", "getElementAtEvent", "getElementsAtEvent", "fallbackContent", "onClick"]);
 
+  var canvasRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+  var chartRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)();
+  /**
+  * In case `dataProp` is function use internal state
+  */
 
-function getElementAtEvent(chart, event) {
-  return chart.getElementsAtEventForMode(event.nativeEvent, 'nearest', {
-    intersect: true
-  }, false);
-}
-/**
- * Get all dataset elements from mouse click event
- * @param chart - Chart.js instance
- * @param event - Mouse click event
- * @returns Dataset
- */
+  var ref1 = _slicedToArray((0,react__WEBPACK_IMPORTED_MODULE_2__.useState)()),
+      computedData = ref1[0],
+      setComputedData = ref1[1];
 
+  var data = computedData || (typeof dataProp === 'function' ? noopData : dataProp);
 
-function getElementsAtEvent(chart, event) {
-  return chart.getElementsAtEventForMode(event.nativeEvent, 'index', {
-    intersect: true
-  }, false);
-}
-
-function ChartComponent(param, ref) {
-  let {
-    height = 150,
-    width = 300,
-    redraw = false,
-    datasetIdKey,
-    type,
-    data,
-    options,
-    plugins = [],
-    fallbackContent,
-    ...props
-  } = param;
-  const canvasRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const chartRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-
-  const renderChart = () => {
+  var renderChart = function () {
     if (!canvasRef.current) return;
-    chartRef.current = new chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart(canvasRef.current, {
-      type,
-      data: cloneData(data, datasetIdKey),
-      options,
-      plugins
+    chartRef.current = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](canvasRef.current, {
+      type: type,
+      data: cloneData(data),
+      options: options,
+      plugins: plugins
     });
     reforwardRef(ref, chartRef.current);
   };
 
-  const destroyChart = () => {
+  var destroyChart = function () {
     reforwardRef(ref, null);
 
     if (chartRef.current) {
@@ -75393,22 +75554,50 @@ function ChartComponent(param, ref) {
     }
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+  var onClick = function (event) {
+    if (onClickProp) {
+      onClickProp(event);
+    }
+
+    var chart = chartRef.current;
+    if (!chart) return;
+    getDatasetAtEvent && getDatasetAtEvent(chart.getElementsAtEventForMode(event.nativeEvent, 'dataset', {
+      intersect: true
+    }, false), event);
+    getElementAtEvent && getElementAtEvent(chart.getElementsAtEventForMode(event.nativeEvent, 'nearest', {
+      intersect: true
+    }, false), event);
+    getElementsAtEvent && getElementsAtEvent(chart.getElementsAtEventForMode(event.nativeEvent, 'index', {
+      intersect: true
+    }, false), event);
+  };
+  /**
+  * In case `dataProp` is function,
+  * then update internal state
+  */
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    if (typeof dataProp === 'function' && canvasRef.current) {
+      setComputedData(dataProp(canvasRef.current));
+    }
+  }, [dataProp]);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (!redraw && chartRef.current && options) {
       setOptions(chartRef.current, options);
     }
   }, [redraw, options]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (!redraw && chartRef.current) {
       setLabels(chartRef.current.config.data, data.labels);
     }
   }, [redraw, data.labels]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (!redraw && chartRef.current && data.datasets) {
-      setDatasets(chartRef.current.config.data, data.datasets, datasetIdKey);
+      setDatasets(chartRef.current.config.data, data.datasets);
     }
   }, [redraw, data.datasets]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     if (!chartRef.current) return;
 
     if (redraw) {
@@ -75418,36 +75607,40 @@ function ChartComponent(param, ref) {
       chartRef.current.update();
     }
   }, [redraw, options, data.labels, data.datasets]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     renderChart();
-    return () => destroyChart();
+    return function () {
+      return destroyChart();
+    };
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("canvas", Object.assign({
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("canvas", Object.assign({
     ref: canvasRef,
     role: "img",
     height: height,
-    width: width
+    width: width,
+    onClick: onClick
   }, props), fallbackContent);
 }
 
-const Chart = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(ChartComponent);
+var Chart = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(ChartComponent);
 
-function createTypedChart(type, registerables) {
-  chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(registerables);
-  return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Chart, Object.assign({}, props, {
-    ref: ref,
-    type: type
-  })));
+function createTypedChart(type) {
+  return /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(function (props, ref) {
+    return react__WEBPACK_IMPORTED_MODULE_2__.createElement(Chart, Object.assign({}, props, {
+      ref: ref,
+      type: type
+    }));
+  });
 }
 
-const Line = /* #__PURE__ */createTypedChart('line', chart_js__WEBPACK_IMPORTED_MODULE_1__.LineController);
-const Bar = /* #__PURE__ */createTypedChart('bar', chart_js__WEBPACK_IMPORTED_MODULE_1__.BarController);
-const Radar = /* #__PURE__ */createTypedChart('radar', chart_js__WEBPACK_IMPORTED_MODULE_1__.RadarController);
-const Doughnut = /* #__PURE__ */createTypedChart('doughnut', chart_js__WEBPACK_IMPORTED_MODULE_1__.DoughnutController);
-const PolarArea = /* #__PURE__ */createTypedChart('polarArea', chart_js__WEBPACK_IMPORTED_MODULE_1__.PolarAreaController);
-const Bubble = /* #__PURE__ */createTypedChart('bubble', chart_js__WEBPACK_IMPORTED_MODULE_1__.BubbleController);
-const Pie = /* #__PURE__ */createTypedChart('pie', chart_js__WEBPACK_IMPORTED_MODULE_1__.PieController);
-const Scatter = /* #__PURE__ */createTypedChart('scatter', chart_js__WEBPACK_IMPORTED_MODULE_1__.ScatterController);
+var Line = createTypedChart('line');
+var Bar = createTypedChart('bar');
+var Radar = createTypedChart('radar');
+var Doughnut = createTypedChart('doughnut');
+var PolarArea = createTypedChart('polarArea');
+var Bubble = createTypedChart('bubble');
+var Pie = createTypedChart('pie');
+var Scatter = createTypedChart('scatter');
 
 
 /***/ }),
