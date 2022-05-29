@@ -2130,41 +2130,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-// // eslint-disable-next-line
-// import Chart, { Bar } from 'react-chartjs-2';
-// export default function Stats(props) {
-//   const { totalScores } = props;
-//   const [userData, setUserData] = useState({});
-//   useEffect(() => {
-//     const labels = ['Current Streak', 'Problems Authored', 'Problems Submitted'];
-//     const data = {
-//       labels,
-//       datasets: [
-//         {
-//           label: 'User Stats',
-//           backgroundColor: 'rgba(39, 245, 63, 0.74)',
-//           borderColor: 'rgb(218, 165, 32)',
-//           data: [7, 3, 12],
-//         },
-//       ],
-//     };
-//     setUserData(data);
-//   }, [props]);
-//   return (
-//     <Bar
-//       options={{
-//         plugins: {
-//           legend: {
-//             display: false,
-//           },
-//         },
-//       }}
-//       data={userData}
-//     />
-//   );
-// }
 
 
 
