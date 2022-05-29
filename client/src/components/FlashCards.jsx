@@ -475,6 +475,7 @@ class FlashCards extends React.Component {
       score: this.state.score += 1,
       prevScore: this.state.prevScore,
     });
+
   }
 
   back(score) {

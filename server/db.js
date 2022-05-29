@@ -15,7 +15,10 @@ const cardListSchema = new Schema({
   category: String,
   cardList: [],
   creationDate: String,
-  lastView: String
+  lastView: String,
+  mostRecentScore: Number,
+  totalScores: [],
+  highScore: Number,
 });
 const userSchema = new Schema({
   name: String,

@@ -67,5 +67,9 @@ app.post('/collections/:user/set-view-date', (req, res) => {
   });
 });
 
+app.post('/collections/:user/scores', (req, res) => {
+  //
+});
+
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
