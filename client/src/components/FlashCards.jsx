@@ -272,7 +272,7 @@ class FlashCards extends React.Component {
       score: 0,
       prevScore: 0,
       show: false,
-      totalScores: this.props.totalScores,
+      totalScores: [],
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -493,6 +493,9 @@ class FlashCards extends React.Component {
       score: this.state.score
     };
     axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      .then((res) => {
+        console.log(res);
+      })
       .catch((err) => console.error());
     this.props.goBack();
   }

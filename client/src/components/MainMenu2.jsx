@@ -3,7 +3,7 @@ import Editor from 'react-run-code';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
-import FlashAudioRecorder from './FlashAudioRecorder.jsx';
+// import FlashAudioRecorder from './FlashAudioRecorder.jsx';
 // import ChooseModal from './ChooseModal.jsx';
 const moment = require('moment');
 

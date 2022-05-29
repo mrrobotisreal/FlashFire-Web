@@ -132,8 +132,48 @@ const changePassword = () => {
 };
 // changePassword();
 
-const storeScores = (user, collection, scores, cb = () => {}) => {
+const storeScores = (username, collection, scores, cb = () => {}) => {
   console.log('db scores -> ', scores);
+  console.log('db collection -> ', collection);
+  console.log('db user -> ', username);
+  let user = User.findOne({'username': username});
+  user.exec((err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('db doc -> ', doc);
+      let collections = doc.collections;
+      console.log('collections before -> ', collections);
+      let chosenCollection;
+      for (let i = 0; i < collections.length; i++) {
+        if (collections[i].name === collection) {
+          console.log('db found it!');
+          chosenCollection = collections[i];
+          break;
+        }
+      }
+      chosenCollection.totalScores = scores.totalScores;
+      chosenCollection.mostRecentScore = scores.score;
+      chosenCollection.highScore = Math.max(...scores.totalScores);
+      console.log('chosenCollection -> ', chosenCollection);
+      for (let j = 0; j < collections.length; j++) {
+        if (collections[j].name === collection) {
+          collections.splice(j, 1, chosenCollection);
+          break;
+        }
+      }
+      console.log('collections after -> ', collections);
+      let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
+      update.exec((err, doc) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('after update doc -> ', doc);
+          cb(null, doc);
+        }
+      });
+    }
+  });
 };
 
 module.exports.cards = Card;
