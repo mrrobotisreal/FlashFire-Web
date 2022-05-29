@@ -870,16 +870,33 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "back",
     value: function back(score) {
+      var _this3 = this;
+
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
         score: this.state.score
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
-        console.log(res);
-      })["catch"](function (err) {
-        return console.error();
-      });
-      this.props.goBack();
+
+      if (this.state.score > this.state.prevScore) {
+        this.setState({
+          show: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+          console.log(res);
+          setTimeout(function () {
+            _this3.props.goBack();
+          }, 3000);
+        })["catch"](function (err) {
+          return console.error();
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+          console.log(res);
+        })["catch"](function (err) {
+          return console.error();
+        });
+        this.props.goBack();
+      }
     }
   }, {
     key: "goToMainMenu",
@@ -912,13 +929,14 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
         collectionName: this.state.collectionName,
         totalCards: this.state.cardList.length,
         currentCard: this.state.currentCard,
-        success: this.state.success += 1,
+        success: this.state.success,
         fail: this.state.fail,
         answerDisplay: this.state.answerDisplay,
-        score: this.state.score += 1,
+        score: this.state.score,
         prevScore: this.state.prevScore,
         show: false
       });
+      this.props.goBack();
     }
   }, {
     key: "render",

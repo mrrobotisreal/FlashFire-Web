@@ -543,12 +543,26 @@ class FlashCards extends React.Component {
       totalScores: [...this.state.totalScores, this.state.score],
       score: this.state.score
     };
-    axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.error());
-    this.props.goBack();
+    if (this.state.score > this.state.prevScore) {
+      this.setState({
+        show: true,
+      });
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+        .then((res) => {
+          console.log(res);
+          setTimeout(() => {
+            this.props.goBack();
+          }, 3000);
+        })
+        .catch((err) => console.error());
+    } else {
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.error());
+      this.props.goBack();
+    }
   }
 
   goToMainMenu() {
@@ -578,13 +592,14 @@ class FlashCards extends React.Component {
       collectionName: this.state.collectionName,
       totalCards: this.state.cardList.length,
       currentCard: this.state.currentCard,
-      success: this.state.success += 1,
+      success: this.state.success,
       fail: this.state.fail,
       answerDisplay: this.state.answerDisplay,
-      score: this.state.score += 1,
+      score: this.state.score,
       prevScore: this.state.prevScore,
       show: false,
-    })
+    });
+    this.props.goBack();
   }
 
   render() {

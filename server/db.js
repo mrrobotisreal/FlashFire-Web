@@ -66,28 +66,21 @@ const saveCollection = (newColl, user, cb = () => {}) => {
  const setViewDate = (user, collection, cb = () => {}) => {
   let dis = User.findOne({'username': user});
   dis.exec((err, doc) => {
-    console.log('doc collection -> ', doc.collections);
     let colls = doc.collections.slice();
     let updatedCollection;
     for (let i = 0; i < doc.collections.length; i++) {
-      console.log('loop collection -> ', doc.collections[i]);
-      console.log('collectionName -> ', doc.collections[i].name);
-      console.log('passed in collection -> ', collection);
       if (doc.collections[i].name === collection) {
-        console.log('name is the same');
         updatedCollection = doc.collections[i];
         updatedCollection.lastView = new Date().toString();
         colls.splice(i, 1, updatedCollection);
+        break;
       }
     }
-    console.log('doc collections again -> ', doc.collections);
-    console.log('updatedCollection', updatedCollection);
     let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
     updatedUser.exec((err, doc) => {
       if (err) {
         console.error(err);
       } else {
-        console.log('Successfully updated -> ', doc.collections);
         cb(null, doc);
       }
     });
@@ -167,34 +160,28 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('db doc -> ', doc);
       let collections = doc.collections;
-      console.log('collections before -> ', collections);
       let chosenCollection;
       for (let i = 0; i < collections.length; i++) {
         if (collections[i].name === collection) {
-          console.log('db found it!');
           chosenCollection = collections[i];
           break;
         }
       }
-      chosenCollection.totalScores = [...chosenCollection.totalScores, ...scores.totalScores];
+      chosenCollection.totalScores = [...chosenCollection.totalScores, scores.score];
       chosenCollection.mostRecentScore = scores.score;
       chosenCollection.highScore = Math.max(...chosenCollection.totalScores);
-      console.log('chosenCollection -> ', chosenCollection);
       for (let j = 0; j < collections.length; j++) {
         if (collections[j].name === collection) {
           collections.splice(j, 1, chosenCollection);
           break;
         }
       }
-      console.log('collections after -> ', collections);
       let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
       update.exec((err, doc) => {
         if (err) {
           console.error(err);
         } else {
-          console.log('after update doc -> ', doc);
           cb(null, doc);
         }
       });
