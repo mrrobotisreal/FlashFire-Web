@@ -63,7 +63,7 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   });
 };
 
- const setViewDate = (data, user, cb = () => {}) => {
+ const setViewDate = (user, collection, cb = () => {}) => {
   let dis = User.findOne({'username': user});
   dis.exec((err, doc) => {
     console.log('dis be like -> ', doc.collections);
