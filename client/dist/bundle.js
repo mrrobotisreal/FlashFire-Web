@@ -676,8 +676,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     key: "prevNextKeydown",
     value: function prevNextKeydown(e) {
       e.preventDefault();
-      this.props.keydown('ArrowUp');
       this.props.keydown(e.key);
+      this.props.keydown('ArrowUp');
     }
   }, {
     key: "nextCard",

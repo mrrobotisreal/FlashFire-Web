@@ -343,8 +343,8 @@ class FlashCards extends React.Component {
 
   prevNextKeydown(e) {
     e.preventDefault();
-    this.props.keydown('ArrowUp');
     this.props.keydown(e.key);
+    this.props.keydown('ArrowUp');
   }
 
   nextCard() {
