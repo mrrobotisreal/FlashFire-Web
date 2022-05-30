@@ -1,7 +1,280 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SetTimer from './SetTimer.jsx';
+import Confetti from 'react-confetti';
+import Stats from './Stats.jsx';
 
-class TestMode extends Component {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#040004',
+      darker: '#952800',
+    }
+  }
+});
+
+const CollectionDiv = styled.div`
+  text-align: center;
+  color: #470047
+  top: 0;
+  left: 0;
+  position: relative;
+  background-image: linear-gradient(to bottom, black, orangered, yellow);
+  background-size: cover;
+  padding: 3%;
+  margin-top: 5%;
+  border: 4px ridge darkred;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* display: grid; */
+`;
+
+const PrevButton = styled.button`
+  background-color: black;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  color: white;
+  grid-column: 1;
+  font-size: 2rem;
+  transition: .2s;
+  padding-left: 2%;
+  padding-right: 2%;
+  &:hover {
+    transform: scale(1.25);
+    border: 2px ridge green;
+    color: green;
+  }
+`;
+
+const NextButton = styled.button`
+  background-color: black;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  color: white;
+  grid-column: 3;
+  font-size: 2rem;
+  transition: .2s;
+  padding-left: 2%;
+  padding-right: 2%;
+  &:hover {
+    transform: scale(1.25);
+    border: 2px ridge green;
+    color: green;
+  }
+`;
+
+const PrevNextDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Bangers', cursive;
+  margin-top: 4%;
+`;
+
+const CollectionNameTitle = styled.h2`
+  margin-bottom: 3%;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+  color: white;
+  text-shadow: 1px 1px 2px red, 0 0 1em orange, 0 0 0.2em orange;
+`;
+
+const CardNumber = styled.h3`
+  grid-column: 2;
+  grid-row: 2;
+  margin-bottom: 3%;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+`;
+
+const FlashCardDiv = styled.div`
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  padding: 2%;
+`;
+
+const QuestionAndAnswerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  border: 2px ridge orangered;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom, black, darkred);
+  color: white;
+  font-family: 'Bangers', cursive;
+  padding: 2%;
+  overflow: break-word;
+  margin-bottom: 2%;
+  transition: .2s;
+`;
+
+const FailSuccessDiv = styled.div`
+  display: grid;
+  margin: 2%;
+`;
+
+const FailSuccessIndividualDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: .2s;
+  border-radius: 12px;
+`;
+
+const FailSuccessButton = styled.button`
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  background-color: black;
+  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;
+  width: fit-content;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;
+  }
+`;
+
+const SuccessButton = styled.button`
+  border: 2px ridge green;
+  border-radius: 12px;
+  background-color: black;
+  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  width: fit-content;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;
+  }
+`;
+
+const FailSuccessCount = styled.span`
+  color: yellow;
+  background-color: black;
+  border-radius: 12px;
+  font-family: 'Bangers', cursive;
+  width: fit-content;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+`;
+
+const MainMenuDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MainMenuButton = styled.button`
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  font-family: 'Bangers', cursive;
+  width: fit-content;
+  padding: 2%;
+  margin-top: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    color: yellow;
+    border: 2px ridge yellow;
+  }
+`;
+
+const Image = styled.img`
+  width: 80%;
+  height: 20%;
+`;
+
+const ImageDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TimerDiv = styled.div`
+  text-align: center;
+  top: 0;
+  left: 0;
+  position: relative;
+  background-image: linear-gradient(to bottom, black, orangered);
+  background-size: cover;
+  padding: 3%;
+  margin-top: 2%;
+  width: fit-content;
+  border: 4px ridge darkred;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const HighScoreDiv = styled.div`
+  top: 0;
+  left: 0;
+  background-color: red;
+  color: white;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Luckiest Guy';
+  padding-top: 3%;
+  padding-bottom: 3%;
+`;
+
+const KeyReceiver = styled.div`
+  &:focus {
+    outline: none
+  }
+`;
+
+const ModalButton = styled.button`
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  background-color: white;
+  font-size: 20px;
+  border: 2px ridge grey;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 10px 5px 5px black;
+`;
+
+const StatsButton = styled.button`
+  font-family: 'Luckiest Guy';
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  transition: .2s;
+  width: fit-content;
+  padding: 1%;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge purple;
+    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;
+  }
+`;
+
+class TestMode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +293,7 @@ class TestMode extends Component {
       highScore: 0,
       showStats: false,
       averageScore: 0,
+      grade: 0,
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -376,37 +650,39 @@ class TestMode extends Component {
                 this.state.cardList[this.state.currentCard].answer
               }</b>
             </QuestionAndAnswerDiv>
-            <RevealButton type="button" onClick={this.reveal} autoFocus>
-              Reveal
-            </RevealButton>
             <FailSuccessDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1'}}>
-                <FailSuccessButton onClick={this.handleFail}>
-                  <b>❌</b>
-                </FailSuccessButton>
+              <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1', marginBottom: '2%'}}>
+                <h5><u><b>A</b></u></h5>
+                <span>
+                  {`This is answer A`}
+                </span>
               </FailSuccessIndividualDiv>
               <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '2'}}>
-                <FailSuccessCount>
-                  {this.state.fail}
-                </FailSuccessCount>
+                <h5><u><b>C</b></u></h5>
+                <span>
+                  {`This is answer C`}
+                </span>
               </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1'}}>
-                <SuccessButton onClick={this.handleSuccess}>
-                <b>✔️</b>
-                </SuccessButton>
+              <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1', marginBottom: '2%'}}>
+                <h5><u><b>B</b></u></h5>
+                <span>
+                  {`This is answer B`}
+                </span>
               </FailSuccessIndividualDiv>
               <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '2'}}>
-                <FailSuccessCount>
-                  {this.state.success}
-                </FailSuccessCount>
+                <h5><u><b>D</b></u></h5>
+                <span>
+                  {`This is answer D`}
+                </span>
               </FailSuccessIndividualDiv>
             </FailSuccessDiv>
             <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                <h3>Previous Score</h3>
+                <button>Check Answer</button>
               </FailSuccessDiv>
-              <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                {this.state.prevScore}
+              <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                <h5>Grade:</h5>
+                {`${this.state.grade}%`}
               </FailSuccessDiv>
             </FailSuccessDiv>
           </FlashCardDiv>
