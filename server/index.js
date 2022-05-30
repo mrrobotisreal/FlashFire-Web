@@ -12,11 +12,11 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.post('/signup', (req, res) => {
   console.log('signup req -> ', req.body);
-  db.saveSignup(req.body, (err, success) => {
+  db.saveSignup(req.body, (err, cookie) => {
     if (err) {
       console.error(err);
     } else {
-      res.send('success from server!');
+      res.send(cookie);
     }
   });
 });
