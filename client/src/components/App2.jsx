@@ -178,7 +178,7 @@ class App2 extends React.Component {
     };
     axios.post(`/login`, userInfo)
       .then(({ data }) => {
-        if (!data) {
+        if (!data.success) {
           alert('Wrong username or password! Please try again')
           // this will need to be removed below
           this.setState({
@@ -200,6 +200,7 @@ class App2 extends React.Component {
             password: this.state.password,
             showMainMenu: true
           });
+          this.createCookie(data.cookie);
         }
       })
       .catch((err) => console.error(err));

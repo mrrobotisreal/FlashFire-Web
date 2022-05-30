@@ -178,7 +178,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref3) {
         var data = _ref3.data;
 
-        if (!data) {
+        if (!data.success) {
           alert('Wrong username or password! Please try again'); // this will need to be removed below
 
           _this4.setState({
@@ -200,6 +200,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
             password: _this4.state.password,
             showMainMenu: true
           });
+
+          _this4.createCookie(data.cookie);
         }
       })["catch"](function (err) {
         return console.error(err);

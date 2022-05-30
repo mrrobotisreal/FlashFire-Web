@@ -214,13 +214,18 @@ const getScores = (username, collection, cb = () => {}) => {
 };
 
 const checkCookie = (username, cookie, cb = () => {}) => {
+  console.log('checkCookie username -> ', username);
+  console.log('checkCookie incoming cookie -> ', cookie);
   let user = User.findOne({'username': username});
   user.exec((err, doc) => {
     if (err) {
       console.error(err);
     } else {
+      console.log('checkCookie doc -> ', doc);
       let email = doc.email;
+      console.log('checkCookie doc email -> ', email);
       let checkedCookie = cryptofy(username, email);
+      console.log('checkCookie checkedCookie -> ', checkedCookie);
       cb(null, checkedCookie);
     }
   });

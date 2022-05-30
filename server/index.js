@@ -25,12 +25,22 @@ app.post('/signup', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  db.checkLogin(req.body, (err, success) => {
+  db.checkLogin(req.body, (err, cookie, success) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('success === ', success);
-      res.send(success);
+      if (success) {
+        let cookieObj = {
+          cookie: cookie,
+          success: success
+        };
+        res.send(cookieObj);
+      } else {
+        res.send({
+          cookie: null,
+          success: false
+        });
+      }
     }
   });
 });
@@ -40,6 +50,7 @@ app.post('/check-cookie/:user', (req, res) => {
     if (err) {
       console.error(err);
     } else {
+      console.log('check-cookie server cookie -> ', cookie);
       let cookieObj = {
         cookie: cookie
       };
