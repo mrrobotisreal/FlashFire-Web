@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
-import ChooseModal from './ChooseModal.jsx';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -363,8 +362,9 @@ class MainMenu2 extends React.Component {
     this.moveDown = this.moveDown.bind(this);
     this.setPhotos = this.setPhotos.bind(this);
     this.setAudio = this.setAudio.bind(this);
-    this.chooseFlash = this.chooseFlash.bind(this);
-    this.chooseEdit = this.chooseEdit.bind(this);
+    this.chooseStudyMode = this.chooseStudyMode.bind(this);
+    this.chooseTestMode = this.chooseTestMode.bind(this);
+    this.chooseEditMode = this.chooseEditMode.bind(this);
     this.handleFlashKeydown = this.handleFlashKeydown.bind(this);
   }
 
@@ -418,9 +418,16 @@ class MainMenu2 extends React.Component {
     })
   }
 
-  chooseFlash() {}
+  chooseStudyMode() {
+    this.setState({
+      flash: true,
+      isChoosing: false,
+    });
+  }
 
-  chooseEdit() {}
+  chooseTestMode(difficulty) {}
+
+  chooseEditMode() {}
 
   chooseCollection(e) {
     this.setState({
@@ -861,18 +868,18 @@ class MainMenu2 extends React.Component {
                                   <ModesDiv style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Study Mode:</b></ModeTitles>
-                                      <StartButtons>Start</StartButtons>
+                                      <StartButtons onClick={this.chooseStudyMode}>Start</StartButtons>
                                     </ChoiceDivs>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Test Mode:</b></ModeTitles>
                                       <h4>Easy:</h4>
-                                      <StartButtons>Start</StartButtons>
+                                      <StartButtons onClick={() => this.chooseTestMode('easy')}>Start</StartButtons>
                                       <h4 style={{marginTop: '2%'}}>Difficult:</h4>
-                                      <StartButtons>Start</StartButtons>
+                                      <StartButtons onClick={() => this.chooseTestMode('difficult')}>Start</StartButtons>
                                     </ChoiceDivs>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Edit Mode:</b></ModeTitles>
-                                      <StartButtons>Start</StartButtons>
+                                      <StartButtons onClick={this.chooseEditMode}>Start</StartButtons>
                                     </ChoiceDivs>
                                   </ModesDiv>
                                 </ChooseDiv>

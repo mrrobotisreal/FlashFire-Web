@@ -1237,12 +1237,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashCards.jsx */ "./client/src/components/FlashCards.jsx");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './ChooseModal.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32;
@@ -1288,7 +1287,6 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-
  // import FlashAudioRecorder from './FlashAudioRecorder.jsx';
 // import ChooseModal from './ChooseModal.jsx';
 
@@ -1298,38 +1296,38 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
-var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
-var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
-var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
-var TimeFormatDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  border: 2px ridge white;\n  border-radius: 12px;\n  padding: 2%;\n  margin: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;\n  }\n"])));
-var ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 2%;\n"])));
-var UpButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  transition: .2s;\n  margin: 4%;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
-var DownButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  margin: 4%;\n  transition: .2s;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
-var CollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h3(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  text-align: center;\n  color: white;\n  background-color: black;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n"])));
-var CreateCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
-var CreateCollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  text-align: center;\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n"])));
-var NewCollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  background-image: url('https://thumbs.gfycat.com/ConfusedMetallicBellfrog-size_restricted.gif');\n  background-size: cover;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
-var CollectionLabel = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].label(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  width: fit-content;\n  background-color: black;\n  border-radius: 12px;\n  grid-column: 1;\n  text-align: center;\n  padding: 1%;\n"])));
-var CollectionInput = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].input(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n"])));
-var CollectionTextArea = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].textarea(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n  width: 90%;\n"])));
-var CardDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered);\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 4%;\n  width: 80%;\n"])));
-var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 8%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
-var TotalCardsSpan = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  color: white;\n  text-align: center;\n"])));
-var FinishCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 4%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
-var CollCountSpan = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  color: yellow;\n"])));
-var LogoutDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
-var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: red;\n    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;\n  }\n"])));
-var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
-var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
-var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
-var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 5%;\n  &:focus {\n    outline: none;\n  }\n"])));
-var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 4%;\n  margin-top: 2%;\n"])));
-var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 5%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
-var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
+var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
+var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
+var TimeFormatDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  border: 2px ridge white;\n  border-radius: 12px;\n  padding: 2%;\n  margin: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;\n  }\n"])));
+var ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 2%;\n"])));
+var UpButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  transition: .2s;\n  margin: 4%;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
+var DownButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  margin: 4%;\n  transition: .2s;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
+var CollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h3(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  text-align: center;\n  color: white;\n  background-color: black;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n"])));
+var CreateCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
+var CreateCollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  text-align: center;\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n"])));
+var NewCollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  background-image: url('https://thumbs.gfycat.com/ConfusedMetallicBellfrog-size_restricted.gif');\n  background-size: cover;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
+var CollectionLabel = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].label(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  width: fit-content;\n  background-color: black;\n  border-radius: 12px;\n  grid-column: 1;\n  text-align: center;\n  padding: 1%;\n"])));
+var CollectionInput = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].input(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n"])));
+var CollectionTextArea = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].textarea(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n  width: 90%;\n"])));
+var CardDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered);\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 4%;\n  width: 80%;\n"])));
+var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 8%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
+var TotalCardsSpan = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  color: white;\n  text-align: center;\n"])));
+var FinishCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 4%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
+var CollCountSpan = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  color: yellow;\n"])));
+var LogoutDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
+var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: red;\n    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;\n  }\n"])));
+var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
+var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
+var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
+var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 5%;\n  &:focus {\n    outline: none;\n  }\n"])));
+var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 4%;\n  margin-top: 2%;\n"])));
+var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 5%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
+var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
 
 var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   _inherits(MainMenu2, _React$Component);
@@ -1376,8 +1374,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     _this.moveDown = _this.moveDown.bind(_assertThisInitialized(_this));
     _this.setPhotos = _this.setPhotos.bind(_assertThisInitialized(_this));
     _this.setAudio = _this.setAudio.bind(_assertThisInitialized(_this));
-    _this.chooseFlash = _this.chooseFlash.bind(_assertThisInitialized(_this));
-    _this.chooseEdit = _this.chooseEdit.bind(_assertThisInitialized(_this));
+    _this.chooseStudyMode = _this.chooseStudyMode.bind(_assertThisInitialized(_this));
+    _this.chooseTestMode = _this.chooseTestMode.bind(_assertThisInitialized(_this));
+    _this.chooseEditMode = _this.chooseEditMode.bind(_assertThisInitialized(_this));
     _this.handleFlashKeydown = _this.handleFlashKeydown.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1440,11 +1439,19 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "chooseFlash",
-    value: function chooseFlash() {}
+    key: "chooseStudyMode",
+    value: function chooseStudyMode() {
+      this.setState({
+        flash: true,
+        isChoosing: false
+      });
+    }
   }, {
-    key: "chooseEdit",
-    value: function chooseEdit() {}
+    key: "chooseTestMode",
+    value: function chooseTestMode(difficulty) {}
+  }, {
+    key: "chooseEditMode",
+    value: function chooseEditMode() {}
   }, {
     key: "chooseCollection",
     value: function chooseCollection(e) {
@@ -1856,151 +1863,161 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(MainMenuDiv, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-          children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-            children: !this.state.flash ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(MainMenuTitle, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("u", {
+      var _this6 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MainMenuDiv, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+          children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+            children: !this.state.flash ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MainMenuTitle, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("u", {
                     children: "Main Menu"
                   })
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(CollectionsDiv, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionsTitle, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("u", {
-                      children: ["Total Collections", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollCountSpan, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CollectionsDiv, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionsTitle, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("u", {
+                      children: ["Total Collections", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollCountSpan, {
                         children: " (".concat(this.state.userCollections.length, ")")
                       })]
                     })
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(UserCollectionsDiv, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArrowDiv, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(UpButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(UserCollectionsDiv, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ArrowDiv, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(UpButton, {
                       onClick: this.moveUp,
                       children: "\u2B06"
                     })
                   }), // map over the collections
-                  this.state.userCollections.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  this.state.userCollections.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       style: {
                         fontFamily: 'Shadows Into Light'
                       },
                       children: "You don't have any collections yet!"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       style: {
                         fontFamily: 'Shadows Into Light'
                       },
                       children: "Click the button below to create a collection"
                     })]
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(TimeFormatDiv, {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(UserCollections, {
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(TimeFormatDiv, {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(UserCollections, {
                         onClick: this.chooseCollection,
                         id: this.state.userCollections[this.state.selectedCollection].name,
                         children: "".concat(this.state.selectedCollection + 1, ". ").concat(this.state.userCollections[this.state.selectedCollection].name)
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                           style: {
                             fontFamily: 'Shadows Into Light',
                             color: 'yellow'
                           },
                           children: "Created ".concat(moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(LastViewSpan, {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LastViewSpan, {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                           children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                         })
                       })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_6__["default"], {
                       open: this.state.isChoosing,
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChooseDiv, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ChooseTitle, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("u", {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ChooseDiv, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ChooseTitle, {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("u", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                               children: "Choose A Mode:"
                             })
                           })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ModesDiv, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ModesDiv, {
                           style: {
                             backgroundColor: 'black',
                             border: '2px ridge darkred',
                             borderRadius: '12px',
                             width: '60%'
                           },
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChoiceDivs, {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                                 children: "Study Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StartButtons, {
+                              onClick: this.chooseStudyMode,
                               children: "Start"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChoiceDivs, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                                 children: "Test Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
                               children: "Easy:"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StartButtons, {
+                              onClick: function onClick() {
+                                return _this6.chooseTestMode('easy');
+                              },
                               children: "Start"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
                               style: {
                                 marginTop: '2%'
                               },
                               children: "Difficult:"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StartButtons, {
+                              onClick: function onClick() {
+                                return _this6.chooseTestMode('difficult');
+                              },
                               children: "Start"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChoiceDivs, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                                 children: "Edit Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StartButtons, {
+                              onClick: this.chooseEditMode,
                               children: "Start"
                             })]
                           })]
                         })]
                       })
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArrowDiv, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(DownButton, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ArrowDiv, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(DownButton, {
                       onClick: this.moveDown,
                       children: "\u2B07"
                     })
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CreateCollectionButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CreateCollectionButton, {
                   onClick: this.createCollection,
                   children: "Create New Collection"
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(LogoutDiv, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(LogoutButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LogoutDiv, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(LogoutButton, {
                   onClick: this.props.logout,
                   children: "Logout"
                 })
               })]
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               goBack: this.goBack,
@@ -2008,63 +2025,63 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               keydown: this.handleFlashKeydown,
               pressedKey: this.state.pressedKey
             })
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CreateCollectionsTitle, {
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CreateCollectionsTitle, {
               style: {
                 fontFamily: 'Luckiest Guy'
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("u", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("u", {
                   children: "Create Collection"
                 })
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(NewCollectionDiv, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(NewCollectionDiv, {
               style: {
                 fontFamily: 'Luckiest Guy'
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionLabel, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '1'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                   children: "Collection Name:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionInput, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionInput, {
                 id: "collectionName",
                 style: {
                   gridRow: '2'
                 },
                 onChange: this.handleCollectionName
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionLabel, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '3'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                   children: "Category:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionInput, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionInput, {
                 id: "category",
                 style: {
                   gridRow: '4'
                 },
                 onChange: this.handleCategory
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionLabel, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '5'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                   children: "Add Cards:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(CardDiv, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(CardDiv, {
                 style: {
                   gridRow: '6'
                 },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(AddImageDiv, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionLabel, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(AddImageDiv, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionLabel, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                       children: "Add an image?"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(AddImageInput, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(AddImageInput, {
                     type: "file",
                     accept: ".jpg, .png",
                     id: "image-input",
@@ -2073,63 +2090,63 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                       overflowWrap: 'break-word'
                     }
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionLabel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionLabel, {
                   style: {
                     gridRow: '1'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                     children: "Question:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionTextArea, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionTextArea, {
                   type: "text",
                   id: "question",
                   style: {
                     gridRow: '2'
                   },
                   onChange: this.handleQuestion
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionLabel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionLabel, {
                   style: {
                     gridRow: '3'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                     children: "Answer:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(CollectionTextArea, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CollectionTextArea, {
                   type: "text",
                   id: "answer",
                   style: {
                     gridRow: '4'
                   },
                   onChange: this.handleAnswer
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(AddCardButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(AddCardButton, {
                   style: {
                     gridRow: '5'
                   },
                   onClick: this.submitCard,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                     children: "Add Card:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(TotalCardsSpan, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(TotalCardsSpan, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                     children: "Total Cards: ".concat(this.state.cardCount)
                   })
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(FinishCollectionButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(FinishCollectionButton, {
                 style: {
                   gridRow: '7',
                   gridColumn: '1'
                 },
                 onClick: this.finishCollection,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                   children: "Finish Collection"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(FinishCollectionButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(FinishCollectionButton, {
                 style: {
                   gridRow: '7',
                   gridColumn: '2'
                 },
                 onClick: this.goToMainMenu,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                   children: "Back to Main Menu"
                 })
               })]
