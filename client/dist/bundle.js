@@ -2242,7 +2242,7 @@ var Stats = /*#__PURE__*/function (_Component) {
           datasets: [{
             label: 'User Stats',
             backgroundColor: 'rgba(2, 0, 0, 0.74)',
-            borderColor: 'rgb(255, 255, 0)',
+            borderColor: 'rgb(255, 0, 0)',
             data: this.props.totalScores
           }]
         }
