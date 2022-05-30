@@ -427,7 +427,13 @@ class MainMenu2 extends React.Component {
     });
   }
 
-  chooseTestMode(difficulty) {}
+  chooseTestMode(difficulty) {
+    if (difficult === 'easy') {
+      // set state
+    } else {
+      // set difficult state
+    }
+  }
 
   chooseEditMode() {}
 
@@ -918,7 +924,16 @@ class MainMenu2 extends React.Component {
                     :
                     (
                       // testing modes go here
-                      null
+                      !this.state.isEasy
+                      ?
+                      (
+                        // easy test goes here
+                        null
+                      )
+                      : (
+                        // difficult test goes here
+                        null
+                      )
                     )
                   )
                   :

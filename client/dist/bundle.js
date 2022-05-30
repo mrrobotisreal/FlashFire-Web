@@ -1450,7 +1450,11 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "chooseTestMode",
-    value: function chooseTestMode(difficulty) {}
+    value: function chooseTestMode(difficulty) {
+      if (difficult === 'easy') {// set state
+      } else {// set difficult state
+      }
+    }
   }, {
     key: "chooseEditMode",
     value: function chooseEditMode() {}
@@ -2028,6 +2032,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               keydown: this.handleFlashKeydown,
               pressedKey: this.state.pressedKey
             }) : // testing modes go here
+            !this.state.isEasy ? // easy test goes here
+            null : // difficult test goes here
             null : // editing goes here
             null // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
 
