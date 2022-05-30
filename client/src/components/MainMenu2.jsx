@@ -347,6 +347,7 @@ class MainMenu2 extends React.Component {
       isTesting: false,
       keyCount: 0,
       keyPressed: '',
+      modesDisplayed: false,
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -420,6 +421,7 @@ class MainMenu2 extends React.Component {
 
   chooseStudyMode() {
     this.setState({
+      modesDisplayed: true,
       flash: true,
       isChoosing: false,
     });
@@ -708,6 +710,7 @@ class MainMenu2 extends React.Component {
         answer: this.state.answer,
         cardList: this.state.cardList,
         cardCount: this.state.cardCount,
+        modesDisplayed: false,
         flash: false,
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.selectedCollection,
@@ -821,7 +824,7 @@ class MainMenu2 extends React.Component {
           (
             <>
               {
-                !this.state.flash
+                !this.state.modesDisplayed
                 ?
                 (
                   <>
@@ -904,7 +907,26 @@ class MainMenu2 extends React.Component {
                 )
                 :
                 (
-                  <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                  !this.state.isEditing
+                  ?
+                  (
+                    !this.state.isTesting
+                    ?
+                    (
+                      <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                    )
+                    :
+                    (
+                      // testing modes go here
+                      null
+                    )
+                  )
+                  :
+                  (
+                    // editing goes here
+                    null
+                  )
+                  // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                 )
               }
             </>

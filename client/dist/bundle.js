@@ -1358,7 +1358,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       isEditing: false,
       isTesting: false,
       keyCount: 0,
-      keyPressed: ''
+      keyPressed: '',
+      modesDisplayed: false
     };
     _this.chooseCollection = _this.chooseCollection.bind(_assertThisInitialized(_this));
     _this.createCollection = _this.createCollection.bind(_assertThisInitialized(_this));
@@ -1442,6 +1443,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     key: "chooseStudyMode",
     value: function chooseStudyMode() {
       this.setState({
+        modesDisplayed: true,
         flash: true,
         isChoosing: false
       });
@@ -1754,6 +1756,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           answer: _this5.state.answer,
           cardList: _this5.state.cardList,
           cardCount: _this5.state.cardCount,
+          modesDisplayed: false,
           flash: false,
           currentCollection: _this5.state.currentCollection,
           selectedCollection: _this5.state.selectedCollection,
@@ -1868,7 +1871,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MainMenuDiv, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
           children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-            children: !this.state.flash ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+            children: !this.state.modesDisplayed ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MainMenuTitle, {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("u", {
@@ -2017,14 +2020,17 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                   children: "Logout"
                 })
               })]
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            }) : !this.state.isEditing ? !this.state.isTesting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               goBack: this.goBack,
               user: this.props.user,
               keydown: this.handleFlashKeydown,
               pressedKey: this.state.pressedKey
-            })
+            }) : // testing modes go here
+            null : // editing goes here
+            null // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CreateCollectionsTitle, {
               style: {
