@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Editor from 'react-run-code';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
+import ChooseModal from './ChooseModal.jsx';
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import FlashAudioRecorder from './FlashAudioRecorder.jsx';
 // import ChooseModal from './ChooseModal.jsx';
 const moment = require('moment');
@@ -286,6 +290,7 @@ class MainMenu2 extends React.Component {
       photos: [],
       isChoosing: false,
       isEditing: false,
+      isTesting: false,
       keyCount: 0,
       keyPressed: '',
     };
@@ -363,9 +368,9 @@ class MainMenu2 extends React.Component {
   chooseEdit() {}
 
   chooseCollection(e) {
-    // this.setState({
-    //   isChoosing: true,
-    // });
+    this.setState({
+      isChoosing: true,
+    });
 
     let choice;
     let choiceName;
@@ -387,7 +392,7 @@ class MainMenu2 extends React.Component {
       answer: this.state.answer,
       cardList: this.state.cardList,
       cardCount: this.state.cardCount,
-      flash: true,
+      // flash: true,
       currentCollection: choice,
       selectedCollection: this.state.selectedCollection,
       lastView: d,
@@ -780,33 +785,60 @@ class MainMenu2 extends React.Component {
                           )
                           :
                           (
-                            <TimeFormatDiv>
-                              <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
-                                {
-                                  `${this.state.selectedCollection + 1}. ${this.state.userCollections[this.state.selectedCollection].name}`
-                                }
-                              </UserCollections>
-                              <b><span style={{fontFamily: 'Shadows Into Light', color: 'yellow'}}>
-                                    {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
-                              </span></b>
-                              <LastViewSpan>
-                                <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
-                              </LastViewSpan>
-                              {/* <ChooseModal open={this.state.isChoosing}
-                              onClose={() => {
-                                this.setState({isChoosing: false});
-                              }} start={() => {
-                                this.setState({
-                                  isChoosing: false,
-                                  flash: true,
-                                });
-                              }} edit={() => {
-                                this.setState({
-                                  isChoosing:false,
-                                  isEditing: true,
-                                })
-                              }} /> */}
-                            </TimeFormatDiv>
+                            <>
+                              <TimeFormatDiv>
+                                <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
+                                  {
+                                    `${this.state.selectedCollection + 1}. ${this.state.userCollections[this.state.selectedCollection].name}`
+                                  }
+                                </UserCollections>
+                                <b><span style={{fontFamily: 'Shadows Into Light', color: 'yellow'}}>
+                                      {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
+                                </span></b>
+                                <LastViewSpan>
+                                  <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                </LastViewSpan>
+                                {/* <ChooseModal open={this.state.isChoosing}
+                                onClose={() => {
+                                  this.setState({isChoosing: false});
+                                }} start={() => {
+                                  this.setState({
+                                    isChoosing: false,
+                                    flash: true,
+                                  });
+                                }} edit={() => {
+                                  this.setState({
+                                    isChoosing:false,
+                                    isEditing: true,
+                                  })
+                                }} /> */}
+                              </TimeFormatDiv>
+                              <Modal open={this.state.isChoosing}>
+                                <ChooseModal />
+                                {/* <div style={{backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)', color: 'white', fontFamily: 'Luckiest Guy', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                                  <h1><u><b>Choose A Mode:</b></u></h1>
+                                  <div style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
+                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                      <h3><b>Study Mode:</b></h3>
+                                      <button>Start</button>
+                                      <hr />
+                                    </div>
+                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                      <h3><b>Test Mode:</b></h3>
+                                      <h4>Easy:</h4>
+                                      <button>Start</button>
+                                      <h4>Difficult:</h4>
+                                      <button>Start</button>
+                                      <hr />
+                                    </div>
+                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                      <h3><b>Edit Mode:</b></h3>
+                                      <button>Start</button>
+                                    </div>
+                                  </div>
+                                </div> */}
+                              </Modal>
+                            </>
                           )
                         }
                         <ArrowDiv>

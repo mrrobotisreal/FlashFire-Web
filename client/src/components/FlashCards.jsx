@@ -280,8 +280,7 @@ const StatsButton = styled.button`
   border-radius: 12px;
   transition: .2s;
   width: fit-content;
-  padding: 2%;
-  margin-top: 2%;
+  padding: 1%;
   &:hover {
     transform: scale(1.15);
     border: 2px ridge purple;

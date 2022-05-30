@@ -1,115 +1,83 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const ModalStyle = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #b0c4de;
-  padding: 50px;
-  z-index: 1000;
-  opacity: 1;
-  width: 35%;
-  height: 80%;
-  border-radius: 12px;
-`;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #000;
-  opacity: 0.75;
-  z-index: 800;
-`;
-
-const Button = styled.button`
-  position: fixed;
-  top: 5%;
-  right: 5%;
-  background-color: white;
-  font-size: 20px;
-  border: 2px ridge grey;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 10px 5px 5px black;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-  }
-`;
-
 const ChooseDiv = styled.div`
-  border: 2px ridge darkred;
-  border-radius: 12px;
-  background-color: black;
+  background-image: linear-gradient(to bottom, black, orangered, yellow);
   color: white;
   font-family: 'Luckiest Guy';
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const ModesDiv = styled.div`
+  width: 60%;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  background-color: black;
+`;
+
+const ChooseTitle = styled.h1`
+  margin-top: 5%;
+  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;
+`;
+
+const ModeTitles = styled.h3`
+  margin-top: 5%;
+  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;
+`;
+
+const StartButtons = styled.buttons`
+  font-family: 'Luckiest Guy';
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  transition: .2s;
+  width: fit-content;
+  padding: 1%;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge purple;
+    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;
+  }
+`;
+
+const ChoiceDivs = styled.div`
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-const ChooseFlash = styled.button`
-  background-color: black;
-  color: white;
-  font-family: 'Bangers', cursive;
-  border-radius: 12px;
-  margin-bottom: 2%;
-  padding: 2%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    border: 2px ridge green;
-    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
-  }
-`;
-
-const ChooseEdit = styled.button`
-  background-color: black;
-  color: white;
-  font-family: 'Bangers', cursive;
-  border-radius: 12px;
-  margin-bottom: 2%;
-  padding: 2%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    border: 2px ridge orangered;
-    box-shadow: 4px 4px 6px orange, 0 0 1em orangered, 0 0 0.2em orangered;
-  }
-`;
-
-class ChooseModal extends React.Component {
-  constructor(props) {
+class ChooseModal extends Component {
+  constructor(prop) {
     super(props);
-    this.state = {};
+    this.state = {}
   }
 
   render() {
     return (
-      <>
-        <Overlay onClick={() => this.props.onClose()}>
-        </Overlay>
-        <ModalStyle>
-          <Button onClick={() => this.props.onClose()}>
-            X
-          </Button>
-          <ChooseDiv>
-            <ChooseFlash onClick={this.props.start()}>
-              Start Session
-            </ChooseFlash>
-            <ChooseEdit onClick={this.props.edit()}>
-              Edit Cards
-            </ChooseEdit>
-          </ChooseDiv>
-        </ModalStyle>
-      </>
+      <ChooseDiv>
+        <ChooseTitle><u><b>Choose A Mode:</b></u></ChooseTitle>
+        <ModesDiv style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
+          <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <ModeTitles><b>Study Mode:</b></ModeTitles>
+            <StartButtons>Start</StartButtons>
+          </ChoiceDivs>
+          <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <ModeTitles><b>Test Mode:</b></ModeTitles>
+            <h4>Easy:</h4>
+            <StartButtons>Start</StartButtons>
+            <h4>Difficult:</h4>
+            <StartButtons>Start</StartButtons>
+          </ChoiceDivs>
+          <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <ModeTitles><b>Edit Mode:</b></ModeTitles>
+            <StartButtons>Start</StartButtons>
+          </ChoiceDivs>
+        </ModesDiv>
+      </ChooseDiv>
     )
   }
 }
