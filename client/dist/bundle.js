@@ -1359,7 +1359,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       isTesting: false,
       keyCount: 0,
       keyPressed: '',
-      modesDisplayed: false
+      modesDisplayed: false,
+      isDifficult: false
     };
     _this.chooseCollection = _this.chooseCollection.bind(_assertThisInitialized(_this));
     _this.createCollection = _this.createCollection.bind(_assertThisInitialized(_this));
@@ -1451,8 +1452,15 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "chooseTestMode",
     value: function chooseTestMode(difficulty) {
-      if (difficult === 'easy') {// set state
-      } else {// set difficult state
+      if (difficult === 'easy') {
+        this.setState({
+          isTesting: true
+        });
+      } else {
+        this.setState({
+          isTesting: true,
+          isDifficult: true
+        });
       }
     }
   }, {
@@ -2031,8 +2039,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               user: this.props.user,
               keydown: this.handleFlashKeydown,
               pressedKey: this.state.pressedKey
-            }) : // testing modes go here
-            !this.state.isEasy ? // easy test goes here
+            }) : !this.state.isDifficult ? // easy test goes here
             null : // difficult test goes here
             null : // editing goes here
             null // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />

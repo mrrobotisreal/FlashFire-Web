@@ -348,6 +348,7 @@ class MainMenu2 extends React.Component {
       keyCount: 0,
       keyPressed: '',
       modesDisplayed: false,
+      isDifficult: false,
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -429,9 +430,14 @@ class MainMenu2 extends React.Component {
 
   chooseTestMode(difficulty) {
     if (difficult === 'easy') {
-      // set state
+      this.setState({
+        isTesting: true,
+      });
     } else {
-      // set difficult state
+      this.setState({
+        isTesting: true,
+        isDifficult: true,
+      });
     }
   }
 
@@ -923,8 +929,7 @@ class MainMenu2 extends React.Component {
                     )
                     :
                     (
-                      // testing modes go here
-                      !this.state.isEasy
+                      !this.state.isDifficult
                       ?
                       (
                         // easy test goes here
