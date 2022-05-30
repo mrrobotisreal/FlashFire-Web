@@ -687,10 +687,10 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
         var data = _ref2.data;
-        var sum = data.totalCards.reduce(function (total, num) {
+        var sum = data.totalScores.reduce(function (total, num) {
           return total += num;
         }, 0);
-        var average = sum / data.totalCards.length;
+        var average = sum / data.totalScores.length;
 
         _this2.setState({
           prevScore: data.mostRecentScore,
@@ -1166,13 +1166,15 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                style: {
+                  marginTop: '5%'
+                },
                 children: "High Score: ".concat(this.state.highScore, " | Most Recent Score: ").concat(this.state.prevScore, " | Average Score: ").concat(this.state.averageScore)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',
                   height: '40%',
-                  backgroundColor: 'white',
-                  marginTop: '5%'
+                  backgroundColor: 'white'
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Stats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
                   totalScores: this.state.totalScores

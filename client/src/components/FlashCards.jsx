@@ -335,10 +335,10 @@ class FlashCards extends React.Component {
     });
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
-        let sum = data.totalCards.reduce((total, num) => {
+        let sum = data.totalScores.reduce((total, num) => {
           return total += num;
         }, 0);
-        let average = sum / data.totalCards.length;
+        let average = sum / data.totalScores.length;
         this.setState({
           prevScore: data.mostRecentScore,
           totalScores: data.totalScores,
@@ -722,10 +722,10 @@ class FlashCards extends React.Component {
             <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <ModalButton onClick={this.closeStats}>X</ModalButton>
               <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
-              <h3>
+              <h3 style={{marginTop: '5%'}}>
                 {`High Score: ${this.state.highScore} | Most Recent Score: ${this.state.prevScore} | Average Score: ${this.state.averageScore}`}
               </h3>
-              <div style={{width: '60%', height: '40%', backgroundColor: 'white', marginTop: '5%'}}>
+              <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>
                 <Stats totalScores={this.state.totalScores} />
               </div>
             </HighScoreDiv>
