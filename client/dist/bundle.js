@@ -515,150 +515,6 @@ var App2 = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./client/src/components/ChooseModal.jsx":
-/*!***********************************************!*\
-  !*** ./client/src/components/ChooseModal.jsx ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-
-
-
-
-var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
-var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n"])));
-var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].h1(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  margin-top: 5%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].h3(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 5%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].buttons(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
-var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
-
-var ChooseModal = /*#__PURE__*/function (_Component) {
-  _inherits(ChooseModal, _Component);
-
-  var _super = _createSuper(ChooseModal);
-
-  function ChooseModal(prop) {
-    var _this;
-
-    _classCallCheck(this, ChooseModal);
-
-    _this = _super.call(this, props);
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(ChooseModal, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(ChooseDiv, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ChooseTitle, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("u", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-              children: "Choose A Mode:"
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(ModesDiv, {
-          style: {
-            backgroundColor: 'black',
-            border: '2px ridge darkred',
-            borderRadius: '12px',
-            width: '60%'
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(ChoiceDivs, {
-            style: {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ModeTitles, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-                children: "Study Mode:"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(StartButtons, {
-              children: "Start"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(ChoiceDivs, {
-            style: {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ModeTitles, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-                children: "Test Mode:"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-              children: "Easy:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(StartButtons, {
-              children: "Start"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-              children: "Difficult:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(StartButtons, {
-              children: "Start"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(ChoiceDivs, {
-            style: {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(ModeTitles, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-                children: "Edit Mode:"
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(StartButtons, {
-              children: "Start"
-            })]
-          })]
-        })]
-      });
-    }
-  }]);
-
-  return ChooseModal;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChooseModal);
-
-/***/ }),
-
 /***/ "./client/src/components/FlashCards.jsx":
 /*!**********************************************!*\
   !*** ./client/src/components/FlashCards.jsx ***!
@@ -1383,13 +1239,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashCards.jsx */ "./client/src/components/FlashCards.jsx");
-/* harmony import */ var _ChooseModal_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ChooseModal.jsx */ "./client/src/components/ChooseModal.jsx");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './ChooseModal.jsx'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -1468,6 +1324,12 @@ var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].but
 var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
 var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
 var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
+var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 5%;\n  &:focus {\n    outline: none;\n  }\n"])));
+var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 4%;\n  margin-top: 2%;\n"])));
+var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 5%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
+var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
 
 var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   _inherits(MainMenu2, _React$Component);
@@ -2053,7 +1915,74 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_7__["default"], {
                       open: this.state.isChoosing,
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ChooseModal_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChooseDiv, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ChooseTitle, {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("u", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                              children: "Choose A Mode:"
+                            })
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ModesDiv, {
+                          style: {
+                            backgroundColor: 'black',
+                            border: '2px ridge darkred',
+                            borderRadius: '12px',
+                            width: '60%'
+                          },
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChoiceDivs, {
+                            style: {
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center'
+                            },
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                                children: "Study Mode:"
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                              children: "Start"
+                            })]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChoiceDivs, {
+                            style: {
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center'
+                            },
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                                children: "Test Mode:"
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                              children: "Easy:"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                              children: "Start"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                              style: {
+                                marginTop: '2%'
+                              },
+                              children: "Difficult:"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                              children: "Start"
+                            })]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(ChoiceDivs, {
+                            style: {
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              alignItems: 'center'
+                            },
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+                                children: "Edit Mode:"
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(StartButtons, {
+                              children: "Start"
+                            })]
+                          })]
+                        })]
+                      })
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(ArrowDiv, {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(DownButton, {

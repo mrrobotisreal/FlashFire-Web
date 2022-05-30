@@ -271,6 +271,61 @@ const LastViewSpan = styled.span`
   color: yellow;
 `;
 
+const ChooseDiv = styled.div`
+  background-image: linear-gradient(to bottom, black, orangered, yellow);
+  color: white;
+  font-family: 'Luckiest Guy';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5%;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const ModesDiv = styled.div`
+  width: 60%;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  background-color: black;
+  padding-bottom: 4%;
+  margin-top: 2%;
+`;
+
+const ChooseTitle = styled.h1`
+  margin-top: 2%;
+  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;
+`;
+
+const ModeTitles = styled.h3`
+  margin-top: 5%;
+  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;
+`;
+
+const StartButtons = styled.button`
+  font-family: 'Luckiest Guy';
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  transition: .2s;
+  width: fit-content;
+  padding: 1%;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge purple;
+    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;
+  }
+`;
+
+const ChoiceDivs = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 class MainMenu2 extends React.Component {
   constructor(props) {
     super(props);
@@ -798,45 +853,29 @@ class MainMenu2 extends React.Component {
                                 <LastViewSpan>
                                   <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                                 </LastViewSpan>
-                                {/* <ChooseModal open={this.state.isChoosing}
-                                onClose={() => {
-                                  this.setState({isChoosing: false});
-                                }} start={() => {
-                                  this.setState({
-                                    isChoosing: false,
-                                    flash: true,
-                                  });
-                                }} edit={() => {
-                                  this.setState({
-                                    isChoosing:false,
-                                    isEditing: true,
-                                  })
-                                }} /> */}
                               </TimeFormatDiv>
                               <Modal open={this.state.isChoosing}>
-                                <ChooseModal />
-                                {/* <div style={{backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)', color: 'white', fontFamily: 'Luckiest Guy', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-                                  <h1><u><b>Choose A Mode:</b></u></h1>
-                                  <div style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
-                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                      <h3><b>Study Mode:</b></h3>
-                                      <button>Start</button>
-                                      <hr />
-                                    </div>
-                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                      <h3><b>Test Mode:</b></h3>
+                                {/* <ChooseModal user={this.props.user} collectionName={this.state.collectionName} cardList={this.state.currentCollection} /> */}
+                                <ChooseDiv>
+                                  <ChooseTitle><u><b>Choose A Mode:</b></u></ChooseTitle>
+                                  <ModesDiv style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
+                                    <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                      <ModeTitles><b>Study Mode:</b></ModeTitles>
+                                      <StartButtons>Start</StartButtons>
+                                    </ChoiceDivs>
+                                    <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                      <ModeTitles><b>Test Mode:</b></ModeTitles>
                                       <h4>Easy:</h4>
-                                      <button>Start</button>
-                                      <h4>Difficult:</h4>
-                                      <button>Start</button>
-                                      <hr />
-                                    </div>
-                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                      <h3><b>Edit Mode:</b></h3>
-                                      <button>Start</button>
-                                    </div>
-                                  </div>
-                                </div> */}
+                                      <StartButtons>Start</StartButtons>
+                                      <h4 style={{marginTop: '2%'}}>Difficult:</h4>
+                                      <StartButtons>Start</StartButtons>
+                                    </ChoiceDivs>
+                                    <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                      <ModeTitles><b>Edit Mode:</b></ModeTitles>
+                                      <StartButtons>Start</StartButtons>
+                                    </ChoiceDivs>
+                                  </ModesDiv>
+                                </ChooseDiv>
                               </Modal>
                             </>
                           )
