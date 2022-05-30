@@ -719,7 +719,7 @@ class FlashCards extends React.Component {
             </NextButton>
           </PrevNextDiv>
           <Modal open={this.state.showStats}>
-            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
               <ModalButton onClick={this.closeStats}>X</ModalButton>
               <h1><u>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</u></h1>
               <h3 style={{marginTop: '1%'}}>

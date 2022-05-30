@@ -1158,7 +1158,9 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                backgroundColor: 'none',
+                backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'
               },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ModalButton, {
                 onClick: this.closeStats,
@@ -2223,7 +2225,7 @@ var Stats = /*#__PURE__*/function (_Component) {
         labels: ['Scores'],
         datasets: [{
           label: 'User Stats',
-          backgroundColor: 'rgba(255, 255, 255, 0.74)',
+          backgroundColor: 'rgba(4, 0, 0, 0.74)',
           borderColor: 'rgb(155, 3, 3)',
           data: _this.props.totalScores
         }]
@@ -2248,7 +2250,7 @@ var Stats = /*#__PURE__*/function (_Component) {
           datasets: [{
             label: 'User Stats',
             backgroundColor: 'rgba(2, 0, 0, 0.74)',
-            borderColor: 'rgb(255, 0, 0)',
+            borderColor: 'rgb(13, 127, 0)',
             data: this.props.totalScores
           }]
         }

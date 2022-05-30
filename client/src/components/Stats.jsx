@@ -10,7 +10,7 @@ class Stats extends Component {
         datasets: [
           {
             label: 'User Stats',
-            backgroundColor: 'rgba(255, 255, 255, 0.74)',
+            backgroundColor: 'rgba(4, 0, 0, 0.74)',
             borderColor: 'rgb(155, 3, 3)',
             data: this.props.totalScores,
           },
@@ -32,7 +32,7 @@ class Stats extends Component {
           {
             label: 'User Stats',
             backgroundColor: 'rgba(2, 0, 0, 0.74)',
-            borderColor: 'rgb(255, 0, 0)',
+            borderColor: 'rgb(13, 127, 0)',
             data: this.props.totalScores,
           },
         ],
