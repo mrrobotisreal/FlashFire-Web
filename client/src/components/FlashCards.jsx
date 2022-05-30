@@ -273,6 +273,22 @@ const ModalButton = styled.button`
   box-shadow: 10px 5px 5px black;
 `;
 
+const StatsButton = styled.button`
+  font-family: 'Luckiest Guy';
+  color: white;
+  background-color: black;
+  border-radius: 12px;
+  transition: .2s;
+  width: fit-content;
+  padding: 2%;
+  margin-top: 2%;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge purple;
+    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;
+  }
+`;
+
 class FlashCards extends React.Component {
   constructor(props) {
     super(props);
@@ -290,6 +306,7 @@ class FlashCards extends React.Component {
       totalScores: [],
       highScore: 0,
       showStats: false,
+      averageScore: 0,
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -316,22 +333,17 @@ class FlashCards extends React.Component {
     this.setState({
       cardList: array,
     });
-    let prevScore = JSON.parse(localStorage.getItem('score'));
-    if (!prevScore || prevScore === 0) {
-      this.setState({
-        prevScore: 0
-      });
-    } else {
-      this.setState({
-        prevScore: prevScore
-      });
-    }
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
+        let sum = data.totalCards.reduce((total, num) => {
+          return total += num;
+        }, 0);
+        let average = sum / data.totalCards.length;
         this.setState({
           prevScore: data.mostRecentScore,
           totalScores: data.totalScores,
           highScore: data.highScore,
+          averageScore: average,
         });
       })
       .catch((err) => console.error(err));
@@ -612,9 +624,9 @@ class FlashCards extends React.Component {
             }
           </CollectionNameTitle>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            <button onClick={this.showStats}>
+            <StatsButton onClick={this.showStats}>
               Show Stats
-            </button>
+            </StatsButton>
           </div>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
             <TimerDiv>
@@ -710,6 +722,9 @@ class FlashCards extends React.Component {
             <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <ModalButton onClick={this.closeStats}>X</ModalButton>
               <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
+              <h3>
+                {`High Score: ${this.state.highScore} | Most Recent Score: ${this.state.prevScore} | Average Score: ${this.state.averageScore}`}
+              </h3>
               <div style={{width: '60%', height: '40%', backgroundColor: 'white', marginTop: '5%'}}>
                 <Stats totalScores={this.state.totalScores} />
               </div>

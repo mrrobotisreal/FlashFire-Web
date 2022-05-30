@@ -542,7 +542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -621,6 +621,7 @@ var TimerDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_te
 var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
 var KeyReceiver = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  &:focus {\n    outline: none\n  }\n"])));
 var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
+var StatsButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 2%;\n  margin-top: 2%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
 
 var FlashCards = /*#__PURE__*/function (_React$Component) {
   _inherits(FlashCards, _React$Component);
@@ -646,7 +647,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       show: false,
       totalScores: [],
       highScore: 0,
-      showStats: false
+      showStats: false,
+      averageScore: 0
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -683,25 +685,18 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       this.setState({
         cardList: array
       });
-      var prevScore = JSON.parse(localStorage.getItem('score'));
-
-      if (!prevScore || prevScore === 0) {
-        this.setState({
-          prevScore: 0
-        });
-      } else {
-        this.setState({
-          prevScore: prevScore
-        });
-      }
-
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
         var data = _ref2.data;
+        var sum = data.totalCards.reduce(function (total, num) {
+          return total += num;
+        }, 0);
+        var average = sum / data.totalCards.length;
 
         _this2.setState({
           prevScore: data.mostRecentScore,
           totalScores: data.totalScores,
-          highScore: data.highScore
+          highScore: data.highScore,
+          averageScore: average
         });
       })["catch"](function (err) {
         return console.error(err);
@@ -1003,7 +998,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
               alignItems: 'center',
               flexDirection: 'column'
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(StatsButton, {
               onClick: this.showStats,
               children: "Show Stats"
             })
@@ -1170,6 +1165,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
                 children: "X"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                children: "High Score: ".concat(this.state.highScore, " | Most Recent Score: ").concat(this.state.prevScore, " | Average Score: ").concat(this.state.averageScore)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',
