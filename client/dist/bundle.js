@@ -178,7 +178,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref3) {
         var data = _ref3.data;
 
-        if (!data.success) {
+        if (!data) {
           alert('Wrong username or password! Please try again'); // this will need to be removed below
 
           _this4.setState({
@@ -298,6 +298,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         password: this.state.password,
         showMainMenu: false
       });
+      localStorage.removeItem('flash-cookie');
+      localStorage.removeItem('flash-user');
     }
   }, {
     key: "render",

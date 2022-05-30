@@ -131,10 +131,12 @@ const checkLogin = (userInfo, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
+      console.log('user email -> ', doc.email);
+      let cookie = cryptofy(userInfo.username, doc.email);
       if (attempt === doc.password) {
-        cb(null, true);
+        cb(null, cookie, true);
       } else {
-        cb(null, false);
+        cb(null, null, false);
       }
     }
   });
