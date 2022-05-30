@@ -99,14 +99,15 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   })
  };
 
-const cryptofy = (password) => {
-  let salt = 'winter';
+const cryptofy = (password, salt) => {
+  salt = salt || 'winter';
   let shasum = crypto.createHash('sha256');
   shasum.update(password + salt);
   return shasum.digest('hex');
 };
 
 const saveSignup = (signup, cb = () => {}) => {
+  let cookie = cryptofy(signup.username, signup.email);
   let newSignup = new User({
     name: signup.name,
     email: signup.email,
@@ -118,7 +119,7 @@ const saveSignup = (signup, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      cb(null, 'Successful Signup in DB!');
+      cb(null, cookie);
     }
   })
 };

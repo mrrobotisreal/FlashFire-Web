@@ -111,6 +111,11 @@ class App2 extends React.Component {
     this.showLoginForm = this.showLoginForm.bind(this);
     this.showSignupForm = this.showSignupForm.bind(this);
     this.logout = this.logout.bind(this);
+    this.createCookie = this.createCookie.bind(this);
+  }
+
+  createCookie(str) {
+    //
   }
 
   handleSignupSubmit(e) {
@@ -131,6 +136,7 @@ class App2 extends React.Component {
           password: this.state.password,
           showMainMenu: true
         });
+        this.createCookie(data.cookie);
       })
       .catch((err) => console.error(err));
   }

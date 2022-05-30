@@ -91,10 +91,15 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     _this.showLoginForm = _this.showLoginForm.bind(_assertThisInitialized(_this));
     _this.showSignupForm = _this.showSignupForm.bind(_assertThisInitialized(_this));
     _this.logout = _this.logout.bind(_assertThisInitialized(_this));
+    _this.createCookie = _this.createCookie.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App2, [{
+    key: "createCookie",
+    value: function createCookie(str) {//
+    }
+  }, {
     key: "handleSignupSubmit",
     value: function handleSignupSubmit(e) {
       var _this2 = this;
@@ -115,6 +120,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
           password: _this2.state.password,
           showMainMenu: true
         });
+
+        _this2.createCookie(data.cookie);
       })["catch"](function (err) {
         return console.error(err);
       });
