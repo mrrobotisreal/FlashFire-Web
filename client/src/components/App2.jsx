@@ -116,7 +116,7 @@ class App2 extends React.Component {
   }
 
   componentDidMount() {
-    checkCookie();
+    this.checkCookie();
   }
 
   checkCookie() {

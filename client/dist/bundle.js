@@ -99,7 +99,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
   _createClass(App2, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      checkCookie();
+      this.checkCookie();
     }
   }, {
     key: "checkCookie",
@@ -1651,7 +1651,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           category: _this4.state.category,
           question: _this4.state.question,
           answer: _this4.state.answer,
-          cardList: _this4.state.cardList,
+          cardList: [],
           cardCount: 0,
           flash: _this4.state.flash,
           currentCollection: _this4.state.currentCollection,

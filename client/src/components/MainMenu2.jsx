@@ -578,7 +578,7 @@ class MainMenu2 extends React.Component {
           category: this.state.category,
           question: this.state.question,
           answer: this.state.answer,
-          cardList: this.state.cardList,
+          cardList: [],
           cardCount: 0,
           flash: this.state.flash,
           currentCollection: this.state.currentCollection,
