@@ -92,17 +92,53 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     _this.showSignupForm = _this.showSignupForm.bind(_assertThisInitialized(_this));
     _this.logout = _this.logout.bind(_assertThisInitialized(_this));
     _this.createCookie = _this.createCookie.bind(_assertThisInitialized(_this));
+    _this.checkCookie = _this.checkCookie.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App2, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      checkCookie();
+    }
+  }, {
+    key: "checkCookie",
+    value: function checkCookie() {
+      var _this2 = this;
+
+      var user = localStorage.getItem('flash-user');
+      var cookie = localStorage.getItem('flash-cookie');
+
+      if (!cookie || !user) {
+        return;
+      } else {
+        var options = {
+          cookie: cookie
+        };
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/check-cookie/".concat(user), options).then(function (_ref) {
+          var data = _ref.data;
+
+          if (data.cookie === cookie) {
+            _this2.setState({
+              username: user,
+              showMainMenu: true
+            });
+          }
+        })["catch"](function (err) {
+          return console.error(err);
+        });
+      }
+    }
+  }, {
     key: "createCookie",
-    value: function createCookie(str) {//
+    value: function createCookie(str) {
+      localStorage.setItem('flash-cookie', str);
+      localStorage.setItem('flash-user', this.state.username);
     }
   }, {
     key: "handleSignupSubmit",
     value: function handleSignupSubmit(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/signup', {
@@ -110,18 +146,21 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         email: this.state.signupEmail,
         username: this.state.username,
         password: this.state.password
-      }).then(function (res) {
-        _this2.setState({
-          isAlreadyAMember: _this2.state.isAlreadyAMember,
-          showLoginForm: _this2.state.showLoginForm,
-          signupName: _this2.state.signupName,
-          signupEmail: _this2.state.signupEmail,
-          username: _this2.state.username,
-          password: _this2.state.password,
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        console.log('data -> ', data);
+
+        _this3.setState({
+          isAlreadyAMember: _this3.state.isAlreadyAMember,
+          showLoginForm: _this3.state.showLoginForm,
+          signupName: _this3.state.signupName,
+          signupEmail: _this3.state.signupEmail,
+          username: _this3.state.username,
+          password: _this3.state.password,
           showMainMenu: true
         });
 
-        _this2.createCookie(data.cookie);
+        _this3.createCookie(data.cookie);
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -129,36 +168,36 @@ var App2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleLoginSubmit",
     value: function handleLoginSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
       var userInfo = {
         username: this.state.username,
         password: this.state.password
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref) {
-        var data = _ref.data;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref3) {
+        var data = _ref3.data;
 
         if (!data) {
           alert('Wrong username or password! Please try again'); // this will need to be removed below
 
-          _this3.setState({
-            isAlreadyAMember: _this3.state.isAlreadyAMember,
-            showLoginForm: _this3.state.showLoginForm,
-            signupName: _this3.state.signupName,
-            signupEmail: _this3.state.signupEmail,
-            username: _this3.state.username,
-            password: _this3.state.password,
+          _this4.setState({
+            isAlreadyAMember: _this4.state.isAlreadyAMember,
+            showLoginForm: _this4.state.showLoginForm,
+            signupName: _this4.state.signupName,
+            signupEmail: _this4.state.signupEmail,
+            username: _this4.state.username,
+            password: _this4.state.password,
             showMainMenu: true
           });
         } else {
-          _this3.setState({
-            isAlreadyAMember: _this3.state.isAlreadyAMember,
-            showLoginForm: _this3.state.showLoginForm,
-            signupName: _this3.state.signupName,
-            signupEmail: _this3.state.signupEmail,
-            username: _this3.state.username,
-            password: _this3.state.password,
+          _this4.setState({
+            isAlreadyAMember: _this4.state.isAlreadyAMember,
+            showLoginForm: _this4.state.showLoginForm,
+            signupName: _this4.state.signupName,
+            signupEmail: _this4.state.signupEmail,
+            username: _this4.state.username,
+            password: _this4.state.password,
             showMainMenu: true
           });
         }

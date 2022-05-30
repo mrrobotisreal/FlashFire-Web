@@ -112,10 +112,38 @@ class App2 extends React.Component {
     this.showSignupForm = this.showSignupForm.bind(this);
     this.logout = this.logout.bind(this);
     this.createCookie = this.createCookie.bind(this);
+    this.checkCookie = this.checkCookie.bind(this);
+  }
+
+  componentDidMount() {
+    checkCookie();
+  }
+
+  checkCookie() {
+    let user = localStorage.getItem('flash-user');
+    let cookie = localStorage.getItem('flash-cookie');
+    if (!cookie || !user) {
+      return;
+    } else {
+      let options = {
+        cookie: cookie
+      }
+      axios.post(`/check-cookie/${user}`, options)
+        .then(({ data }) => {
+          if (data.cookie === cookie) {
+            this.setState({
+              username: user,
+              showMainMenu: true,
+            });
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   createCookie(str) {
-    //
+    localStorage.setItem('flash-cookie', str);
+    localStorage.setItem('flash-user', this.state.username);
   }
 
   handleSignupSubmit(e) {
@@ -126,7 +154,8 @@ class App2 extends React.Component {
       username: this.state.username,
       password: this.state.password
     })
-      .then((res) => {
+      .then(({ data }) => {
+        console.log('data -> ', data);
         this.setState({
           isAlreadyAMember: this.state.isAlreadyAMember,
           showLoginForm: this.state.showLoginForm,

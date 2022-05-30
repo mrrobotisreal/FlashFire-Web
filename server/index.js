@@ -16,7 +16,10 @@ app.post('/signup', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      res.send(cookie);
+      let cookieObj = {
+        cookie: cookie,
+      }
+      res.send(cookieObj);
     }
   });
 });
@@ -28,6 +31,19 @@ app.post('/login', (req, res) => {
     } else {
       console.log('success === ', success);
       res.send(success);
+    }
+  });
+});
+
+app.post('/check-cookie/:user', (req, res) => {
+  db.checkCookie(req.params.user, req.body.cookie, (err, cookie) => {
+    if (err) {
+      console.error(err);
+    } else {
+      let cookieObj = {
+        cookie: cookie
+      };
+      res.send(cookieObj);
     }
   });
 });

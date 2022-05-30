@@ -213,6 +213,19 @@ const getScores = (username, collection, cb = () => {}) => {
   });
 };
 
+const checkCookie = (username, cookie, cb = () => {}) => {
+  let user = User.findOne({'username': username});
+  user.exec((err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      let email = doc.email;
+      let checkedCookie = cryptofy(username, email);
+      cb(null, checkedCookie);
+    }
+  });
+};
+
 module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;
@@ -222,3 +235,4 @@ module.exports.saveSignup = saveSignup;
 module.exports.checkLogin = checkLogin;
 module.exports.storeScores = storeScores;
 module.exports.getScores = getScores;
+module.exports.checkCookie = checkCookie;
