@@ -1164,13 +1164,19 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
                 onClick: this.closeStats,
                 children: "X"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
-                children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("u", {
+                  children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
+                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
                 style: {
-                  marginTop: '5%'
+                  marginTop: '1%'
                 },
-                children: "High Score: ".concat(this.state.highScore, " | Most Recent Score: ").concat(this.state.prevScore, " | Average Score: ").concat(this.state.averageScore)
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                children: "High Score: ".concat(this.state.highScore)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                children: "Most Recent Score: ".concat(this.state.prevScore)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                children: "Average Score: ".concat(this.state.averageScore)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',
                   height: '40%',

@@ -721,10 +721,19 @@ class FlashCards extends React.Component {
           <Modal open={this.state.showStats}>
             <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <ModalButton onClick={this.closeStats}>X</ModalButton>
-              <h1>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</h1>
-              <h3 style={{marginTop: '5%'}}>
-                {`High Score: ${this.state.highScore} | Most Recent Score: ${this.state.prevScore} | Average Score: ${this.state.averageScore}`}
+              <h1><u>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</u></h1>
+              <h3 style={{marginTop: '1%'}}>
+                {`High Score: ${this.state.highScore}`}
               </h3>
+              <hr />
+              <h3>
+                {`Most Recent Score: ${this.state.prevScore}`}
+              </h3>
+              <hr />
+              <h3>
+                {`Average Score: ${this.state.averageScore}`}
+              </h3>
+              <hr />
               <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>
                 <Stats totalScores={this.state.totalScores} />
               </div>
