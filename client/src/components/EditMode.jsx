@@ -620,7 +620,10 @@ class EditMode extends Component {
                 }</b>
               </QuestionAndAnswerDiv>
               <RevealButton type="button" onClick={this.reveal} autoFocus>
-                Reveal
+                Edit
+              </RevealButton>
+              <RevealButton type="button" onClick={this.reveal}>
+                Confirm
               </RevealButton>
               <FailSuccessDiv>
                 <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1'}}>

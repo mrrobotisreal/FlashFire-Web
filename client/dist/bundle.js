@@ -988,7 +988,11 @@ var EditMode = /*#__PURE__*/function (_Component) {
                 type: "button",
                 onClick: this.reveal,
                 autoFocus: true,
-                children: "Reveal"
+                children: "Edit"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                type: "button",
+                onClick: this.reveal,
+                children: "Confirm"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
                   style: {
