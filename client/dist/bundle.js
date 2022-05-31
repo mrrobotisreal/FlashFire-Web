@@ -527,8 +527,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/material/styles/createTheme.js");
+/* harmony import */ var _SetTimer_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SetTimer.jsx */ "./client/src/components/SetTimer.jsx");
+/* harmony import */ var react_confetti__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-confetti */ "./node_modules/react-confetti/dist/react-confetti.min.js");
+/* harmony import */ var react_confetti__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_confetti__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Stats_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Stats.jsx */ "./client/src/components/Stats.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -550,9 +561,50 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
+
+
+
+
+
+
+
+
+
+var theme = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_7__["default"])({
+  palette: {
+    primary: {
+      main: '#040004',
+      darker: '#952800'
+    }
+  }
+});
+var CollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  color: #470047\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  background-size: cover;\n  padding: 3%;\n  margin-top: 5%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  /* display: grid; */\n"])));
+var PrevButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  grid-column: 1;\n  font-size: 2rem;\n  transition: .2s;\n  padding-left: 2%;\n  padding-right: 2%;\n  &:hover {\n    transform: scale(1.25);\n    border: 2px ridge green;\n    color: green;\n  }\n"])));
+var NextButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  grid-column: 3;\n  font-size: 2rem;\n  transition: .2s;\n  padding-left: 2%;\n  padding-right: 2%;\n  &:hover {\n    transform: scale(1.25);\n    border: 2px ridge green;\n    color: green;\n  }\n"])));
+var PrevNextDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  font-family: 'Bangers', cursive;\n  margin-top: 4%;\n"])));
+var CollectionNameTitle = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h2(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n  color: white;\n  text-shadow: 1px 1px 2px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var CardNumber = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  grid-column: 2;\n  grid-row: 2;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
+var FlashCardDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  padding: 2%;\n"])));
+var QuestionAndAnswerDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  border: 2px ridge orangered;\n  border-radius: 12px;\n  background-image: linear-gradient(to bottom, black, darkred);\n  color: white;\n  font-family: 'Bangers', cursive;\n  padding: 2%;\n  overflow: break-word;\n  margin-bottom: 2%;\n  transition: .2s;\n"])));
+var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
+var FailSuccessDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  display: grid;\n  margin: 2%;\n"])));
+var FailSuccessIndividualDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
+var FailSuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
+var SuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
+var FailSuccessCount = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  color: yellow;\n  background-color: black;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  display: flex;\n  justify-content: center;\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n"])));
+var MainMenuButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  margin-top: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    color: yellow;\n    border: 2px ridge yellow;\n  }\n"])));
+var Image = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].img(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  width: 80%;\n  height: 20%;\n"])));
+var ImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
+var TimerDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: linear-gradient(to bottom, black, orangered);\n  background-size: cover;\n  padding: 3%;\n  margin-top: 2%;\n  width: fit-content;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
+var KeyReceiver = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  &:focus {\n    outline: none\n  }\n"])));
+var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
+var StatsButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
 
 var EditMode = /*#__PURE__*/function (_Component) {
   _inherits(EditMode, _Component);
@@ -572,12 +624,12 @@ var EditMode = /*#__PURE__*/function (_Component) {
   _createClass(EditMode, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {});
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {});
     }
   }]);
 
   return EditMode;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditMode);
 
@@ -2159,8 +2211,18 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               goBack: this.goBack,
               keydown: this.handleFlashKeydown,
               pressedKey: this.state.pressedKey
-            }) : // editing goes here
-            null // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+            }) :
+            /*#__PURE__*/
+            // editing goes here
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_EditMode_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              collectionName: this.state.collectionName,
+              cardList: this.state.currentCollection,
+              isDifficult: this.state.isDifficult,
+              user: this.props.user,
+              goBack: this.goBack,
+              keydown: this.handleFlashKeydown,
+              pressedKey: this.state.pressedKey
+            }) // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
 
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CreateCollectionsTitle, {

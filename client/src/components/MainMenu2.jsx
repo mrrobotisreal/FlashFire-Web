@@ -965,7 +965,7 @@ class MainMenu2 extends React.Component {
                   :
                   (
                     // editing goes here
-                    null
+                    <EditMode collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                   )
                   // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                 )
