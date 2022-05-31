@@ -974,7 +974,7 @@ var EditMode = /*#__PURE__*/function (_Component) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
-                  display: this.state.answerDisplay,
+                  display: 'flex',
                   backgroundImage: 'linear-gradient(to bottom, black, green)',
                   border: '2px ridge darkgreen',
                   fontFamily: 'Ubuntu',

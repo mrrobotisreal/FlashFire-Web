@@ -614,7 +614,7 @@ class EditMode extends Component {
                   this.state.cardList[this.state.currentCard].question
                 }</b>
               </QuestionAndAnswerDiv>
-              <QuestionAndAnswerDiv style={{display: this.state.answerDisplay,   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
+              <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
                 <b>{
                   this.state.cardList[this.state.currentCard].answer
                 }</b>
