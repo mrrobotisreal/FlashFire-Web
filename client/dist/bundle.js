@@ -622,8 +622,8 @@ var KeyReceiver = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(
 var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
 var StatsButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
 
-var EditMode = /*#__PURE__*/function (_Component) {
-  _inherits(EditMode, _Component);
+var EditMode = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditMode, _React$Component);
 
   var _super = _createSuper(EditMode);
 
@@ -1040,7 +1040,7 @@ var EditMode = /*#__PURE__*/function (_Component) {
   }]);
 
   return EditMode;
-}(Component);
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditMode);
 

@@ -288,7 +288,7 @@ const StatsButton = styled.button`
   }
 `;
 
-class EditMode extends Component {
+class EditMode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
