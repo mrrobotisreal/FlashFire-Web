@@ -346,6 +346,8 @@ class TestModeDifficult extends React.Component {
       bAnswer: '',
       cAnswer: '',
       dAnswer: '',
+      eAnswer: '',
+      fAnswer: '',
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -418,7 +420,7 @@ class TestModeDifficult extends React.Component {
     console.log('correct answer is -> ', correct);
     answers.push(correct);
     let loopCount = 0;
-    while (answers.length <= 4) {
+    while (answers.length <= 6) {
       let uniq = true;
       loopCount++;
       let num = Math.floor(Math.random() * this.props.cardList.length);
@@ -430,7 +432,7 @@ class TestModeDifficult extends React.Component {
         }
         if (uniq) {
           answers.push(this.props.cardList[num].answer);
-          if (answers.length === 4) {
+          if (answers.length === 6) {
             console.log('breaking out of this joint!');
             break;
           }
@@ -453,6 +455,8 @@ class TestModeDifficult extends React.Component {
       bAnswer: answers[1],
       cAnswer: answers[2],
       dAnswer: answers[3],
+      eAnswer: answers[4],
+      fAnswer: answers[5],
       correctAnswer: correct,
       answerArray: answers,
     });
@@ -530,37 +534,13 @@ class TestModeDifficult extends React.Component {
       if (a.style.border === '2px ridge purple') {
         a.style.border = '2px ridge green';
         a.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-        b.style.border = '2px ridge red';
-        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        c.style.border = '2px ridge red';
-        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        d.style.border = '2px ridge red';
-        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
       } else if (b.style.border === '2px ridge purple') {
-        a.style.border = '2px ridge red';
-        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
         b.style.border = '2px ridge green';
         b.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-        c.style.border = '2px ridge red';
-        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        d.style.border = '2px ridge red';
-        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
       } else if (c.style.border === '2px ridge purple') {
-        a.style.border = '2px ridge red';
-        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        b.style.border = '2px ridge red';
-        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
         c.style.border = '2px ridge green';
         c.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-        d.style.border = '2px ridge red';
-        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
       } else {
-        a.style.border = '2px ridge red';
-        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        b.style.border = '2px ridge red';
-        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        c.style.border = '2px ridge red';
-        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
         d.style.border = '2px ridge green';
         d.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
       }
@@ -568,42 +548,18 @@ class TestModeDifficult extends React.Component {
       this.setState({
         fail: this.state.fail += 1,
       });
-      if (this.state.correctAnswer === this.state.aAnswer) {
-        a.style.border = '2px ridge green';
-        a.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-        b.style.border = '2px ridge red';
-        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        c.style.border = '2px ridge red';
-        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        d.style.border = '2px ridge red';
-        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-      } else if (this.state.correctAnswer === this.state.bAnswer) {
+      if (this.state.selectedAnswer === this.state.aAnswer) {
         a.style.border = '2px ridge red';
         a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        b.style.border = '2px ridge green';
-        b.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-        c.style.border = '2px ridge red';
-        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        d.style.border = '2px ridge red';
-        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-      } else if (this.state.correctAnswer === this.state.cAnswer) {
-        a.style.border = '2px ridge red';
-        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (this.state.selectedAnswer === this.state.bAnswer) {
         b.style.border = '2px ridge red';
         b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        c.style.border = '2px ridge green';
-        c.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-        d.style.border = '2px ridge red';
-        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-      } else {
-        a.style.border = '2px ridge red';
-        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        b.style.border = '2px ridge red';
-        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (this.state.selectedAnswer === this.state.cAnswer) {
         c.style.border = '2px ridge red';
         c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        d.style.border = '2px ridge green';
-        d.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+      } else if (this.state.selectedAnswer === this.state.dAnswer) {
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
       }
     }
   }
