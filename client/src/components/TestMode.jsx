@@ -282,6 +282,24 @@ const AnswerSpans = styled.span`
   border-radius: 12px;
 `;
 
+const CheckAnswerButton = styled.button`
+  background-color: black;
+  color: white;
+  font-family: 'Bangers', cursive;
+  border-radius: 12px;
+  margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge green;
+    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 const RevealButton = styled.button`
   background-color: black;
   color: white;
@@ -833,7 +851,7 @@ class TestMode extends React.Component {
             </FailSuccessDiv>
             <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                <button>Check Answer</button>
+                <CheckAnswerButton>Check Answer</CheckAnswerButton>
               </FailSuccessDiv>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                 <h5>Grade:</h5>
