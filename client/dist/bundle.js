@@ -638,16 +638,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       collectionName: _this.props.collectionName,
       totalCards: _this.props.cardList.length,
       currentCard: 0,
-      success: 0,
-      fail: 0,
-      answerDisplay: 'none',
-      score: 0,
-      prevScore: 0,
-      show: false,
-      totalScores: [],
-      highScore: 0,
-      showStats: false,
-      averageScore: 0
+      newQuestion: '',
+      newAnswer: ''
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -715,13 +707,21 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleQuestionEdit",
-    value: function handleQuestionEdit() {}
+    value: function handleQuestionEdit(e) {
+      this.setState({
+        newQuestion: e.target.value
+      });
+    }
   }, {
     key: "handleAnswerEdit",
-    value: function handleAnswerEdit() {}
+    value: function handleAnswerEdit(e) {
+      this.setState({
+        newAnswer: e.target.value
+      });
+    }
   }, {
     key: "confirmChanges",
-    value: function confirmChanges() {}
+    value: function confirmChanges(e) {}
   }, {
     key: "prevNextKeydown",
     value: function prevNextKeydown(e) {
@@ -914,7 +914,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   onChange: this.handleQuestionEdit,
                   style: {
                     color: 'white'
-                  }
+                  },
+                  placeholder: "Question"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
@@ -942,7 +943,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   onChange: this.handleAnswerEdit,
                   style: {
                     color: 'white'
-                  }
+                  },
+                  placeholder: "Answer"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                 type: "button",

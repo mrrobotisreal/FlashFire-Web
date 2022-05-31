@@ -296,16 +296,8 @@ class EditMode extends React.Component {
       collectionName: this.props.collectionName,
       totalCards: this.props.cardList.length,
       currentCard: 0,
-      success: 0,
-      fail: 0,
-      answerDisplay: 'none',
-      score: 0,
-      prevScore: 0,
-      show: false,
-      totalScores: [],
-      highScore: 0,
-      showStats: false,
-      averageScore: 0,
+      newQuestion: '',
+      newAnswer: '',
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -359,11 +351,19 @@ class EditMode extends React.Component {
     }
   }
 
-  handleQuestionEdit() {}
+  handleQuestionEdit(e) {
+    this.setState({
+      newQuestion: e.target.value,
+    });
+  }
 
-  handleAnswerEdit() {}
+  handleAnswerEdit(e) {
+    this.setState({
+      newAnswer: e.target.value,
+    });
+  }
 
-  confirmChanges() {}
+  confirmChanges(e) {}
 
   prevNextKeydown(e) {
     e.preventDefault();
@@ -549,7 +549,7 @@ class EditMode extends React.Component {
                 }</b>
               </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
-                <input type="text" onChange={this.handleQuestionEdit} style={{color: 'white'}} />
+                <input type="text" onChange={this.handleQuestionEdit} style={{color: 'white'}} placeholder="Question" />
               </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
                 <b>{
@@ -557,7 +557,7 @@ class EditMode extends React.Component {
                 }</b>
               </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
-                <input type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} />
+                <input type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} placeholder="Answer" />
               </QuestionAndAnswerDiv>
               <RevealButton type="button" onClick={this.confirmChanges} autoFocus>
                 Confirm
