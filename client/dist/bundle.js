@@ -651,16 +651,9 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
-    _this.reveal = _this.reveal.bind(_assertThisInitialized(_this));
-    _this.handleFail = _this.handleFail.bind(_assertThisInitialized(_this));
-    _this.handleSuccess = _this.handleSuccess.bind(_assertThisInitialized(_this));
     _this.back = _this.back.bind(_assertThisInitialized(_this));
-    _this.timeExpire = _this.timeExpire.bind(_assertThisInitialized(_this));
-    _this.showConfetti = _this.showConfetti.bind(_assertThisInitialized(_this));
     _this.prevNextKeydown = _this.prevNextKeydown.bind(_assertThisInitialized(_this));
     _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
-    _this.showStats = _this.showStats.bind(_assertThisInitialized(_this));
-    _this.closeStats = _this.closeStats.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -716,20 +709,6 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
           return;
         }
       }
-    }
-  }, {
-    key: "showStats",
-    value: function showStats() {
-      this.setState({
-        showStats: true
-      });
-    }
-  }, {
-    key: "closeStats",
-    value: function closeStats() {
-      this.setState({
-        showStats: false
-      });
     }
   }, {
     key: "prevNextKeydown",
@@ -851,65 +830,6 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
           });
         }
       }
-    }
-  }, {
-    key: "reveal",
-    value: function reveal() {
-      if (this.state.answerDisplay === 'none') {
-        this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'flex',
-          score: this.state.score,
-          prevScore: this.state.prevScore
-        });
-      } else {
-        this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore
-        });
-      }
-    }
-  }, {
-    key: "handleFail",
-    value: function handleFail() {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail += 1,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore
-      });
-    }
-  }, {
-    key: "handleSuccess",
-    value: function handleSuccess() {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success += 1,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score += 1,
-        prevScore: this.state.prevScore
-      });
     }
   }, {
     key: "back",

@@ -309,16 +309,9 @@ class EditMode extends React.Component {
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
-    this.reveal = this.reveal.bind(this);
-    this.handleFail = this.handleFail.bind(this);
-    this.handleSuccess = this.handleSuccess.bind(this);
     this.back = this.back.bind(this);
-    this.timeExpire = this.timeExpire.bind(this);
-    this.showConfetti = this.showConfetti.bind(this);
     this.prevNextKeydown = this.prevNextKeydown.bind(this);
     this.goToMainMenu = this.goToMainMenu.bind(this);
-    this.showStats = this.showStats.bind(this);
-    this.closeStats = this.closeStats.bind(this);
   }
 
   componentDidMount() {
@@ -361,18 +354,6 @@ class EditMode extends React.Component {
         return;
       }
     }
-  }
-
-  showStats() {
-    this.setState({
-      showStats: true,
-    });
-  }
-
-  closeStats() {
-    this.setState({
-      showStats: false,
-    });
   }
 
   prevNextKeydown(e) {
@@ -491,62 +472,6 @@ class EditMode extends React.Component {
         });
       }
     }
-  }
-
-  reveal() {
-    if (this.state.answerDisplay === 'none') {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: 'flex',
-        score: this.state.score,
-        prevScore: this.state.prevScore,
-      })
-    } else {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: 'none',
-        score: this.state.score,
-        prevScore: this.state.prevScore,
-      })
-    }
-  }
-
-  handleFail() {
-    this.setState({
-      cardList: this.state.cardList,
-      collectionName: this.state.collectionName,
-      totalCards: this.state.cardList.length,
-      currentCard: this.state.currentCard,
-      success: this.state.success,
-      fail: this.state.fail += 1,
-      answerDisplay: this.state.answerDisplay,
-      score: this.state.score,
-      prevScore: this.state.prevScore,
-    });
-  }
-
-  handleSuccess() {
-    this.setState({
-      cardList: this.state.cardList,
-      collectionName: this.state.collectionName,
-      totalCards: this.state.cardList.length,
-      currentCard: this.state.currentCard,
-      success: this.state.success += 1,
-      fail: this.state.fail,
-      answerDisplay: this.state.answerDisplay,
-      score: this.state.score += 1,
-      prevScore: this.state.prevScore,
-    });
   }
 
   back(score) {
