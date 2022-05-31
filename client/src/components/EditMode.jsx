@@ -580,39 +580,6 @@ class EditMode extends Component {
     this.props.goBack();
   }
 
-  timeExpire() {
-    if (this.state.score > this.state.prevScore) {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore,
-        show: true,
-      })
-    }
-  }
-
-  showConfetti() {
-    this.setState({
-      cardList: this.state.cardList,
-      collectionName: this.state.collectionName,
-      totalCards: this.state.cardList.length,
-      currentCard: this.state.currentCard,
-      success: this.state.success,
-      fail: this.state.fail,
-      answerDisplay: this.state.answerDisplay,
-      score: this.state.score,
-      prevScore: this.state.prevScore,
-      show: false,
-    });
-    this.props.goBack();
-  }
-
   render() {
     return (
       <>
@@ -622,16 +589,6 @@ class EditMode extends Component {
               this.state.collectionName
             }
           </CollectionNameTitle>
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            <StatsButton onClick={this.showStats}>
-              Show Stats
-            </StatsButton>
-          </div>
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            <TimerDiv>
-              <SetTimer expire={this.timeExpire} />
-            </TimerDiv>
-          </div>
           <CollectionDiv onKeyDown={this.prevNextKeydown}>
             <CardNumber>
               {

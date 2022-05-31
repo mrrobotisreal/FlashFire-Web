@@ -948,41 +948,6 @@ var EditMode = /*#__PURE__*/function (_Component) {
       this.props.goBack();
     }
   }, {
-    key: "timeExpire",
-    value: function timeExpire() {
-      if (this.state.score > this.state.prevScore) {
-        this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
-          show: true
-        });
-      }
-    }
-  }, {
-    key: "showConfetti",
-    value: function showConfetti() {
-      this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore,
-        show: false
-      });
-      this.props.goBack();
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
@@ -990,29 +955,6 @@ var EditMode = /*#__PURE__*/function (_Component) {
           onKeyDown: this.prevNextKeydown,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CollectionNameTitle, {
             children: this.state.collectionName
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            style: {
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column'
-            },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(StatsButton, {
-              onClick: this.showStats,
-              children: "Show Stats"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            style: {
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column'
-            },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TimerDiv, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_SetTimer_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                expire: this.timeExpire
-              })
-            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(CollectionDiv, {
             onKeyDown: this.prevNextKeydown,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CardNumber, {
