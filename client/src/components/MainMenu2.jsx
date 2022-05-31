@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
 import TestModeEasy from './TestModeEasy.jsx';
 import TestModeDifficult from './TestModeDifficult.jsx';
+import EditMode from './EditMode.jsx';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
