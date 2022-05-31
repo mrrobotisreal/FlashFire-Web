@@ -2016,7 +2016,13 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "chooseEditMode",
-    value: function chooseEditMode() {}
+    value: function chooseEditMode() {
+      this.setState({
+        modesDisplayed: false,
+        isChoosing: false,
+        isEditing: true
+      });
+    }
   }, {
     key: "chooseCollection",
     value: function chooseCollection(e) {

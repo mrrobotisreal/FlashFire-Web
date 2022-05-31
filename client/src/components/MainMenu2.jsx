@@ -456,7 +456,13 @@ class MainMenu2 extends React.Component {
     }
   }
 
-  chooseEditMode() {}
+  chooseEditMode() {
+    this.setState({
+      modesDisplayed: false,
+      isChoosing: false,
+      isEditing: true,
+    });
+  }
 
   chooseCollection(e) {
     this.setState({
