@@ -625,28 +625,6 @@ class EditMode extends Component {
               <RevealButton type="button" onClick={this.reveal}>
                 Confirm
               </RevealButton>
-              <FailSuccessDiv>
-                <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1'}}>
-                  <FailSuccessButton onClick={this.handleFail}>
-                    <b>❌</b>
-                  </FailSuccessButton>
-                </FailSuccessIndividualDiv>
-                <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '2'}}>
-                  <FailSuccessCount>
-                    {this.state.fail}
-                  </FailSuccessCount>
-                </FailSuccessIndividualDiv>
-                <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1'}}>
-                  <SuccessButton onClick={this.handleSuccess}>
-                  <b>✔️</b>
-                  </SuccessButton>
-                </FailSuccessIndividualDiv>
-                <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '2'}}>
-                  <FailSuccessCount>
-                    {this.state.success}
-                  </FailSuccessCount>
-                </FailSuccessIndividualDiv>
-              </FailSuccessDiv>
             </FlashCardDiv>
             <MainMenuDiv>
               <ThemeProvider theme={theme}>

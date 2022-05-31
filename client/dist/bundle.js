@@ -993,46 +993,6 @@ var EditMode = /*#__PURE__*/function (_Component) {
                 type: "button",
                 onClick: this.reveal,
                 children: "Confirm"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
-                  style: {
-                    gridColumn: '1',
-                    gridRow: '1'
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessButton, {
-                    onClick: this.handleFail,
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                      children: "\u274C"
-                    })
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
-                  style: {
-                    gridColumn: '1',
-                    gridRow: '2'
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessCount, {
-                    children: this.state.fail
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
-                  style: {
-                    gridColumn: '2',
-                    gridRow: '1'
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(SuccessButton, {
-                    onClick: this.handleSuccess,
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                      children: "\u2714\uFE0F"
-                    })
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
-                  style: {
-                    gridColumn: '2',
-                    gridRow: '2'
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessCount, {
-                    children: this.state.success
-                  })
-                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
