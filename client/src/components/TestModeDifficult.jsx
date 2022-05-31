@@ -485,6 +485,10 @@ class TestModeDifficult extends React.Component {
       document.getElementById('C').style.boxShadow = 'none';
       document.getElementById('D').style.border = 'none';
       document.getElementById('D').style.boxShadow = 'none';
+      document.getElementById('E').style.border = 'none';
+      document.getElementById('E').style.boxShadow = 'none';
+      document.getElementById('F').style.border = 'none';
+      document.getElementById('F').style.boxShadow = 'none';
     } else if (e.target.id === 'B') {
       this.setState({
         selectedAnswer: this.state.bAnswer,
@@ -495,6 +499,10 @@ class TestModeDifficult extends React.Component {
       document.getElementById('C').style.boxShadow = 'none';
       document.getElementById('D').style.border = 'none';
       document.getElementById('D').style.boxShadow = 'none';
+      document.getElementById('E').style.border = 'none';
+      document.getElementById('E').style.boxShadow = 'none';
+      document.getElementById('F').style.border = 'none';
+      document.getElementById('F').style.boxShadow = 'none';
     } else if (e.target.id === 'C') {
       this.setState({
         selectedAnswer: this.state.cAnswer,
@@ -505,7 +513,11 @@ class TestModeDifficult extends React.Component {
       document.getElementById('A').style.boxShadow = 'none';
       document.getElementById('D').style.border = 'none';
       document.getElementById('D').style.boxShadow = 'none';
-    } else {
+      document.getElementById('E').style.border = 'none';
+      document.getElementById('E').style.boxShadow = 'none';
+      document.getElementById('F').style.border = 'none';
+      document.getElementById('F').style.boxShadow = 'none';
+    } else if (e.target.id === 'D') {
       this.setState({
         selectedAnswer: this.state.dAnswer,
       });
@@ -515,15 +527,37 @@ class TestModeDifficult extends React.Component {
       document.getElementById('C').style.boxShadow = 'none';
       document.getElementById('A').style.border = 'none';
       document.getElementById('A').style.boxShadow = 'none';
+      document.getElementById('E').style.border = 'none';
+      document.getElementById('E').style.boxShadow = 'none';
+      document.getElementById('F').style.border = 'none';
+      document.getElementById('F').style.boxShadow = 'none';
+    } else if (e.target.id === 'E') {
+      document.getElementById('B').style.border = 'none';
+      document.getElementById('B').style.boxShadow = 'none';
+      document.getElementById('C').style.border = 'none';
+      document.getElementById('C').style.boxShadow = 'none';
+      document.getElementById('A').style.border = 'none';
+      document.getElementById('A').style.boxShadow = 'none';
+      document.getElementById('D').style.border = 'none';
+      document.getElementById('D').style.boxShadow = 'none';
+      document.getElementById('F').style.border = 'none';
+      document.getElementById('F').style.boxShadow = 'none';
+    } else {
+      document.getElementById('B').style.border = 'none';
+      document.getElementById('B').style.boxShadow = 'none';
+      document.getElementById('C').style.border = 'none';
+      document.getElementById('C').style.boxShadow = 'none';
+      document.getElementById('A').style.border = 'none';
+      document.getElementById('A').style.boxShadow = 'none';
+      document.getElementById('E').style.border = 'none';
+      document.getElementById('E').style.boxShadow = 'none';
+      document.getElementById('D').style.border = 'none';
+      document.getElementById('D').style.boxShadow = 'none';
     }
-    setTimeout(() => {
-      console.log('selected answer is -> ', this.state.selectedAnswer);
-      console.log('is the answer correct? ', this.state.correctAnswer === this.state.selectedAnswer);
-    }, 2000);
   }
 
   checkAnswer(e) {
-    let a = document.getElementById('A'), b = document.getElementById('B'), c = document.getElementById('C'), d = document.getElementById('D');
+    let a = document.getElementById('A'), b = document.getElementById('B'), c = document.getElementById('C'), d = document.getElementById('D'), e = document.getElementById('E'), f = document.getElementById('F');
     e.preventDefault();
     if (this.state.selectedAnswer === this.state.correctAnswer) {
       this.setState({
@@ -540,9 +574,15 @@ class TestModeDifficult extends React.Component {
       } else if (c.style.border === '2px ridge purple') {
         c.style.border = '2px ridge green';
         c.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
-      } else {
+      } else if (d.style.border === '2px ridge purple') {
         d.style.border = '2px ridge green';
         d.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+      } else if (e.style.border === '2px ridge purple') {
+        e.style.border = '2px ridge green';
+        e.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+      } else {
+        f.style.border = '2px ridge green';
+        f.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
       }
     } else {
       this.setState({
@@ -560,6 +600,12 @@ class TestModeDifficult extends React.Component {
       } else if (this.state.selectedAnswer === this.state.dAnswer) {
         d.style.border = '2px ridge red';
         d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (this.state.selectedAnswer === this.state.eAnswer) {
+        e.style.border = '2px ridge red';
+        e.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (this.state.selectedAnswer === this.stat.fAnswer) {
+        f.style.border = '2px ridge red';
+        f.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
       }
     }
   }
