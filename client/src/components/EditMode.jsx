@@ -644,14 +644,6 @@ class EditMode extends Component {
                   </FailSuccessCount>
                 </FailSuccessIndividualDiv>
               </FailSuccessDiv>
-              <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-                <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                  <h3>Previous Score</h3>
-                </FailSuccessDiv>
-                <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                  {this.state.prevScore}
-                </FailSuccessDiv>
-              </FailSuccessDiv>
             </FlashCardDiv>
             <MainMenuDiv>
               <ThemeProvider theme={theme}>

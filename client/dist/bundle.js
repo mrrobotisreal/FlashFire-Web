@@ -1029,29 +1029,6 @@ var EditMode = /*#__PURE__*/function (_Component) {
                     children: this.state.success
                   })
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
-                style: {
-                  display: 'flex',
-                  justifyContent: 'center',
-                  flexDirection: 'column'
-                },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessDiv, {
-                  style: {
-                    display: 'flex',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                    children: "Previous Score"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessDiv, {
-                  style: {
-                    display: 'flex',
-                    textAlign: 'center',
-                    justifyContent: 'center'
-                  },
-                  children: this.state.prevScore
-                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
