@@ -556,9 +556,9 @@ class TestModeDifficult extends React.Component {
     }
   }
 
-  checkAnswer(e) {
+  checkAnswer(event) {
     let a = document.getElementById('A'), b = document.getElementById('B'), c = document.getElementById('C'), d = document.getElementById('D'), e = document.getElementById('E'), f = document.getElementById('F');
-    e.preventDefault();
+    event.preventDefault();
     if (this.state.selectedAnswer === this.state.correctAnswer) {
       this.setState({
         score: this.state.score += 1,
