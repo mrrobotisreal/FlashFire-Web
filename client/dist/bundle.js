@@ -2443,7 +2443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -2522,6 +2522,8 @@ var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div
 var KeyReceiver = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  &:focus {\n    outline: none\n  }\n"])));
 var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
 var StatsButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
+var AnswerSpans = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  overflow-wrap: break-word;\n"])));
+var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
 
 var TestMode = /*#__PURE__*/function (_React$Component) {
   _inherits(TestMode, _React$Component);
@@ -2550,7 +2552,15 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
       highScore: 0,
       showStats: false,
       averageScore: 0,
-      grade: 0
+      grade: 0,
+      answerArray: [],
+      abcdAnswers: [],
+      correctAnswer: '',
+      selectedAnswer: '',
+      aAnswer: '',
+      bAnswer: '',
+      cAnswer: '',
+      dAnswer: ''
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -2564,6 +2574,8 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
     _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
     _this.showStats = _this.showStats.bind(_assertThisInitialized(_this));
     _this.closeStats = _this.closeStats.bind(_assertThisInitialized(_this));
+    _this.renderAnswers = _this.renderAnswers.bind(_assertThisInitialized(_this));
+    _this.selectAnswer = _this.selectAnswer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2586,7 +2598,8 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
 
       this.setState({
         cardList: array
-      });
+      }); // this.renderAnswers();
+
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
         var data = _ref2.data;
         var sum = data.totalScores.reduce(function (total, num) {
@@ -2600,13 +2613,15 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
           highScore: data.highScore,
           averageScore: average
         });
+
+        _this2.renderAnswers();
       })["catch"](function (err) {
         return console.error(err);
       });
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
+    value: function componentDidUpdate(prevProps, prevState) {
       if (this.props.pressedKey !== prevProps.pressedKey) {
         if (this.props.pressedKey === 'ArrowLeft') {
           this.prevCard();
@@ -2618,7 +2633,75 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
           this.props.keydown('ArrowUp');
           return;
         }
+      } // check prev state and correct answer
+
+
+      if (this.state.correctAnswer !== prevState.correctAnswer) {
+        console.log('they be different!');
       }
+    }
+  }, {
+    key: "renderAnswers",
+    value: function renderAnswers() {
+      var answers = [];
+      var correct = this.state.cardList[this.state.currentCard].answer;
+      console.log('correct answer is -> ', correct);
+      answers.push(correct);
+      var loopCount = 0;
+
+      while (answers.length <= 4) {
+        var uniq = true;
+        loopCount++;
+        var num = Math.floor(Math.random() * this.props.cardList.length);
+
+        if (this.props.cardList[num].answer !== correct) {
+          for (var i = 0; i < answers.length; i++) {
+            if (this.props.cardList[num].answer === answers[i]) {
+              uniq = false;
+            }
+          }
+
+          if (uniq) {
+            answers.push(this.props.cardList[num].answer);
+
+            if (answers.length === 4) {
+              console.log('breaking out of this joint!');
+              break;
+            }
+          }
+        }
+
+        if (loopCount > 30) {
+          console.log('breaking loop now');
+          break;
+        }
+      }
+
+      console.log('answers after while loop -> ', answers);
+      var currentIndex = answers.length,
+          randomIndex;
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        var _ref3 = [answers[randomIndex], answers[currentIndex]];
+        answers[currentIndex] = _ref3[0];
+        answers[randomIndex] = _ref3[1];
+      }
+
+      this.setState({
+        aAnswer: answers[0],
+        bAnswer: answers[1],
+        cAnswer: answers[2],
+        dAnswer: answers[3],
+        correctAnswer: correct
+      });
+    }
+  }, {
+    key: "selectAnswer",
+    value: function selectAnswer(e) {
+      e.preventDefault();
+      console.log('answer id is -> ', e.target.id);
     }
   }, {
     key: "showStats",
@@ -2945,8 +3028,14 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
                   children: this.state.cardList[this.state.currentCard].answer
                 })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                type: "button",
+                onClick: this.reveal,
+                autoFocus: true,
+                children: "Reveal"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
+                  onClick: this.selectAnswer,
                   style: {
                     gridColumn: '1',
                     gridRow: '1',
@@ -2958,10 +3047,12 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
                         children: "A"
                       })
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "This is answer A"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
+                    id: "A",
+                    children: this.state.aAnswer
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
+                  onClick: this.selectAnswer,
                   style: {
                     gridColumn: '1',
                     gridRow: '2'
@@ -2972,10 +3063,12 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
                         children: "C"
                       })
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "This is answer C"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
+                    id: "C",
+                    children: this.state.cAnswer
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
+                  onClick: this.selectAnswer,
                   style: {
                     gridColumn: '2',
                     gridRow: '1',
@@ -2987,10 +3080,12 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
                         children: "B"
                       })
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "This is answer B"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
+                    id: "B",
+                    children: this.state.bAnswer
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
+                  onClick: this.selectAnswer,
                   style: {
                     gridColumn: '2',
                     gridRow: '2'
@@ -3001,8 +3096,9 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
                         children: "D"
                       })
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "This is answer D"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
+                    id: "D",
+                    children: this.state.dAnswer
                   })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {

@@ -274,6 +274,28 @@ const StatsButton = styled.button`
   }
 `;
 
+const AnswerSpans = styled.span`
+  overflow-wrap: break-word;
+`;
+
+const RevealButton = styled.button`
+  background-color: black;
+  color: white;
+  font-family: 'Bangers', cursive;
+  border-radius: 12px;
+  margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge green;
+    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 class TestMode extends React.Component {
   constructor(props) {
     super(props);
@@ -294,6 +316,14 @@ class TestMode extends React.Component {
       showStats: false,
       averageScore: 0,
       grade: 0,
+      answerArray: [],
+      abcdAnswers: [],
+      correctAnswer: '',
+      selectedAnswer: '',
+      aAnswer: '',
+      bAnswer: '',
+      cAnswer: '',
+      dAnswer: '',
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -307,6 +337,8 @@ class TestMode extends React.Component {
     this.goToMainMenu = this.goToMainMenu.bind(this);
     this.showStats = this.showStats.bind(this);
     this.closeStats = this.closeStats.bind(this);
+    this.renderAnswers = this.renderAnswers.bind(this);
+    this.selectAnswer = this.selectAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -320,6 +352,7 @@ class TestMode extends React.Component {
     this.setState({
       cardList: array,
     });
+    // this.renderAnswers();
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
         let sum = data.totalScores.reduce((total, num) => {
@@ -332,11 +365,12 @@ class TestMode extends React.Component {
           highScore: data.highScore,
           averageScore: average,
         });
+        this.renderAnswers();
       })
       .catch((err) => console.error(err));
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.pressedKey !== prevProps.pressedKey) {
       if (this.props.pressedKey === 'ArrowLeft') {
         this.prevCard();
@@ -349,6 +383,60 @@ class TestMode extends React.Component {
         return;
       }
     }
+    // check prev state and correct answer
+    if (this.state.correctAnswer !== prevState.correctAnswer) {
+      console.log('they be different!');
+    }
+  }
+
+  renderAnswers() {
+    let answers = [];
+    let correct = this.state.cardList[this.state.currentCard].answer;
+    console.log('correct answer is -> ', correct);
+    answers.push(correct);
+    let loopCount = 0;
+    while (answers.length <= 4) {
+      let uniq = true;
+      loopCount++;
+      let num = Math.floor(Math.random() * this.props.cardList.length);
+      if (this.props.cardList[num].answer !== correct) {
+        for (let i = 0; i < answers.length; i++) {
+          if (this.props.cardList[num].answer === answers[i]) {
+            uniq = false;
+          }
+        }
+        if (uniq) {
+          answers.push(this.props.cardList[num].answer);
+          if (answers.length === 4) {
+            console.log('breaking out of this joint!');
+            break;
+          }
+        }
+      }
+      if (loopCount > 30) {
+        console.log('breaking loop now');
+        break;
+      }
+    }
+    console.log('answers after while loop -> ', answers);
+    let currentIndex = answers.length, randomIndex;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [answers[currentIndex], answers[randomIndex]] = [answers[randomIndex], answers[currentIndex]];
+    }
+    this.setState({
+      aAnswer: answers[0],
+      bAnswer: answers[1],
+      cAnswer: answers[2],
+      dAnswer: answers[3],
+      correctAnswer: correct,
+    });
+  }
+
+  selectAnswer(e) {
+    e.preventDefault();
+    console.log('answer id is -> ', e.target.id);
   }
 
   showStats() {
@@ -650,30 +738,33 @@ class TestMode extends React.Component {
                 this.state.cardList[this.state.currentCard].answer
               }</b>
             </QuestionAndAnswerDiv>
+            <RevealButton type="button" onClick={this.reveal} autoFocus>
+                Reveal
+              </RevealButton>
             <FailSuccessDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '1', marginBottom: '2%'}}>
+              <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '1', gridRow: '1', marginBottom: '2%'}}>
                 <h5><u><b>A</b></u></h5>
-                <span>
-                  {`This is answer A`}
-                </span>
+                <AnswerSpans id="A">
+                  {this.state.aAnswer}
+                </AnswerSpans>
               </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '1', gridRow: '2'}}>
+              <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '1', gridRow: '2'}}>
                 <h5><u><b>C</b></u></h5>
-                <span>
-                  {`This is answer C`}
-                </span>
+                <AnswerSpans id="C">
+                  {this.state.cAnswer}
+                </AnswerSpans>
               </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '1', marginBottom: '2%'}}>
+              <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '2', gridRow: '1', marginBottom: '2%'}}>
                 <h5><u><b>B</b></u></h5>
-                <span>
-                  {`This is answer B`}
-                </span>
+                <AnswerSpans id="B">
+                  {this.state.bAnswer}
+                </AnswerSpans>
               </FailSuccessIndividualDiv>
-              <FailSuccessIndividualDiv style={{gridColumn: '2', gridRow: '2'}}>
+              <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '2', gridRow: '2'}}>
                 <h5><u><b>D</b></u></h5>
-                <span>
-                  {`This is answer D`}
-                </span>
+                <AnswerSpans id="D">
+                  {this.state.dAnswer}
+                </AnswerSpans>
               </FailSuccessIndividualDiv>
             </FailSuccessDiv>
             <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
