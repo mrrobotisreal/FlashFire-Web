@@ -654,6 +654,9 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     _this.back = _this.back.bind(_assertThisInitialized(_this));
     _this.prevNextKeydown = _this.prevNextKeydown.bind(_assertThisInitialized(_this));
     _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
+    _this.confirmChanges = _this.confirmChanges.bind(_assertThisInitialized(_this));
+    _this.handleQuestionEdit = _this.handleQuestionEdit.bind(_assertThisInitialized(_this));
+    _this.handleAnswerEdit = _this.handleAnswerEdit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -710,6 +713,15 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
         }
       }
     }
+  }, {
+    key: "handleQuestionEdit",
+    value: function handleQuestionEdit() {}
+  }, {
+    key: "handleAnswerEdit",
+    value: function handleAnswerEdit() {}
+  }, {
+    key: "confirmChanges",
+    value: function confirmChanges() {}
   }, {
     key: "prevNextKeydown",
     value: function prevNextKeydown(e) {
@@ -894,6 +906,18 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
+                  fontFamily: 'Noto Serif SC' || 0,
+                  fontSize: '2rem'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  type: "text",
+                  onChange: this.handleQuestionEdit,
+                  style: {
+                    color: 'white'
+                  }
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+                style: {
                   display: 'flex',
                   backgroundImage: 'linear-gradient(to bottom, black, green)',
                   border: '2px ridge darkgreen',
@@ -904,14 +928,26 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
                   children: this.state.cardList[this.state.currentCard].answer
                 })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+                style: {
+                  display: 'flex',
+                  backgroundImage: 'linear-gradient(to bottom, black, green)',
+                  border: '2px ridge darkgreen',
+                  fontFamily: 'Ubuntu',
+                  fontSize: '2rem'
+                },
+                id: "answer",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  type: "text",
+                  onChange: this.handleAnswerEdit,
+                  style: {
+                    color: 'white'
+                  }
+                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                 type: "button",
-                onClick: this.reveal,
+                onClick: this.confirmChanges,
                 autoFocus: true,
-                children: "Edit"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                type: "button",
-                onClick: this.reveal,
                 children: "Confirm"
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {

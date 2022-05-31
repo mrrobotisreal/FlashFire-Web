@@ -312,6 +312,9 @@ class EditMode extends React.Component {
     this.back = this.back.bind(this);
     this.prevNextKeydown = this.prevNextKeydown.bind(this);
     this.goToMainMenu = this.goToMainMenu.bind(this);
+    this.confirmChanges = this.confirmChanges.bind(this);
+    this.handleQuestionEdit = this.handleQuestionEdit.bind(this);
+    this.handleAnswerEdit = this.handleAnswerEdit.bind(this);
   }
 
   componentDidMount() {
@@ -355,6 +358,12 @@ class EditMode extends React.Component {
       }
     }
   }
+
+  handleQuestionEdit() {}
+
+  handleAnswerEdit() {}
+
+  confirmChanges() {}
 
   prevNextKeydown(e) {
     e.preventDefault();
@@ -539,15 +548,18 @@ class EditMode extends React.Component {
                   this.state.cardList[this.state.currentCard].question
                 }</b>
               </QuestionAndAnswerDiv>
+              <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
+                <input type="text" onChange={this.handleQuestionEdit} style={{color: 'white'}} />
+              </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
                 <b>{
                   this.state.cardList[this.state.currentCard].answer
                 }</b>
               </QuestionAndAnswerDiv>
-              <RevealButton type="button" onClick={this.reveal} autoFocus>
-                Edit
-              </RevealButton>
-              <RevealButton type="button" onClick={this.reveal}>
+              <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
+                <input type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} />
+              </QuestionAndAnswerDiv>
+              <RevealButton type="button" onClick={this.confirmChanges} autoFocus>
                 Confirm
               </RevealButton>
             </FlashCardDiv>
