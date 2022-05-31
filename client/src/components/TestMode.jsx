@@ -454,7 +454,16 @@ class TestMode extends React.Component {
       cAnswer: answers[2],
       dAnswer: answers[3],
       correctAnswer: correct,
+      answerArray: answers,
     });
+    document.getElementById('A').style.border = 'none';
+    document.getElementById('A').style.boxShadow = 'none';
+    document.getElementById('B').style.border = 'none';
+    document.getElementById('B').style.boxShadow = 'none';
+    document.getElementById('C').style.border = 'none';
+    document.getElementById('C').style.boxShadow = 'none';
+    document.getElementById('D').style.border = 'none';
+    document.getElementById('D').style.boxShadow = 'none';
   }
 
   selectAnswer(e) {
@@ -510,7 +519,93 @@ class TestMode extends React.Component {
   }
 
   checkAnswer(e) {
+    let a = document.getElementById('A'), b = document.getElementById('B'), c = document.getElementById('C'), d = document.getElementById('D');
     e.preventDefault();
+    if (this.state.selectedAnswer === this.state.correctAnswer) {
+      this.setState({
+        score: this.state.score += 1,
+        success: this.state.success += 1,
+        grade: this.state.score / this.props.cardList.length * 100,
+      });
+      if (a.style.border === '2px ridge purple') {
+        a.style.border = '2px ridge green';
+        a.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+        b.style.border = '2px ridge red';
+        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        c.style.border = '2px ridge red';
+        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (b.style.border === '2px ridge purple') {
+        a.style.border = '2px ridge red';
+        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        b.style.border = '2px ridge green';
+        b.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+        c.style.border = '2px ridge red';
+        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (c.style.border === '2px ridge purple') {
+        a.style.border = '2px ridge red';
+        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        b.style.border = '2px ridge red';
+        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        c.style.border = '2px ridge green';
+        c.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else {
+        a.style.border = '2px ridge red';
+        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        b.style.border = '2px ridge red';
+        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        c.style.border = '2px ridge red';
+        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        d.style.border = '2px ridge green';
+        d.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+      }
+    } else {
+      this.setState({
+        fail: this.state.fail += 1,
+      });
+      if (this.state.correctAnswer === this.state.aAnswer) {
+        a.style.border = '2px ridge green';
+        a.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+        b.style.border = '2px ridge red';
+        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        c.style.border = '2px ridge red';
+        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (this.state.correctAnswer === this.state.bAnswer) {
+        a.style.border = '2px ridge red';
+        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        b.style.border = '2px ridge green';
+        b.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+        c.style.border = '2px ridge red';
+        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else if (this.state.correctAnswer === this.state.cAnswer) {
+        a.style.border = '2px ridge red';
+        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        b.style.border = '2px ridge red';
+        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        c.style.border = '2px ridge green';
+        c.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+        d.style.border = '2px ridge red';
+        d.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+      } else {
+        a.style.border = '2px ridge red';
+        a.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        b.style.border = '2px ridge red';
+        b.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        c.style.border = '2px ridge red';
+        c.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
+        d.style.border = '2px ridge green';
+        d.style.boxShadow = '4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen';
+      }
+    }
   }
 
   showStats() {
@@ -851,7 +946,7 @@ class TestMode extends React.Component {
             </FailSuccessDiv>
             <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                <CheckAnswerButton>Check Answer</CheckAnswerButton>
+                <CheckAnswerButton onClick={this.checkAnswer}>Check Answer</CheckAnswerButton>
               </FailSuccessDiv>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                 <h5>Grade:</h5>
