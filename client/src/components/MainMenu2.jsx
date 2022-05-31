@@ -739,6 +739,8 @@ class MainMenu2 extends React.Component {
         modesDisplayed: false,
         flash: false,
         isChoosing: false,
+        isEditing: false,
+        isTesting: false,
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.selectedCollection,
         lastView: this.state.lastView,

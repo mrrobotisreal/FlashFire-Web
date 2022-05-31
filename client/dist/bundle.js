@@ -1789,6 +1789,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           modesDisplayed: false,
           flash: false,
           isChoosing: false,
+          isEditing: false,
+          isTesting: false,
           currentCollection: _this5.state.currentCollection,
           selectedCollection: _this5.state.selectedCollection,
           lastView: _this5.state.lastView,
@@ -3252,6 +3254,38 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
                     id: "D",
                     children: this.state.dAnswer
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
+                  onClick: this.selectAnswer,
+                  style: {
+                    gridColumn: '1',
+                    gridRow: '3'
+                  },
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("u", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                        children: "E"
+                      })
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
+                    id: "E",
+                    children: this.state.eAnswer
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
+                  onClick: this.selectAnswer,
+                  style: {
+                    gridColumn: '2',
+                    gridRow: '3'
+                  },
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("u", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                        children: "F"
+                      })
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(AnswerSpans, {
+                    id: "F",
+                    children: this.state.fAnswer
                   })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {

@@ -899,6 +899,18 @@ class TestModeDifficult extends React.Component {
                   {this.state.dAnswer}
                 </AnswerSpans>
               </FailSuccessIndividualDiv>
+              <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '1', gridRow: '3'}}>
+                <h5><u><b>E</b></u></h5>
+                <AnswerSpans id="E">
+                  {this.state.eAnswer}
+                </AnswerSpans>
+              </FailSuccessIndividualDiv>
+              <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '2', gridRow: '3'}}>
+                <h5><u><b>F</b></u></h5>
+                <AnswerSpans id="F">
+                  {this.state.fAnswer}
+                </AnswerSpans>
+              </FailSuccessIndividualDiv>
             </FailSuccessDiv>
             <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
