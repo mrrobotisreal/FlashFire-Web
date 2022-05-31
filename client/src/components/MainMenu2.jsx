@@ -432,12 +432,20 @@ class MainMenu2 extends React.Component {
 
   chooseTestMode(difficulty) {
     if (difficulty === 'easy') {
+      if (this.state.currentCollection.length < 4) {
+        alert('You must have 4 or more cards in your collection to participate in Difficult mode.');
+        return;
+      }
       this.setState({
         modesDisplayed: true,
         isChoosing: false,
         isTesting: true,
       });
     } else {
+      if (this.state.currentCollection.length < 6) {
+        alert('You must have 6 or more cards in your collection to participate in Difficult mode.');
+        return;
+      }
       this.setState({
         modesDisplayed: true,
         isChoosing: false,
@@ -730,6 +738,7 @@ class MainMenu2 extends React.Component {
         cardCount: this.state.cardCount,
         modesDisplayed: false,
         flash: false,
+        isChoosing: false,
         currentCollection: this.state.currentCollection,
         selectedCollection: this.state.selectedCollection,
         lastView: this.state.lastView,
@@ -903,6 +912,9 @@ class MainMenu2 extends React.Component {
                                       <StartButtons onClick={this.chooseEditMode}>Start</StartButtons>
                                     </ChoiceDivs>
                                   </ModesDiv>
+                                  <LogoutButton onClick={this.goBack} style={{marginTop: '2%', padding: '1%'}}>
+                                    Main Menu
+                                  </LogoutButton>
                                 </ChooseDiv>
                               </Modal>
                             </>

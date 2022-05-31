@@ -1457,12 +1457,22 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     key: "chooseTestMode",
     value: function chooseTestMode(difficulty) {
       if (difficulty === 'easy') {
+        if (this.state.currentCollection.length < 4) {
+          alert('You must have 4 or more cards in your collection to participate in Difficult mode.');
+          return;
+        }
+
         this.setState({
           modesDisplayed: true,
           isChoosing: false,
           isTesting: true
         });
       } else {
+        if (this.state.currentCollection.length < 6) {
+          alert('You must have 6 or more cards in your collection to participate in Difficult mode.');
+          return;
+        }
+
         this.setState({
           modesDisplayed: true,
           isChoosing: false,
@@ -1778,6 +1788,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           cardCount: _this5.state.cardCount,
           modesDisplayed: false,
           flash: false,
+          isChoosing: false,
           currentCollection: _this5.state.currentCollection,
           selectedCollection: _this5.state.selectedCollection,
           lastView: _this5.state.lastView,
@@ -2021,6 +2032,13 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               children: "Start"
                             })]
                           })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(LogoutButton, {
+                          onClick: this.goBack,
+                          style: {
+                            marginTop: '2%',
+                            padding: '1%'
+                          },
+                          children: "Main Menu"
                         })]
                       })
                     })]
