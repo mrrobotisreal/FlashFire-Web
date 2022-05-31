@@ -717,46 +717,6 @@ class EditMode extends Component {
               <b>{`>`}</b>
             </NextButton>
           </PrevNextDiv>
-          <Modal open={this.state.showStats}>
-            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
-              <ModalButton onClick={this.closeStats}>X</ModalButton>
-              <h1><u>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</u></h1>
-              <h3 style={{marginTop: '1%'}}>
-                {`High Score: ${this.state.highScore}`}
-              </h3>
-              <hr />
-              <h3>
-                {`Most Recent Score: ${this.state.prevScore}`}
-              </h3>
-              <hr />
-              <h3>
-                {`Average Score: ${this.state.averageScore}`}
-              </h3>
-              <hr />
-              <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>
-                <Stats totalScores={this.state.totalScores} />
-              </div>
-            </HighScoreDiv>
-          </Modal>
-          <Modal open={this.state.show}>
-                <HighScoreDiv>
-                  <h1>{`Congratulations ${this.props.user}!`}</h1>
-                  <h2>{`You beat your previous score of ${this.state.prevScore} with ${this.state.score}!`}</h2>
-                </HighScoreDiv>
-          </Modal>
-          <Modal
-            open={this.state.show}
-            onClick={this.showConfetti}
-          >
-            <div className="PromptSubmit">
-              <Confetti
-                recycle={false}
-                // run={testsPassed}
-                numberOfPieces={1000}
-                gravity={2}
-              />
-            </div>
-          </Modal>
         </KeyReceiver>
       </>
     )
