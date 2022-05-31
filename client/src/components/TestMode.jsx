@@ -129,6 +129,8 @@ const FailSuccessIndividualDiv = styled.div`
   flex-direction: column;
   transition: .2s;
   border-radius: 12px;
+  margin-left: 2%;
+  margin-right: 2%;
 `;
 
 const FailSuccessButton = styled.button`
@@ -276,6 +278,8 @@ const StatsButton = styled.button`
 
 const AnswerSpans = styled.span`
   overflow-wrap: break-word;
+  padding: 2%;
+  border-radius: 12px;
 `;
 
 const RevealButton = styled.button`
@@ -339,6 +343,7 @@ class TestMode extends React.Component {
     this.closeStats = this.closeStats.bind(this);
     this.renderAnswers = this.renderAnswers.bind(this);
     this.selectAnswer = this.selectAnswer.bind(this);
+    this.checkAnswer = this.checkAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -437,6 +442,57 @@ class TestMode extends React.Component {
   selectAnswer(e) {
     e.preventDefault();
     console.log('answer id is -> ', e.target.id);
+    document.getElementById(e.target.id).style.border = '2px ridge purple';
+    document.getElementById(e.target.id).style.boxShadow = '6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple';
+    if (e.target.id === 'A') {
+      this.setState({
+        selectedAnswer: this.state.aAnswer,
+      });
+      document.getElementById('B').style.border = 'none';
+      document.getElementById('B').style.boxShadow = 'none';
+      document.getElementById('C').style.border = 'none';
+      document.getElementById('C').style.boxShadow = 'none';
+      document.getElementById('D').style.border = 'none';
+      document.getElementById('D').style.boxShadow = 'none';
+    } else if (e.target.id === 'B') {
+      this.setState({
+        selectedAnswer: this.state.bAnswer,
+      });
+      document.getElementById('A').style.border = 'none';
+      document.getElementById('A').style.boxShadow = 'none';
+      document.getElementById('C').style.border = 'none';
+      document.getElementById('C').style.boxShadow = 'none';
+      document.getElementById('D').style.border = 'none';
+      document.getElementById('D').style.boxShadow = 'none';
+    } else if (e.target.id === 'C') {
+      this.setState({
+        selectedAnswer: this.state.cAnswer,
+      });
+      document.getElementById('B').style.border = 'none';
+      document.getElementById('B').style.boxShadow = 'none';
+      document.getElementById('A').style.border = 'none';
+      document.getElementById('A').style.boxShadow = 'none';
+      document.getElementById('D').style.border = 'none';
+      document.getElementById('D').style.boxShadow = 'none';
+    } else {
+      this.setState({
+        selectedAnswer: this.state.dAnswer,
+      });
+      document.getElementById('B').style.border = 'none';
+      document.getElementById('B').style.boxShadow = 'none';
+      document.getElementById('C').style.border = 'none';
+      document.getElementById('C').style.boxShadow = 'none';
+      document.getElementById('A').style.border = 'none';
+      document.getElementById('A').style.boxShadow = 'none';
+    }
+    setTimeout(() => {
+      console.log('selected answer is -> ', this.state.selectedAnswer);
+      console.log('is the answer correct? ', this.state.correctAnswer === this.state.selectedAnswer);
+    }, 2000);
+  }
+
+  checkAnswer(e) {
+    e.preventDefault();
   }
 
   showStats() {
@@ -471,6 +527,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       } else {
         this.setState({
           cardList: this.state.cardList,
@@ -483,6 +540,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       }
     } else {
       if (this.state.answerDisplay !== 'none') {
@@ -497,6 +555,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       } else {
         this.setState({
           cardList: this.state.cardList,
@@ -509,6 +568,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       }
     }
   }
@@ -527,6 +587,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       } else {
         this.setState({
           cardList: this.state.cardList,
@@ -539,6 +600,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       }
     } else {
       if (this.state.answerDisplay !== 'none') {
@@ -553,6 +615,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       } else {
         this.setState({
           cardList: this.state.cardList,
@@ -565,6 +628,7 @@ class TestMode extends React.Component {
           score: this.state.score,
           prevScore: this.state.prevScore,
         });
+        this.renderAnswers();
       }
     }
   }
@@ -739,8 +803,8 @@ class TestMode extends React.Component {
               }</b>
             </QuestionAndAnswerDiv>
             <RevealButton type="button" onClick={this.reveal} autoFocus>
-                Reveal
-              </RevealButton>
+              Reveal
+            </RevealButton>
             <FailSuccessDiv>
               <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '1', gridRow: '1', marginBottom: '2%'}}>
                 <h5><u><b>A</b></u></h5>

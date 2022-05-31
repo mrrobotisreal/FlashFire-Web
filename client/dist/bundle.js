@@ -2509,7 +2509,7 @@ var CardNumber = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_t
 var FlashCardDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  padding: 2%;\n"])));
 var QuestionAndAnswerDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  border: 2px ridge orangered;\n  border-radius: 12px;\n  background-image: linear-gradient(to bottom, black, darkred);\n  color: white;\n  font-family: 'Bangers', cursive;\n  padding: 2%;\n  overflow: break-word;\n  margin-bottom: 2%;\n  transition: .2s;\n"])));
 var FailSuccessDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: grid;\n  margin: 2%;\n"])));
-var FailSuccessIndividualDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  transition: .2s;\n  border-radius: 12px;\n"])));
+var FailSuccessIndividualDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  transition: .2s;\n  border-radius: 12px;\n  margin-left: 2%;\n  margin-right: 2%;\n"])));
 var FailSuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
 var SuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
 var FailSuccessCount = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  color: yellow;\n  background-color: black;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  display: flex;\n  justify-content: center;\n"])));
@@ -2522,7 +2522,7 @@ var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div
 var KeyReceiver = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  &:focus {\n    outline: none\n  }\n"])));
 var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
 var StatsButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
-var AnswerSpans = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  overflow-wrap: break-word;\n"])));
+var AnswerSpans = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  overflow-wrap: break-word;\n  padding: 2%;\n  border-radius: 12px;\n"])));
 var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
 
 var TestMode = /*#__PURE__*/function (_React$Component) {
@@ -2576,6 +2576,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
     _this.closeStats = _this.closeStats.bind(_assertThisInitialized(_this));
     _this.renderAnswers = _this.renderAnswers.bind(_assertThisInitialized(_this));
     _this.selectAnswer = _this.selectAnswer.bind(_assertThisInitialized(_this));
+    _this.checkAnswer = _this.checkAnswer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2700,8 +2701,64 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "selectAnswer",
     value: function selectAnswer(e) {
+      var _this3 = this;
+
       e.preventDefault();
       console.log('answer id is -> ', e.target.id);
+      document.getElementById(e.target.id).style.border = '2px ridge purple';
+      document.getElementById(e.target.id).style.boxShadow = '6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple';
+
+      if (e.target.id === 'A') {
+        this.setState({
+          selectedAnswer: this.state.aAnswer
+        });
+        document.getElementById('B').style.border = 'none';
+        document.getElementById('B').style.boxShadow = 'none';
+        document.getElementById('C').style.border = 'none';
+        document.getElementById('C').style.boxShadow = 'none';
+        document.getElementById('D').style.border = 'none';
+        document.getElementById('D').style.boxShadow = 'none';
+      } else if (e.target.id === 'B') {
+        this.setState({
+          selectedAnswer: this.state.bAnswer
+        });
+        document.getElementById('A').style.border = 'none';
+        document.getElementById('A').style.boxShadow = 'none';
+        document.getElementById('C').style.border = 'none';
+        document.getElementById('C').style.boxShadow = 'none';
+        document.getElementById('D').style.border = 'none';
+        document.getElementById('D').style.boxShadow = 'none';
+      } else if (e.target.id === 'C') {
+        this.setState({
+          selectedAnswer: this.state.cAnswer
+        });
+        document.getElementById('B').style.border = 'none';
+        document.getElementById('B').style.boxShadow = 'none';
+        document.getElementById('A').style.border = 'none';
+        document.getElementById('A').style.boxShadow = 'none';
+        document.getElementById('D').style.border = 'none';
+        document.getElementById('D').style.boxShadow = 'none';
+      } else {
+        this.setState({
+          selectedAnswer: this.state.dAnswer
+        });
+        document.getElementById('B').style.border = 'none';
+        document.getElementById('B').style.boxShadow = 'none';
+        document.getElementById('C').style.border = 'none';
+        document.getElementById('C').style.boxShadow = 'none';
+        document.getElementById('A').style.border = 'none';
+        document.getElementById('A').style.boxShadow = 'none';
+      }
+
+      setTimeout(function () {
+        console.log('selected answer is -> ', _this3.state.selectedAnswer);
+        console.log('is the answer correct? ', _this3.state.correctAnswer === _this3.state.selectedAnswer);
+      }, 2000);
+    }
+  }, {
+    key: "checkAnswer",
+    value: function checkAnswer(e) {
+      e.preventDefault();
     }
   }, {
     key: "showStats",
@@ -2740,6 +2797,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         } else {
           this.setState({
             cardList: this.state.cardList,
@@ -2752,6 +2810,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
@@ -2766,6 +2825,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         } else {
           this.setState({
             cardList: this.state.cardList,
@@ -2778,6 +2838,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         }
       }
     }
@@ -2797,6 +2858,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         } else {
           this.setState({
             cardList: this.state.cardList,
@@ -2809,6 +2871,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
@@ -2823,6 +2886,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         } else {
           this.setState({
             cardList: this.state.cardList,
@@ -2835,6 +2899,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
             score: this.state.score,
             prevScore: this.state.prevScore
           });
+          this.renderAnswers();
         }
       }
     }
@@ -2900,7 +2965,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "back",
     value: function back(score) {
-      var _this3 = this;
+      var _this4 = this;
 
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
@@ -2914,7 +2979,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
           console.log(res);
           setTimeout(function () {
-            _this3.props.goBack();
+            _this4.props.goBack();
           }, 3000);
         })["catch"](function (err) {
           return console.error();
