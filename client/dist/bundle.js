@@ -708,6 +708,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleQuestionEdit",
     value: function handleQuestionEdit(e) {
+      e.preventDefault();
+      console.log('question handler -> ', e.target.value);
       this.setState({
         newQuestion: e.target.value
       });
@@ -715,6 +717,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleAnswerEdit",
     value: function handleAnswerEdit(e) {
+      e.preventDefault();
+      console.log('answer handler -> ', e.target.value);
       this.setState({
         newAnswer: e.target.value
       });
@@ -882,13 +886,13 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(KeyReceiver, {
-          onKeyDown: this.prevNextKeydown,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CollectionNameTitle, {
             children: this.state.collectionName
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(CollectionDiv, {
-            onKeyDown: this.prevNextKeydown,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CardNumber, {
               children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.totalCards)
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FlashCardDiv, {
@@ -910,12 +914,14 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   fontSize: '2rem'
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  value: this.state.newQuestion,
                   type: "text",
-                  onChange: this.handleQuestionEdit,
+                  onChange: function onChange(e) {
+                    return _this4.handleQuestionEdit(e);
+                  },
                   style: {
                     color: 'white'
-                  },
-                  placeholder: "Question"
+                  }
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
@@ -939,16 +945,18 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                 },
                 id: "answer",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                  value: this.state.newAnswer,
                   type: "text",
                   onChange: this.handleAnswerEdit,
                   style: {
                     color: 'white'
-                  },
-                  placeholder: "Answer"
+                  }
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                 type: "button",
-                onClick: this.confirmChanges,
+                onClick: function onClick(e) {
+                  return _this4.confirmChanges(e);
+                },
                 autoFocus: true,
                 children: "Confirm"
               })]
