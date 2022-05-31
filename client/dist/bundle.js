@@ -531,7 +531,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _mui_material_Button__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/Button */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
 /* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/material/styles/createTheme.js");
+/* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js");
 /* harmony import */ var _SetTimer_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SetTimer.jsx */ "./client/src/components/SetTimer.jsx");
 /* harmony import */ var react_confetti__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-confetti */ "./node_modules/react-confetti/dist/react-confetti.min.js");
 /* harmony import */ var react_confetti__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_confetti__WEBPACK_IMPORTED_MODULE_4__);
@@ -540,6 +543,18 @@ __webpack_require__.r(__webpack_exports__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -562,6 +577,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
 
 
 
@@ -617,14 +634,585 @@ var EditMode = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, EditMode);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      cardList: _this.props.cardList,
+      collectionName: _this.props.collectionName,
+      totalCards: _this.props.cardList.length,
+      currentCard: 0,
+      success: 0,
+      fail: 0,
+      answerDisplay: 'none',
+      score: 0,
+      prevScore: 0,
+      show: false,
+      totalScores: [],
+      highScore: 0,
+      showStats: false,
+      averageScore: 0
+    };
+    _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
+    _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
+    _this.reveal = _this.reveal.bind(_assertThisInitialized(_this));
+    _this.handleFail = _this.handleFail.bind(_assertThisInitialized(_this));
+    _this.handleSuccess = _this.handleSuccess.bind(_assertThisInitialized(_this));
+    _this.back = _this.back.bind(_assertThisInitialized(_this));
+    _this.timeExpire = _this.timeExpire.bind(_assertThisInitialized(_this));
+    _this.showConfetti = _this.showConfetti.bind(_assertThisInitialized(_this));
+    _this.prevNextKeydown = _this.prevNextKeydown.bind(_assertThisInitialized(_this));
+    _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
+    _this.showStats = _this.showStats.bind(_assertThisInitialized(_this));
+    _this.closeStats = _this.closeStats.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(EditMode, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var array = this.state.cardList.slice();
+      var currentIndex = array.length,
+          randomIndex;
+
+      while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        var _ref = [array[randomIndex], array[currentIndex]];
+        array[currentIndex] = _ref[0];
+        array[randomIndex] = _ref[1];
+      }
+
+      this.setState({
+        cardList: array
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
+        var data = _ref2.data;
+        var sum = data.totalScores.reduce(function (total, num) {
+          return total += num;
+        }, 0);
+        var average = sum / data.totalScores.length;
+
+        _this2.setState({
+          prevScore: data.mostRecentScore,
+          totalScores: data.totalScores,
+          highScore: data.highScore,
+          averageScore: average
+        });
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.pressedKey !== prevProps.pressedKey) {
+        if (this.props.pressedKey === 'ArrowLeft') {
+          this.prevCard();
+          this.props.keydown('ArrowUp');
+        } else if (this.props.pressedKey === 'ArrowRight') {
+          this.nextCard();
+          this.props.keydown('ArrowUp');
+        } else {
+          this.props.keydown('ArrowUp');
+          return;
+        }
+      }
+    }
+  }, {
+    key: "showStats",
+    value: function showStats() {
+      this.setState({
+        showStats: true
+      });
+    }
+  }, {
+    key: "closeStats",
+    value: function closeStats() {
+      this.setState({
+        showStats: false
+      });
+    }
+  }, {
+    key: "prevNextKeydown",
+    value: function prevNextKeydown(e) {
+      e.preventDefault();
+      this.props.keydown(e.key);
+      this.props.keydown('ArrowUp');
+    }
+  }, {
+    key: "nextCard",
+    value: function nextCard() {
+      if (this.state.currentCard === this.state.totalCards - 1) {
+        if (this.state.answerDisplay !== 'none') {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: 0,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: 'none',
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        } else {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: 0,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: this.state.answerDisplay,
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        }
+      } else {
+        if (this.state.answerDisplay !== 'none') {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: this.state.currentCard += 1,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: 'none',
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        } else {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: this.state.currentCard += 1,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: this.state.answerDisplay,
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        }
+      }
+    }
+  }, {
+    key: "prevCard",
+    value: function prevCard() {
+      if (this.state.currentCard === 0) {
+        if (this.state.answerDisplay !== 'none') {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: this.state.totalCards - 1,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: 'none',
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        } else {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: this.state.totalCards - 1,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: this.state.answerDisplay,
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        }
+      } else {
+        if (this.state.answerDisplay !== 'none') {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: this.state.currentCard -= 1,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: 'none',
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        } else {
+          this.setState({
+            cardList: this.state.cardList,
+            collectionName: this.state.collectionName,
+            totalCards: this.state.cardList.length,
+            currentCard: this.state.currentCard -= 1,
+            success: this.state.success,
+            fail: this.state.fail,
+            answerDisplay: this.state.answerDisplay,
+            score: this.state.score,
+            prevScore: this.state.prevScore
+          });
+        }
+      }
+    }
+  }, {
+    key: "reveal",
+    value: function reveal() {
+      if (this.state.answerDisplay === 'none') {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: 'flex',
+          score: this.state.score,
+          prevScore: this.state.prevScore
+        });
+      } else {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: 'none',
+          score: this.state.score,
+          prevScore: this.state.prevScore
+        });
+      }
+    }
+  }, {
+    key: "handleFail",
+    value: function handleFail() {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard,
+        success: this.state.success,
+        fail: this.state.fail += 1,
+        answerDisplay: this.state.answerDisplay,
+        score: this.state.score,
+        prevScore: this.state.prevScore
+      });
+    }
+  }, {
+    key: "handleSuccess",
+    value: function handleSuccess() {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard,
+        success: this.state.success += 1,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+        score: this.state.score += 1,
+        prevScore: this.state.prevScore
+      });
+    }
+  }, {
+    key: "back",
+    value: function back(score) {
+      var _this3 = this;
+
+      var options = {
+        totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
+        score: this.state.score
+      };
+
+      if (this.state.score > this.state.prevScore) {
+        this.setState({
+          show: true
+        });
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+          console.log(res);
+          setTimeout(function () {
+            _this3.props.goBack();
+          }, 3000);
+        })["catch"](function (err) {
+          return console.error();
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+          console.log(res);
+        })["catch"](function (err) {
+          return console.error();
+        });
+        this.props.goBack();
+      }
+    }
+  }, {
+    key: "goToMainMenu",
+    value: function goToMainMenu() {
+      this.props.goBack();
+    }
+  }, {
+    key: "timeExpire",
+    value: function timeExpire() {
+      if (this.state.score > this.state.prevScore) {
+        this.setState({
+          cardList: this.state.cardList,
+          collectionName: this.state.collectionName,
+          totalCards: this.state.cardList.length,
+          currentCard: this.state.currentCard,
+          success: this.state.success,
+          fail: this.state.fail,
+          answerDisplay: this.state.answerDisplay,
+          score: this.state.score,
+          prevScore: this.state.prevScore,
+          show: true
+        });
+      }
+    }
+  }, {
+    key: "showConfetti",
+    value: function showConfetti() {
+      this.setState({
+        cardList: this.state.cardList,
+        collectionName: this.state.collectionName,
+        totalCards: this.state.cardList.length,
+        currentCard: this.state.currentCard,
+        success: this.state.success,
+        fail: this.state.fail,
+        answerDisplay: this.state.answerDisplay,
+        score: this.state.score,
+        prevScore: this.state.prevScore,
+        show: false
+      });
+      this.props.goBack();
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {});
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(KeyReceiver, {
+          onKeyDown: this.prevNextKeydown,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CollectionNameTitle, {
+            children: this.state.collectionName
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(StatsButton, {
+              onClick: this.showStats,
+              children: "Show Stats"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TimerDiv, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_SetTimer_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                expire: this.timeExpire
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(CollectionDiv, {
+            onKeyDown: this.prevNextKeydown,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CardNumber, {
+              children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.totalCards)
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FlashCardDiv, {
+              children: [this.state.cardList[this.state.currentCard].photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ImageDiv, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Image, {
+                  src: this.state.cardList[this.state.currentCard].photo
+                })
+              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+                style: {
+                  fontFamily: 'Noto Serif SC' || 0,
+                  fontSize: '2rem'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                  children: this.state.cardList[this.state.currentCard].question
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+                style: {
+                  display: this.state.answerDisplay,
+                  backgroundImage: 'linear-gradient(to bottom, black, green)',
+                  border: '2px ridge darkgreen',
+                  fontFamily: 'Ubuntu',
+                  fontSize: '2rem'
+                },
+                id: "answer",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                  children: this.state.cardList[this.state.currentCard].answer
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                type: "button",
+                onClick: this.reveal,
+                autoFocus: true,
+                children: "Reveal"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
+                  style: {
+                    gridColumn: '1',
+                    gridRow: '1'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessButton, {
+                    onClick: this.handleFail,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                      children: "\u274C"
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
+                  style: {
+                    gridColumn: '1',
+                    gridRow: '2'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessCount, {
+                    children: this.state.fail
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
+                  style: {
+                    gridColumn: '2',
+                    gridRow: '1'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(SuccessButton, {
+                    onClick: this.handleSuccess,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                      children: "\u2714\uFE0F"
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessIndividualDiv, {
+                  style: {
+                    gridColumn: '2',
+                    gridRow: '2'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessCount, {
+                    children: this.state.success
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
+                style: {
+                  display: 'flex',
+                  justifyContent: 'center',
+                  flexDirection: 'column'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessDiv, {
+                  style: {
+                    display: 'flex',
+                    textAlign: 'center',
+                    justifyContent: 'center'
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                    children: "Previous Score"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(FailSuccessDiv, {
+                  style: {
+                    display: 'flex',
+                    textAlign: 'center',
+                    justifyContent: 'center'
+                  },
+                  children: this.state.prevScore
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                theme: theme,
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                  onClick: this.back,
+                  variant: "contained",
+                  size: "large",
+                  color: "primary",
+                  style: {
+                    border: '2px ridge red'
+                  },
+                  children: "Finish"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                theme: theme,
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                  onClick: this.goToMainMenu,
+                  variant: "contained",
+                  size: "large",
+                  color: "primary",
+                  style: {
+                    border: '2px ridge red'
+                  },
+                  children: "Main Menu"
+                })
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(PrevNextDiv, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PrevButton, {
+              onClick: this.prevCard,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                children: "<"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(NextButton, {
+              onClick: this.nextCard,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                children: ">"
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            open: this.state.showStats,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(HighScoreDiv, {
+              style: {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                backgroundColor: 'none',
+                backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ModalButton, {
+                onClick: this.closeStats,
+                children: "X"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("u", {
+                  children: "".concat(this.props.user, "'s Stats for ").concat(this.props.collectionName)
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                style: {
+                  marginTop: '1%'
+                },
+                children: "High Score: ".concat(this.state.highScore)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                children: "Most Recent Score: ".concat(this.state.prevScore)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                children: "Average Score: ".concat(this.state.averageScore)
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                style: {
+                  width: '60%',
+                  height: '40%',
+                  backgroundColor: 'white'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Stats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                  totalScores: this.state.totalScores
+                })
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            open: this.state.show,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(HighScoreDiv, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+                children: "Congratulations ".concat(this.props.user, "!")
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+                children: "You beat your previous score of ".concat(this.state.prevScore, " with ").concat(this.state.score, "!")
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            open: this.state.show,
+            onClick: this.showConfetti,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "PromptSubmit",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((react_confetti__WEBPACK_IMPORTED_MODULE_4___default()), {
+                recycle: false // run={testsPassed}
+                ,
+                numberOfPieces: 1000,
+                gravity: 2
+              })
+            })
+          })]
+        })
+      });
     }
   }]);
 
