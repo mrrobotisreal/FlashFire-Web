@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
-import TestMode from './TestMode.jsx';
+import TestModeEasy from './TestModeEasy.jsx';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -938,7 +938,7 @@ class MainMenu2 extends React.Component {
                       ?
                       (
                         // easy test goes here
-                        <TestMode collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                        <TestModeEasy collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                       )
                       : (
                         // difficult test goes here

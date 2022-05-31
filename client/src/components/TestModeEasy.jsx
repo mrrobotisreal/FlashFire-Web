@@ -318,7 +318,7 @@ const RevealButton = styled.button`
   }
 `;
 
-class TestMode extends React.Component {
+class TestModeEasy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1021,4 +1021,4 @@ class TestMode extends React.Component {
   }
 }
 
-export default TestMode;
+export default TestModeEasy;

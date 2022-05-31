@@ -1239,7 +1239,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashCards.jsx */ "./client/src/components/FlashCards.jsx");
-/* harmony import */ var _TestMode_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TestMode.jsx */ "./client/src/components/TestMode.jsx");
+/* harmony import */ var _TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TestModeEasy.jsx */ "./client/src/components/TestModeEasy.jsx");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -2048,7 +2048,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) : !this.state.isDifficult ?
             /*#__PURE__*/
             // easy test goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_TestMode_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2416,10 +2416,10 @@ var Stats = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./client/src/components/TestMode.jsx":
-/*!********************************************!*\
-  !*** ./client/src/components/TestMode.jsx ***!
-  \********************************************/
+/***/ "./client/src/components/TestModeEasy.jsx":
+/*!************************************************!*\
+  !*** ./client/src/components/TestModeEasy.jsx ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2526,15 +2526,15 @@ var AnswerSpans = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span
 var CheckAnswerButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
 var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
 
-var TestMode = /*#__PURE__*/function (_React$Component) {
-  _inherits(TestMode, _React$Component);
+var TestModeEasy = /*#__PURE__*/function (_React$Component) {
+  _inherits(TestModeEasy, _React$Component);
 
-  var _super = _createSuper(TestMode);
+  var _super = _createSuper(TestModeEasy);
 
-  function TestMode(props) {
+  function TestModeEasy(props) {
     var _this;
 
-    _classCallCheck(this, TestMode);
+    _classCallCheck(this, TestModeEasy);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -2581,7 +2581,7 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(TestMode, [{
+  _createClass(TestModeEasy, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -3400,10 +3400,10 @@ var TestMode = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return TestMode;
+  return TestModeEasy;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TestMode);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TestModeEasy);
 
 /***/ }),
 
