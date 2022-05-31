@@ -2018,7 +2018,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     key: "chooseEditMode",
     value: function chooseEditMode() {
       this.setState({
-        modesDisplayed: false,
+        modesDisplayed: true,
         isChoosing: false,
         isEditing: true
       });

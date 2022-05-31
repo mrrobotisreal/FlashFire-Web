@@ -458,7 +458,7 @@ class MainMenu2 extends React.Component {
 
   chooseEditMode() {
     this.setState({
-      modesDisplayed: false,
+      modesDisplayed: true,
       isChoosing: false,
       isEditing: true,
     });
