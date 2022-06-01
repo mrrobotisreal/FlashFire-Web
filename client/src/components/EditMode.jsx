@@ -370,6 +370,9 @@ class EditMode extends React.Component {
       currentCard: 0,
       newQuestion: '',
       newAnswer: '',
+      addAdded: 'Add Card',
+      removeRemoved: 'Remove Card',
+      confirmConfirmed: 'Confirm',
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
@@ -455,7 +458,13 @@ class EditMode extends React.Component {
     this.setState({
       cardListSlice: [...this.state.cardListSlice, newCard],
       currentCard: newLength,
+      addAdded: 'Added Card!',
     });
+    setTimeout(() => {
+      this.setState({
+        addAdded: 'Add Card',
+      });
+    }, 750);
   }
 
   handleRemoveCard(e) {
@@ -465,19 +474,31 @@ class EditMode extends React.Component {
       this.setState({
         cardListSlice: updatedCardList,
         currentCard: this.state.currentCard -= 1,
+        removeRemoved: 'Removed Card!',
       });
+      setTimeout(() => {
+        this.setState({
+          removeRemoved: 'Remove Card'
+        });
+      }, 750);
     } else {
       updatedCardList.splice(this.state.currentCard, 1);
       this.setState({
         cardListSlice: updatedCardList,
+        removeRemoved: 'Removed Card!',
       });
+      setTimeout(() => {
+        this.setState({
+          removeRemoved: 'Remove Card'
+        });
+      }, 750);
     }
   }
 
   confirmChanges(e) {
     e.preventDefault();
     this.setState({
-      confirmConfirmed: 'Confirmed!',
+      confirmConfirmed: 'Confirmed Changes!',
     });
     setTimeout(() => {
       this.setState({
@@ -700,7 +721,7 @@ class EditMode extends React.Component {
                     {this.state.addAdded}
                   </RevealButton>
                   :
-                  <RevealButton style={{color: 'green'}} type="button" onClick={(e) => this.handleAddCard(e)}>
+                  <RevealButton style={{color: 'green', border: '2px ridge green'}} type="button" onClick={(e) => this.handleAddCard(e)}>
                     {this.state.addAdded}
                   </RevealButton>
                 }
@@ -714,7 +735,7 @@ class EditMode extends React.Component {
                     {this.state.removeRemoved}
                   </RemoveCardButton>
                   :
-                  <RemoveCardButton style={{color: 'red'}} type="button" onClick={(e) => this.handleRemoveCard(e)}>
+                  <RemoveCardButton style={{color: 'red', border: '2px ridge red'}} type="button" onClick={(e) => this.handleRemoveCard(e)}>
                     {this.state.removeRemoved}
                   </RemoveCardButton>
                 }
@@ -728,7 +749,7 @@ class EditMode extends React.Component {
                     {this.state.confirmConfirmed}
                   </RevealButton>
                   :
-                  <RevealButton style={{color: 'green'}} type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
+                  <RevealButton style={{color: 'green', border: '2px ridge green'}} type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
                     {this.state.confirmConfirmed}
                   </RevealButton>
                 }

@@ -644,7 +644,10 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       totalCards: _this.props.cardList.length,
       currentCard: 0,
       newQuestion: '',
-      newAnswer: ''
+      newAnswer: '',
+      addAdded: 'Add Card',
+      removeRemoved: 'Remove Card',
+      confirmConfirmed: 'Confirm'
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
@@ -737,6 +740,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleAddCard",
     value: function handleAddCard(e) {
+      var _this3 = this;
+
       var newCard = {
         question: '',
         answer: '',
@@ -745,38 +750,58 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       var newLength = this.state.cardListSlice.length;
       this.setState({
         cardListSlice: [].concat(_toConsumableArray(this.state.cardListSlice), [newCard]),
-        currentCard: newLength
+        currentCard: newLength,
+        addAdded: 'Added Card!'
       });
+      setTimeout(function () {
+        _this3.setState({
+          addAdded: 'Add Card'
+        });
+      }, 750);
     }
   }, {
     key: "handleRemoveCard",
     value: function handleRemoveCard(e) {
+      var _this4 = this;
+
       var updatedCardList = this.state.cardListSlice;
 
       if (this.state.currentCard === this.state.cardListSlice.length - 1) {
         updatedCardList.splice(this.state.currentCard, 1);
         this.setState({
           cardListSlice: updatedCardList,
-          currentCard: this.state.currentCard -= 1
+          currentCard: this.state.currentCard -= 1,
+          removeRemoved: 'Removed Card!'
         });
+        setTimeout(function () {
+          _this4.setState({
+            removeRemoved: 'Remove Card'
+          });
+        }, 750);
       } else {
         updatedCardList.splice(this.state.currentCard, 1);
         this.setState({
-          cardListSlice: updatedCardList
+          cardListSlice: updatedCardList,
+          removeRemoved: 'Removed Card!'
         });
+        setTimeout(function () {
+          _this4.setState({
+            removeRemoved: 'Remove Card'
+          });
+        }, 750);
       }
     }
   }, {
     key: "confirmChanges",
     value: function confirmChanges(e) {
-      var _this3 = this;
+      var _this5 = this;
 
       e.preventDefault();
       this.setState({
-        confirmConfirmed: 'Confirmed!'
+        confirmConfirmed: 'Confirmed Changes!'
       });
       setTimeout(function () {
-        _this3.setState({
+        _this5.setState({
           confirmConfirmed: 'Confirm'
         });
       }, 750);
@@ -915,7 +940,7 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "back",
     value: function back(score) {
-      var _this4 = this;
+      var _this6 = this;
 
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
@@ -929,7 +954,7 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
           console.log(res);
           setTimeout(function () {
-            _this4.props.goBack();
+            _this6.props.goBack();
           }, 3000);
         })["catch"](function (err) {
           return console.error();
@@ -951,7 +976,7 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this7 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(KeyReceiver, {
@@ -982,7 +1007,7 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   value: this.state.newQuestion,
                   type: "text",
                   onChange: function onChange(e) {
-                    return _this5.handleQuestionEdit(e);
+                    return _this7.handleQuestionEdit(e);
                   },
                   style: {
                     color: 'white'
@@ -1023,47 +1048,50 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                 children: [this.state.addAdded === 'Add Card' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                   type: "button",
                   onClick: function onClick(e) {
-                    return _this5.handleAddCard(e);
+                    return _this7.handleAddCard(e);
                   },
                   children: this.state.addAdded
                 }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                   style: {
-                    color: 'green'
+                    color: 'green',
+                    border: '2px ridge green'
                   },
                   type: "button",
                   onClick: function onClick(e) {
-                    return _this5.handleAddCard(e);
+                    return _this7.handleAddCard(e);
                   },
                   children: this.state.addAdded
                 }), this.state.removeRemoved === 'Remove Card' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RemoveCardButton, {
                   type: "button",
                   onClick: function onClick(e) {
-                    return _this5.handleRemoveCard(e);
+                    return _this7.handleRemoveCard(e);
                   },
                   children: this.state.removeRemoved
                 }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RemoveCardButton, {
                   style: {
-                    color: 'red'
+                    color: 'red',
+                    border: '2px ridge red'
                   },
                   type: "button",
                   onClick: function onClick(e) {
-                    return _this5.handleRemoveCard(e);
+                    return _this7.handleRemoveCard(e);
                   },
                   children: this.state.removeRemoved
                 }), this.state.confirmConfirmed === 'Confirm' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                   type: "button",
                   onClick: function onClick(e) {
-                    return _this5.confirmChanges(e);
+                    return _this7.confirmChanges(e);
                   },
                   autoFocus: true,
                   children: this.state.confirmConfirmed
                 }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                   style: {
-                    color: 'green'
+                    color: 'green',
+                    border: '2px ridge green'
                   },
                   type: "button",
                   onClick: function onClick(e) {
-                    return _this5.confirmChanges(e);
+                    return _this7.confirmChanges(e);
                   },
                   autoFocus: true,
                   children: this.state.confirmConfirmed
