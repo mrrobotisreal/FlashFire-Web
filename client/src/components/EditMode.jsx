@@ -424,13 +424,12 @@ class EditMode extends React.Component {
   confirmChanges(e) {
     e.preventDefault();
     let options = {
-      cardList: this.state.cardListSlice,
       collectionName: this.props.collectionName,
       updatedCollection: this.state.cardListSlice,
     };
     axios.post(`/collections/${this.props.user}/edit`, options)
       .then(({ data }) => {
-        //
+        console.log('confirm data -> ', data);
       })
       .catch((err) => console.error(err));
   }

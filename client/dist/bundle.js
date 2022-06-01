@@ -768,13 +768,12 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     value: function confirmChanges(e) {
       e.preventDefault();
       var options = {
-        cardList: this.state.cardListSlice,
         collectionName: this.props.collectionName,
         updatedCollection: this.state.cardListSlice
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/edit"), options).then(function (_ref3) {//
-
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/edit"), options).then(function (_ref3) {
         var data = _ref3.data;
+        console.log('confirm data -> ', data);
       })["catch"](function (err) {
         return console.error(err);
       });
