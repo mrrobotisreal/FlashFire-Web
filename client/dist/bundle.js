@@ -734,7 +734,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var options = {
         cardList: this.state.cardListSlice,
-        collectionName: this.props.collectionName
+        collectionName: this.props.collectionName,
+        updatedCollection: this.state.cardListSlice
       };
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/edit"), options).then(function (_ref3) {//
 

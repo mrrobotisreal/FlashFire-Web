@@ -377,6 +377,7 @@ class EditMode extends React.Component {
     let options = {
       cardList: this.state.cardListSlice,
       collectionName: this.props.collectionName,
+      updatedCollection: this.state.cardListSlice,
     };
     axios.post(`/collections/${this.props.user}/edit`, options)
       .then(({ data}) => {

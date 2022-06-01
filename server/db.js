@@ -87,7 +87,31 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   })
  };
 
- const editCollection = (username, collectionName, cb = () => {}) => {};
+ const editCollection = (username, collectionName, updatedCollection, cb = () => {}) => {
+   let user = User.findOne({'username': username});
+   user.exec((err, doc) => {
+     if (err) {
+       console.error(err);
+     } else {
+       let colls = doc.collections;
+       for (let i = 0; i < doc.collections.length; i++) {
+         if (doc.collections[i].name === collectionName) {
+           colls[i].cardList = updatedCollection;
+           break;
+         }
+       }
+       let updated = User.findOneAndUpdate({'username': username}, {'collections': colls}, {new: true});
+       updated.exec((err, doc) => {
+         if (err) {
+           console.error(err);
+         } else {
+           console.log('updated collection successfully');
+           cb(null, doc);
+         }
+       });
+     }
+   });
+ };
 
 const cryptofy = (password, salt) => {
   salt = salt || 'winter';

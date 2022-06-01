@@ -95,7 +95,7 @@ app.post('/collections/:user/set-view-date', (req, res) => {
 });
 
 app.post('/collections/:user/edit', (req, res) => {
-  db.editCollection(req.params.user, req.body.collectionName, (err, doc) => {
+  db.editCollection(req.params.user, req.body.collectionName, req.body.updatedCollection, (err, doc) => {
     if (err) {
       console.error(err);
     } else {
