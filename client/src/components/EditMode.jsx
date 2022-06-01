@@ -135,6 +135,24 @@ const RevealButton = styled.button`
   }
 `;
 
+const RemoveCardButton = styled.button`
+  background-color: black;
+  color: white;
+  font-family: 'Bangers', cursive;
+  border-radius: 12px;
+  margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge red;
+    box-shadow: 4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 const FailSuccessDiv = styled.div`
   display: grid;
   margin: 2%;
@@ -601,9 +619,9 @@ class EditMode extends React.Component {
                 <RevealButton type="button" onClick={(e) => this.handleAddCard(e)}>
                   Add Card
                 </RevealButton>
-                <RevealButton type="button" onClick={(e) => this.handleRemoveCard(e)}>
+                <RemoveCardButton type="button" onClick={(e) => this.handleRemoveCard(e)}>
                   Remove Card
-                </RevealButton>
+                </RemoveCardButton>
                 <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
                   Confirm
                 </RevealButton>
