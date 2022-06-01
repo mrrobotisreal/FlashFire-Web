@@ -308,6 +308,8 @@ class EditMode extends React.Component {
     this.confirmChanges = this.confirmChanges.bind(this);
     this.handleQuestionEdit = this.handleQuestionEdit.bind(this);
     this.handleAnswerEdit = this.handleAnswerEdit.bind(this);
+    this.handleAddCard = this.handleAddCard.bind(this);
+    this.handleRemoveCard = this.handleRemoveCard.bind(this);
   }
 
   componentDidMount() {
@@ -371,6 +373,21 @@ class EditMode extends React.Component {
       cardListSlice: cards,
     });
   }
+
+  handleAddCard(e) {
+    let newCard = {
+      question: '',
+      answer: '',
+      photo: null,
+    };
+    let newLength = this.state.cardListSlice.length;
+    this.setState({
+      cardListSlice: [...this.state.cardListSlice, newCard],
+      currentCard: newLength,
+    });
+  }
+
+  handleRemoveCard(e) {}
 
   confirmChanges(e) {
     e.preventDefault();
@@ -547,16 +564,16 @@ class EditMode extends React.Component {
           <CollectionDiv>
             <CardNumber>
               {
-                `Card ${this.state.currentCard + 1} of ${this.state.totalCards}`
+                `Card ${this.state.currentCard + 1} of ${this.state.cardListSlice.length}`
               }
             </CardNumber>
             <FlashCardDiv>
               {
-                this.state.cardList[this.state.currentCard].photo
+                this.state.cardListSlice[this.state.currentCard].photo
                 ?
                 (
                   <ImageDiv>
-                    <Image src={this.state.cardList[this.state.currentCard].photo} />
+                    <Image src={this.state.cardListSlice[this.state.currentCard].photo} />
                   </ImageDiv>
                 )
                 :
@@ -580,9 +597,17 @@ class EditMode extends React.Component {
               <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
                 <textarea value={this.state.newAnswer} type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} placeholder="Edit Answer" />
               </QuestionAndAnswerDiv>
-              <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
-                Confirm
-              </RevealButton>
+              <MainMenuDiv>
+                <RevealButton type="button" onClick={(e) => this.handleAddCard(e)}>
+                  Add Card
+                </RevealButton>
+                <RevealButton type="button" onClick={(e) => this.handleRemoveCard(e)}>
+                  Remove Card
+                </RevealButton>
+                <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
+                  Confirm
+                </RevealButton>
+              </MainMenuDiv>
             </FlashCardDiv>
             <MainMenuDiv>
               <ThemeProvider theme={theme}>

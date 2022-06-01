@@ -650,6 +650,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     _this.confirmChanges = _this.confirmChanges.bind(_assertThisInitialized(_this));
     _this.handleQuestionEdit = _this.handleQuestionEdit.bind(_assertThisInitialized(_this));
     _this.handleAnswerEdit = _this.handleAnswerEdit.bind(_assertThisInitialized(_this));
+    _this.handleAddCard = _this.handleAddCard.bind(_assertThisInitialized(_this));
+    _this.handleRemoveCard = _this.handleRemoveCard.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -728,6 +730,23 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
         cardListSlice: cards
       });
     }
+  }, {
+    key: "handleAddCard",
+    value: function handleAddCard(e) {
+      var newCard = {
+        question: '',
+        answer: '',
+        photo: null
+      };
+      var newLength = this.state.cardListSlice.length;
+      this.setState({
+        cardListSlice: [].concat(_toConsumableArray(this.state.cardListSlice), [newCard]),
+        currentCard: newLength
+      });
+    }
+  }, {
+    key: "handleRemoveCard",
+    value: function handleRemoveCard(e) {}
   }, {
     key: "confirmChanges",
     value: function confirmChanges(e) {
@@ -912,11 +931,11 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
             children: this.state.collectionName
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(CollectionDiv, {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CardNumber, {
-              children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.totalCards)
+              children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.cardListSlice.length)
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FlashCardDiv, {
-              children: [this.state.cardList[this.state.currentCard].photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ImageDiv, {
+              children: [this.state.cardListSlice[this.state.currentCard].photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ImageDiv, {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Image, {
-                  src: this.state.cardList[this.state.currentCard].photo
+                  src: this.state.cardListSlice[this.state.currentCard].photo
                 })
               }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
@@ -972,13 +991,27 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   },
                   placeholder: "Edit Answer"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                type: "button",
-                onClick: function onClick(e) {
-                  return _this4.confirmChanges(e);
-                },
-                autoFocus: true,
-                children: "Confirm"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                  type: "button",
+                  onClick: function onClick(e) {
+                    return _this4.handleAddCard(e);
+                  },
+                  children: "Add Card"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                  type: "button",
+                  onClick: function onClick(e) {
+                    return _this4.handleRemoveCard(e);
+                  },
+                  children: "Remove Card"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                  type: "button",
+                  onClick: function onClick(e) {
+                    return _this4.confirmChanges(e);
+                  },
+                  autoFocus: true,
+                  children: "Confirm"
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
