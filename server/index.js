@@ -94,6 +94,17 @@ app.post('/collections/:user/set-view-date', (req, res) => {
   });
 });
 
+app.post('/collections/:user/edit', (req, res) => {
+  db.editCollection(req.params.user, req.body.collectionName, (err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('edit doc -> ', doc);
+      res.send(doc);
+    }
+  });
+});
+
 app.get('/collections/:user/scores/:collection', (req, res) => {
   db.getScores(req.params.user, req.params.collection, (err, doc) => {
     if (err) {

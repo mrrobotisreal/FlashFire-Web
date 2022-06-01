@@ -84,20 +84,10 @@ const saveCollection = (newColl, user, cb = () => {}) => {
         cb(null, doc);
       }
     });
-
-    // console.log('dis be like -> ', doc.collections);
-    // let theUser = doc;
-    // let theColl = doc.collections;
-    // let newCreation = doc.collections[0];
-    // newCreation.lastView = new Date().toString();
-    // theColl[0] = newCreation;
-    // theUser.collections = theColl;
-    // let userUpdate = User.findOneAndUpdate({'username': user}, {'collections': theColl}, {new: true});
-    // userUpdate.exec((err, doc) => {
-    //   cb(null, doc);
-    // })
   })
  };
+
+ const editCollection = (username, collectionName, cb = () => {}) => {};
 
 const cryptofy = (password, salt) => {
   salt = salt || 'winter';
@@ -243,3 +233,4 @@ module.exports.checkLogin = checkLogin;
 module.exports.storeScores = storeScores;
 module.exports.getScores = getScores;
 module.exports.checkCookie = checkCookie;
+module.exports.editCollection = editCollection;
