@@ -635,6 +635,7 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       cardList: _this.props.cardList,
+      cardListSlice: _this.props.cardList.slice(),
       collectionName: _this.props.collectionName,
       totalCards: _this.props.cardList.length,
       currentCard: 0,
@@ -709,23 +710,39 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     key: "handleQuestionEdit",
     value: function handleQuestionEdit(e) {
       e.preventDefault();
-      console.log('question handler -> ', e.target.value);
+      var cards = this.state.cardListSlice;
+      cards[this.state.currentCard].question = e.target.value;
       this.setState({
-        newQuestion: e.target.value
+        newQuestion: e.target.value,
+        cardListSlice: cards
       });
     }
   }, {
     key: "handleAnswerEdit",
     value: function handleAnswerEdit(e) {
       e.preventDefault();
-      console.log('answer handler -> ', e.target.value);
+      var cards = this.state.cardListSlice;
+      cards[this.state.currentCard].answer = e.target.value;
       this.setState({
-        newAnswer: e.target.value
+        newAnswer: e.target.value,
+        cardListSlice: cards
       });
     }
   }, {
     key: "confirmChanges",
-    value: function confirmChanges(e) {}
+    value: function confirmChanges(e) {
+      e.preventDefault();
+      var options = {
+        cardList: this.state.cardListSlice,
+        collectionName: this.props.collectionName
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/edit"), options).then(function (_ref3) {//
+
+        var data = _ref3.data;
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }
   }, {
     key: "prevNextKeydown",
     value: function prevNextKeydown(e) {
@@ -906,14 +923,14 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   fontSize: '2rem'
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                  children: this.state.cardList[this.state.currentCard].question
+                  children: this.state.cardListSlice[this.state.currentCard].question
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
                   fontFamily: 'Noto Serif SC' || 0,
                   fontSize: '2rem'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
                   value: this.state.newQuestion,
                   type: "text",
                   onChange: function onChange(e) {
@@ -921,7 +938,8 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   },
                   style: {
                     color: 'white'
-                  }
+                  },
+                  placeholder: "Edit Question"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
@@ -933,7 +951,7 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                 },
                 id: "answer",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                  children: this.state.cardList[this.state.currentCard].answer
+                  children: this.state.cardListSlice[this.state.currentCard].answer
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
@@ -944,13 +962,14 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
                   fontSize: '2rem'
                 },
                 id: "answer",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
                   value: this.state.newAnswer,
                   type: "text",
                   onChange: this.handleAnswerEdit,
                   style: {
                     color: 'white'
-                  }
+                  },
+                  placeholder: "Edit Answer"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
                 type: "button",

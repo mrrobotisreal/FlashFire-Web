@@ -293,6 +293,7 @@ class EditMode extends React.Component {
     super(props);
     this.state = {
       cardList: this.props.cardList,
+      cardListSlice: this.props.cardList.slice(),
       collectionName: this.props.collectionName,
       totalCards: this.props.cardList.length,
       currentCard: 0,
@@ -353,21 +354,36 @@ class EditMode extends React.Component {
 
   handleQuestionEdit(e) {
     e.preventDefault();
-    console.log('question handler -> ', e.target.value);
+    let cards = this.state.cardListSlice;
+    cards[this.state.currentCard].question = e.target.value;
     this.setState({
       newQuestion: e.target.value,
+      cardListSlice: cards,
     });
   }
 
   handleAnswerEdit(e) {
     e.preventDefault();
-    console.log('answer handler -> ', e.target.value);
+    let cards = this.state.cardListSlice;
+    cards[this.state.currentCard].answer = e.target.value;
     this.setState({
       newAnswer: e.target.value,
+      cardListSlice: cards,
     });
   }
 
-  confirmChanges(e) {}
+  confirmChanges(e) {
+    e.preventDefault();
+    let options = {
+      cardList: this.state.cardListSlice,
+      collectionName: this.props.collectionName,
+    };
+    axios.post(`/collections/${this.props.user}/edit`, options)
+      .then(({ data}) => {
+        //
+      })
+      .catch((err) => console.error(err));
+  }
 
   prevNextKeydown(e) {
     e.preventDefault();
@@ -549,19 +565,19 @@ class EditMode extends React.Component {
               }
               <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
                 <b>{
-                  this.state.cardList[this.state.currentCard].question
+                  this.state.cardListSlice[this.state.currentCard].question
                 }</b>
               </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{fontFamily: 'Noto Serif SC' || 'Luckiest Guy', fontSize: '2rem'}}>
-                <input value={this.state.newQuestion} type="text" onChange={(e) => this.handleQuestionEdit(e)} style={{color: 'white'}} />
+                <textarea value={this.state.newQuestion} type="text" onChange={(e) => this.handleQuestionEdit(e)} style={{color: 'white'}} placeholder="Edit Question" />
               </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
                 <b>{
-                  this.state.cardList[this.state.currentCard].answer
+                  this.state.cardListSlice[this.state.currentCard].answer
                 }</b>
               </QuestionAndAnswerDiv>
               <QuestionAndAnswerDiv style={{display: 'flex',   backgroundImage: 'linear-gradient(to bottom, black, green)', border: '2px ridge darkgreen', fontFamily: 'Ubuntu', fontSize: '2rem'}} id="answer">
-                <input value={this.state.newAnswer} type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} />
+                <textarea value={this.state.newAnswer} type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} placeholder="Edit Answer" />
               </QuestionAndAnswerDiv>
               <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
                 Confirm
