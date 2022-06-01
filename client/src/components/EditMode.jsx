@@ -405,7 +405,21 @@ class EditMode extends React.Component {
     });
   }
 
-  handleRemoveCard(e) {}
+  handleRemoveCard(e) {
+    let updatedCardList = this.state.cardListSlice;
+    if (this.state.currentCard === this.state.cardListSlice.length - 1) {
+      updatedCardList.splice(this.state.currentCard, 1);
+      this.setState({
+        cardListSlice: updatedCardList,
+        currentCard: this.state.currentCard -= 1,
+      });
+    } else {
+      updatedCardList.splice(this.state.currentCard, 1);
+      this.setState({
+        cardListSlice: updatedCardList,
+      });
+    }
+  }
 
   confirmChanges(e) {
     e.preventDefault();
@@ -415,7 +429,7 @@ class EditMode extends React.Component {
       updatedCollection: this.state.cardListSlice,
     };
     axios.post(`/collections/${this.props.user}/edit`, options)
-      .then(({ data}) => {
+      .then(({ data }) => {
         //
       })
       .catch((err) => console.error(err));

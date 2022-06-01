@@ -747,7 +747,22 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleRemoveCard",
-    value: function handleRemoveCard(e) {}
+    value: function handleRemoveCard(e) {
+      var updatedCardList = this.state.cardListSlice;
+
+      if (this.state.currentCard === this.state.cardListSlice.length - 1) {
+        updatedCardList.splice(this.state.currentCard, 1);
+        this.setState({
+          cardListSlice: updatedCardList,
+          currentCard: this.state.currentCard -= 1
+        });
+      } else {
+        updatedCardList.splice(this.state.currentCard, 1);
+        this.setState({
+          cardListSlice: updatedCardList
+        });
+      }
+    }
   }, {
     key: "confirmChanges",
     value: function confirmChanges(e) {
