@@ -783,7 +783,9 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       this.setState({
-        confirmConfirmed: 'Confirmed Changes!'
+        confirmConfirmed: 'Confirmed Changes!',
+        newQuestion: '',
+        newAnswer: ''
       });
       setTimeout(function () {
         _this5.setState({

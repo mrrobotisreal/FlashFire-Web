@@ -325,6 +325,8 @@ class EditMode extends React.Component {
     e.preventDefault();
     this.setState({
       confirmConfirmed: 'Confirmed Changes!',
+      newQuestion: '',
+      newAnswer: '',
     });
     setTimeout(() => {
       this.setState({
