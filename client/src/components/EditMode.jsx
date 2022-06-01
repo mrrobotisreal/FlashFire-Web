@@ -135,9 +135,62 @@ const RevealButton = styled.button`
   }
 `;
 
+const AddCardButton = styled.button`  background-color: black;
+  color: white;
+  font-family: 'Bangers', cursive;
+  border-radius: 12px;
+  margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge green;
+    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+const AddedCardButton = styled.button`
+  background-color: black;
+  color: green;
+  font-family: 'Bangers', cursive;
+  border-radius: 12px;
+  margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge green;
+    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 const RemoveCardButton = styled.button`
   background-color: black;
   color: white;
+  font-family: 'Bangers', cursive;
+  border-radius: 12px;
+  margin-bottom: 2%;
+  padding: 2%;
+  transition: .2s;
+  &:hover {
+    transform: scale(1.15);
+    border: 2px ridge red;
+    box-shadow: 4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+const RemovedCardButton = styled.button`
+  background-color: black;
+  color: red;
   font-family: 'Bangers', cursive;
   border-radius: 12px;
   margin-bottom: 2%;
@@ -423,6 +476,14 @@ class EditMode extends React.Component {
 
   confirmChanges(e) {
     e.preventDefault();
+    this.setState({
+      confirmConfirmed: 'Confirmed!',
+    });
+    setTimeout(() => {
+      this.setState({
+        confirmConfirmed: 'Confirm',
+      });
+    }, 750);
     let options = {
       collectionName: this.props.collectionName,
       updatedCollection: this.state.cardListSlice,
@@ -629,15 +690,48 @@ class EditMode extends React.Component {
                 <textarea value={this.state.newAnswer} type="text" onChange={this.handleAnswerEdit} style={{color: 'white'}} placeholder="Edit Answer" />
               </QuestionAndAnswerDiv>
               <MainMenuDiv>
-                <RevealButton type="button" onClick={(e) => this.handleAddCard(e)}>
-                  Add Card
-                </RevealButton>
-                <RemoveCardButton type="button" onClick={(e) => this.handleRemoveCard(e)}>
-                  Remove Card
-                </RemoveCardButton>
-                <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
-                  Confirm
-                </RevealButton>
+                {/* <RevealButton type="button" onClick={(e) => this.handleAddCard(e)}>
+                  {this.state.addAdded}
+                </RevealButton> */}
+                {
+                  this.state.addAdded === 'Add Card'
+                  ?
+                  <RevealButton type="button" onClick={(e) => this.handleAddCard(e)}>
+                    {this.state.addAdded}
+                  </RevealButton>
+                  :
+                  <RevealButton style={{color: 'green'}} type="button" onClick={(e) => this.handleAddCard(e)}>
+                    {this.state.addAdded}
+                  </RevealButton>
+                }
+                {/* <RemoveCardButton type="button" onClick={(e) => this.handleRemoveCard(e)}>
+                  {this.state.removeRemoved}
+                </RemoveCardButton> */}
+                {
+                  this.state.removeRemoved === 'Remove Card'
+                  ?
+                  <RemoveCardButton type="button" onClick={(e) => this.handleRemoveCard(e)}>
+                    {this.state.removeRemoved}
+                  </RemoveCardButton>
+                  :
+                  <RemoveCardButton style={{color: 'red'}} type="button" onClick={(e) => this.handleRemoveCard(e)}>
+                    {this.state.removeRemoved}
+                  </RemoveCardButton>
+                }
+                {/* <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
+                  {this.state.confirmConfirmed}
+                </RevealButton> */}
+                {
+                  this.state.confirmConfirmed === 'Confirm'
+                  ?
+                  <RevealButton type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
+                    {this.state.confirmConfirmed}
+                  </RevealButton>
+                  :
+                  <RevealButton style={{color: 'green'}} type="button" onClick={(e) => this.confirmChanges(e)} autoFocus>
+                    {this.state.confirmConfirmed}
+                  </RevealButton>
+                }
               </MainMenuDiv>
             </FlashCardDiv>
             <MainMenuDiv>
