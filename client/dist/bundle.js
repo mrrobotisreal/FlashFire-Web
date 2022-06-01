@@ -541,7 +541,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -607,24 +607,11 @@ var CardNumber = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_t
 var FlashCardDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  padding: 2%;\n"])));
 var QuestionAndAnswerDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  border: 2px ridge orangered;\n  border-radius: 12px;\n  background-image: linear-gradient(to bottom, black, darkred);\n  color: white;\n  font-family: 'Bangers', cursive;\n  padding: 2%;\n  overflow: break-word;\n  margin-bottom: 2%;\n  transition: .2s;\n"])));
 var RevealButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
-var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
-var AddedCardButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: green;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
-var RemoveCardButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge red;\n    box-shadow: 4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
-var RemovedCardButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: red;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge red;\n    box-shadow: 4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
-var FailSuccessDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  display: grid;\n  margin: 2%;\n"])));
-var FailSuccessIndividualDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
-var FailSuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
-var SuccessButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  width: fit-content;\n  padding: 4%;\n  display: flex;\n  justify-content: center;\n  margin-bottom: 3%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;\n  }\n"])));
-var FailSuccessCount = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  color: yellow;\n  background-color: black;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  display: flex;\n  justify-content: center;\n"])));
-var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n"])));
-var MainMenuButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  margin-top: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    color: yellow;\n    border: 2px ridge yellow;\n  }\n"])));
-var Image = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].img(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  width: 80%;\n  height: 20%;\n"])));
-var ImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
-var TimerDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: linear-gradient(to bottom, black, orangered);\n  background-size: cover;\n  padding: 3%;\n  margin-top: 2%;\n  width: fit-content;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
-var KeyReceiver = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n  &:focus {\n    outline: none\n  }\n"])));
-var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
-var StatsButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
+var RemoveCardButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  border-radius: 12px;\n  margin-bottom: 2%;\n  padding: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge red;\n    box-shadow: 4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred;\n  }\n  &:focus {\n    outline: none;\n  }\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n"])));
+var MainMenuButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  font-family: 'Bangers', cursive;\n  width: fit-content;\n  padding: 2%;\n  margin-top: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    color: yellow;\n    border: 2px ridge yellow;\n  }\n"])));
+var Image = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].img(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  width: 80%;\n  height: 20%;\n"])));
+var ImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n"])));
 
 var EditMode = /*#__PURE__*/function (_React$Component) {
   _inherits(EditMode, _React$Component);
@@ -651,8 +638,6 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
     };
     _this.nextCard = _this.nextCard.bind(_assertThisInitialized(_this));
     _this.prevCard = _this.prevCard.bind(_assertThisInitialized(_this));
-    _this.back = _this.back.bind(_assertThisInitialized(_this));
-    _this.prevNextKeydown = _this.prevNextKeydown.bind(_assertThisInitialized(_this));
     _this.goToMainMenu = _this.goToMainMenu.bind(_assertThisInitialized(_this));
     _this.confirmChanges = _this.confirmChanges.bind(_assertThisInitialized(_this));
     _this.handleQuestionEdit = _this.handleQuestionEdit.bind(_assertThisInitialized(_this));
@@ -817,13 +802,6 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "prevNextKeydown",
-    value: function prevNextKeydown(e) {
-      e.preventDefault();
-      this.props.keydown(e.key);
-      this.props.keydown('ArrowUp');
-    }
-  }, {
     key: "nextCard",
     value: function nextCard() {
       if (this.state.currentCard === this.state.totalCards - 1) {
@@ -938,37 +916,6 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "back",
-    value: function back(score) {
-      var _this6 = this;
-
-      var options = {
-        totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
-        score: this.state.score
-      };
-
-      if (this.state.score > this.state.prevScore) {
-        this.setState({
-          show: true
-        });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
-          console.log(res);
-          setTimeout(function () {
-            _this6.props.goBack();
-          }, 3000);
-        })["catch"](function (err) {
-          return console.error();
-        });
-      } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
-          console.log(res);
-        })["catch"](function (err) {
-          return console.error();
-        });
-        this.props.goBack();
-      }
-    }
-  }, {
     key: "goToMainMenu",
     value: function goToMainMenu() {
       this.props.goBack();
@@ -976,168 +923,154 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this6 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(KeyReceiver, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CollectionNameTitle, {
-            children: this.state.collectionName
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(CollectionDiv, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CardNumber, {
-              children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.cardListSlice.length)
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FlashCardDiv, {
-              children: [this.state.cardListSlice[this.state.currentCard].photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ImageDiv, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Image, {
-                  src: this.state.cardListSlice[this.state.currentCard].photo
-                })
-              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
-                style: {
-                  fontFamily: 'Noto Serif SC' || 0,
-                  fontSize: '2rem'
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CollectionNameTitle, {
+          children: this.state.collectionName
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(CollectionDiv, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CardNumber, {
+            children: "Card ".concat(this.state.currentCard + 1, " of ").concat(this.state.cardListSlice.length)
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FlashCardDiv, {
+            children: [this.state.cardListSlice[this.state.currentCard].photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ImageDiv, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Image, {
+                src: this.state.cardListSlice[this.state.currentCard].photo
+              })
+            }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+              style: {
+                fontFamily: 'Noto Serif SC' || 0,
+                fontSize: '2rem'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                children: this.state.cardListSlice[this.state.currentCard].question
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+              style: {
+                fontFamily: 'Noto Serif SC' || 0,
+                fontSize: '2rem'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
+                value: this.state.newQuestion,
+                type: "text",
+                onChange: function onChange(e) {
+                  return _this6.handleQuestionEdit(e);
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                  children: this.state.cardListSlice[this.state.currentCard].question
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
                 style: {
-                  fontFamily: 'Noto Serif SC' || 0,
-                  fontSize: '2rem'
+                  color: 'white'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
-                  value: this.state.newQuestion,
-                  type: "text",
-                  onChange: function onChange(e) {
-                    return _this7.handleQuestionEdit(e);
-                  },
-                  style: {
-                    color: 'white'
-                  },
-                  placeholder: "Edit Question"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+                placeholder: "Edit Question"
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+              style: {
+                display: 'flex',
+                backgroundImage: 'linear-gradient(to bottom, black, green)',
+                border: '2px ridge darkgreen',
+                fontFamily: 'Ubuntu',
+                fontSize: '2rem'
+              },
+              id: "answer",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+                children: this.state.cardListSlice[this.state.currentCard].answer
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
+              style: {
+                display: 'flex',
+                backgroundImage: 'linear-gradient(to bottom, black, green)',
+                border: '2px ridge darkgreen',
+                fontFamily: 'Ubuntu',
+                fontSize: '2rem'
+              },
+              id: "answer",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
+                value: this.state.newAnswer,
+                type: "text",
+                onChange: this.handleAnswerEdit,
                 style: {
-                  display: 'flex',
-                  backgroundImage: 'linear-gradient(to bottom, black, green)',
-                  border: '2px ridge darkgreen',
-                  fontFamily: 'Ubuntu',
-                  fontSize: '2rem'
+                  color: 'white'
                 },
-                id: "answer",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                  children: this.state.cardListSlice[this.state.currentCard].answer
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(QuestionAndAnswerDiv, {
-                style: {
-                  display: 'flex',
-                  backgroundImage: 'linear-gradient(to bottom, black, green)',
-                  border: '2px ridge darkgreen',
-                  fontFamily: 'Ubuntu',
-                  fontSize: '2rem'
-                },
-                id: "answer",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
-                  value: this.state.newAnswer,
-                  type: "text",
-                  onChange: this.handleAnswerEdit,
-                  style: {
-                    color: 'white'
-                  },
-                  placeholder: "Edit Answer"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
-                children: [this.state.addAdded === 'Add Card' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                  type: "button",
-                  onClick: function onClick(e) {
-                    return _this7.handleAddCard(e);
-                  },
-                  children: this.state.addAdded
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                  style: {
-                    color: 'green',
-                    border: '2px ridge green'
-                  },
-                  type: "button",
-                  onClick: function onClick(e) {
-                    return _this7.handleAddCard(e);
-                  },
-                  children: this.state.addAdded
-                }), this.state.removeRemoved === 'Remove Card' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RemoveCardButton, {
-                  type: "button",
-                  onClick: function onClick(e) {
-                    return _this7.handleRemoveCard(e);
-                  },
-                  children: this.state.removeRemoved
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RemoveCardButton, {
-                  style: {
-                    color: 'red',
-                    border: '2px ridge red'
-                  },
-                  type: "button",
-                  onClick: function onClick(e) {
-                    return _this7.handleRemoveCard(e);
-                  },
-                  children: this.state.removeRemoved
-                }), this.state.confirmConfirmed === 'Confirm' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                  type: "button",
-                  onClick: function onClick(e) {
-                    return _this7.confirmChanges(e);
-                  },
-                  autoFocus: true,
-                  children: this.state.confirmConfirmed
-                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                  style: {
-                    color: 'green',
-                    border: '2px ridge green'
-                  },
-                  type: "button",
-                  onClick: function onClick(e) {
-                    return _this7.confirmChanges(e);
-                  },
-                  autoFocus: true,
-                  children: this.state.confirmConfirmed
-                })]
-              })]
+                placeholder: "Edit Answer"
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(MainMenuDiv, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                theme: theme,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
-                  onClick: this.back,
-                  variant: "contained",
-                  size: "large",
-                  color: "primary",
-                  style: {
-                    border: '2px ridge red'
-                  },
-                  children: "Finish"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                theme: theme,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
-                  onClick: this.goToMainMenu,
-                  variant: "contained",
-                  size: "large",
-                  color: "primary",
-                  style: {
-                    border: '2px ridge red'
-                  },
-                  children: "Main Menu"
-                })
+              children: [this.state.addAdded === 'Add Card' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                type: "button",
+                onClick: function onClick(e) {
+                  return _this6.handleAddCard(e);
+                },
+                children: this.state.addAdded
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                style: {
+                  color: 'green',
+                  border: '2px ridge green'
+                },
+                type: "button",
+                onClick: function onClick(e) {
+                  return _this6.handleAddCard(e);
+                },
+                children: this.state.addAdded
+              }), this.state.removeRemoved === 'Remove Card' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RemoveCardButton, {
+                type: "button",
+                onClick: function onClick(e) {
+                  return _this6.handleRemoveCard(e);
+                },
+                children: this.state.removeRemoved
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RemoveCardButton, {
+                style: {
+                  color: 'red',
+                  border: '2px ridge red'
+                },
+                type: "button",
+                onClick: function onClick(e) {
+                  return _this6.handleRemoveCard(e);
+                },
+                children: this.state.removeRemoved
+              }), this.state.confirmConfirmed === 'Confirm' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                type: "button",
+                onClick: function onClick(e) {
+                  return _this6.confirmChanges(e);
+                },
+                autoFocus: true,
+                children: this.state.confirmConfirmed
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
+                style: {
+                  color: 'green',
+                  border: '2px ridge green'
+                },
+                type: "button",
+                onClick: function onClick(e) {
+                  return _this6.confirmChanges(e);
+                },
+                autoFocus: true,
+                children: this.state.confirmConfirmed
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(PrevNextDiv, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PrevButton, {
-              onClick: this.prevCard,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                children: "<"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(MainMenuDiv, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              theme: theme,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                onClick: this.goToMainMenu,
+                variant: "contained",
+                size: "large",
+                color: "primary",
+                style: {
+                  border: '2px ridge red'
+                },
+                children: "Main Menu"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(NextButton, {
-              onClick: this.nextCard,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
-                children: ">"
-              })
-            })]
+            })
           })]
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(PrevNextDiv, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PrevButton, {
+            onClick: this.prevCard,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+              children: "<"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(NextButton, {
+            onClick: this.nextCard,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
+              children: ">"
+            })
+          })]
+        })]
       });
     }
   }]);

@@ -135,41 +135,6 @@ const RevealButton = styled.button`
   }
 `;
 
-const AddCardButton = styled.button`  background-color: black;
-  color: white;
-  font-family: 'Bangers', cursive;
-  border-radius: 12px;
-  margin-bottom: 2%;
-  padding: 2%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    border: 2px ridge green;
-    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
-const AddedCardButton = styled.button`
-  background-color: black;
-  color: green;
-  font-family: 'Bangers', cursive;
-  border-radius: 12px;
-  margin-bottom: 2%;
-  padding: 2%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    border: 2px ridge green;
-    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
 const RemoveCardButton = styled.button`
   background-color: black;
   color: white;
@@ -186,79 +151,6 @@ const RemoveCardButton = styled.button`
   &:focus {
     outline: none;
   }
-`;
-
-const RemovedCardButton = styled.button`
-  background-color: black;
-  color: red;
-  font-family: 'Bangers', cursive;
-  border-radius: 12px;
-  margin-bottom: 2%;
-  padding: 2%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    border: 2px ridge red;
-    box-shadow: 4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
-
-const FailSuccessDiv = styled.div`
-  display: grid;
-  margin: 2%;
-`;
-
-const FailSuccessIndividualDiv = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const FailSuccessButton = styled.button`
-  border: 2px ridge darkred;
-  border-radius: 12px;
-  background-color: black;
-  box-shadow: 4px 4px 6px red, 0 0 1em orange, 0 0 0.2em orange;
-  width: fit-content;
-  padding: 4%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;
-  }
-`;
-
-const SuccessButton = styled.button`
-  border: 2px ridge green;
-  border-radius: 12px;
-  background-color: black;
-  box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;
-  width: fit-content;
-  padding: 4%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3%;
-  transition: .2s;
-  &:hover {
-    transform: scale(1.15);
-    box-shadow: 4px 4px 6px orange, 0 0 1em yellow, 0 0 0.2em yellow;
-  }
-`;
-
-const FailSuccessCount = styled.span`
-  color: yellow;
-  background-color: black;
-  border-radius: 12px;
-  font-family: 'Bangers', cursive;
-  width: fit-content;
-  padding: 2%;
-  display: flex;
-  justify-content: center;
 `;
 
 const MainMenuDiv = styled.div`
@@ -295,70 +187,6 @@ const ImageDiv = styled.div`
   align-items: center;
 `;
 
-const TimerDiv = styled.div`
-  text-align: center;
-  top: 0;
-  left: 0;
-  position: relative;
-  background-image: linear-gradient(to bottom, black, orangered);
-  background-size: cover;
-  padding: 3%;
-  margin-top: 2%;
-  width: fit-content;
-  border: 4px ridge darkred;
-  border-radius: 12px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const HighScoreDiv = styled.div`
-  top: 0;
-  left: 0;
-  background-color: red;
-  color: white;
-  border: 2px ridge darkred;
-  border-radius: 12px;
-  text-align: center;
-  font-family: 'Luckiest Guy';
-  padding-top: 3%;
-  padding-bottom: 3%;
-`;
-
-const KeyReceiver = styled.div`
-  &:focus {
-    outline: none
-  }
-`;
-
-const ModalButton = styled.button`
-  position: fixed;
-  top: 5%;
-  right: 5%;
-  background-color: white;
-  font-size: 20px;
-  border: 2px ridge grey;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 10px 5px 5px black;
-`;
-
-const StatsButton = styled.button`
-  font-family: 'Luckiest Guy';
-  color: white;
-  background-color: black;
-  border-radius: 12px;
-  transition: .2s;
-  width: fit-content;
-  padding: 1%;
-  &:hover {
-    transform: scale(1.15);
-    border: 2px ridge purple;
-    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;
-  }
-`;
-
 class EditMode extends React.Component {
   constructor(props) {
     super(props);
@@ -376,8 +204,6 @@ class EditMode extends React.Component {
     };
     this.nextCard = this.nextCard.bind(this);
     this.prevCard = this.prevCard.bind(this);
-    this.back = this.back.bind(this);
-    this.prevNextKeydown = this.prevNextKeydown.bind(this);
     this.goToMainMenu = this.goToMainMenu.bind(this);
     this.confirmChanges = this.confirmChanges.bind(this);
     this.handleQuestionEdit = this.handleQuestionEdit.bind(this);
@@ -516,12 +342,6 @@ class EditMode extends React.Component {
       .catch((err) => console.error(err));
   }
 
-  prevNextKeydown(e) {
-    e.preventDefault();
-    this.props.keydown(e.key);
-    this.props.keydown('ArrowUp');
-  }
-
   nextCard() {
     if (this.state.currentCard === this.state.totalCards - 1) {
       if (this.state.answerDisplay !== 'none') {
@@ -634,33 +454,6 @@ class EditMode extends React.Component {
     }
   }
 
-  back(score) {
-    let options = {
-      totalScores: [...this.state.totalScores, this.state.score],
-      score: this.state.score
-    };
-    if (this.state.score > this.state.prevScore) {
-      this.setState({
-        show: true,
-      });
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
-        .then((res) => {
-          console.log(res);
-          setTimeout(() => {
-            this.props.goBack();
-          }, 3000);
-        })
-        .catch((err) => console.error());
-    } else {
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => console.error());
-      this.props.goBack();
-    }
-  }
-
   goToMainMenu() {
     this.props.goBack();
   }
@@ -668,7 +461,6 @@ class EditMode extends React.Component {
   render() {
     return (
       <>
-        <KeyReceiver>
           <CollectionNameTitle>
             {
               this.state.collectionName
@@ -757,11 +549,6 @@ class EditMode extends React.Component {
             </FlashCardDiv>
             <MainMenuDiv>
               <ThemeProvider theme={theme}>
-                <Button onClick={this.back} variant="contained" size="large" color="primary" style={{border: '2px ridge red'}}>
-                  Finish
-                </Button>
-              </ThemeProvider>
-              <ThemeProvider theme={theme}>
                 <Button onClick={this.goToMainMenu} variant="contained" size="large" color="primary" style={{border: '2px ridge red'}}>
                   Main Menu
                 </Button>
@@ -776,7 +563,6 @@ class EditMode extends React.Component {
               <b>{`>`}</b>
             </NextButton>
           </PrevNextDiv>
-        </KeyReceiver>
       </>
     )
   }
