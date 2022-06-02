@@ -96,6 +96,8 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   })
  };
 
+ const setViewDateModes = (user, collection, mode, cb = () => {}) => {};
+
  const editCollection = (username, collectionName, updatedCollection, cb = () => {}) => {
    let user = User.findOne({'username': username});
    user.exec((err, doc) => {
@@ -261,6 +263,7 @@ module.exports.users = User;
 module.exports.cardlists = CardList;
 module.exports.saveCollection = saveCollection;
 module.exports.setViewDate = setViewDate;
+module.exports.setViewDateModes = setViewDateModes;
 module.exports.saveSignup = saveSignup;
 module.exports.checkLogin = checkLogin;
 module.exports.storeScores = storeScores;
