@@ -375,7 +375,6 @@ class TestModeEasy extends React.Component {
     this.setState({
       cardList: array,
     });
-    // this.renderAnswers();
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
         let sum = data.totalScores.reduce((total, num) => {
@@ -391,6 +390,15 @@ class TestModeEasy extends React.Component {
         this.renderAnswers();
       })
       .catch((err) => console.error(err));
+      let options = {
+        collectionName: this.props.collectionName,
+        mode: 'easy',
+      };
+      axios.post(`/collections/${this.props.user}/set-view-date-modes`, options)
+        .then(({ data }) => {
+          console.log('set view date modes data -> ', data);
+        })
+        .catch((err) => console.error(err));
   }
 
   componentDidUpdate(prevProps, prevState) {
