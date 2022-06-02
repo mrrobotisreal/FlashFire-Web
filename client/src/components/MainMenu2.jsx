@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
 import TestModeEasy from './TestModeEasy.jsx';
 import TestModeDifficult from './TestModeDifficult.jsx';
+// import CollectionStats from './CollectionStats.jsx';
+import StudyStats from './StudyStats.jsx';
+import EasyStats from './EasyStats.jsx';
+import DifficultStats from './DifficultStats.jsx';
 import EditMode from './EditMode.jsx';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
@@ -328,6 +332,31 @@ const ChoiceDivs = styled.div`
   align-items: center;
 `;
 
+const HighScoreDiv = styled.div`
+  top: 0;
+  left: 0;
+  background-color: red;
+  color: white;
+  border: 2px ridge darkred;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Luckiest Guy';
+  padding-top: 3%;
+  padding-bottom: 3%;
+`;
+
+const ModalButton = styled.button`
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  background-color: white;
+  font-size: 20px;
+  border: 2px ridge grey;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 10px 5px 5px black;
+`;
+
 class MainMenu2 extends React.Component {
   constructor(props) {
     super(props);
@@ -351,10 +380,20 @@ class MainMenu2 extends React.Component {
       isChoosing: false,
       isEditing: false,
       isTesting: false,
+      isViewingCollectionStats: false,
       keyCount: 0,
       keyPressed: '',
       modesDisplayed: false,
       isDifficult: false,
+      highScoreStudy: 0,
+      highGradeEasy: 0,
+      highGradeDifficult: 0,
+      recentScoreStudy: 0,
+      recentScoreEasy: 0,
+      recentScoreDifficult: 0,
+      totalScoresStudy: [],
+      totalScoresEasy: [],
+      totalScoresDifficult: [],
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -374,19 +413,29 @@ class MainMenu2 extends React.Component {
     this.chooseTestMode = this.chooseTestMode.bind(this);
     this.chooseEditMode = this.chooseEditMode.bind(this);
     this.handleFlashKeydown = this.handleFlashKeydown.bind(this);
+    this.viewCollectionStats = this.viewCollectionStats.bind(this);
+    this.closeCollectionStats = this.closeCollectionStats.bind(this);
   }
 
   componentDidMount() {
     axios.get(`/collections/${this.props.user}`)
       .then(({ data }) => {
         if (data.length !== 0) {
-          console.log('data lastViewStudy -> ', data[0].lastViewStudy);
-          console.log('state lastViewStudy -> ', this.state.lastViewStudy)
           this.setState({
             userCollections: data,
             lastViewStudy: data[0].lastViewStudy,
             lastViewEasy: data[0].lastViewEasy,
             lastViewDifficult: data[0].lastViewDifficult,
+            highScoreStudy: data[0].highScore,
+            highGradeEasy: data[0].highGradeEasy,
+            highGradeDifficult: data[0].highGradeDifficult,
+            recentScoreStudy: data[0].mostRecentScore,
+            recentScoreEasy: data[0].mostRecentGradeEasy,
+            recentScoreDifficult: data[0].mostRecentGradeDifficult,
+            totalScoresStudy: data[0].totalScores,
+            totalScoresEasy: data[0].totalGradesEasy,
+            totalScoresDifficult: data[0].totalGradesDifficult,
+            collectionName: data[0].name,
           });
           // console.log('data testing -> ', data[0])
           // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
@@ -433,6 +482,18 @@ class MainMenu2 extends React.Component {
     this.setState({
       audio: e.target.files,
     })
+  }
+
+  viewCollectionStats() {
+    this.setState({
+      isViewingCollectionStats: true,
+    });
+  }
+
+  closeCollectionStats() {
+    this.setState({
+      isViewingCollectionStats: false,
+    });
   }
 
   chooseStudyMode() {
@@ -978,9 +1039,53 @@ class MainMenu2 extends React.Component {
                           <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>
                         </ArrowDiv>
                       </UserCollectionsDiv>
+                      <CreateCollectionButton onClick={this.viewCollectionStats}>
+                        {`View ${this.state.collectionName} Stats`}
+                      </CreateCollectionButton>
                       <CreateCollectionButton onClick={this.createCollection}>
                         Create New Collection
                       </CreateCollectionButton>
+                      <Modal open={this.state.isViewingCollectionStats}>
+                        <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                          <ModalButton onClick={this.closeCollectionStats}>X</ModalButton>
+                          <h1><u>{`${this.props.user}'s Stats for ${this.state.collectionName}`}</u></h1>
+                          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '4%'}}>
+                            <h3 style={{marginTop: '1%'}}>
+                              {`Study Scores`}
+                            </h3>
+                            <hr />
+                            <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
+                            </div>
+                            <h3>
+                              {`Test Grades (Easy)`}
+                            </h3>
+                            <hr />
+                            <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
+                            </div>
+                            <h3>
+                              {`Test Grades (Difficult)`}
+                            </h3>
+                            <hr />
+                            <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
+                            </div>
+                          </div>
+                          {/* <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                            <CollectionStats totalScoresStudy={this.state.totalScoresStudy} totalScoresEasy={this.state.totalScoresEasy} totalScoresDifficult={this.state.totalScoresDifficult} />
+                            <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                              <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
+                            </div>
+                            <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                              <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
+                            </div>
+                            <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                              <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
+                            </div>
+                          </div> */}
+                        </HighScoreDiv>
+                      </Modal>
                     </CollectionsDiv>
                     <LogoutDiv>
                       <LogoutButton onClick={this.props.logout}>

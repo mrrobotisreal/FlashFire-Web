@@ -515,6 +515,226 @@ var App2 = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./client/src/components/DifficultStats.jsx":
+/*!**************************************************!*\
+  !*** ./client/src/components/DifficultStats.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.modern.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var DifficultStats = /*#__PURE__*/function (_Component) {
+  _inherits(DifficultStats, _Component);
+
+  var _super = _createSuper(DifficultStats);
+
+  function DifficultStats(props) {
+    var _this;
+
+    _classCallCheck(this, DifficultStats);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      data: {
+        labels: ['Scores'],
+        datasets: [{
+          label: 'User Stats',
+          backgroundColor: 'rgba(4, 0, 0, 0.74)',
+          borderColor: 'rgb(155, 3, 3)',
+          data: _this.props.totalScoresDifficult
+        }]
+      }
+    };
+    return _this;
+  }
+
+  _createClass(DifficultStats, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var labels = [];
+      var totalScores = this.props.totalScoresDifficult;
+
+      for (var i = 1; i <= totalScores.length; i++) {
+        labels.push("Score ".concat(i));
+      }
+
+      this.setState({
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'User Stats',
+            backgroundColor: 'rgba(2, 0, 0, 0.74)',
+            borderColor: 'rgb(13, 127, 0)',
+            data: this.props.totalScoresDifficult
+          }]
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__.Line, {
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        },
+        data: this.state.data
+      });
+    }
+  }]);
+
+  return DifficultStats;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DifficultStats);
+
+/***/ }),
+
+/***/ "./client/src/components/EasyStats.jsx":
+/*!*********************************************!*\
+  !*** ./client/src/components/EasyStats.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.modern.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var EasyStats = /*#__PURE__*/function (_Component) {
+  _inherits(EasyStats, _Component);
+
+  var _super = _createSuper(EasyStats);
+
+  function EasyStats(props) {
+    var _this;
+
+    _classCallCheck(this, EasyStats);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      data: {
+        labels: ['Scores'],
+        datasets: [{
+          label: 'User Stats',
+          backgroundColor: 'rgba(4, 0, 0, 0.74)',
+          borderColor: 'rgb(155, 3, 3)',
+          data: _this.props.totalScoresEasy
+        }]
+      }
+    };
+    return _this;
+  }
+
+  _createClass(EasyStats, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var labels = [];
+      var totalScores = this.props.totalScoresEasy;
+
+      for (var i = 1; i <= totalScores.length; i++) {
+        labels.push("Score ".concat(i));
+      }
+
+      this.setState({
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'User Stats',
+            backgroundColor: 'rgba(2, 0, 0, 0.74)',
+            borderColor: 'rgb(13, 127, 0)',
+            data: this.props.totalScoresEasy
+          }]
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__.Line, {
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        },
+        data: this.state.data
+      });
+    }
+  }]);
+
+  return EasyStats;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EasyStats);
+
+/***/ }),
+
 /***/ "./client/src/components/EditMode.jsx":
 /*!********************************************!*\
   !*** ./client/src/components/EditMode.jsx ***!
@@ -1818,17 +2038,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashCards.jsx */ "./client/src/components/FlashCards.jsx");
 /* harmony import */ var _TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TestModeEasy.jsx */ "./client/src/components/TestModeEasy.jsx");
 /* harmony import */ var _TestModeDifficult_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TestModeDifficult.jsx */ "./client/src/components/TestModeDifficult.jsx");
-/* harmony import */ var _EditMode_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditMode.jsx */ "./client/src/components/EditMode.jsx");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _StudyStats_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./StudyStats.jsx */ "./client/src/components/StudyStats.jsx");
+/* harmony import */ var _EasyStats_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EasyStats.jsx */ "./client/src/components/EasyStats.jsx");
+/* harmony import */ var _DifficultStats_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DifficultStats.jsx */ "./client/src/components/DifficultStats.jsx");
+/* harmony import */ var _EditMode_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./EditMode.jsx */ "./client/src/components/EditMode.jsx");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32, _templateObject33, _templateObject34;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -1869,6 +2092,10 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+ // import CollectionStats from './CollectionStats.jsx';
+
+
+
 
 
 
@@ -1883,38 +2110,40 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
-var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
-var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
-var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
-var TimeFormatDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  border: 2px ridge white;\n  border-radius: 12px;\n  padding: 2%;\n  margin: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;\n  }\n"])));
-var ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 2%;\n"])));
-var UpButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  transition: .2s;\n  margin: 4%;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
-var DownButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  margin: 4%;\n  transition: .2s;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
-var CollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  text-align: center;\n  color: white;\n  background-color: black;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n"])));
-var CreateCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
-var CreateCollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  text-align: center;\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n"])));
-var NewCollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  background-image: url('https://thumbs.gfycat.com/ConfusedMetallicBellfrog-size_restricted.gif');\n  background-size: cover;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
-var CollectionLabel = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].label(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  width: fit-content;\n  background-color: black;\n  border-radius: 12px;\n  grid-column: 1;\n  text-align: center;\n  padding: 1%;\n"])));
-var CollectionInput = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].input(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n"])));
-var CollectionTextArea = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].textarea(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n  width: 90%;\n"])));
-var CardDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered);\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 4%;\n  width: 80%;\n"])));
-var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 8%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
-var TotalCardsSpan = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  color: white;\n  text-align: center;\n"])));
-var FinishCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 4%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
-var CollCountSpan = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  color: yellow;\n"])));
-var LogoutDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
-var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: red;\n    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;\n  }\n"])));
-var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
-var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
-var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
-var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 3%;\n  &:focus {\n    outline: none;\n  }\n"])));
-var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 2%;\n  margin-top: 2%;\n"])));
-var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 3%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
-var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
+var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
+var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
+var TimeFormatDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  border: 2px ridge white;\n  border-radius: 12px;\n  padding: 2%;\n  margin: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;\n  }\n"])));
+var ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 2%;\n"])));
+var UpButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  transition: .2s;\n  margin: 4%;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
+var DownButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  margin: 4%;\n  transition: .2s;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
+var CollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h3(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  text-align: center;\n  color: white;\n  background-color: black;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n"])));
+var CreateCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
+var CreateCollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  text-align: center;\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n"])));
+var NewCollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  background-image: url('https://thumbs.gfycat.com/ConfusedMetallicBellfrog-size_restricted.gif');\n  background-size: cover;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
+var CollectionLabel = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].label(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  width: fit-content;\n  background-color: black;\n  border-radius: 12px;\n  grid-column: 1;\n  text-align: center;\n  padding: 1%;\n"])));
+var CollectionInput = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].input(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n"])));
+var CollectionTextArea = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].textarea(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n  width: 90%;\n"])));
+var CardDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered);\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 4%;\n  width: 80%;\n"])));
+var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 8%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
+var TotalCardsSpan = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  color: white;\n  text-align: center;\n"])));
+var FinishCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 4%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
+var CollCountSpan = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  color: yellow;\n"])));
+var LogoutDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
+var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: red;\n    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;\n  }\n"])));
+var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
+var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
+var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
+var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 3%;\n  &:focus {\n    outline: none;\n  }\n"])));
+var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 2%;\n  margin-top: 2%;\n"])));
+var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 3%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
+var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
+var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
+var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
 
 var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   _inherits(MainMenu2, _React$Component);
@@ -1947,10 +2176,20 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       isChoosing: false,
       isEditing: false,
       isTesting: false,
+      isViewingCollectionStats: false,
       keyCount: 0,
       keyPressed: '',
       modesDisplayed: false,
-      isDifficult: false
+      isDifficult: false,
+      highScoreStudy: 0,
+      highGradeEasy: 0,
+      highGradeDifficult: 0,
+      recentScoreStudy: 0,
+      recentScoreEasy: 0,
+      recentScoreDifficult: 0,
+      totalScoresStudy: [],
+      totalScoresEasy: [],
+      totalScoresDifficult: []
     };
     _this.chooseCollection = _this.chooseCollection.bind(_assertThisInitialized(_this));
     _this.createCollection = _this.createCollection.bind(_assertThisInitialized(_this));
@@ -1970,6 +2209,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     _this.chooseTestMode = _this.chooseTestMode.bind(_assertThisInitialized(_this));
     _this.chooseEditMode = _this.chooseEditMode.bind(_assertThisInitialized(_this));
     _this.handleFlashKeydown = _this.handleFlashKeydown.bind(_assertThisInitialized(_this));
+    _this.viewCollectionStats = _this.viewCollectionStats.bind(_assertThisInitialized(_this));
+    _this.closeCollectionStats = _this.closeCollectionStats.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1982,14 +2223,21 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         var data = _ref.data;
 
         if (data.length !== 0) {
-          console.log('data lastViewStudy -> ', data[0].lastViewStudy);
-          console.log('state lastViewStudy -> ', _this2.state.lastViewStudy);
-
           _this2.setState({
             userCollections: data,
             lastViewStudy: data[0].lastViewStudy,
             lastViewEasy: data[0].lastViewEasy,
-            lastViewDifficult: data[0].lastViewDifficult
+            lastViewDifficult: data[0].lastViewDifficult,
+            highScoreStudy: data[0].highScore,
+            highGradeEasy: data[0].highGradeEasy,
+            highGradeDifficult: data[0].highGradeDifficult,
+            recentScoreStudy: data[0].mostRecentScore,
+            recentScoreEasy: data[0].mostRecentGradeEasy,
+            recentScoreDifficult: data[0].mostRecentGradeDifficult,
+            totalScoresStudy: data[0].totalScores,
+            totalScoresEasy: data[0].totalGradesEasy,
+            totalScoresDifficult: data[0].totalGradesDifficult,
+            collectionName: data[0].name
           }); // console.log('data testing -> ', data[0])
           // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
           //   this.setState({
@@ -2038,6 +2286,20 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     value: function setAudio(e) {
       this.setState({
         audio: e.target.files
+      });
+    }
+  }, {
+    key: "viewCollectionStats",
+    value: function viewCollectionStats() {
+      this.setState({
+        isViewingCollectionStats: true
+      });
+    }
+  }, {
+    key: "closeCollectionStats",
+    value: function closeCollectionStats() {
+      this.setState({
+        isViewingCollectionStats: false
       });
     }
   }, {
@@ -2495,158 +2757,158 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this6 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(MainMenuDiv, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-          children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-            children: !this.state.modesDisplayed ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(MainMenuTitle, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("u", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(MainMenuDiv, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+          children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+            children: !this.state.modesDisplayed ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(MainMenuTitle, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
                     children: "Main Menu"
                   })
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(CollectionsDiv, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionsTitle, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("u", {
-                      children: ["Total Collections", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollCountSpan, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(CollectionsDiv, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionsTitle, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("u", {
+                      children: ["Total Collections", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollCountSpan, {
                         children: " (".concat(this.state.userCollections.length, ")")
                       })]
                     })
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(UserCollectionsDiv, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ArrowDiv, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(UpButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(UserCollectionsDiv, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ArrowDiv, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(UpButton, {
                       onClick: this.moveUp,
                       children: "\u2B06"
                     })
                   }), // map over the collections
-                  this.state.userCollections.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                  this.state.userCollections.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                       style: {
                         fontFamily: 'Shadows Into Light'
                       },
                       children: "You don't have any collections yet!"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                       style: {
                         fontFamily: 'Shadows Into Light'
                       },
                       children: "Click the button below to create a collection"
                     })]
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(TimeFormatDiv, {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(UserCollections, {
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(TimeFormatDiv, {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(UserCollections, {
                         onClick: this.chooseCollection,
                         id: this.state.userCollections[this.state.selectedCollection].name,
                         children: "".concat(this.state.selectedCollection + 1, ". ").concat(this.state.userCollections[this.state.selectedCollection].name)
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                           style: {
                             fontFamily: 'Shadows Into Light',
                             color: 'yellow'
                           },
                           children: "Created ".concat(moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                           children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                         })
                       })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_12__["default"], {
                       open: this.state.isChoosing,
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(ChooseDiv, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ChooseTitle, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("u", {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChooseDiv, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ChooseTitle, {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                               children: "Choose A Mode:"
                             })
                           })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(ModesDiv, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ModesDiv, {
                           style: {
                             backgroundColor: 'black',
                             border: '2px ridge darkred',
                             borderRadius: '12px',
                             width: '60%'
                           },
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(ChoiceDivs, {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: "Study Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                              children: this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
+                              children: this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: 'Have Not Studied Yet'
-                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: "Last Studied ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
                               onClick: this.chooseStudyMode,
                               children: "Start"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(ChoiceDivs, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: "Test Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                              children: this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
+                              children: this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: 'Have Not Tested (Easy) Yet'
-                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: "Last Tested (Easy) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h4", {
                               children: "Easy:"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
                               onClick: function onClick() {
                                 return _this6.chooseTestMode('easy');
                               },
                               children: "Start"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h4", {
                               style: {
                                 marginTop: '2%'
                               },
                               children: "Difficult:"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                              children: this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
+                              children: this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: 'Have Not Tested (Difficult) Yet'
-                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: "Last Tested (Difficult) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
                               onClick: function onClick() {
                                 return _this6.chooseTestMode('difficult');
                               },
                               children: "Start"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(ChoiceDivs, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                                 children: "Edit Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
                               onClick: this.chooseEditMode,
                               children: "Start"
                             })]
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LogoutButton, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LogoutButton, {
                           onClick: this.goBack,
                           style: {
                             marginTop: '2%',
@@ -2656,23 +2918,103 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                         })]
                       })
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ArrowDiv, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(DownButton, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ArrowDiv, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(DownButton, {
                       onClick: this.moveDown,
                       children: "\u2B07"
                     })
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CreateCollectionButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CreateCollectionButton, {
+                  onClick: this.viewCollectionStats,
+                  children: "View ".concat(this.state.collectionName, " Stats")
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CreateCollectionButton, {
                   onClick: this.createCollection,
                   children: "Create New Collection"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                  open: this.state.isViewingCollectionStats,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(HighScoreDiv, {
+                    style: {
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      backgroundColor: 'none',
+                      backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModalButton, {
+                      onClick: this.closeCollectionStats,
+                      children: "X"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h1", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
+                        children: "".concat(this.props.user, "'s Stats for ").concat(this.state.collectionName)
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                      style: {
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: '4%'
+                      },
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
+                        style: {
+                          marginTop: '1%'
+                        },
+                        children: "Study Scores"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                        style: {
+                          width: '20%',
+                          height: '14%',
+                          backgroundColor: 'white',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignItems: 'center'
+                        },
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_StudyStats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                          totalScoresStudy: this.state.totalScoresStudy
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
+                        children: "Test Grades (Easy)"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                        style: {
+                          width: '20%',
+                          height: '14%',
+                          backgroundColor: 'white',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignItems: 'center'
+                        },
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_EasyStats_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                          totalScoresEasy: this.state.totalScoresEasy
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
+                        children: "Test Grades (Difficult)"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                        style: {
+                          width: '20%',
+                          height: '14%',
+                          backgroundColor: 'white',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignItems: 'center'
+                        },
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_DifficultStats_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                          totalScoresDifficult: this.state.totalScoresDifficult
+                        })
+                      })]
+                    })]
+                  })
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LogoutDiv, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LogoutButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LogoutDiv, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LogoutButton, {
                   onClick: this.props.logout,
                   children: "Logout"
                 })
               })]
-            }) : !this.state.isEditing ? !this.state.isTesting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            }) : !this.state.isEditing ? !this.state.isTesting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               goBack: this.goBack,
@@ -2682,7 +3024,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) : !this.state.isDifficult ?
             /*#__PURE__*/
             // easy test goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2693,7 +3035,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) :
             /*#__PURE__*/
             // difficult test goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_TestModeDifficult_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_TestModeDifficult_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2704,7 +3046,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) :
             /*#__PURE__*/
             // editing goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_EditMode_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_EditMode_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2714,63 +3056,63 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               pressedKey: this.state.pressedKey
             }) // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
 
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CreateCollectionsTitle, {
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CreateCollectionsTitle, {
               style: {
                 fontFamily: 'Luckiest Guy'
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("u", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
                   children: "Create Collection"
                 })
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(NewCollectionDiv, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(NewCollectionDiv, {
               style: {
                 fontFamily: 'Luckiest Guy'
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionLabel, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '1'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                   children: "Collection Name:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionInput, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionInput, {
                 id: "collectionName",
                 style: {
                   gridRow: '2'
                 },
                 onChange: this.handleCollectionName
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionLabel, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '3'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                   children: "Category:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionInput, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionInput, {
                 id: "category",
                 style: {
                   gridRow: '4'
                 },
                 onChange: this.handleCategory
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionLabel, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '5'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                   children: "Add Cards:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(CardDiv, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(CardDiv, {
                 style: {
                   gridRow: '6'
                 },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(AddImageDiv, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionLabel, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(AddImageDiv, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                       children: "Add an image?"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(AddImageInput, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(AddImageInput, {
                     type: "file",
                     accept: ".jpg, .png",
                     id: "image-input",
@@ -2779,63 +3121,63 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                       overflowWrap: 'break-word'
                     }
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionLabel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
                   style: {
                     gridRow: '1'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                     children: "Question:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionTextArea, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionTextArea, {
                   type: "text",
                   id: "question",
                   style: {
                     gridRow: '2'
                   },
                   onChange: this.handleQuestion
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionLabel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
                   style: {
                     gridRow: '3'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                     children: "Answer:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(CollectionTextArea, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionTextArea, {
                   type: "text",
                   id: "answer",
                   style: {
                     gridRow: '4'
                   },
                   onChange: this.handleAnswer
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(AddCardButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(AddCardButton, {
                   style: {
                     gridRow: '5'
                   },
                   onClick: this.submitCard,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                     children: "Add Card:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(TotalCardsSpan, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(TotalCardsSpan, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                     children: "Total Cards: ".concat(this.state.cardCount)
                   })
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(FinishCollectionButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(FinishCollectionButton, {
                 style: {
                   gridRow: '7',
                   gridColumn: '1'
                 },
                 onClick: this.finishCollection,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                   children: "Finish Collection"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(FinishCollectionButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(FinishCollectionButton, {
                 style: {
                   gridRow: '7',
                   gridColumn: '2'
                 },
                 onClick: this.goToMainMenu,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
                   children: "Back to Main Menu"
                 })
               })]
@@ -3067,6 +3409,116 @@ var Stats = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stats);
+
+/***/ }),
+
+/***/ "./client/src/components/StudyStats.jsx":
+/*!**********************************************!*\
+  !*** ./client/src/components/StudyStats.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.modern.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var StudyStats = /*#__PURE__*/function (_Component) {
+  _inherits(StudyStats, _Component);
+
+  var _super = _createSuper(StudyStats);
+
+  function StudyStats(props) {
+    var _this;
+
+    _classCallCheck(this, StudyStats);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      data: {
+        labels: ['Scores'],
+        datasets: [{
+          label: 'User Stats',
+          backgroundColor: 'rgba(4, 0, 0, 0.74)',
+          borderColor: 'rgb(155, 3, 3)',
+          data: _this.props.totalScoresStudy
+        }]
+      }
+    };
+    return _this;
+  }
+
+  _createClass(StudyStats, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var labels = [];
+      var totalScores = this.props.totalScoresStudy;
+
+      for (var i = 1; i <= totalScores.length; i++) {
+        labels.push("Score ".concat(i));
+      }
+
+      this.setState({
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'User Study Stats',
+            backgroundColor: 'rgba(2, 0, 0, 0.74)',
+            borderColor: 'rgb(13, 127, 0)',
+            data: this.props.totalScoresStudy
+          }]
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__.Line, {
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        },
+        data: this.state.data
+      });
+    }
+  }]);
+
+  return StudyStats;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StudyStats);
 
 /***/ }),
 
