@@ -3241,6 +3241,16 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
       })["catch"](function (err) {
         return console.error(err);
       });
+      var options = {
+        collectionName: this.props.collectionName,
+        mode: 'difficult'
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/set-view-date-modes"), options).then(function (_ref3) {
+        var data = _ref3.data;
+        console.log('set view date modes data -> ', data);
+      })["catch"](function (err) {
+        return console.error(err);
+      });
     }
   }, {
     key: "componentDidUpdate",
@@ -3307,9 +3317,9 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
       while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-        var _ref3 = [answers[randomIndex], answers[currentIndex]];
-        answers[currentIndex] = _ref3[0];
-        answers[randomIndex] = _ref3[1];
+        var _ref4 = [answers[randomIndex], answers[currentIndex]];
+        answers[currentIndex] = _ref4[0];
+        answers[randomIndex] = _ref4[1];
       }
 
       this.setState({
