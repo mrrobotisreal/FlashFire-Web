@@ -380,14 +380,14 @@ class TestModeDifficult extends React.Component {
     // this.renderAnswers();
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
-        let sum = data.totalScores.reduce((total, num) => {
+        let sum = data.totalGradesDifficult.reduce((total, num) => {
           return total += num;
         }, 0);
-        let average = sum / data.totalScores.length;
+        let average = sum / data.totalGradesDifficult.length;
         this.setState({
-          prevScore: data.mostRecentScore,
-          totalScores: data.totalScores,
-          highScore: data.highScore,
+          prevScore: data.mostRecentGradeDifficult,
+          totalScores: data.totalGradesDifficult,
+          highScore: data.highGradeDifficult,
           averageScore: average,
         });
         this.renderAnswers();
@@ -612,7 +612,7 @@ class TestModeDifficult extends React.Component {
       } else if (this.state.selectedAnswer === this.state.eAnswer) {
         e.style.border = '2px ridge red';
         e.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-      } else if (this.state.selectedAnswer === this.stat.fAnswer) {
+      } else if (this.state.selectedAnswer === this.state.fAnswer) {
         f.style.border = '2px ridge red';
         f.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
       }
@@ -814,6 +814,7 @@ class TestModeDifficult extends React.Component {
   }
 
   back(score) {
+    let mode = 'difficult';
     let options = {
       totalScores: [...this.state.totalScores, this.state.score],
       score: this.state.score
@@ -822,7 +823,7 @@ class TestModeDifficult extends React.Component {
       this.setState({
         show: true,
       });
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}/${mode}`, options)
         .then((res) => {
           console.log(res);
           setTimeout(() => {
@@ -831,7 +832,7 @@ class TestModeDifficult extends React.Component {
         })
         .catch((err) => console.error());
     } else {
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}/${mode}`, options)
         .then((res) => {
           console.log(res);
         })
@@ -1003,15 +1004,15 @@ class TestModeDifficult extends React.Component {
             <ModalButton onClick={this.closeStats}>X</ModalButton>
             <h1><u>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</u></h1>
             <h3 style={{marginTop: '1%'}}>
-              {`High Score: ${this.state.highScore}`}
+              {`Highest Grade: ${this.state.highScore / this.props.cardList.length * 100}`}
             </h3>
             <hr />
             <h3>
-              {`Most Recent Score: ${this.state.prevScore}`}
+              {`Most Recent Grade: ${this.state.prevScore / this.props.cardList.length * 100}`}
             </h3>
             <hr />
             <h3>
-              {`Average Score: ${this.state.averageScore}`}
+              {`Average Grade: ${this.state.averageScore / this.props.cardList.length * 100}`}
             </h3>
             <hr />
             <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>

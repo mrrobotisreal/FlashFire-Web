@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.post('/signup', (req, res) => {
-  console.log('signup req -> ', req.body);
   db.saveSignup(req.body, (err, cookie) => {
     if (err) {
       console.error(err);
@@ -50,7 +49,6 @@ app.post('/check-cookie/:user', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('check-cookie server cookie -> ', cookie);
       let cookieObj = {
         cookie: cookie
       };
@@ -75,32 +73,26 @@ app.post('/collections/:user/add', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('new collection sent back');
-      console.log('the doc be like -> ', doc);
       res.send(doc);
     }
   });
 });
 
 app.post('/collections/:user/set-view-date', (req, res) => {
-  console.log('server data be like -> ', req.body);
   db.setViewDate(req.params.user, req.body.data.collectionName, (err, doc) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('date doc be like -> ', doc);
       res.send(doc);
     }
   });
 });
 
 app.post('/collections/:user/set-view-date-modes', (req, res) => {
-  console.log('view date modes body -> ', req.body);
   db.setViewDateModes(req.params.user, req.body.collectionName, req.body.mode, (err, doc) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('date mode be like -> ', doc);
       res.send(doc);
     }
   });
@@ -122,18 +114,17 @@ app.get('/collections/:user/scores/:collection', (req, res) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('scores doc be like -> ', doc);
       res.send(doc);
     }
   });
 });
 
-app.post('/collections/:user/scores/:collection', (req, res) => {
-  db.storeScores(req.params.user, req.params.collection, req.body, (err, doc) => {
+app.post('/collections/:user/scores/:collection/:mode', (req, res) => {
+  console.log('req params mode is -> ', req.params.mode);
+  db.storeScores(req.params.user, req.params.collection, req.body, req.params.mode, (err, doc) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('doc  be like -> ', doc);
       res.send(doc);
     }
   });

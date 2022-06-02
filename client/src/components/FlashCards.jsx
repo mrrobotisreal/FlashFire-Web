@@ -559,6 +559,8 @@ class FlashCards extends React.Component {
   }
 
   back(score) {
+    console.log('score be like -> ', this.state.score)
+    let mode = 'study';
     let options = {
       totalScores: [...this.state.totalScores, this.state.score],
       score: this.state.score
@@ -567,7 +569,7 @@ class FlashCards extends React.Component {
       this.setState({
         show: true,
       });
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}/${mode}`, options)
         .then((res) => {
           console.log(res);
           setTimeout(() => {
@@ -576,7 +578,7 @@ class FlashCards extends React.Component {
         })
         .catch((err) => console.error());
     } else {
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}/${mode}`, options)
         .then((res) => {
           console.log(res);
         })

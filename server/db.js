@@ -42,8 +42,6 @@ const CardList = mongoose.model('CardList', cardListSchema);
 const User = mongoose.model('User', userSchema);
 
 const saveCollection = (newColl, user, cb = () => {}) => {
-  console.log('newColl cardList be like -> ', newColl.cardList);
-  console.log('user be like -> ', user);
   let collection = new CardList({
     name: newColl.name,
     category: newColl.category,
@@ -97,9 +95,6 @@ const saveCollection = (newColl, user, cb = () => {}) => {
  };
 
  const setViewDateModes = (username, collectionName, mode, cb = () => {}) => {
-   console.log('username -> ', username);
-   console.log('collectionName -> ', collectionName);
-   console.log('mode -> ', mode);
    let user = User.findOne({'username': username});
    user.exec((err, doc) => {
      if (err) {
@@ -118,8 +113,6 @@ const saveCollection = (newColl, user, cb = () => {}) => {
             break;
           }
         }
-        console.log('updated collection -> ', updatedCollection);
-        console.log('colls -> ', colls);
         let updatedUser = User.findOneAndUpdate({'username': username}, {'collections': colls}, {new: true});
         updatedUser.exec((err, doc) => {
           if (err) {
@@ -229,7 +222,6 @@ const checkLogin = (userInfo, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('user email -> ', doc.email);
       let cookie = cryptofy(userInfo.username, doc.email);
       if (attempt === doc.password) {
         cb(null, cookie, true);
@@ -252,7 +244,7 @@ const changePassword = () => {
 };
 // changePassword();
 
-const storeScores = (username, collection, scores, cb = () => {}) => {
+const storeScores = (username, collection, scores, mode, cb = () => {}) => {
   console.log('db scores -> ', scores);
   console.log('db collection -> ', collection);
   console.log('db user -> ', username);
@@ -287,6 +279,7 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
       //   }
       // });
       if (mode === 'study') {
+        console.log(`mode is ${mode}`);
         let collections = doc.collections;
         let chosenCollection;
         for (let i = 0; i < collections.length; i++) {
@@ -313,6 +306,7 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
           }
         });
       } else if (mode === 'easy') {
+        console.log(`mode is ${mode}`);
         let collections = doc.collections;
         let chosenCollection;
         for (let i = 0; i < collections.length; i++) {
@@ -339,6 +333,7 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
           }
         });
       } else {
+        console.log(`mode is ${mode}`);
         let collections = doc.collections;
         let chosenCollection;
         for (let i = 0; i < collections.length; i++) {
@@ -349,7 +344,7 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
         }
         chosenCollection.totalGradesDifficult = [...chosenCollection.totalGradesDifficult, scores.score];
         chosenCollection.mostRecentGradeDifficult = scores.score;
-        chosenCollection.highGradeDifficulttotalGradesDifficult = Math.max(...chosenCollection.totalGradesDifficult);
+        chosenCollection.highGradeDifficult = Math.max(...chosenCollection.totalGradesDifficult);
         for (let j = 0; j < collections.length; j++) {
           if (collections[j].name === collection) {
             collections.splice(j, 1, chosenCollection);
@@ -375,7 +370,6 @@ const getScores = (username, collection, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('get doc -> ', doc);
       let collections = doc.collections;
       let scoresObj = {};
       for (let i = 0; i < collections.length; i++) {
@@ -383,6 +377,12 @@ const getScores = (username, collection, cb = () => {}) => {
           scoresObj.highScore = collections[i].highScore;
           scoresObj.mostRecentScore = collections[i].mostRecentScore;
           scoresObj.totalScores = collections[i].totalScores;
+          scoresObj.highGradeEasy = collections[i].highGradeEasy;
+          scoresObj.mostRecentGradeEasy = collections[i].mostRecentGradeEasy;
+          scoresObj.totalGradesEasy = collections[i].totalGradesEasy;
+          scoresObj.highGradeDifficult = collections[i].highGradeDifficult;
+          scoresObj.mostRecentGradeDifficult = collections[i].mostRecentGradeDifficult;
+          scoresObj.totalGradesDifficult = collections[i].totalGradesDifficult;
           break;
         }
       }
@@ -393,18 +393,13 @@ const getScores = (username, collection, cb = () => {}) => {
 };
 
 const checkCookie = (username, cookie, cb = () => {}) => {
-  console.log('checkCookie username -> ', username);
-  console.log('checkCookie incoming cookie -> ', cookie);
   let user = User.findOne({'username': username});
   user.exec((err, doc) => {
     if (err) {
       console.error(err);
     } else {
-      console.log('checkCookie doc -> ', doc);
       let email = doc.email;
-      console.log('checkCookie doc email -> ', email);
       let checkedCookie = cryptofy(username, email);
-      console.log('checkCookie checkedCookie -> ', checkedCookie);
       cb(null, checkedCookie);
     }
   });

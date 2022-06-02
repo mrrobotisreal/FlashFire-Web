@@ -1496,6 +1496,8 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     value: function back(score) {
       var _this3 = this;
 
+      console.log('score be like -> ', this.state.score);
+      var mode = 'study';
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
         score: this.state.score
@@ -1505,7 +1507,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
         this.setState({
           show: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName, "/").concat(mode), options).then(function (res) {
           console.log(res);
           setTimeout(function () {
             _this3.props.goBack();
@@ -1514,7 +1516,7 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
           return console.error();
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName, "/").concat(mode), options).then(function (res) {
           console.log(res);
         })["catch"](function (err) {
           return console.error();
@@ -3258,15 +3260,15 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
 
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
         var data = _ref2.data;
-        var sum = data.totalScores.reduce(function (total, num) {
+        var sum = data.totalGradesDifficult.reduce(function (total, num) {
           return total += num;
         }, 0);
-        var average = sum / data.totalScores.length;
+        var average = sum / data.totalGradesDifficult.length;
 
         _this2.setState({
-          prevScore: data.mostRecentScore,
-          totalScores: data.totalScores,
-          highScore: data.highScore,
+          prevScore: data.mostRecentGradeDifficult,
+          totalScores: data.totalGradesDifficult,
+          highScore: data.highGradeDifficult,
           averageScore: average
         });
 
@@ -3519,7 +3521,7 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
         } else if (this.state.selectedAnswer === this.state.eAnswer) {
           e.style.border = '2px ridge red';
           e.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
-        } else if (this.state.selectedAnswer === this.stat.fAnswer) {
+        } else if (this.state.selectedAnswer === this.state.fAnswer) {
           f.style.border = '2px ridge red';
           f.style.boxShadow = '4px 4px 6px red, 0 0 1em darkred, 0 0 0.2em darkred';
         }
@@ -3732,6 +3734,7 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
     value: function back(score) {
       var _this3 = this;
 
+      var mode = 'difficult';
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
         score: this.state.score
@@ -3741,7 +3744,7 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
         this.setState({
           show: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName, "/").concat(mode), options).then(function (res) {
           console.log(res);
           setTimeout(function () {
             _this3.props.goBack();
@@ -3750,7 +3753,7 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
           return console.error();
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName, "/").concat(mode), options).then(function (res) {
           console.log(res);
         })["catch"](function (err) {
           return console.error();
@@ -4052,11 +4055,11 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
                 style: {
                   marginTop: '1%'
                 },
-                children: "High Score: ".concat(this.state.highScore)
+                children: "Highest Grade: ".concat(this.state.highScore / this.props.cardList.length * 100)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Most Recent Score: ".concat(this.state.prevScore)
+                children: "Most Recent Grade: ".concat(this.state.prevScore / this.props.cardList.length * 100)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Average Score: ".concat(this.state.averageScore)
+                children: "Average Grade: ".concat(this.state.averageScore / this.props.cardList.length * 100)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',
@@ -4289,15 +4292,15 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName)).then(function (_ref2) {
         var data = _ref2.data;
-        var sum = data.totalScores.reduce(function (total, num) {
+        var sum = data.totalGradesEasy.reduce(function (total, num) {
           return total += num;
         }, 0);
-        var average = sum / data.totalScores.length;
+        var average = sum / data.totalGradesEasy.length;
 
         _this2.setState({
-          prevScore: data.mostRecentScore,
-          totalScores: data.totalScores,
-          highScore: data.highScore,
+          prevScore: data.mostRecentGradeEasy,
+          totalScores: data.totalGradesEasy,
+          highScore: data.highGradeEasy,
           averageScore: average
         });
 
@@ -4764,6 +4767,7 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
     value: function back(score) {
       var _this4 = this;
 
+      var mode = 'easy';
       var options = {
         totalScores: [].concat(_toConsumableArray(this.state.totalScores), [this.state.score]),
         score: this.state.score
@@ -4773,7 +4777,7 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
         this.setState({
           show: true
         });
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName, "/").concat(mode), options).then(function (res) {
           console.log(res);
           setTimeout(function () {
             _this4.props.goBack();
@@ -4782,7 +4786,7 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
           return console.error();
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName), options).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/scores/").concat(this.props.collectionName, "/").concat(mode), options).then(function (res) {
           console.log(res);
         })["catch"](function (err) {
           return console.error();
@@ -5052,11 +5056,11 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
                 style: {
                   marginTop: '1%'
                 },
-                children: "High Score: ".concat(this.state.highScore)
+                children: "Highest Grade: ".concat(this.state.highScore / this.props.cardList.length * 100)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Most Recent Score: ".concat(this.state.prevScore)
+                children: "Most Recent Grade: ".concat(this.state.prevScore / this.props.cardList.length * 100)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Average Score: ".concat(this.state.averageScore)
+                children: "Average Grade: ".concat(this.state.averageScore / this.props.cardList.length * 100)
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',

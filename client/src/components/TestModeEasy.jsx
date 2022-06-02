@@ -377,14 +377,14 @@ class TestModeEasy extends React.Component {
     });
     axios.get(`/collections/${this.props.user}/scores/${this.props.collectionName}`)
       .then(({ data }) => {
-        let sum = data.totalScores.reduce((total, num) => {
+        let sum = data.totalGradesEasy.reduce((total, num) => {
           return total += num;
         }, 0);
-        let average = sum / data.totalScores.length;
+        let average = sum / data.totalGradesEasy.length;
         this.setState({
-          prevScore: data.mostRecentScore,
-          totalScores: data.totalScores,
-          highScore: data.highScore,
+          prevScore: data.mostRecentGradeEasy,
+          totalScores: data.totalGradesEasy,
+          highScore: data.highGradeEasy,
           averageScore: average,
         });
         this.renderAnswers();
@@ -811,6 +811,7 @@ class TestModeEasy extends React.Component {
   }
 
   back(score) {
+    let mode = 'easy';
     let options = {
       totalScores: [...this.state.totalScores, this.state.score],
       score: this.state.score
@@ -819,7 +820,7 @@ class TestModeEasy extends React.Component {
       this.setState({
         show: true,
       });
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}/${mode}`, options)
         .then((res) => {
           console.log(res);
           setTimeout(() => {
@@ -828,7 +829,7 @@ class TestModeEasy extends React.Component {
         })
         .catch((err) => console.error());
     } else {
-      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}`, options)
+      axios.post(`/collections/${this.props.user}/scores/${this.props.collectionName}/${mode}`, options)
         .then((res) => {
           console.log(res);
         })
@@ -988,15 +989,15 @@ class TestModeEasy extends React.Component {
             <ModalButton onClick={this.closeStats}>X</ModalButton>
             <h1><u>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</u></h1>
             <h3 style={{marginTop: '1%'}}>
-              {`High Score: ${this.state.highScore}`}
+              {`Highest Grade: ${this.state.highScore / this.props.cardList.length * 100}`}
             </h3>
             <hr />
             <h3>
-              {`Most Recent Score: ${this.state.prevScore}`}
+              {`Most Recent Grade: ${this.state.prevScore / this.props.cardList.length * 100}`}
             </h3>
             <hr />
             <h3>
-              {`Average Score: ${this.state.averageScore}`}
+              {`Average Grade: ${this.state.averageScore / this.props.cardList.length * 100}`}
             </h3>
             <hr />
             <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>
