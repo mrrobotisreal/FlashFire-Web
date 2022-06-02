@@ -2381,22 +2381,11 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
 
         _this5.setState({
           userCollections: data,
-          // isCreating: this.state.isCreating,
-          // collectionName: this.state.collectionName,
-          // category: this.state.category,
-          // question: this.state.question,
-          // answer: this.state.answer,
-          // cardList: this.state.cardList,
-          // cardCount: this.state.cardCount,
           modesDisplayed: false,
           flash: false,
           isChoosing: false,
           isEditing: false,
           isTesting: false,
-          // currentCollection: this.state.currentCollection,
-          // selectedCollection: this.state.selectedCollection,
-          // lastView: this.state.lastView,
-          // photos: this.state.photos
           lastViewStudy: data[_this5.state.selectedCollection].lastViewStudy,
           lastViewEasy: data[_this5.state.selectedCollection].lastViewEasy,
           lastViewDifficult: data[_this5.state.selectedCollection].lastViewDifficult
@@ -3452,6 +3441,9 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
         document.getElementById('F').style.border = 'none';
         document.getElementById('F').style.boxShadow = 'none';
       } else if (e.target.id === 'E') {
+        this.setState({
+          selectedAnswer: this.state.eAnswer
+        });
         document.getElementById('B').style.border = 'none';
         document.getElementById('B').style.boxShadow = 'none';
         document.getElementById('C').style.border = 'none';
@@ -3463,6 +3455,9 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
         document.getElementById('F').style.border = 'none';
         document.getElementById('F').style.boxShadow = 'none';
       } else {
+        this.setState({
+          selectedAnswer: this.state.fAnswer
+        });
         document.getElementById('B').style.border = 'none';
         document.getElementById('B').style.boxShadow = 'none';
         document.getElementById('C').style.border = 'none';
@@ -3872,11 +3867,6 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
                   children: this.state.cardList[this.state.currentCard].answer
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                type: "button",
-                onClick: this.reveal,
-                autoFocus: true,
-                children: "Reveal"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
                   onClick: this.selectAnswer,
@@ -3991,6 +3981,7 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(CheckAnswerButton, {
                     onClick: this.checkAnswer,
+                    autoFocus: true,
                     children: "Check Answer"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {

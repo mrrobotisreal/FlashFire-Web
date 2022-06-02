@@ -748,22 +748,11 @@ class MainMenu2 extends React.Component {
     .then(({ data }) => {
       this.setState({
         userCollections: data,
-        // isCreating: this.state.isCreating,
-        // collectionName: this.state.collectionName,
-        // category: this.state.category,
-        // question: this.state.question,
-        // answer: this.state.answer,
-        // cardList: this.state.cardList,
-        // cardCount: this.state.cardCount,
         modesDisplayed: false,
         flash: false,
         isChoosing: false,
         isEditing: false,
         isTesting: false,
-        // currentCollection: this.state.currentCollection,
-        // selectedCollection: this.state.selectedCollection,
-        // lastView: this.state.lastView,
-        // photos: this.state.photos
         lastViewStudy: data[this.state.selectedCollection].lastViewStudy,
         lastViewEasy: data[this.state.selectedCollection].lastViewEasy,
         lastViewDifficult: data[this.state.selectedCollection].lastViewDifficult,

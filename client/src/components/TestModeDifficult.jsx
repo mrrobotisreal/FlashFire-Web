@@ -541,6 +541,9 @@ class TestModeDifficult extends React.Component {
       document.getElementById('F').style.border = 'none';
       document.getElementById('F').style.boxShadow = 'none';
     } else if (e.target.id === 'E') {
+      this.setState({
+        selectedAnswer: this.state.eAnswer,
+      });
       document.getElementById('B').style.border = 'none';
       document.getElementById('B').style.boxShadow = 'none';
       document.getElementById('C').style.border = 'none';
@@ -552,6 +555,9 @@ class TestModeDifficult extends React.Component {
       document.getElementById('F').style.border = 'none';
       document.getElementById('F').style.boxShadow = 'none';
     } else {
+      this.setState({
+        selectedAnswer: this.state.fAnswer,
+      });
       document.getElementById('B').style.border = 'none';
       document.getElementById('B').style.boxShadow = 'none';
       document.getElementById('C').style.border = 'none';
@@ -927,9 +933,9 @@ class TestModeDifficult extends React.Component {
                 this.state.cardList[this.state.currentCard].answer
               }</b>
             </QuestionAndAnswerDiv>
-            <RevealButton type="button" onClick={this.reveal} autoFocus>
+            {/* <RevealButton type="button" onClick={this.reveal} autoFocus>
               Reveal
-            </RevealButton>
+            </RevealButton> */}
             <FailSuccessDiv>
               <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '1', gridRow: '1', marginBottom: '2%'}}>
                 <h5><u><b>A</b></u></h5>
@@ -970,7 +976,7 @@ class TestModeDifficult extends React.Component {
             </FailSuccessDiv>
             <FailSuccessDiv style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center'}}>
-                <CheckAnswerButton onClick={this.checkAnswer}>Check Answer</CheckAnswerButton>
+                <CheckAnswerButton onClick={this.checkAnswer} autoFocus>Check Answer</CheckAnswerButton>
               </FailSuccessDiv>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                 <h5>Grade:</h5>
