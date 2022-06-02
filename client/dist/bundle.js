@@ -1971,19 +1971,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
 
         if (data.length !== 0) {
           _this2.setState({
-            userCollections: data,
-            isCreating: _this2.state.isCreating,
-            collectionName: _this2.state.collectionName,
-            category: _this2.state.category,
-            question: _this2.state.question,
-            answer: _this2.state.answer,
-            cardList: _this2.state.cardList,
-            cardCount: _this2.state.cardCount,
-            flash: _this2.state.flash,
-            currentCollection: _this2.state.currentCollection,
-            selectedCollection: _this2.state.selectedCollection,
-            lastView: _this2.state.lastView,
-            photos: _this2.state.photos
+            userCollections: data
           });
         } else if (!data) {// Say sorry, that user does not exist, please create an account
         }

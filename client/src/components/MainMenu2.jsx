@@ -382,18 +382,6 @@ class MainMenu2 extends React.Component {
         if (data.length !== 0) {
           this.setState({
             userCollections: data,
-            isCreating: this.state.isCreating,
-            collectionName: this.state.collectionName,
-            category: this.state.category,
-            question: this.state.question,
-            answer: this.state.answer,
-            cardList: this.state.cardList,
-            cardCount: this.state.cardCount,
-            flash: this.state.flash,
-            currentCollection: this.state.currentCollection,
-            selectedCollection: this.state.selectedCollection,
-            lastView: this.state.lastView,
-            photos: this.state.photos,
           })
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
