@@ -1970,9 +1970,29 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         var data = _ref.data;
 
         if (data.length !== 0) {
-          _this2.setState({
-            userCollections: data
-          });
+          // this.setState({
+          //   userCollections: data,
+          //   lastViewStudy: data[0].lastViewStudy,
+          //   lastViewEasy: data[0].lastViewEasy,
+          //   lastViewDifficult: data[0].lastViewDifficult,
+          // });
+          console.log('data testing -> ', data[0]);
+
+          if (data[0].lastViewEasy || data[0].lastViewDifficult || data[0].lastViewStudy) {
+            _this2.setState({
+              userCollections: data,
+              lastViewStudy: data[0].lastViewStudy,
+              lastViewEasy: data[0].lastViewEasy,
+              lastViewDifficult: data[0].lastViewDifficult
+            });
+          } else {
+            _this2.setState({
+              userCollections: data,
+              lastViewStudy: 'Have Not Studied',
+              lastViewEasy: 'Have Not Tested (Easy)',
+              lastViewDifficult: 'Have Not Tested (Difficult)'
+            });
+          }
         } else if (!data) {// Say sorry, that user does not exist, please create an account
         }
       })["catch"](function (err) {

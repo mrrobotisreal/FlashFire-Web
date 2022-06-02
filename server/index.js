@@ -60,12 +60,12 @@ app.post('/check-cookie/:user', (req, res) => {
 });
 
 app.get('/collections/:user', (req, res) => {
-  let user = db.users.find({'username': req.params.user});
+  let user = db.users.findOne({'username': req.params.user});
   user.exec((err, doc) => {
     if (err) {
       console.error(err);
     } else {
-      res.send(doc[0].collections);
+      res.send(doc.collections);
     }
   });
 });
@@ -96,7 +96,7 @@ app.post('/collections/:user/set-view-date', (req, res) => {
 
 app.post('/collections/:user/set-view-date-modes', (req, res) => {
   console.log('view date modes body -> ', req.body);
-  db.setViewDateModes(req.params.user, req.body.data.collectionName, req.body.data.mode, (err, doc) => {
+  db.setViewDateModes(req.params.user, req.body.collectionName, req.body.mode, (err, doc) => {
     if (err) {
       console.error(err);
     } else {

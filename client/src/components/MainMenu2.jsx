@@ -380,9 +380,28 @@ class MainMenu2 extends React.Component {
     axios.get(`/collections/${this.props.user}`)
       .then(({ data }) => {
         if (data.length !== 0) {
-          this.setState({
-            userCollections: data,
-          })
+          // this.setState({
+          //   userCollections: data,
+          //   lastViewStudy: data[0].lastViewStudy,
+          //   lastViewEasy: data[0].lastViewEasy,
+          //   lastViewDifficult: data[0].lastViewDifficult,
+          // });
+          console.log('data testing -> ', data[0])
+          if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
+            this.setState({
+              userCollections: data,
+              lastViewStudy: data[0].lastViewStudy,
+              lastViewEasy: data[0].lastViewEasy,
+              lastViewDifficult: data[0].lastViewDifficult,
+            });
+          } else {
+            this.setState({
+              userCollections: data,
+              lastViewStudy: 'Have Not Studied',
+              lastViewEasy: 'Have Not Tested (Easy)',
+              lastViewDifficult: 'Have Not Tested (Difficult)',
+            });
+          }
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
         }

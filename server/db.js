@@ -49,7 +49,7 @@ const saveCollection = (newColl, user, cb = () => {}) => {
     category: newColl.category,
     cardList: newColl.cardList,
     creationDate: newColl.creationDate,
-    lastView: newColl.lastView
+    lastView: newColl.lastView,
   });
   let oldColl = User.findOne({'username': user});
   oldColl.exec((err, doc) => {
@@ -97,6 +97,9 @@ const saveCollection = (newColl, user, cb = () => {}) => {
  };
 
  const setViewDateModes = (username, collectionName, mode, cb = () => {}) => {
+   console.log('username -> ', username);
+   console.log('collectionName -> ', collectionName);
+   console.log('mode -> ', mode);
    let user = User.findOne({'username': username});
    user.exec((err, doc) => {
      if (err) {
@@ -106,14 +109,18 @@ const saveCollection = (newColl, user, cb = () => {}) => {
         let colls = doc.collections.slice();
         let updatedCollection;
         for (let i = 0; i < doc.collections.length; i++) {
-          if (doc.collections[i].name === collection) {
+          console.log(`loop ${i} / name: ${doc.collections[i].name}`);
+          if (doc.collections[i].name === collectionName) {
+            console.log('I made it inside!');
             updatedCollection = doc.collections[i];
             updatedCollection.lastViewEasy = new Date().toString();
             colls.splice(i, 1, updatedCollection);
             break;
           }
         }
-        let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+        console.log('updated collection -> ', updatedCollection);
+        console.log('colls -> ', colls);
+        let updatedUser = User.findOneAndUpdate({'username': username}, {'collections': colls}, {new: true});
         updatedUser.exec((err, doc) => {
           if (err) {
             console.error(err);
@@ -132,7 +139,7 @@ const saveCollection = (newColl, user, cb = () => {}) => {
             break;
           }
         }
-        let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+        let updatedUser = User.findOneAndUpdate({'username': username}, {'collections': colls}, {new: true});
         updatedUser.exec((err, doc) => {
           if (err) {
             console.error(err);
@@ -151,7 +158,7 @@ const saveCollection = (newColl, user, cb = () => {}) => {
             break;
           }
         }
-        let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+        let updatedUser = User.findOneAndUpdate({'username': username}, {'collections': colls}, {new: true});
         updatedUser.exec((err, doc) => {
           if (err) {
             console.error(err);
