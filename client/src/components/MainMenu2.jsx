@@ -901,19 +901,27 @@ class MainMenu2 extends React.Component {
                                 </LastViewSpan>
                               </TimeFormatDiv>
                               <Modal open={this.state.isChoosing}>
-                                {/* <ChooseModal user={this.props.user} collectionName={this.state.collectionName} cardList={this.state.currentCollection} /> */}
                                 <ChooseDiv>
                                   <ChooseTitle><u><b>Choose A Mode:</b></u></ChooseTitle>
                                   <ModesDiv style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Study Mode:</b></ModeTitles>
+                                      <LastViewSpan>
+                                        <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                      </LastViewSpan>
                                       <StartButtons onClick={this.chooseStudyMode}>Start</StartButtons>
                                     </ChoiceDivs>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Test Mode:</b></ModeTitles>
+                                      <LastViewSpan>
+                                        <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                      </LastViewSpan>
                                       <h4>Easy:</h4>
                                       <StartButtons onClick={() => this.chooseTestMode('easy')}>Start</StartButtons>
                                       <h4 style={{marginTop: '2%'}}>Difficult:</h4>
+                                      <LastViewSpan>
+                                        <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                      </LastViewSpan>
                                       <StartButtons onClick={() => this.chooseTestMode('difficult')}>Start</StartButtons>
                                     </ChoiceDivs>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
