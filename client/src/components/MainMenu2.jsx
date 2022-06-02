@@ -344,6 +344,8 @@ class MainMenu2 extends React.Component {
       currentCollection: [],
       selectedCollection: 0,
       lastView: '',
+      lastViewEasy: '',
+      lastViewDifficult: '',
       photos: [],
       isChoosing: false,
       isEditing: false,
@@ -907,20 +909,20 @@ class MainMenu2 extends React.Component {
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Study Mode:</b></ModeTitles>
                                       <LastViewSpan>
-                                        <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                        <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                                       </LastViewSpan>
                                       <StartButtons onClick={this.chooseStudyMode}>Start</StartButtons>
                                     </ChoiceDivs>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Test Mode:</b></ModeTitles>
                                       <LastViewSpan>
-                                        <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                        <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                                       </LastViewSpan>
                                       <h4>Easy:</h4>
                                       <StartButtons onClick={() => this.chooseTestMode('easy')}>Start</StartButtons>
                                       <h4 style={{marginTop: '2%'}}>Difficult:</h4>
                                       <LastViewSpan>
-                                        <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                        <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
                                       </LastViewSpan>
                                       <StartButtons onClick={() => this.chooseTestMode('difficult')}>Start</StartButtons>
                                     </ChoiceDivs>

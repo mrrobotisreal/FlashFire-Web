@@ -1928,6 +1928,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       currentCollection: [],
       selectedCollection: 0,
       lastView: '',
+      lastViewEasy: '',
+      lastViewDifficult: '',
       photos: [],
       isChoosing: false,
       isEditing: false,
@@ -2564,7 +2566,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
                               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                                children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
+                                children: "Last Studied ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
                               onClick: this.chooseStudyMode,
@@ -2583,7 +2585,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
                               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                                children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
+                                children: "Last Tested (Easy) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
                               children: "Easy:"
@@ -2599,7 +2601,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               children: "Difficult:"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
                               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
-                                children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
+                                children: "Last Tested (Difficult) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
                               onClick: function onClick() {
