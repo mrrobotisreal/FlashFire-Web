@@ -1270,6 +1270,16 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       })["catch"](function (err) {
         return console.error(err);
       });
+      var options = {
+        collectionName: this.props.collectionName,
+        mode: 'study'
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/set-view-date-modes"), options).then(function (_ref3) {
+        var data = _ref3.data;
+        console.log('set view date modes data -> ', data);
+      })["catch"](function (err) {
+        return console.error(err);
+      });
     }
   }, {
     key: "componentDidUpdate",

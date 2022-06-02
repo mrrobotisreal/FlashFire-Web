@@ -346,6 +346,15 @@ class FlashCards extends React.Component {
         });
       })
       .catch((err) => console.error(err));
+    let options = {
+      collectionName: this.props.collectionName,
+      mode: 'study',
+    };
+    axios.post(`/collections/${this.props.user}/set-view-date-modes`, options)
+      .then(({ data }) => {
+        console.log('set view date modes data -> ', data);
+      })
+      .catch((err) => console.error(err));
   }
 
   componentDidUpdate(prevProps) {

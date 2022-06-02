@@ -132,7 +132,7 @@ const saveCollection = (newColl, user, cb = () => {}) => {
         let colls = doc.collections.slice();
         let updatedCollection;
         for (let i = 0; i < doc.collections.length; i++) {
-          if (doc.collections[i].name === collection) {
+          if (doc.collections[i].name === collectionName) {
             updatedCollection = doc.collections[i];
             updatedCollection.lastViewDifficult = new Date().toString();
             colls.splice(i, 1, updatedCollection);
@@ -151,7 +151,7 @@ const saveCollection = (newColl, user, cb = () => {}) => {
         let colls = doc.collections.slice();
         let updatedCollection;
         for (let i = 0; i < doc.collections.length; i++) {
-          if (doc.collections[i].name === collection) {
+          if (doc.collections[i].name === collectionName) {
             updatedCollection = doc.collections[i];
             updatedCollection.lastViewStudy = new Date().toString();
             colls.splice(i, 1, updatedCollection);
