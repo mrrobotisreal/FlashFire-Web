@@ -261,31 +261,110 @@ const storeScores = (username, collection, scores, cb = () => {}) => {
     if (err) {
       console.error(err);
     } else {
-      let collections = doc.collections;
-      let chosenCollection;
-      for (let i = 0; i < collections.length; i++) {
-        if (collections[i].name === collection) {
-          chosenCollection = collections[i];
-          break;
+      // let collections = doc.collections;
+      // let chosenCollection;
+      // for (let i = 0; i < collections.length; i++) {
+      //   if (collections[i].name === collection) {
+      //     chosenCollection = collections[i];
+      //     break;
+      //   }
+      // }
+      // chosenCollection.totalScores = [...chosenCollection.totalScores, scores.score];
+      // chosenCollection.mostRecentScore = scores.score;
+      // chosenCollection.highScore = Math.max(...chosenCollection.totalScores);
+      // for (let j = 0; j < collections.length; j++) {
+      //   if (collections[j].name === collection) {
+      //     collections.splice(j, 1, chosenCollection);
+      //     break;
+      //   }
+      // }
+      // let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
+      // update.exec((err, doc) => {
+      //   if (err) {
+      //     console.error(err);
+      //   } else {
+      //     cb(null, doc);
+      //   }
+      // });
+      if (mode === 'study') {
+        let collections = doc.collections;
+        let chosenCollection;
+        for (let i = 0; i < collections.length; i++) {
+          if (collections[i].name === collection) {
+            chosenCollection = collections[i];
+            break;
+          }
         }
+        chosenCollection.totalScores = [...chosenCollection.totalScores, scores.score];
+        chosenCollection.mostRecentScore = scores.score;
+        chosenCollection.highScore = Math.max(...chosenCollection.totalScores);
+        for (let j = 0; j < collections.length; j++) {
+          if (collections[j].name === collection) {
+            collections.splice(j, 1, chosenCollection);
+            break;
+          }
+        }
+        let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
+        update.exec((err, doc) => {
+          if (err) {
+            console.error(err);
+          } else {
+            cb(null, doc);
+          }
+        });
+      } else if (mode === 'easy') {
+        let collections = doc.collections;
+        let chosenCollection;
+        for (let i = 0; i < collections.length; i++) {
+          if (collections[i].name === collection) {
+            chosenCollection = collections[i];
+            break;
+          }
+        }
+        chosenCollection.totalGradesEasy = [...chosenCollection.totalGradesEasy, scores.score];
+        chosenCollection.mostRecentGradeEasy = scores.score;
+        chosenCollection.highGradeEasy = Math.max(...chosenCollection.totalGradesEasy);
+        for (let j = 0; j < collections.length; j++) {
+          if (collections[j].name === collection) {
+            collections.splice(j, 1, chosenCollection);
+            break;
+          }
+        }
+        let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
+        update.exec((err, doc) => {
+          if (err) {
+            console.error(err);
+          } else {
+            cb(null, doc);
+          }
+        });
+      } else {
+        let collections = doc.collections;
+        let chosenCollection;
+        for (let i = 0; i < collections.length; i++) {
+          if (collections[i].name === collection) {
+            chosenCollection = collections[i];
+            break;
+          }
+        }
+        chosenCollection.totalGradesDifficult = [...chosenCollection.totalGradesDifficult, scores.score];
+        chosenCollection.mostRecentGradeDifficult = scores.score;
+        chosenCollection.highGradeDifficulttotalGradesDifficult = Math.max(...chosenCollection.totalGradesDifficult);
+        for (let j = 0; j < collections.length; j++) {
+          if (collections[j].name === collection) {
+            collections.splice(j, 1, chosenCollection);
+            break;
+          }
+        }
+        let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
+        update.exec((err, doc) => {
+          if (err) {
+            console.error(err);
+          } else {
+            cb(null, doc);
+          }
+        });
       }
-      chosenCollection.totalScores = [...chosenCollection.totalScores, scores.score];
-      chosenCollection.mostRecentScore = scores.score;
-      chosenCollection.highScore = Math.max(...chosenCollection.totalScores);
-      for (let j = 0; j < collections.length; j++) {
-        if (collections[j].name === collection) {
-          collections.splice(j, 1, chosenCollection);
-          break;
-        }
-      }
-      let update = User.findOneAndUpdate({'username': username}, {'collections': collections}, {new: true});
-      update.exec((err, doc) => {
-        if (err) {
-          console.error(err);
-        } else {
-          cb(null, doc);
-        }
-      });
     }
   });
 };
