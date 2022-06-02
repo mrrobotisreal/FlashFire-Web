@@ -94,6 +94,18 @@ app.post('/collections/:user/set-view-date', (req, res) => {
   });
 });
 
+app.post('/collections/:user/set-view-date-modes', (req, res) => {
+  console.log('view date modes body -> ', req.body);
+  db.setViewDateModes(req.params.user, req.body.data.collectionName, req.body.data.mode, (err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('date mode be like -> ', doc);
+      res.send(doc);
+    }
+  });
+});
+
 app.post('/collections/:user/edit', (req, res) => {
   db.editCollection(req.params.user, req.body.collectionName, req.body.updatedCollection, (err, doc) => {
     if (err) {
