@@ -121,13 +121,32 @@ const saveCollection = (newColl, user, cb = () => {}) => {
             cb(null, doc);
           }
         });
-       } else {
+       } else if (mode === 'difficult') {
         let colls = doc.collections.slice();
         let updatedCollection;
         for (let i = 0; i < doc.collections.length; i++) {
           if (doc.collections[i].name === collection) {
             updatedCollection = doc.collections[i];
             updatedCollection.lastViewDifficult = new Date().toString();
+            colls.splice(i, 1, updatedCollection);
+            break;
+          }
+        }
+        let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+        updatedUser.exec((err, doc) => {
+          if (err) {
+            console.error(err);
+          } else {
+            cb(null, doc);
+          }
+        });
+       } else {
+        let colls = doc.collections.slice();
+        let updatedCollection;
+        for (let i = 0; i < doc.collections.length; i++) {
+          if (doc.collections[i].name === collection) {
+            updatedCollection = doc.collections[i];
+            updatedCollection.lastViewStudy = new Date().toString();
             colls.splice(i, 1, updatedCollection);
             break;
           }

@@ -346,6 +346,7 @@ class MainMenu2 extends React.Component {
       lastView: '',
       lastViewEasy: '',
       lastViewDifficult: '',
+      lastViewStudy: '',
       photos: [],
       isChoosing: false,
       isEditing: false,

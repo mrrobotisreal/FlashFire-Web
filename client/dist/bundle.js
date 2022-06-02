@@ -1930,6 +1930,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       lastView: '',
       lastViewEasy: '',
       lastViewDifficult: '',
+      lastViewStudy: '',
       photos: [],
       isChoosing: false,
       isEditing: false,
