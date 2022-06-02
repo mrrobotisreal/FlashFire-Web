@@ -96,7 +96,54 @@ const saveCollection = (newColl, user, cb = () => {}) => {
   })
  };
 
- const setViewDateModes = (user, collection, mode, cb = () => {}) => {};
+ const setViewDateModes = (username, collectionName, mode, cb = () => {}) => {
+   let user = User.findOne({'username': username});
+   user.exec((err, doc) => {
+     if (err) {
+       console.error(err);
+     } else {
+       if (mode === 'easy') {
+        let colls = doc.collections.slice();
+        let updatedCollection;
+        for (let i = 0; i < doc.collections.length; i++) {
+          if (doc.collections[i].name === collection) {
+            updatedCollection = doc.collections[i];
+            updatedCollection.lastViewEasy = new Date().toString();
+            colls.splice(i, 1, updatedCollection);
+            break;
+          }
+        }
+        let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+        updatedUser.exec((err, doc) => {
+          if (err) {
+            console.error(err);
+          } else {
+            cb(null, doc);
+          }
+        });
+       } else {
+        let colls = doc.collections.slice();
+        let updatedCollection;
+        for (let i = 0; i < doc.collections.length; i++) {
+          if (doc.collections[i].name === collection) {
+            updatedCollection = doc.collections[i];
+            updatedCollection.lastViewDifficult = new Date().toString();
+            colls.splice(i, 1, updatedCollection);
+            break;
+          }
+        }
+        let updatedUser = User.findOneAndUpdate({'username': user}, {'collections': colls}, {new: true});
+        updatedUser.exec((err, doc) => {
+          if (err) {
+            console.error(err);
+          } else {
+            cb(null, doc);
+          }
+        });
+       }
+     }
+   });
+ };
 
  const editCollection = (username, collectionName, updatedCollection, cb = () => {}) => {
    let user = User.findOne({'username': username});
