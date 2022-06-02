@@ -19,6 +19,12 @@ const cardListSchema = new Schema({
   mostRecentScore: Number,
   totalScores: [],
   highScore: Number,
+  mostRecentGradeEasy: Number,
+  totalGradesEasy: [],
+  highGradeEasy: Number,
+  mostRecentGradeDifficult: Number,
+  totalGradesDifficult: [],
+  highGradeDifficult: Number
 });
 const userSchema = new Schema({
   name: String,
