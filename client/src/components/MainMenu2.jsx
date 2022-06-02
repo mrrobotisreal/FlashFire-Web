@@ -281,7 +281,7 @@ const ChooseDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 5%;
+  padding-bottom: 3%;
   &:focus {
     outline: none;
   }
@@ -292,7 +292,7 @@ const ModesDiv = styled.div`
   border: 2px ridge darkred;
   border-radius: 12px;
   background-color: black;
-  padding-bottom: 4%;
+  padding-bottom: 2%;
   margin-top: 2%;
 `;
 
@@ -302,7 +302,7 @@ const ChooseTitle = styled.h1`
 `;
 
 const ModeTitles = styled.h3`
-  margin-top: 5%;
+  margin-top: 3%;
   text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;
 `;
 
@@ -380,28 +380,30 @@ class MainMenu2 extends React.Component {
     axios.get(`/collections/${this.props.user}`)
       .then(({ data }) => {
         if (data.length !== 0) {
-          // this.setState({
-          //   userCollections: data,
-          //   lastViewStudy: data[0].lastViewStudy,
-          //   lastViewEasy: data[0].lastViewEasy,
-          //   lastViewDifficult: data[0].lastViewDifficult,
-          // });
-          console.log('data testing -> ', data[0])
-          if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
-            this.setState({
-              userCollections: data,
-              lastViewStudy: data[0].lastViewStudy,
-              lastViewEasy: data[0].lastViewEasy,
-              lastViewDifficult: data[0].lastViewDifficult,
-            });
-          } else {
-            this.setState({
-              userCollections: data,
-              lastViewStudy: 'Have Not Studied',
-              lastViewEasy: 'Have Not Tested (Easy)',
-              lastViewDifficult: 'Have Not Tested (Difficult)',
-            });
-          }
+          console.log('data lastViewStudy -> ', data[0].lastViewStudy);
+          console.log('state lastViewStudy -> ', this.state.lastViewStudy)
+          this.setState({
+            userCollections: data,
+            lastViewStudy: data[0].lastViewStudy,
+            lastViewEasy: data[0].lastViewEasy,
+            lastViewDifficult: data[0].lastViewDifficult,
+          });
+          // console.log('data testing -> ', data[0])
+          // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
+          //   this.setState({
+          //     userCollections: data,
+          //     lastViewStudy: data[0].lastViewStudy,
+          //     lastViewEasy: data[0].lastViewEasy,
+          //     lastViewDifficult: data[0].lastViewDifficult,
+          //   });
+          // } else {
+          //   this.setState({
+          //     userCollections: data,
+          //     lastViewStudy: 'Have Not Studied',
+          //     lastViewEasy: 'Have Not Tested (Easy)',
+          //     lastViewDifficult: 'Have Not Tested (Difficult)',
+          //   });
+          // }
         } else if (!data) {
           // Say sorry, that user does not exist, please create an account
         }
@@ -746,22 +748,25 @@ class MainMenu2 extends React.Component {
     .then(({ data }) => {
       this.setState({
         userCollections: data,
-        isCreating: this.state.isCreating,
-        collectionName: this.state.collectionName,
-        category: this.state.category,
-        question: this.state.question,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
+        // isCreating: this.state.isCreating,
+        // collectionName: this.state.collectionName,
+        // category: this.state.category,
+        // question: this.state.question,
+        // answer: this.state.answer,
+        // cardList: this.state.cardList,
+        // cardCount: this.state.cardCount,
         modesDisplayed: false,
         flash: false,
         isChoosing: false,
         isEditing: false,
         isTesting: false,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        // currentCollection: this.state.currentCollection,
+        // selectedCollection: this.state.selectedCollection,
+        // lastView: this.state.lastView,
+        // photos: this.state.photos
+        lastViewStudy: data[this.state.selectedCollection].lastViewStudy,
+        lastViewEasy: data[this.state.selectedCollection].lastViewEasy,
+        lastViewDifficult: data[this.state.selectedCollection].lastViewDifficult,
       });
     })
     .catch((err) => console.error(err));
@@ -917,20 +922,53 @@ class MainMenu2 extends React.Component {
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Study Mode:</b></ModeTitles>
                                       <LastViewSpan>
-                                        <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                        {/* <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
+                                        {
+                                          this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined
+                                          ?
+                                          (
+                                            <b>{'Have Not Studied Yet'}</b>
+                                          )
+                                          :
+                                          (
+                                            <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                          )
+                                        }
                                       </LastViewSpan>
                                       <StartButtons onClick={this.chooseStudyMode}>Start</StartButtons>
                                     </ChoiceDivs>
                                     <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                       <ModeTitles><b>Test Mode:</b></ModeTitles>
                                       <LastViewSpan>
-                                        <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                        {/* <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
+                                        {
+                                          this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined
+                                          ?
+                                          (
+                                            <b>{'Have Not Tested (Easy) Yet'}</b>
+                                          )
+                                          :
+                                          (
+                                            <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                          )
+                                        }
                                       </LastViewSpan>
                                       <h4>Easy:</h4>
                                       <StartButtons onClick={() => this.chooseTestMode('easy')}>Start</StartButtons>
                                       <h4 style={{marginTop: '2%'}}>Difficult:</h4>
                                       <LastViewSpan>
-                                        <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                        {/* <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
+                                        {
+                                          this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined
+                                          ?
+                                          (
+                                            <b>{'Have Not Tested (Difficult) Yet'}</b>
+                                          )
+                                          :
+                                          (
+                                            <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                          )
+                                        }
                                       </LastViewSpan>
                                       <StartButtons onClick={() => this.chooseTestMode('difficult')}>Start</StartButtons>
                                     </ChoiceDivs>

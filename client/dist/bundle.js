@@ -1909,10 +1909,10 @@ var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].but
 var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
 var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
 var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
-var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 5%;\n  &:focus {\n    outline: none;\n  }\n"])));
-var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 4%;\n  margin-top: 2%;\n"])));
+var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 3%;\n  &:focus {\n    outline: none;\n  }\n"])));
+var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 2%;\n  margin-top: 2%;\n"])));
 var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 5%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 3%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
 var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
 var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
 
@@ -1982,29 +1982,31 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         var data = _ref.data;
 
         if (data.length !== 0) {
-          // this.setState({
-          //   userCollections: data,
-          //   lastViewStudy: data[0].lastViewStudy,
-          //   lastViewEasy: data[0].lastViewEasy,
-          //   lastViewDifficult: data[0].lastViewDifficult,
-          // });
-          console.log('data testing -> ', data[0]);
+          console.log('data lastViewStudy -> ', data[0].lastViewStudy);
+          console.log('state lastViewStudy -> ', _this2.state.lastViewStudy);
 
-          if (data[0].lastViewEasy || data[0].lastViewDifficult || data[0].lastViewStudy) {
-            _this2.setState({
-              userCollections: data,
-              lastViewStudy: data[0].lastViewStudy,
-              lastViewEasy: data[0].lastViewEasy,
-              lastViewDifficult: data[0].lastViewDifficult
-            });
-          } else {
-            _this2.setState({
-              userCollections: data,
-              lastViewStudy: 'Have Not Studied',
-              lastViewEasy: 'Have Not Tested (Easy)',
-              lastViewDifficult: 'Have Not Tested (Difficult)'
-            });
-          }
+          _this2.setState({
+            userCollections: data,
+            lastViewStudy: data[0].lastViewStudy,
+            lastViewEasy: data[0].lastViewEasy,
+            lastViewDifficult: data[0].lastViewDifficult
+          }); // console.log('data testing -> ', data[0])
+          // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
+          //   this.setState({
+          //     userCollections: data,
+          //     lastViewStudy: data[0].lastViewStudy,
+          //     lastViewEasy: data[0].lastViewEasy,
+          //     lastViewDifficult: data[0].lastViewDifficult,
+          //   });
+          // } else {
+          //   this.setState({
+          //     userCollections: data,
+          //     lastViewStudy: 'Have Not Studied',
+          //     lastViewEasy: 'Have Not Tested (Easy)',
+          //     lastViewDifficult: 'Have Not Tested (Difficult)',
+          //   });
+          // }
+
         } else if (!data) {// Say sorry, that user does not exist, please create an account
         }
       })["catch"](function (err) {
@@ -2379,22 +2381,25 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
 
         _this5.setState({
           userCollections: data,
-          isCreating: _this5.state.isCreating,
-          collectionName: _this5.state.collectionName,
-          category: _this5.state.category,
-          question: _this5.state.question,
-          answer: _this5.state.answer,
-          cardList: _this5.state.cardList,
-          cardCount: _this5.state.cardCount,
+          // isCreating: this.state.isCreating,
+          // collectionName: this.state.collectionName,
+          // category: this.state.category,
+          // question: this.state.question,
+          // answer: this.state.answer,
+          // cardList: this.state.cardList,
+          // cardCount: this.state.cardCount,
           modesDisplayed: false,
           flash: false,
           isChoosing: false,
           isEditing: false,
           isTesting: false,
-          currentCollection: _this5.state.currentCollection,
-          selectedCollection: _this5.state.selectedCollection,
-          lastView: _this5.state.lastView,
-          photos: _this5.state.photos
+          // currentCollection: this.state.currentCollection,
+          // selectedCollection: this.state.selectedCollection,
+          // lastView: this.state.lastView,
+          // photos: this.state.photos
+          lastViewStudy: data[_this5.state.selectedCollection].lastViewStudy,
+          lastViewEasy: data[_this5.state.selectedCollection].lastViewEasy,
+          lastViewDifficult: data[_this5.state.selectedCollection].lastViewDifficult
         });
       })["catch"](function (err) {
         return console.error(err);
@@ -2586,7 +2591,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                                 children: "Study Mode:"
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                              children: this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                                children: 'Have Not Studied Yet'
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
                                 children: "Last Studied ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
@@ -2605,7 +2612,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                                 children: "Test Mode:"
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                              children: this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                                children: 'Have Not Tested (Easy) Yet'
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
                                 children: "Last Tested (Easy) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
@@ -2621,7 +2630,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               },
                               children: "Difficult:"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(LastViewSpan, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                              children: this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
+                                children: 'Have Not Tested (Difficult) Yet'
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
                                 children: "Last Tested (Difficult) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(StartButtons, {
@@ -4055,11 +4066,11 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
                 style: {
                   marginTop: '1%'
                 },
-                children: "Highest Grade: ".concat(this.state.highScore / this.props.cardList.length * 100)
+                children: "Highest Grade: ".concat(this.state.highScore / this.props.cardList.length * 100, "%")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Most Recent Grade: ".concat(this.state.prevScore / this.props.cardList.length * 100)
+                children: "Most Recent Grade: ".concat(this.state.prevScore / this.props.cardList.length * 100, "%")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Average Grade: ".concat(this.state.averageScore / this.props.cardList.length * 100)
+                children: "Average Grade: ".concat(this.state.averageScore / this.props.cardList.length * 100, "%")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',
@@ -5056,11 +5067,11 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
                 style: {
                   marginTop: '1%'
                 },
-                children: "Highest Grade: ".concat(this.state.highScore / this.props.cardList.length * 100)
+                children: "Highest Grade: ".concat(this.state.highScore / this.props.cardList.length * 100, "%")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Most Recent Grade: ".concat(this.state.prevScore / this.props.cardList.length * 100)
+                children: "Most Recent Grade: ".concat(this.state.prevScore / this.props.cardList.length * 100, "%")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                children: "Average Grade: ".concat(this.state.averageScore / this.props.cardList.length * 100)
+                children: "Average Grade: ".concat(this.state.averageScore / this.props.cardList.length * 100, "%")
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 style: {
                   width: '60%',
