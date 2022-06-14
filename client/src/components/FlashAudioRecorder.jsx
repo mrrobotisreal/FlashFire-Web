@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+// import React, { Component } from 'react'
 // import { Recorder } from 'react-voice-recorder';
 
 // class FlashAudioRecorder extends React.Component {
@@ -110,61 +110,61 @@ import React, { Component } from 'react'
 // }
 
 
-import AudioReactRecorder, { RecordState } from 'audio-react-recorder';
-import ReactPlayer from 'react-player';
+// import AudioReactRecorder, { RecordState } from 'audio-react-recorder';
+// import ReactPlayer from 'react-player';
 
-class FlashAudioRecorder extends Component {
-  constructor(props) {
-    super(props)
+// class FlashAudioRecorder extends Component {
+//   constructor(props) {
+//     super(props)
 
-    this.state = {
-      recordState: null,
-      audioBlob: null,
-      url: '',
-    }
-    this.start = this.start.bind(this);
-    this.stop = this.stop.bind(this);
-    this.onStop = this.onStop.bind(this);
-  }
+//     this.state = {
+//       recordState: null,
+//       audioBlob: null,
+//       url: '',
+//     }
+//     this.start = this.start.bind(this);
+//     this.stop = this.stop.bind(this);
+//     this.onStop = this.onStop.bind(this);
+//   }
 
-  start = () => {
-    this.setState({
-      recordState: RecordState.START
-    })
-  }
+//   start = () => {
+//     this.setState({
+//       recordState: RecordState.START
+//     })
+//   }
 
-  stop = () => {
-    this.setState({
-      recordState: RecordState.STOP
-    })
-  }
+//   stop = () => {
+//     this.setState({
+//       recordState: RecordState.STOP
+//     })
+//   }
 
-  //audioData contains blob and blobUrl
-  onStop = (audioData) => {
-    console.log('audioData', audioData)
-    let url = audioData.url.slice(5);
-    console.log('url be like -> ', url);
-    this.setState({
-      recordState: this.state.recordState,
-      audioBlob: audioData,
-      url: url,
-    })
-  }
+//   //audioData contains blob and blobUrl
+//   onStop = (audioData) => {
+//     console.log('audioData', audioData)
+//     let url = audioData.url.slice(5);
+//     console.log('url be like -> ', url);
+//     this.setState({
+//       recordState: this.state.recordState,
+//       audioBlob: audioData,
+//       url: url,
+//     })
+//   }
 
-  render() {
-    const { recordState } = this.state
+//   render() {
+//     const { recordState } = this.state
 
-    return (
-      <div>
-        <AudioReactRecorder state={recordState} onStop={this.onStop} />
-        <ReactPlayer url={this.state.url} />
+//     return (
+//       <div>
+//         <AudioReactRecorder state={recordState} onStop={this.onStop} />
+//         <ReactPlayer url={this.state.url} />
 
-        <button onClick={this.start}>Start</button>
-        <button onClick={this.stop}>Stop</button>
-      </div>
-    )
-  }
-}
+//         <button onClick={this.start}>Start</button>
+//         <button onClick={this.stop}>Stop</button>
+//       </div>
+//     )
+//   }
+// }
 
 
-export default FlashAudioRecorder;
+// export default FlashAudioRecorder;

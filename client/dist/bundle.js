@@ -106,6 +106,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     value: function checkCookie() {
       var _this2 = this;
 
+      console.log('cookies -> ', document.cookie);
       var user = localStorage.getItem('flash-user');
       var cookie = localStorage.getItem('flash-cookie');
 
@@ -134,6 +135,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     value: function createCookie(str) {
       localStorage.setItem('flash-cookie', str);
       localStorage.setItem('flash-user', this.state.username);
+      document.cookie = "user=".concat(this.state.username, "; domain=localhost:3000; Expires=9999-01-01T01:01:01.001Z; HttpOnly; Secure;");
+      console.log('create cookie -> ', document.cookie);
     }
   }, {
     key: "handleSignupSubmit",
