@@ -3,10 +3,12 @@ const express = require("express");
 const path = require("path");
 const db = require('./db.js');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 // Serves up all static and generated assets in ../client/dist.
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
@@ -18,7 +20,7 @@ app.post('/signup', (req, res) => {
       let cookieObj = {
         cookie: cookie,
       }
-      res.send(cookieObj);
+      res.cookie('username', req.body.username).send(cookieObj);
     }
   });
 });
@@ -52,7 +54,9 @@ app.post('/check-cookie/:user', (req, res) => {
       let cookieObj = {
         cookie: cookie
       };
-      res.send(cookieObj);
+      // res.send(cookieObj);
+      console.log('req cookies -> ', req.cookies);
+      res.cookie('username', req.params.user).send(cookieObj);
     }
   });
 });

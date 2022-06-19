@@ -120,7 +120,6 @@ class App2 extends React.Component {
   }
 
   checkCookie() {
-    console.log('cookies -> ', document.cookie);
     let user = localStorage.getItem('flash-user');
     let cookie = localStorage.getItem('flash-cookie');
     if (!cookie || !user) {
@@ -145,8 +144,9 @@ class App2 extends React.Component {
   createCookie(str) {
     localStorage.setItem('flash-cookie', str);
     localStorage.setItem('flash-user', this.state.username);
-    document.cookie = `user=${this.state.username}; domain=localhost:3000; Expires=9999-01-01T01:01:01.001Z; HttpOnly; Secure;`;
-    console.log('create cookie -> ', document.cookie);
+    // document.cookie = `user=${this.state.username}; domain=localhost:3000; Expires=9999-01-01T01:01:01.001Z; HttpOnly; Secure;`;
+    // console.log('create cookie -> ', document.cookie);
+    //^^^^^ vanilla js not working for some reason, trying js-cookie package instead
   }
 
   handleSignupSubmit(e) {
