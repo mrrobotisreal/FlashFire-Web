@@ -17,9 +17,12 @@ A flashcard web application designed to help you increase your knowledge exponen
 - Tech Stack
 
 ## Login & Main Menu
-[Click Here For Demo And Detailed Description](https://github.com/mrrobotisreal/FlashFire-Web/LOGIN_AND_MAIN_MENU.md)
+[Click Here For Demo And Detailed Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/LOGIN_AND_MAIN_MENU.md)
 
-## FlashCard Modes
+## Viewing User Stats
+
+## Creating A New Collection
+
 ### Study Mode
 !['Study-Mode'](FlashFire-study.gif)
 
@@ -31,3 +34,18 @@ A flashcard web application designed to help you increase your knowledge exponen
 
 ### Edit Mode
 ~ gif goes here ~
+
+## Tech Stack
+
+### Front End and Styling
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+
+### Backend and Database
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+### Hosting
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+
