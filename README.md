@@ -16,12 +16,19 @@ A flashcard web application designed to help you increase your knowledge exponen
 - Edit Mode
 - Tech Stack
 
+## Getting Started
+[Instructions](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/VIEWING_USER_STATS.md)
+
 ## Login & Main Menu
-[Click Here For Demo And Detailed Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/LOGIN_AND_MAIN_MENU.md)
+The login and main menu are the first things you'll see with this app. If you don't already have an account, you can create one, but if you do already have an account then you can simply login. There are several parts to the main menu once you're logged in. This is where your create collections will be, as well as options to view your stats, to create new collections, and of course to logout if you so choose. Please click below for a visual demonstration and a deeper description.
+[Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/LOGIN_AND_MAIN_MENU.md)
 
 ## Viewing User Stats
+In this FlashFire app, there are several different stats that are kept track of for you. Clicking the button to view stats for the current collection on the main menu will pop up a modal that displays your study, test mode (easy) and test mode (difficult) scores over time for the specific collection you currently have selected. You can also view each stats chart individually from within a session. Please click below for a visual demonstration and a deeper description.
+[Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/VIEWING_USER_STATS.md)
 
 ## Creating A New Collection
+When creating a new collection you're able to choose a name and category for the collection, and you can add cards. There is no limit to the amount of collections you can create. Cards consist of an optional image you can upload, a question, and an answer. Please click below for a visual demonstration and a deeper description.
 
 ### Study Mode
 !['Study-Mode'](FlashFire-study.gif)
