@@ -924,9 +924,6 @@ class TestModeEasy extends React.Component {
                 this.state.cardList[this.state.currentCard].answer
               }</b>
             </QuestionAndAnswerDiv>
-            <RevealButton type="button" onClick={this.reveal} autoFocus>
-              Reveal
-            </RevealButton>
             <FailSuccessDiv>
               <FailSuccessIndividualDiv onClick={this.selectAnswer} style={{gridColumn: '1', gridRow: '1', marginBottom: '2%'}}>
                 <h5><u><b>A</b></u></h5>

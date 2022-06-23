@@ -5350,11 +5350,6 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("b", {
                   children: this.state.cardList[this.state.currentCard].answer
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RevealButton, {
-                type: "button",
-                onClick: this.reveal,
-                autoFocus: true,
-                children: "Reveal"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessDiv, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(FailSuccessIndividualDiv, {
                   onClick: this.selectAnswer,
