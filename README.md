@@ -31,16 +31,23 @@ In this FlashFire app, there are several different stats that are kept track of 
 
 ## Creating A New Collection
 When creating a new collection you're able to choose a name and category for the collection, and you can add cards. There is no limit to the amount of collections you can create. Cards consist of an optional image you can upload, a question, and an answer. Please click below for a visual demonstration and a deeper description.
+- [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/CREATING_A_NEW_COLLECTION.md)
 
 ### Study Mode
+Please click below for a visual demonstration and a deeper description.
+- [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/STUDY_MODE.md)
 
 ### Test Mode (Easy)
+Please click below for a visual demonstration and a deeper description.
+- [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/TEST_MODE_EASY.md)
 
 ### Test Mode (Difficult)
-~ gif goes here ~
+Please click below for a visual demonstration and a deeper description.
+- [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/TEST_MODE_DIFFICULT.md)
 
 ### Edit Mode
-~ gif goes here ~
+Please click below for a visual demonstration and a deeper description.
+- [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/EDIT_MODE.md)
 
 ## Tech Stack
 
