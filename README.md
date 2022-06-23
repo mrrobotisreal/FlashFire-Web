@@ -20,7 +20,7 @@ The final section, which is below the 'View <name-of-collectioni> Stats' button,
 
 ## FlashCard Modes
 ### Study Mode
-!['Study-Mode'](flash-fire-study.gif)
+!['Study-Mode'](FlashFire-study.gif)
 
 ### Test Mode (Easy)
 ~ gif goes here ~
