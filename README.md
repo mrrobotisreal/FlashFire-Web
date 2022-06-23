@@ -23,7 +23,7 @@ The final section, which is below the 'View <name-of-collectioni> Stats' button,
 !['Study-Mode'](FlashFire-study.gif)
 
 ### Test Mode (Easy)
-~ gif goes here ~
+!['Test-Mode-Easy](FlashFire-easy.gif)
 
 ### Test Mode (Difficult)
 ~ gif goes here ~
