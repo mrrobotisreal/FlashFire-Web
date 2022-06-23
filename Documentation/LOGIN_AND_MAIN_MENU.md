@@ -1,7 +1,7 @@
 # Login & Main Menu
 
 ## Demo
-![Login & Main Menu](FlashFire-Login-MainMenu.gif)
+![Login & Main Menu](/Documentation/FlashFire-Login-MainMenu.gif)
 
 ## Description
 ### Login / Signup
