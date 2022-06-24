@@ -638,56 +638,26 @@ class TestModeEasy extends React.Component {
     if (this.state.currentCard === this.state.totalCards - 1) {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: 0,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: 0,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       }
     } else {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard += 1,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard += 1,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       }
@@ -698,56 +668,26 @@ class TestModeEasy extends React.Component {
     if (this.state.currentCard === 0) {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.totalCards - 1,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.totalCards - 1,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       }
     } else {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard -= 1,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard -= 1,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
         this.renderAnswers();
       }
@@ -757,56 +697,25 @@ class TestModeEasy extends React.Component {
   reveal() {
     if (this.state.answerDisplay === 'none') {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
         answerDisplay: 'flex',
-        score: this.state.score,
-        prevScore: this.state.prevScore,
       })
     } else {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
         answerDisplay: 'none',
-        score: this.state.score,
-        prevScore: this.state.prevScore,
       })
     }
   }
 
   handleFail() {
     this.setState({
-      cardList: this.state.cardList,
-      collectionName: this.state.collectionName,
-      totalCards: this.state.cardList.length,
-      currentCard: this.state.currentCard,
-      success: this.state.success,
       fail: this.state.fail += 1,
-      answerDisplay: this.state.answerDisplay,
-      score: this.state.score,
-      prevScore: this.state.prevScore,
     });
   }
 
   handleSuccess() {
     this.setState({
-      cardList: this.state.cardList,
-      collectionName: this.state.collectionName,
-      totalCards: this.state.cardList.length,
-      currentCard: this.state.currentCard,
       success: this.state.success += 1,
-      fail: this.state.fail,
-      answerDisplay: this.state.answerDisplay,
       score: this.state.score += 1,
-      prevScore: this.state.prevScore,
     });
   }
 
@@ -845,15 +754,6 @@ class TestModeEasy extends React.Component {
   timeExpire() {
     if (this.state.score > this.state.prevScore) {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore,
         show: true,
       })
     }
@@ -861,15 +761,6 @@ class TestModeEasy extends React.Component {
 
   showConfetti() {
     this.setState({
-      cardList: this.state.cardList,
-      collectionName: this.state.collectionName,
-      totalCards: this.state.cardList.length,
-      currentCard: this.state.currentCard,
-      success: this.state.success,
-      fail: this.state.fail,
-      answerDisplay: this.state.answerDisplay,
-      score: this.state.score,
-      prevScore: this.state.prevScore,
       show: false,
     });
     this.props.goBack();

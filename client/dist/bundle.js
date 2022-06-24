@@ -133,9 +133,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     key: "createCookie",
     value: function createCookie(str) {
       localStorage.setItem('flash-cookie', str);
-      localStorage.setItem('flash-user', this.state.username); // document.cookie = `user=${this.state.username}; domain=localhost:3000; Expires=9999-01-01T01:01:01.001Z; HttpOnly; Secure;`;
-      // console.log('create cookie -> ', document.cookie);
-      //^^^^^ vanilla js not working for some reason, trying js-cookie package instead
+      localStorage.setItem('flash-user', this.state.username);
     }
   }, {
     key: "handleSignupSubmit",
@@ -153,12 +151,6 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         console.log('data -> ', data);
 
         _this3.setState({
-          isAlreadyAMember: _this3.state.isAlreadyAMember,
-          showLoginForm: _this3.state.showLoginForm,
-          signupName: _this3.state.signupName,
-          signupEmail: _this3.state.signupEmail,
-          username: _this3.state.username,
-          password: _this3.state.password,
           showMainMenu: true
         });
 
@@ -184,22 +176,10 @@ var App2 = /*#__PURE__*/function (_React$Component) {
           alert('Wrong username or password! Please try again'); // this will need to be removed below
 
           _this4.setState({
-            isAlreadyAMember: _this4.state.isAlreadyAMember,
-            showLoginForm: _this4.state.showLoginForm,
-            signupName: _this4.state.signupName,
-            signupEmail: _this4.state.signupEmail,
-            username: _this4.state.username,
-            password: _this4.state.password,
             showMainMenu: true
           });
         } else {
           _this4.setState({
-            isAlreadyAMember: _this4.state.isAlreadyAMember,
-            showLoginForm: _this4.state.showLoginForm,
-            signupName: _this4.state.signupName,
-            signupEmail: _this4.state.signupEmail,
-            username: _this4.state.username,
-            password: _this4.state.password,
             showMainMenu: true
           });
 
@@ -214,78 +194,42 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     value: function showLoginForm(e) {
       e.preventDefault();
       this.setState({
-        isAlreadyAMember: true,
-        showLoginForm: this.state.showLoginForm,
-        signupName: this.state.signupName,
-        signupEmail: this.state.signupEmail,
-        username: this.state.username,
-        password: this.state.password,
-        showMainMenu: this.state.showMainMenu
+        isAlreadyAMember: true
       });
     }
   }, {
     key: "showSignupForm",
     value: function showSignupForm(e) {
       this.setState({
-        isAlreadyAMember: false,
-        showLoginForm: this.state.showLoginForm,
-        signupName: this.state.signupName,
-        signupEmail: this.state.signupEmail,
-        username: this.state.username,
-        password: this.state.password,
-        showMainMenu: this.state.showMainMenu
+        isAlreadyAMember: false
       });
     }
   }, {
     key: "handleNameInput",
     value: function handleNameInput(e) {
       this.setState({
-        isAlreadyAMember: this.state.isAlreadyAMember,
-        showLoginForm: this.state.showLoginForm,
-        signupName: e.target.value,
-        signupEmail: this.state.signupEmail,
-        username: this.state.username,
-        password: this.state.password,
-        showMainMenu: this.state.showMainMenu
+        signupName: e.target.value
       });
     }
   }, {
     key: "handleEmailInput",
     value: function handleEmailInput(e) {
       this.setState({
-        isAlreadyAMember: this.state.isAlreadyAMember,
-        showLoginForm: this.state.showLoginForm,
-        signupName: this.state.signupName,
-        signupEmail: e.target.value,
-        username: this.state.username,
-        password: this.state.password,
-        showMainMenu: this.state.showMainMenu
+        signupEmail: e.target.value
       });
     }
   }, {
     key: "handleUsernameInput",
     value: function handleUsernameInput(e) {
       this.setState({
-        isAlreadyAMember: this.state.isAlreadyAMember,
-        showLoginForm: this.state.showLoginForm,
-        signupName: this.state.signupName,
-        signupEmail: this.state.signupEmail,
-        username: e.target.value,
-        password: this.state.password,
-        showMainMenu: this.state.showMainMenu
+        username: e.target.value
       });
     }
   }, {
     key: "handlePasswordInput",
     value: function handlePasswordInput(e) {
       this.setState({
-        isAlreadyAMember: this.state.isAlreadyAMember,
-        showLoginForm: this.state.showLoginForm,
-        signupName: this.state.signupName,
-        signupEmail: this.state.signupEmail,
-        username: this.state.username,
-        password: e.target.value,
-        showMainMenu: this.state.showMainMenu
+        password: e.target.value
       });
     }
   }, {
@@ -293,11 +237,6 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     value: function logout() {
       this.setState({
         isAlreadyAMember: true,
-        showLoginForm: this.state.showLoginForm,
-        signupName: this.state.signupName,
-        signupEmail: this.state.signupEmail,
-        username: this.state.username,
-        password: this.state.password,
         showMainMenu: false
       });
       localStorage.removeItem('flash-cookie');
@@ -1031,53 +970,23 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === this.state.totalCards - 1) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: 0
           });
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard += 1
           });
         }
       }
@@ -1088,53 +997,23 @@ var EditMode = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === 0) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.totalCards - 1
           });
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard -= 1
           });
         }
       }
@@ -1546,53 +1425,23 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === this.state.totalCards - 1) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: 0
           });
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard += 1
           });
         }
       }
@@ -1603,53 +1452,23 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === 0) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.totalCards - 1
           });
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard -= 1
           });
         }
       }
@@ -1659,27 +1478,11 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     value: function reveal() {
       if (this.state.answerDisplay === 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'flex',
-          score: this.state.score,
-          prevScore: this.state.prevScore
+          answerDisplay: 'flex'
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore
+          answerDisplay: 'none'
         });
       }
     }
@@ -1687,30 +1490,15 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     key: "handleFail",
     value: function handleFail() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail += 1,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore
+        fail: this.state.fail += 1
       });
     }
   }, {
     key: "handleSuccess",
     value: function handleSuccess() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
         success: this.state.success += 1,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score += 1,
-        prevScore: this.state.prevScore
+        score: this.state.score += 1
       });
     }
   }, {
@@ -1756,15 +1544,6 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     value: function timeExpire() {
       if (this.state.score > this.state.prevScore) {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
           show: true
         });
       }
@@ -1773,15 +1552,6 @@ var FlashCards = /*#__PURE__*/function (_React$Component) {
     key: "showConfetti",
     value: function showConfetti() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore,
         show: false
       });
       this.props.goBack();
@@ -2369,19 +2139,10 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       }
 
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: this.state.isCreating,
         collectionName: choiceName,
-        category: this.state.category,
-        question: this.state.question,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
         // flash: true,
         currentCollection: choice,
-        selectedCollection: this.state.selectedCollection,
-        lastView: d,
-        photos: this.state.photos
+        lastView: d
       });
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/collections/".concat(this.props.user, "/set-view-date"), {
         data: {
@@ -2398,95 +2159,35 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     key: "createCollection",
     value: function createCollection() {
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: true,
-        collectionName: this.state.collectionName,
-        category: this.state.category,
-        question: this.state.question,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        isCreating: true
       });
     }
   }, {
     key: "handleCollectionName",
     value: function handleCollectionName(e) {
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: this.state.isCreating,
-        collectionName: e.target.value,
-        category: this.state.category,
-        question: this.state.question,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        collectionName: e.target.value
       });
     }
   }, {
     key: "handleCategory",
     value: function handleCategory(e) {
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: this.state.isCreating,
-        collectionName: this.state.collectionName,
-        category: e.target.value,
-        question: this.state.question,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        category: e.target.value
       });
     }
   }, {
     key: "handleQuestion",
     value: function handleQuestion(e) {
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: this.state.isCreating,
-        collectionName: this.state.collectionName,
-        category: this.state.category,
-        question: e.target.value,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        question: e.target.value
       });
     }
   }, {
     key: "handleAnswer",
     value: function handleAnswer(e) {
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: this.state.isCreating,
-        collectionName: this.state.collectionName,
-        category: this.state.category,
-        question: this.state.question,
-        answer: e.target.value,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        answer: e.target.value
       });
     }
   }, {
@@ -2510,18 +2211,10 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           var newCount = _this3.state.cardCount + 1;
 
           _this3.setState({
-            userCollections: _this3.state.userCollections,
-            isCreating: _this3.state.isCreating,
-            collectionName: _this3.state.collectionName,
-            category: _this3.state.category,
             question: '',
             answer: '',
             cardList: [newCard].concat(_toConsumableArray(_this3.state.cardList)),
             cardCount: newCount,
-            flash: _this3.state.flash,
-            currentCollection: _this3.state.currentCollection,
-            selectedCollection: _this3.state.selectedCollection,
-            lastView: _this3.state.lastView,
             photos: []
           });
 
@@ -2538,18 +2231,10 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         };
         var newCount = this.state.cardCount + 1;
         this.setState({
-          userCollections: this.state.userCollections,
-          isCreating: this.state.isCreating,
-          collectionName: this.state.collectionName,
-          category: this.state.category,
           question: '',
           answer: '',
           cardList: [newCard].concat(_toConsumableArray(this.state.cardList)),
           cardCount: newCount,
-          flash: this.state.flash,
-          currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.selectedCollection,
-          lastView: this.state.lastView,
           photos: []
         });
         document.getElementById('question').value = '';
@@ -2574,19 +2259,10 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         console.log('New collection created!');
 
         _this4.setState({
-          userCollections: _this4.state.userCollections,
           isCreating: false,
-          collectionName: _this4.state.collectionName,
-          category: _this4.state.category,
-          question: _this4.state.question,
-          answer: _this4.state.answer,
           cardList: [],
           cardCount: 0,
-          flash: _this4.state.flash,
-          currentCollection: _this4.state.currentCollection,
-          selectedCollection: _this4.state.selectedCollection,
-          lastView: d,
-          photos: _this4.state.photos
+          lastView: d
         });
 
         alert('Collection was added to your profile!');
@@ -2595,19 +2271,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           console.log('res -> ', data);
 
           _this4.setState({
-            userCollections: data,
-            isCreating: _this4.state.isCreating,
-            collectionName: _this4.state.collectionName,
-            category: _this4.state.category,
-            question: _this4.state.question,
-            answer: _this4.state.answer,
-            cardList: _this4.state.cardList,
-            cardCount: _this4.state.cardCount,
-            flash: _this4.state.flash,
-            currentCollection: _this4.state.currentCollection,
-            selectedCollection: _this4.state.selectedCollection,
-            lastView: _this4.state.lastView,
-            photos: _this4.state.photos
+            userCollections: data
           });
         })["catch"](function (err) {
           return console.error(err);
@@ -2620,19 +2284,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     key: "goToMainMenu",
     value: function goToMainMenu() {
       this.setState({
-        userCollections: this.state.userCollections,
-        isCreating: false,
-        collectionName: this.state.collectionName,
-        category: this.state.category,
-        question: this.state.question,
-        answer: this.state.answer,
-        cardList: this.state.cardList,
-        cardCount: this.state.cardCount,
-        flash: this.state.flash,
-        currentCollection: this.state.currentCollection,
-        selectedCollection: this.state.selectedCollection,
-        lastView: this.state.lastView,
-        photos: this.state.photos
+        isCreating: false
       });
     }
   }, {
@@ -2663,35 +2315,11 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     value: function moveUp() {
       if (this.state.selectedCollection === 0) {
         this.setState({
-          userCollections: this.state.userCollections,
-          isCreating: this.state.isCreating,
-          collectionName: this.state.collectionName,
-          category: this.state.category,
-          question: this.state.question,
-          answer: this.state.answer,
-          cardList: this.state.cardList,
-          cardCount: this.state.cardCount,
-          flash: this.state.flash,
-          currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.userCollections.length - 1,
-          lastView: this.state.lastView,
-          photos: this.state.photos
+          selectedCollection: this.state.userCollections.length - 1
         });
       } else {
         this.setState({
-          userCollections: this.state.userCollections,
-          isCreating: this.state.isCreating,
-          collectionName: this.state.collectionName,
-          category: this.state.category,
-          question: this.state.question,
-          answer: this.state.answer,
-          cardList: this.state.cardList,
-          cardCount: this.state.cardCount,
-          flash: this.state.flash,
-          currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.selectedCollection -= 1,
-          lastView: this.state.lastView,
-          photos: this.state.photos
+          selectedCollection: this.state.selectedCollection -= 1
         });
       }
     }
@@ -2700,35 +2328,11 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     value: function moveDown() {
       if (this.state.selectedCollection === this.state.userCollections.length - 1) {
         this.setState({
-          userCollections: this.state.userCollections,
-          isCreating: this.state.isCreating,
-          collectionName: this.state.collectionName,
-          category: this.state.category,
-          question: this.state.question,
-          answer: this.state.answer,
-          cardList: this.state.cardList,
-          cardCount: this.state.cardCount,
-          flash: this.state.flash,
-          currentCollection: this.state.currentCollection,
-          selectedCollection: 0,
-          lastView: this.state.lastView,
-          photos: this.state.photos
+          selectedCollection: 0
         });
       } else {
         this.setState({
-          userCollections: this.state.userCollections,
-          isCreating: this.state.isCreating,
-          collectionName: this.state.collectionName,
-          category: this.state.category,
-          question: this.state.question,
-          answer: this.state.answer,
-          cardList: this.state.cardList,
-          cardCount: this.state.cardCount,
-          flash: this.state.flash,
-          currentCollection: this.state.currentCollection,
-          selectedCollection: this.state.selectedCollection += 1,
-          lastView: this.state.lastView,
-          photos: this.state.photos
+          selectedCollection: this.state.selectedCollection += 1
         });
       }
     }
@@ -3829,6 +3433,10 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
       document.getElementById('C').style.boxShadow = 'none';
       document.getElementById('D').style.border = 'none';
       document.getElementById('D').style.boxShadow = 'none';
+      document.getElementById('E').style.border = 'none';
+      document.getElementById('E').style.boxShadow = 'none';
+      document.getElementById('F').style.border = 'none';
+      document.getElementById('F').style.boxShadow = 'none';
     }
   }, {
     key: "selectAnswer",
@@ -4014,56 +3622,26 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === this.state.totalCards - 1) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: 0
           });
           this.renderAnswers();
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard += 1
           });
           this.renderAnswers();
         }
@@ -4075,56 +3653,26 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === 0) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.totalCards - 1
           });
           this.renderAnswers();
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard -= 1
           });
           this.renderAnswers();
         }
@@ -4135,27 +3683,11 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
     value: function reveal() {
       if (this.state.answerDisplay === 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'flex',
-          score: this.state.score,
-          prevScore: this.state.prevScore
+          answerDisplay: 'flex'
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore
+          answerDisplay: 'none'
         });
       }
     }
@@ -4163,30 +3695,15 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
     key: "handleFail",
     value: function handleFail() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail += 1,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore
+        fail: this.state.fail += 1
       });
     }
   }, {
     key: "handleSuccess",
     value: function handleSuccess() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
         success: this.state.success += 1,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score += 1,
-        prevScore: this.state.prevScore
+        score: this.state.score += 1
       });
     }
   }, {
@@ -4231,15 +3748,6 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
     value: function timeExpire() {
       if (this.state.score > this.state.prevScore) {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
           show: true
         });
       }
@@ -4248,15 +3756,6 @@ var TestModeDifficult = /*#__PURE__*/function (_React$Component) {
     key: "showConfetti",
     value: function showConfetti() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore,
         show: false
       });
       this.props.goBack();
@@ -5043,56 +4542,26 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === this.state.totalCards - 1) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: 0,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: 0
           });
           this.renderAnswers();
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard += 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard += 1
           });
           this.renderAnswers();
         }
@@ -5104,56 +4573,26 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
       if (this.state.currentCard === 0) {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.totalCards - 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.totalCards - 1
           });
           this.renderAnswers();
         }
       } else {
         if (this.state.answerDisplay !== 'none') {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
             currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: 'none',
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            answerDisplay: 'none'
           });
           this.renderAnswers();
         } else {
           this.setState({
-            cardList: this.state.cardList,
-            collectionName: this.state.collectionName,
-            totalCards: this.state.cardList.length,
-            currentCard: this.state.currentCard -= 1,
-            success: this.state.success,
-            fail: this.state.fail,
-            answerDisplay: this.state.answerDisplay,
-            score: this.state.score,
-            prevScore: this.state.prevScore
+            currentCard: this.state.currentCard -= 1
           });
           this.renderAnswers();
         }
@@ -5164,27 +4603,11 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
     value: function reveal() {
       if (this.state.answerDisplay === 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'flex',
-          score: this.state.score,
-          prevScore: this.state.prevScore
+          answerDisplay: 'flex'
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore
+          answerDisplay: 'none'
         });
       }
     }
@@ -5192,30 +4615,15 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
     key: "handleFail",
     value: function handleFail() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail += 1,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore
+        fail: this.state.fail += 1
       });
     }
   }, {
     key: "handleSuccess",
     value: function handleSuccess() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
         success: this.state.success += 1,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score += 1,
-        prevScore: this.state.prevScore
+        score: this.state.score += 1
       });
     }
   }, {
@@ -5260,15 +4668,6 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
     value: function timeExpire() {
       if (this.state.score > this.state.prevScore) {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
-          currentCard: this.state.currentCard,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
           show: true
         });
       }
@@ -5277,15 +4676,6 @@ var TestModeEasy = /*#__PURE__*/function (_React$Component) {
     key: "showConfetti",
     value: function showConfetti() {
       this.setState({
-        cardList: this.state.cardList,
-        collectionName: this.state.collectionName,
-        totalCards: this.state.cardList.length,
-        currentCard: this.state.currentCard,
-        success: this.state.success,
-        fail: this.state.fail,
-        answerDisplay: this.state.answerDisplay,
-        score: this.state.score,
-        prevScore: this.state.prevScore,
         show: false
       });
       this.props.goBack();

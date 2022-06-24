@@ -31,27 +31,6 @@ class CollectionStats extends Component {
     }
   }
 
-  componentDidMount() {
-    // let labels = [];
-    // let totalScores = this.props.totalScores;
-    // for (let i = 1; i <= totalScores.length; i++) {
-    //   labels.push(`Score ${i}`);
-    // }
-    // this.setState({
-    //   data: {
-    //     labels,
-    //     datasets: [
-    //       {
-    //         label: 'User Stats',
-    //         backgroundColor: 'rgba(2, 0, 0, 0.74)',
-    //         borderColor: 'rgb(13, 127, 0)',
-    //         data: this.props.totalScores,
-    //       },
-    //     ],
-    //   }
-    // })
-  }
-
   render() {
     return (
       <Line

@@ -348,53 +348,23 @@ class EditMode extends React.Component {
     if (this.state.currentCard === this.state.totalCards - 1) {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: 0,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: 0,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       }
     } else {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard += 1,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard += 1,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       }
     }
@@ -404,53 +374,23 @@ class EditMode extends React.Component {
     if (this.state.currentCard === 0) {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.totalCards - 1,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.totalCards - 1,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       }
     } else {
       if (this.state.answerDisplay !== 'none') {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard -= 1,
-          success: this.state.success,
-          fail: this.state.fail,
           answerDisplay: 'none',
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       } else {
         this.setState({
-          cardList: this.state.cardList,
-          collectionName: this.state.collectionName,
-          totalCards: this.state.cardList.length,
           currentCard: this.state.currentCard -= 1,
-          success: this.state.success,
-          fail: this.state.fail,
-          answerDisplay: this.state.answerDisplay,
-          score: this.state.score,
-          prevScore: this.state.prevScore,
         });
       }
     }

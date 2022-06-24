@@ -144,9 +144,6 @@ class App2 extends React.Component {
   createCookie(str) {
     localStorage.setItem('flash-cookie', str);
     localStorage.setItem('flash-user', this.state.username);
-    // document.cookie = `user=${this.state.username}; domain=localhost:3000; Expires=9999-01-01T01:01:01.001Z; HttpOnly; Secure;`;
-    // console.log('create cookie -> ', document.cookie);
-    //^^^^^ vanilla js not working for some reason, trying js-cookie package instead
   }
 
   handleSignupSubmit(e) {
@@ -160,13 +157,7 @@ class App2 extends React.Component {
       .then(({ data }) => {
         console.log('data -> ', data);
         this.setState({
-          isAlreadyAMember: this.state.isAlreadyAMember,
-          showLoginForm: this.state.showLoginForm,
-          signupName: this.state.signupName,
-          signupEmail: this.state.signupEmail,
-          username: this.state.username,
-          password: this.state.password,
-          showMainMenu: true
+          showMainMenu: true,
         });
         this.createCookie(data.cookie);
       })
@@ -185,23 +176,11 @@ class App2 extends React.Component {
           alert('Wrong username or password! Please try again')
           // this will need to be removed below
           this.setState({
-            isAlreadyAMember: this.state.isAlreadyAMember,
-            showLoginForm: this.state.showLoginForm,
-            signupName: this.state.signupName,
-            signupEmail: this.state.signupEmail,
-            username: this.state.username,
-            password: this.state.password,
-            showMainMenu: true
+            showMainMenu: true,
           });
         } else {
           this.setState({
-            isAlreadyAMember: this.state.isAlreadyAMember,
-            showLoginForm: this.state.showLoginForm,
-            signupName: this.state.signupName,
-            signupEmail: this.state.signupEmail,
-            username: this.state.username,
-            password: this.state.password,
-            showMainMenu: true
+            showMainMenu: true,
           });
           this.createCookie(data.cookie);
         }
@@ -213,83 +192,42 @@ class App2 extends React.Component {
     e.preventDefault();
     this.setState({
       isAlreadyAMember: true,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
-      signupEmail: this.state.signupEmail,
-      username: this.state.username,
-      password: this.state.password,
-      showMainMenu: this.state.showMainMenu
     });
   }
 
   showSignupForm(e) {
     this.setState({
       isAlreadyAMember: false,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
-      signupEmail: this.state.signupEmail,
-      username: this.state.username,
-      password: this.state.password,
-      showMainMenu: this.state.showMainMenu
     });
   }
 
   handleNameInput(e) {
     this.setState({
-      isAlreadyAMember: this.state.isAlreadyAMember,
-      showLoginForm: this.state.showLoginForm,
       signupName: e.target.value,
-      signupEmail: this.state.signupEmail,
-      username: this.state.username,
-      password: this.state.password,
-      showMainMenu: this.state.showMainMenu
     });
   }
 
   handleEmailInput(e) {
     this.setState({
-      isAlreadyAMember: this.state.isAlreadyAMember,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
       signupEmail: e.target.value,
-      username: this.state.username,
-      password: this.state.password,
-      showMainMenu: this.state.showMainMenu
     });
   }
 
   handleUsernameInput(e) {
     this.setState({
-      isAlreadyAMember: this.state.isAlreadyAMember,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
-      signupEmail: this.state.signupEmail,
       username: e.target.value,
-      password: this.state.password,
-      showMainMenu: this.state.showMainMenu
     });
   }
 
   handlePasswordInput(e) {
     this.setState({
-      isAlreadyAMember: this.state.isAlreadyAMember,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
-      signupEmail: this.state.signupEmail,
-      username: this.state.username,
       password: e.target.value,
-      showMainMenu: this.state.showMainMenu
     });
   }
 
   logout() {
     this.setState({
       isAlreadyAMember: true,
-      showLoginForm: this.state.showLoginForm,
-      signupName: this.state.signupName,
-      signupEmail: this.state.signupEmail,
-      username: this.state.username,
-      password: this.state.password,
       showMainMenu: false,
     });
     localStorage.removeItem('flash-cookie');
