@@ -34,19 +34,19 @@ When creating a new collection you're able to choose a name and category for the
 - [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/Documentation/CREATING_A_NEW_COLLECTION.md)
 
 ### Study Mode
-Please click below for a visual demonstration and a deeper description.
+The study mode will likely be used more than any other mode, because this mode is the essence of the app. It opens up a study session in which you can view your studying stats, set a timer to challenge yourself, reveal the answer if you need to, and give yourself points for the cards you get correct. When you're done, click finish to save the results or click main menu to go back. Everyone likes incentives though, read the detailed description to find out what the incentive is! Please click below for a visual demonstration and a deeper description.
 - [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/Documentation/STUDY_MODE.md)
 
 ### Test Mode (Easy)
-Please click below for a visual demonstration and a deeper description.
+The easy test mode is a good way to ease yourself into testing. If you've been studying and think you're getting better, you can choose the easy test mode which will give you 4 multiple choice answers and it won't let you reveal the answer until after you've checked it. At that point regardless of whether or not the answer is correct, the correct answer will be highlight in bright green and all the incorrect answers highlighted in bright red. Please click below for a visual demonstration and a deeper description.
 - [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/Documentation/TEST_MODE_EASY.md)
 
 ### Test Mode (Difficult)
-Please click below for a visual demonstration and a deeper description.
+The difficult test mode is where the real challenge is! If you think you're truly ready to see how well you've been studying, you can choose the difficult test mode which will give you 6 multiple choice answers and it will not highlight correct or incorrect answers. When you select an answer and check it, only our selected answer will be highlighted. If it's correct, it'll be highlighted green and go towards your grade, otherwise it'll be highlighted red and you will not receive points for that question. Please click below for a visual demonstration and a deeper description.
 - [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/Documentation/TEST_MODE_DIFFICULT.md)
 
 ### Edit Mode
-Please click below for a visual demonstration and a deeper description.
+Notice a typo in your current collection? Is one of your cards not correct? This is where edit mode comes in handy. You can directly edit the cards you already have in your collection, you can remove unwanted cards, and you can even add new cards. Please click below for a visual demonstration and a deeper description.
 - [Demo and Description](https://github.com/mrrobotisreal/FlashFire-Web/blob/main/Documentation/EDIT_MODE.md)
 
 ## Tech Stack
