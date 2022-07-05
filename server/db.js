@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/flash-fire-webapp', {
   useNewUrlParser: true,
@@ -5,6 +6,7 @@ mongoose.connect('mongodb://localhost:27017/flash-fire-webapp', {
 });
 const { Schema } = mongoose;
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const cardSchema = new Schema({
   question: String,
@@ -405,6 +407,11 @@ const checkCookie = (username, cookie, cb = () => {}) => {
   });
 };
 
+const createJWT = (userInfo, cb = () => {}) => {
+  let token = jwt.sign(userInfo, process.env.SECRET);
+  cb(token);
+};
+
 module.exports.cards = Card;
 module.exports.users = User;
 module.exports.cardlists = CardList;
@@ -417,3 +424,4 @@ module.exports.storeScores = storeScores;
 module.exports.getScores = getScores;
 module.exports.checkCookie = checkCookie;
 module.exports.editCollection = editCollection;
+module.exports.createJWT = createJWT;
