@@ -408,7 +408,7 @@ const checkCookie = (username, cookie, cb = () => {}) => {
 };
 
 const createJWT = (userInfo, cb = () => {}) => {
-  let token = jwt.sign(userInfo, process.env.SECRET);
+  let token = jwt.sign(userInfo, process.env.SECRET, {expiresIn: (Date.now() / 1000) + (90 * 24 * 60 * 60)});
   cb(token);
 };
 

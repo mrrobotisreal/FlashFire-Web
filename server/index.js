@@ -59,6 +59,16 @@ app.post('/check-cookie/:user', (req, res) => {
       res.cookie('username', req.params.user).send(cookieObj);
     }
   });
+
+  // JWT below
+  db.createJWT({}, (err, jwt) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('jwt -> ', jwt);
+      res.send(jwt);
+    }
+  });
 });
 
 app.get('/collections/:user', (req, res) => {
