@@ -113,7 +113,9 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         return;
       } else {
         var options = {
-          cookie: cookie
+          cookie: cookie,
+          username: this.state.username,
+          email: this.state.email
         };
         axios__WEBPACK_IMPORTED_MODULE_1___default().post("/check-cookie/".concat(user), options).then(function (_ref) {
           var data = _ref.data;
@@ -135,6 +137,12 @@ var App2 = /*#__PURE__*/function (_React$Component) {
       localStorage.setItem('flash-cookie', str);
       localStorage.setItem('flash-user', this.state.username);
     }
+  }, {
+    key: "createJWT",
+    value: function createJWT() {}
+  }, {
+    key: "checkJWT",
+    value: function checkJWT() {}
   }, {
     key: "handleSignupSubmit",
     value: function handleSignupSubmit(e) {

@@ -59,14 +59,30 @@ app.post('/check-cookie/:user', (req, res) => {
       res.cookie('username', req.params.user).send(cookieObj);
     }
   });
+});
 
-  // JWT below
-  db.createJWT({}, (err, jwt) => {
+app.post('/create-jwt/:user', (req, res) => {
+  let userInfo = {
+    username: req.params.username,
+    email: req.body.email,
+  };
+  db.createJWT(userInfo, (err, jwt) => {
     if (err) {
       console.error(err);
     } else {
       console.log('jwt -> ', jwt);
       res.send(jwt);
+    }
+  });
+});
+
+app.post('/check-jwt/:user', (req, res) => {
+  db.checkJWT(req.params.user, req.body.jwt, (err, success) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('success -> ', success);
+      res.send(success);
     }
   });
 });

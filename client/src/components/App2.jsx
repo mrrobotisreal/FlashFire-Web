@@ -126,7 +126,9 @@ class App2 extends React.Component {
       return;
     } else {
       let options = {
-        cookie: cookie
+        cookie: cookie,
+        username: this.state.username,
+        email: this.state.email,
       }
       axios.post(`/check-cookie/${user}`, options)
         .then(({ data }) => {
@@ -145,6 +147,10 @@ class App2 extends React.Component {
     localStorage.setItem('flash-cookie', str);
     localStorage.setItem('flash-user', this.state.username);
   }
+
+  createJWT() {}
+
+  checkJWT() {}
 
   handleSignupSubmit(e) {
     e.preventDefault();
