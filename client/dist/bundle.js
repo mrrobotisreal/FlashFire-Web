@@ -93,6 +93,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     _this.logout = _this.logout.bind(_assertThisInitialized(_this));
     _this.createCookie = _this.createCookie.bind(_assertThisInitialized(_this));
     _this.checkCookie = _this.checkCookie.bind(_assertThisInitialized(_this));
+    _this.createJWT = _this.createJWT.bind(_assertThisInitialized(_this));
+    _this.checkJWT = _this.checkJWT.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -100,6 +102,7 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.checkCookie();
+      this.checkJWT();
     }
   }, {
     key: "checkCookie",
@@ -139,30 +142,55 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "createJWT",
-    value: function createJWT() {}
+    value: function createJWT() {
+      var _this3 = this;
+
+      var options = {
+        email: this.state.email
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/create-jwt/".concat(this.state.username), options).then(function (_ref2) {
+        var data = _ref2.data;
+        console.log('data -> ', data);
+        localStorage.setItem("ffj-".concat(_this3.state.username), data);
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }
   }, {
     key: "checkJWT",
-    value: function checkJWT() {}
+    value: function checkJWT() {
+      var jwt = localStorage.getItem("ffj-".concat(this.state.username));
+
+      if (jwt) {// verify jwt with server
+        // if verified
+        // log in to main menu
+        // else
+        // return
+      } else {
+        return;
+      }
+    }
   }, {
     key: "handleSignupSubmit",
     value: function handleSignupSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
+      this.createJWT();
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/signup', {
         name: this.state.signupName,
         email: this.state.signupEmail,
         username: this.state.username,
         password: this.state.password
-      }).then(function (_ref2) {
-        var data = _ref2.data;
+      }).then(function (_ref3) {
+        var data = _ref3.data;
         console.log('data -> ', data);
 
-        _this3.setState({
+        _this4.setState({
           showMainMenu: true
         });
 
-        _this3.createCookie(data.cookie);
+        _this4.createCookie(data.cookie);
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -170,28 +198,28 @@ var App2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleLoginSubmit",
     value: function handleLoginSubmit(e) {
-      var _this4 = this;
+      var _this5 = this;
 
       e.preventDefault();
       var userInfo = {
         username: this.state.username,
         password: this.state.password
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref3) {
-        var data = _ref3.data;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref4) {
+        var data = _ref4.data;
 
         if (!data) {
           alert('Wrong username or password! Please try again'); // this will need to be removed below
 
-          _this4.setState({
+          _this5.setState({
             showMainMenu: true
           });
         } else {
-          _this4.setState({
+          _this5.setState({
             showMainMenu: true
           });
 
-          _this4.createCookie(data.cookie);
+          _this5.createCookie(data.cookie);
         }
       })["catch"](function (err) {
         return console.error(err);
@@ -1818,7 +1846,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlashCards.jsx */ "./client/src/components/FlashCards.jsx");
 /* harmony import */ var _TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TestModeEasy.jsx */ "./client/src/components/TestModeEasy.jsx");
 /* harmony import */ var _TestModeDifficult_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./TestModeDifficult.jsx */ "./client/src/components/TestModeDifficult.jsx");
@@ -1826,9 +1854,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EasyStats_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EasyStats.jsx */ "./client/src/components/EasyStats.jsx");
 /* harmony import */ var _DifficultStats_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DifficultStats.jsx */ "./client/src/components/DifficultStats.jsx");
 /* harmony import */ var _EditMode_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./EditMode.jsx */ "./client/src/components/EditMode.jsx");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _MainMenu2_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./MainMenu2.css */ "./client/src/components/MainMenu2.css");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _mui_material_Modal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material/Modal */ "./node_modules/@mui/material/Modal/Modal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29, _templateObject30, _templateObject31, _templateObject32, _templateObject33, _templateObject34;
@@ -1881,6 +1910,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+
  // import FlashAudioRecorder from './FlashAudioRecorder.jsx';
 // import ChooseModal from './ChooseModal.jsx';
 
@@ -1890,40 +1920,40 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 
-var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
-var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
-var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
-var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
-var TimeFormatDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  border: 2px ridge white;\n  border-radius: 12px;\n  padding: 2%;\n  margin: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;\n  }\n"])));
-var ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 2%;\n"])));
-var UpButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  transition: .2s;\n  margin: 4%;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
-var DownButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  margin: 4%;\n  transition: .2s;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
-var CollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h3(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  text-align: center;\n  color: white;\n  background-color: black;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n"])));
-var CreateCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
-var CreateCollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  text-align: center;\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n"])));
-var NewCollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  background-image: url('https://thumbs.gfycat.com/ConfusedMetallicBellfrog-size_restricted.gif');\n  background-size: cover;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
-var CollectionLabel = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].label(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  width: fit-content;\n  background-color: black;\n  border-radius: 12px;\n  grid-column: 1;\n  text-align: center;\n  padding: 1%;\n"])));
-var CollectionInput = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].input(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n"])));
-var CollectionTextArea = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].textarea(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n  width: 90%;\n"])));
-var CardDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered);\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 4%;\n  width: 80%;\n"])));
-var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 8%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
-var TotalCardsSpan = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  color: white;\n  text-align: center;\n"])));
-var FinishCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 4%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
-var CollCountSpan = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  color: yellow;\n"])));
-var LogoutDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
-var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: red;\n    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;\n  }\n"])));
-var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
-var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
-var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
-var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 3%;\n  &:focus {\n    outline: none;\n  }\n"])));
-var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 2%;\n  margin-top: 2%;\n"])));
-var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 3%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
-var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
-var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
-var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].div(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
-var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_11__["default"].button(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
+var MainMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-align: center;\n  top: 0;\n  left: 0;\n  position: relative;\n  background-image: url('https://acegif.com/wp-content/gifs/fire-15.gif');\n  background-size: cover;\n  padding: 3%;\n  margin-top: 10%;\n  border: 4px ridge darkred;\n  border-radius: 12px;\n  color: white;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var MainMenuTitle = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].h2(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n  text-align: center;\n  font-family: 'Luckiest Guy', cursive;\n"])));
+var CollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: black;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
+var UserCollectionsDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  margin-bottom: 4%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  padding: 6%;\n  text-align: center;\n  width: 95%;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n"])));
+var UserCollections = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].h4(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  padding: 2%;\n  transition: .2s;\n  width: fit-content;\n  cursor: pointer;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    border-bottom: 3px ridge darkred;\n    border-radius: 12px;\n    color: red;\n    transform: scale(1.25);\n  }\n"])));
+var TimeFormatDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  border: 2px ridge white;\n  border-radius: 12px;\n  padding: 2%;\n  margin: 2%;\n  transition: .2s;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px red, 0 0 1em white, 0 0 0.2em white;\n  }\n"])));
+var ArrowDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 2%;\n"])));
+var UpButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  transition: .2s;\n  margin: 4%;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
+var DownButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  width: fit-content;\n  padding: 1%;\n  background-color: black;\n  margin: 4%;\n  transition: .2s;\n  border-radius: 8px;\n  color: white;\n  &:hover {\n    transform: scale(1.15);\n    box-shadow: 4px 4px 6px yellow, 0 0 1em white, 0 0 0.2em white;\n    color: yellow;\n  }\n"])));
+var CollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].h3(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  text-align: center;\n  color: white;\n  background-color: black;\n  padding: 1%;\n  border-radius: 12px;\n  font-family: 'Bangers', cursive;\n"])));
+var CreateCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  border: 2px ridge green;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: green;\n    box-shadow: 4px 4px 6px green, 0 0 1em darkgreen, 0 0 0.2em darkgreen;\n  }\n"])));
+var CreateCollectionsTitle = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].h2(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  text-align: center;\n  grid-column: 1;\n  grid-row: 1;\n  margin-bottom: 3%;\n"])));
+var NewCollectionDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  background-color: black;\n  background-image: url('https://thumbs.gfycat.com/ConfusedMetallicBellfrog-size_restricted.gif');\n  background-size: cover;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  padding: 2%;\n"])));
+var CollectionLabel = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].label(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n  width: fit-content;\n  background-color: black;\n  border-radius: 12px;\n  grid-column: 1;\n  text-align: center;\n  padding: 1%;\n"])));
+var CollectionInput = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].input(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n"])));
+var CollectionTextArea = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].textarea(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  background-color: darkgrey;\n  color: white;\n  text-align: left;\n  margin-bottom: 2%;\n  width: 90%;\n"])));
+var CardDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered);\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding: 4%;\n  width: 80%;\n"])));
+var AddCardButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 8%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
+var TotalCardsSpan = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].span(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["\n  color: white;\n  text-align: center;\n"])));
+var FinishCollectionButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  color: white;\n  background-color: black;\n  transition: .2s;\n  margin-top: 4%;\n  &:hover {\n    transform: scale(1.15);\n    background-color: orangered;\n  }\n"])));
+var CollCountSpan = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].span(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n  color: yellow;\n"])));
+var LogoutDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n"])));
+var LogoutButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  color: white;\n  width: fit-content;\n  transition: .2s;\n  margin-top: 4%;\n  font-family: 'Bangers', cursive;\n  &:hover {\n    transform: scale(1.15);\n    color: red;\n    box-shadow: 4px 4px 6px red, 0 0 1em orangered, 0 0 0.2em orangered;\n  }\n"])));
+var AddImageInput = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].input(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral([""])));
+var AddImageDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral([""])));
+var LastViewSpan = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].span(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  font-family: 'Shadows Into Light';\n  color: yellow;\n"])));
+var ChooseDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  background-image: linear-gradient(to bottom, black, orangered, yellow);\n  color: white;\n  font-family: 'Luckiest Guy';\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  padding-bottom: 3%;\n  &:focus {\n    outline: none;\n  }\n"])));
+var ModesDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  width: 60%;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  background-color: black;\n  padding-bottom: 2%;\n  margin-top: 2%;\n"])));
+var ChooseTitle = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].h1(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  margin-top: 2%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var ModeTitles = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].h3(_templateObject30 || (_templateObject30 = _taggedTemplateLiteral(["\n  margin-top: 3%;\n  text-shadow: 6px 6px 8px red, 0 0 1em orange, 0 0 0.2em orange;\n"])));
+var StartButtons = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject31 || (_templateObject31 = _taggedTemplateLiteral(["\n  font-family: 'Luckiest Guy';\n  color: white;\n  background-color: black;\n  border-radius: 12px;\n  transition: .2s;\n  width: fit-content;\n  padding: 1%;\n  &:hover {\n    transform: scale(1.15);\n    border: 2px ridge purple;\n    box-shadow: 6px 6px 9px violet, 0 0 1em rebeccapurple, 0 0 0.2em rebeccapurple;\n  }\n"])));
+var ChoiceDivs = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject32 || (_templateObject32 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n"])));
+var HighScoreDiv = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].div(_templateObject33 || (_templateObject33 = _taggedTemplateLiteral(["\n  top: 0;\n  left: 0;\n  background-color: red;\n  color: white;\n  border: 2px ridge darkred;\n  border-radius: 12px;\n  text-align: center;\n  font-family: 'Luckiest Guy';\n  padding-top: 3%;\n  padding-bottom: 3%;\n"])));
+var ModalButton = styled_components__WEBPACK_IMPORTED_MODULE_12__["default"].button(_templateObject34 || (_templateObject34 = _taggedTemplateLiteral(["\n  position: fixed;\n  top: 5%;\n  right: 5%;\n  background-color: white;\n  font-size: 20px;\n  border: 2px ridge grey;\n  border-radius: 12px;\n  cursor: pointer;\n  box-shadow: 10px 5px 5px black;\n"])));
 
 var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   _inherits(MainMenu2, _React$Component);
@@ -1969,7 +1999,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
       recentScoreDifficult: 0,
       totalScoresStudy: [],
       totalScoresEasy: [],
-      totalScoresDifficult: []
+      totalScoresDifficult: [],
+      tooltipUp: 0,
+      tooltipDown: 0
     };
     _this.chooseCollection = _this.chooseCollection.bind(_assertThisInitialized(_this));
     _this.createCollection = _this.createCollection.bind(_assertThisInitialized(_this));
@@ -1991,6 +2023,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     _this.handleFlashKeydown = _this.handleFlashKeydown.bind(_assertThisInitialized(_this));
     _this.viewCollectionStats = _this.viewCollectionStats.bind(_assertThisInitialized(_this));
     _this.closeCollectionStats = _this.closeCollectionStats.bind(_assertThisInitialized(_this));
+    _this.updateTooltips = _this.updateTooltips.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2017,7 +2050,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             totalScoresStudy: data[0].totalScores,
             totalScoresEasy: data[0].totalGradesEasy,
             totalScoresDifficult: data[0].totalGradesDifficult,
-            collectionName: data[0].name
+            collectionName: data[0].name,
+            tooltipUp: data.length - 1,
+            tooltipDown: data.length === 1 ? data.length - 1 : 1
           }); // console.log('data testing -> ', data[0])
           // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
           //   this.setState({
@@ -2325,10 +2360,12 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         this.setState({
           selectedCollection: this.state.userCollections.length - 1
         });
+        updateTooltips();
       } else {
         this.setState({
           selectedCollection: this.state.selectedCollection -= 1
         });
+        updateTooltips();
       }
     }
   }, {
@@ -2338,10 +2375,48 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         this.setState({
           selectedCollection: 0
         });
+        updateTooltips();
       } else {
         this.setState({
           selectedCollection: this.state.selectedCollection += 1
         });
+        updateTooltips();
+      }
+    }
+  }, {
+    key: "updateTooltips",
+    value: function updateTooltips() {
+      if (this.state.userCollections.length > 2) {
+        if (this.state.selectedCollection === 0) {
+          this.setState({
+            tooltipUp: this.state.userCollections.length - 1,
+            tooltipDown: this.state.selectedCollection + 1
+          });
+        } else if (this.state.selectedCollection === this.state.userCollections.length - 1) {
+          this.setState({
+            tooltipUp: this.state.selectedCollection - 1,
+            tooltipDown: 0
+          });
+        } else {
+          this.setState({
+            tooltipUp: this.state.selectedCollection - 1,
+            tooltipDown: this.state.selectedCollection + 1
+          });
+        }
+      } else if (this.state.userCollections.length === 2) {
+        if (this.state.selectedCollection === 0) {
+          this.setState({
+            tooltipUp: 1,
+            tooltipDown: 1
+          });
+        } else {
+          this.setState({
+            tooltipUp: 0,
+            tooltipDown: 0
+          });
+        }
+      } else {
+        return;
       }
     }
   }, {
@@ -2371,158 +2446,163 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this6 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(MainMenuDiv, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-          children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-            children: !this.state.modesDisplayed ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(MainMenuTitle, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(MainMenuDiv, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+          children: !this.state.isCreating ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+            children: !this.state.modesDisplayed ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(MainMenuTitle, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("u", {
                     children: "Main Menu"
                   })
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(CollectionsDiv, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionsTitle, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("u", {
-                      children: ["Total Collections", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollCountSpan, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(CollectionsDiv, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionsTitle, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("u", {
+                      children: ["Total Collections", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollCountSpan, {
                         children: " (".concat(this.state.userCollections.length, ")")
                       })]
                     })
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(UserCollectionsDiv, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ArrowDiv, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(UpButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(UserCollectionsDiv, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ArrowDiv, {
+                    className: "tooltipUp",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+                      className: "tooltipTextUp",
+                      children: // this.state.userCollections[this.state.tooltipUp].name
+                      'blah'
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(UpButton, {
                       onClick: this.moveUp,
                       children: "\u2B06"
-                    })
+                    })]
                   }), // map over the collections
-                  this.state.userCollections.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                  this.state.userCollections.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
                       style: {
                         fontFamily: 'Shadows Into Light'
                       },
                       children: "You don't have any collections yet!"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
                       style: {
                         fontFamily: 'Shadows Into Light'
                       },
                       children: "Click the button below to create a collection"
                     })]
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(TimeFormatDiv, {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(UserCollections, {
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(TimeFormatDiv, {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(UserCollections, {
                         onClick: this.chooseCollection,
                         id: this.state.userCollections[this.state.selectedCollection].name,
                         children: "".concat(this.state.selectedCollection + 1, ". ").concat(this.state.userCollections[this.state.selectedCollection].name)
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
                           style: {
                             fontFamily: 'Shadows Into Light',
                             color: 'yellow'
                           },
                           children: "Created ".concat(moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LastViewSpan, {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                           children: "Last Viewed ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                         })
                       })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_13__["default"], {
                       open: this.state.isChoosing,
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChooseDiv, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ChooseTitle, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ChooseDiv, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(ChooseTitle, {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("u", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                               children: "Choose A Mode:"
                             })
                           })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ModesDiv, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ModesDiv, {
                           style: {
                             backgroundColor: 'black',
                             border: '2px ridge darkred',
                             borderRadius: '12px',
                             width: '60%'
                           },
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChoiceDivs, {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: "Study Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
-                              children: this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LastViewSpan, {
+                              children: this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: 'Have Not Studied Yet'
-                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: "Last Studied ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(StartButtons, {
                               onClick: this.chooseStudyMode,
                               children: "Start"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChoiceDivs, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: "Test Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
-                              children: this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LastViewSpan, {
+                              children: this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: 'Have Not Tested (Easy) Yet'
-                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: "Last Tested (Easy) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h4", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h4", {
                               children: "Easy:"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(StartButtons, {
                               onClick: function onClick() {
                                 return _this6.chooseTestMode('easy');
                               },
                               children: "Start"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h4", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h4", {
                               style: {
                                 marginTop: '2%'
                               },
                               children: "Difficult:"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LastViewSpan, {
-                              children: this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LastViewSpan, {
+                              children: this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: 'Have Not Tested (Difficult) Yet'
-                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: "Last Tested (Difficult) ".concat(moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow())
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(StartButtons, {
                               onClick: function onClick() {
                                 return _this6.chooseTestMode('difficult');
                               },
                               children: "Start"
                             })]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(ChoiceDivs, {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ChoiceDivs, {
                             style: {
                               display: 'flex',
                               flexDirection: 'column',
                               justifyContent: 'center',
                               alignItems: 'center'
                             },
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModeTitles, {
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(ModeTitles, {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                                 children: "Edit Mode:"
                               })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(StartButtons, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(StartButtons, {
                               onClick: this.chooseEditMode,
                               children: "Start"
                             })]
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LogoutButton, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LogoutButton, {
                           onClick: this.goBack,
                           style: {
                             marginTop: '2%',
@@ -2532,21 +2612,26 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                         })]
                       })
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ArrowDiv, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(DownButton, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(ArrowDiv, {
+                    className: "tooltipDown",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+                      className: "tooltipTextDown",
+                      children: // this.state.userCollections[this.state.tooltipDown].name
+                      'blah'
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(DownButton, {
                       onClick: this.moveDown,
                       children: "\u2B07"
-                    })
+                    })]
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CreateCollectionButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CreateCollectionButton, {
                   onClick: this.viewCollectionStats,
                   children: "View ".concat(this.state.collectionName, " Stats")
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CreateCollectionButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CreateCollectionButton, {
                   onClick: this.createCollection,
                   children: "Create New Collection"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_mui_material_Modal__WEBPACK_IMPORTED_MODULE_13__["default"], {
                   open: this.state.isViewingCollectionStats,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(HighScoreDiv, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(HighScoreDiv, {
                     style: {
                       display: 'flex',
                       justifyContent: 'center',
@@ -2555,14 +2640,14 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                       backgroundColor: 'none',
                       backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'
                     },
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(ModalButton, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(ModalButton, {
                       onClick: this.closeCollectionStats,
                       children: "X"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h1", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h1", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("u", {
                         children: "".concat(this.props.user, "'s Stats for ").concat(this.state.collectionName)
                       })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
                       style: {
                         display: 'flex',
                         flexDirection: 'row',
@@ -2570,12 +2655,12 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                         alignItems: 'center',
                         marginTop: '4%'
                       },
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h3", {
                         style: {
                           marginTop: '1%'
                         },
                         children: "Study Scores"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
                         style: {
                           width: '20%',
                           height: '14%',
@@ -2585,12 +2670,12 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                           justifyContent: 'center',
                           alignItems: 'center'
                         },
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_StudyStats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_StudyStats_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
                           totalScoresStudy: this.state.totalScoresStudy
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h3", {
                         children: "Test Grades (Easy)"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
                         style: {
                           width: '20%',
                           height: '14%',
@@ -2600,12 +2685,12 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                           justifyContent: 'center',
                           alignItems: 'center'
                         },
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_EasyStats_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_EasyStats_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
                           totalScoresEasy: this.state.totalScoresEasy
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h3", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h3", {
                         children: "Test Grades (Difficult)"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
                         style: {
                           width: '20%',
                           height: '14%',
@@ -2615,20 +2700,20 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                           justifyContent: 'center',
                           alignItems: 'center'
                         },
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_DifficultStats_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_DifficultStats_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], {
                           totalScoresDifficult: this.state.totalScoresDifficult
                         })
                       })]
                     })]
                   })
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LogoutDiv, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(LogoutButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LogoutDiv, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(LogoutButton, {
                   onClick: this.props.logout,
                   children: "Logout"
                 })
               })]
-            }) : !this.state.isEditing ? !this.state.isTesting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            }) : !this.state.isEditing ? !this.state.isTesting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_FlashCards_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               goBack: this.goBack,
@@ -2638,7 +2723,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) : !this.state.isDifficult ?
             /*#__PURE__*/
             // easy test goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_TestModeEasy_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2649,7 +2734,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) :
             /*#__PURE__*/
             // difficult test goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_TestModeDifficult_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_TestModeDifficult_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2660,7 +2745,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             }) :
             /*#__PURE__*/
             // editing goes here
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_EditMode_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
+            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_EditMode_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], {
               collectionName: this.state.collectionName,
               cardList: this.state.currentCollection,
               isDifficult: this.state.isDifficult,
@@ -2670,63 +2755,63 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
               pressedKey: this.state.pressedKey
             }) // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
 
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CreateCollectionsTitle, {
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CreateCollectionsTitle, {
               style: {
                 fontFamily: 'Luckiest Guy'
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("u", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("u", {
                   children: "Create Collection"
                 })
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(NewCollectionDiv, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(NewCollectionDiv, {
               style: {
                 fontFamily: 'Luckiest Guy'
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '1'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                   children: "Collection Name:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionInput, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionInput, {
                 id: "collectionName",
                 style: {
                   gridRow: '2'
                 },
                 onChange: this.handleCollectionName
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '3'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                   children: "Category:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionInput, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionInput, {
                 id: "category",
                 style: {
                   gridRow: '4'
                 },
                 onChange: this.handleCategory
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionLabel, {
                 style: {
                   gridRow: '5'
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                   children: "Add Cards:"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(CardDiv, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(CardDiv, {
                 style: {
                   gridRow: '6'
                 },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(AddImageDiv, {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(AddImageDiv, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionLabel, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                       children: "Add an image?"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(AddImageInput, {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(AddImageInput, {
                     type: "file",
                     accept: ".jpg, .png",
                     id: "image-input",
@@ -2735,63 +2820,63 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                       overflowWrap: 'break-word'
                     }
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionLabel, {
                   style: {
                     gridRow: '1'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                     children: "Question:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionTextArea, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionTextArea, {
                   type: "text",
                   id: "question",
                   style: {
                     gridRow: '2'
                   },
                   onChange: this.handleQuestion
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionLabel, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionLabel, {
                   style: {
                     gridRow: '3'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                     children: "Answer:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(CollectionTextArea, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(CollectionTextArea, {
                   type: "text",
                   id: "answer",
                   style: {
                     gridRow: '4'
                   },
                   onChange: this.handleAnswer
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(AddCardButton, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(AddCardButton, {
                   style: {
                     gridRow: '5'
                   },
                   onClick: this.submitCard,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                     children: "Add Card:"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(TotalCardsSpan, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(TotalCardsSpan, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                     children: "Total Cards: ".concat(this.state.cardCount)
                   })
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(FinishCollectionButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(FinishCollectionButton, {
                 style: {
                   gridRow: '7',
                   gridColumn: '1'
                 },
                 onClick: this.finishCollection,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                   children: "Finish Collection"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(FinishCollectionButton, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(FinishCollectionButton, {
                 style: {
                   gridRow: '7',
                   gridColumn: '2'
                 },
                 onClick: this.goToMainMenu,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("b", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("b", {
                   children: "Back to Main Menu"
                 })
               })]
@@ -36044,6 +36129,150 @@ function toVal(mix) {
 
   return str;
 }
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+
+      content += cssWithMappingToString(item);
+
+      if (needLayer) {
+        content += "}";
+      }
+
+      if (item[2]) {
+        content += "}";
+      }
+
+      if (item[4]) {
+        content += "}";
+      }
+
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+
+
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var k = 0; k < this.length; k++) {
+        var id = this[k][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _k = 0; _k < modules.length; _k++) {
+      var item = [].concat(modules[_k]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
+  \************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (item) {
+  var content = item[1];
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (typeof btoa === "function") {
+    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
+    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+    var sourceMapping = "/*# ".concat(data, " */");
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
+  }
+
+  return [content].join("\n");
+};
 
 /***/ }),
 
@@ -69452,6 +69681,33 @@ var Je = function () {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/src/components/MainMenu2.css":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/src/components/MainMenu2.css ***!
+  \***********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".tooltipUp {\n  position: relative;\n  display: inline-block;\n}\n\n.tooltipUp .tooltipTextUp {\n  visibility: hidden;\n  width: 120px;\n  background-color: #555;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 5px 0;\n  position: absolute;\n  z-index: 1;\n  bottom: 90%;\n  left: 50%;\n  margin-left: -60px;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.tooltipUp .tooltipTextUp::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px;\n  border-style: solid;\n  border-color: #555 transparent transparent transparent;\n}\n\n\n.tooltipUp:hover .tooltipTextUp {\n  visibility: visible;\n  opacity: 1;\n}\n\n/* DOWN */\n\n.tooltipDown {\n  position: relative;\n  display: inline-block;\n}\n\n.tooltipDown .tooltipTextDown {\n  visibility: hidden;\n  width: 120px;\n  background-color: #555;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 5px 0;\n  position: absolute;\n  z-index: 1;\n  bottom: -30%;\n  left: 50%;\n  margin-left: -60px;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.tooltipDown .tooltipTextDown::after {\n  content: \"\";\n  position: absolute;\n  top: -30%;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px;\n  border-style: solid;\n  border-color: transparent transparent #555 transparent;\n}\n\n\n.tooltipDown:hover .tooltipTextDown {\n  visibility: visible;\n  opacity: 1;\n}", "",{"version":3,"sources":["webpack://./client/src/components/MainMenu2.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,qBAAqB;AACvB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,sBAAsB;EACtB,WAAW;EACX,kBAAkB;EAClB,kBAAkB;EAClB,cAAc;EACd,kBAAkB;EAClB,UAAU;EACV,WAAW;EACX,SAAS;EACT,kBAAkB;EAClB,UAAU;EACV,wBAAwB;AAC1B;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,SAAS;EACT,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,mBAAmB;EACnB,sDAAsD;AACxD;;;AAGA;EACE,mBAAmB;EACnB,UAAU;AACZ;;AAEA,SAAS;;AAET;EACE,kBAAkB;EAClB,qBAAqB;AACvB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,sBAAsB;EACtB,WAAW;EACX,kBAAkB;EAClB,kBAAkB;EAClB,cAAc;EACd,kBAAkB;EAClB,UAAU;EACV,YAAY;EACZ,SAAS;EACT,kBAAkB;EAClB,UAAU;EACV,wBAAwB;AAC1B;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,SAAS;EACT,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,mBAAmB;EACnB,sDAAsD;AACxD;;;AAGA;EACE,mBAAmB;EACnB,UAAU;AACZ","sourcesContent":[".tooltipUp {\n  position: relative;\n  display: inline-block;\n}\n\n.tooltipUp .tooltipTextUp {\n  visibility: hidden;\n  width: 120px;\n  background-color: #555;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 5px 0;\n  position: absolute;\n  z-index: 1;\n  bottom: 90%;\n  left: 50%;\n  margin-left: -60px;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.tooltipUp .tooltipTextUp::after {\n  content: \"\";\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px;\n  border-style: solid;\n  border-color: #555 transparent transparent transparent;\n}\n\n\n.tooltipUp:hover .tooltipTextUp {\n  visibility: visible;\n  opacity: 1;\n}\n\n/* DOWN */\n\n.tooltipDown {\n  position: relative;\n  display: inline-block;\n}\n\n.tooltipDown .tooltipTextDown {\n  visibility: hidden;\n  width: 120px;\n  background-color: #555;\n  color: #fff;\n  text-align: center;\n  border-radius: 6px;\n  padding: 5px 0;\n  position: absolute;\n  z-index: 1;\n  bottom: -30%;\n  left: 50%;\n  margin-left: -60px;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.tooltipDown .tooltipTextDown::after {\n  content: \"\";\n  position: absolute;\n  top: -30%;\n  left: 50%;\n  margin-left: -5px;\n  border-width: 5px;\n  border-style: solid;\n  border-color: transparent transparent #555 transparent;\n}\n\n\n.tooltipDown:hover .tooltipTextDown {\n  visibility: visible;\n  opacity: 1;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/moment/locale sync recursive ^\\.\\/.*$":
 /*!***************************************************!*\
   !*** ./node_modules/moment/locale/ sync ^\.\/.*$ ***!
@@ -69750,6 +70006,373 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "./client/src/components/MainMenu2.css":
+/*!*********************************************!*\
+  !*** ./client/src/components/MainMenu2.css ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_MainMenu2_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./MainMenu2.css */ "./node_modules/css-loader/dist/cjs.js!./client/src/components/MainMenu2.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_MainMenu2_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_MainMenu2_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_MainMenu2_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_MainMenu2_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+var stylesInDOM = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDOM.length; i++) {
+    if (stylesInDOM[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var indexByIdentifier = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3],
+      supports: item[4],
+      layer: item[5]
+    };
+
+    if (indexByIdentifier !== -1) {
+      stylesInDOM[indexByIdentifier].references++;
+      stylesInDOM[indexByIdentifier].updater(obj);
+    } else {
+      var updater = addElementStyle(obj, options);
+      options.byIndex = i;
+      stylesInDOM.splice(i, 0, {
+        identifier: identifier,
+        updater: updater,
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function addElementStyle(obj, options) {
+  var api = options.domAPI(options);
+  api.update(obj);
+
+  var updater = function updater(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
+        return;
+      }
+
+      api.update(obj = newObj);
+    } else {
+      api.remove();
+    }
+  };
+
+  return updater;
+}
+
+module.exports = function (list, options) {
+  options = options || {};
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDOM[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDOM[_index].references === 0) {
+        stylesInDOM[_index].updater();
+
+        stylesInDOM.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/insertBySelector.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
+  \********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+var memo = {};
+/* istanbul ignore next  */
+
+function getTarget(target) {
+  if (typeof memo[target] === "undefined") {
+    var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+      try {
+        // This will throw an exception if access to iframe is blocked
+        // due to cross-origin restrictions
+        styleTarget = styleTarget.contentDocument.head;
+      } catch (e) {
+        // istanbul ignore next
+        styleTarget = null;
+      }
+    }
+
+    memo[target] = styleTarget;
+  }
+
+  return memo[target];
+}
+/* istanbul ignore next  */
+
+
+function insertBySelector(insert, style) {
+  var target = getTarget(insert);
+
+  if (!target) {
+    throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+  }
+
+  target.appendChild(style);
+}
+
+module.exports = insertBySelector;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/insertStyleElement.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+
+module.exports = insertStyleElement;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
+  \**********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
+  }
+}
+
+module.exports = setAttributesWithoutAttributes;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/styleDomAPI.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function apply(styleElement, options, obj) {
+  var css = "";
+
+  if (obj.supports) {
+    css += "@supports (".concat(obj.supports, ") {");
+  }
+
+  if (obj.media) {
+    css += "@media ".concat(obj.media, " {");
+  }
+
+  var needLayer = typeof obj.layer !== "undefined";
+
+  if (needLayer) {
+    css += "@layer".concat(obj.layer.length > 0 ? " ".concat(obj.layer) : "", " {");
+  }
+
+  css += obj.css;
+
+  if (needLayer) {
+    css += "}";
+  }
+
+  if (obj.media) {
+    css += "}";
+  }
+
+  if (obj.supports) {
+    css += "}";
+  }
+
+  var sourceMap = obj.sourceMap;
+
+  if (sourceMap && typeof btoa !== "undefined") {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  options.styleTagTransform(css, styleElement, options.options);
+}
+
+function removeStyleElement(styleElement) {
+  // istanbul ignore if
+  if (styleElement.parentNode === null) {
+    return false;
+  }
+
+  styleElement.parentNode.removeChild(styleElement);
+}
+/* istanbul ignore next  */
+
+
+function domAPI(options) {
+  var styleElement = options.insertStyleElement(options);
+  return {
+    update: function update(obj) {
+      apply(styleElement, options, obj);
+    },
+    remove: function remove() {
+      removeStyleElement(styleElement);
+    }
+  };
+}
+
+module.exports = domAPI;
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/styleTagTransform.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+
+    styleElement.appendChild(document.createTextNode(css));
+  }
+}
+
+module.exports = styleTagTransform;
 
 /***/ }),
 

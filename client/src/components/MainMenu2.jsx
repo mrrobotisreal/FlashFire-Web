@@ -9,6 +9,7 @@ import StudyStats from './StudyStats.jsx';
 import EasyStats from './EasyStats.jsx';
 import DifficultStats from './DifficultStats.jsx';
 import EditMode from './EditMode.jsx';
+import './MainMenu2.css';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -394,6 +395,8 @@ class MainMenu2 extends React.Component {
       totalScoresStudy: [],
       totalScoresEasy: [],
       totalScoresDifficult: [],
+      tooltipUp: 0,
+      tooltipDown: 0,
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -415,6 +418,7 @@ class MainMenu2 extends React.Component {
     this.handleFlashKeydown = this.handleFlashKeydown.bind(this);
     this.viewCollectionStats = this.viewCollectionStats.bind(this);
     this.closeCollectionStats = this.closeCollectionStats.bind(this);
+    this.updateTooltips = this.updateTooltips.bind(this);
   }
 
   componentDidMount() {
@@ -436,6 +440,14 @@ class MainMenu2 extends React.Component {
             totalScoresEasy: data[0].totalGradesEasy,
             totalScoresDifficult: data[0].totalGradesDifficult,
             collectionName: data[0].name,
+            tooltipUp: data.length - 1,
+            tooltipDown: (
+              data.length === 1
+              ?
+              data.length - 1
+              :
+              1
+            ),
           });
           // console.log('data testing -> ', data[0])
           // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
@@ -709,10 +721,12 @@ class MainMenu2 extends React.Component {
       this.setState({
         selectedCollection: this.state.userCollections.length - 1,
       });
+      updateTooltips();
     } else {
       this.setState({
         selectedCollection: this.state.selectedCollection -= 1,
-      })
+      });
+      updateTooltips();
     }
   }
 
@@ -721,10 +735,47 @@ class MainMenu2 extends React.Component {
       this.setState({
         selectedCollection: 0,
       });
+      updateTooltips();
     } else {
       this.setState({
         selectedCollection: this.state.selectedCollection += 1,
-      })
+      });
+      updateTooltips();
+    }
+  }
+
+  updateTooltips() {
+    if (this.state.userCollections.length > 2) {
+      if (this.state.selectedCollection === 0) {
+        this.setState({
+          tooltipUp: this.state.userCollections.length - 1,
+          tooltipDown: this.state.selectedCollection + 1,
+        });
+      } else if (this.state.selectedCollection === this.state.userCollections.length - 1) {
+        this.setState({
+          tooltipUp: this.state.selectedCollection - 1,
+          tooltipDown: 0,
+        });
+      } else {
+        this.setState({
+          tooltipUp: this.state.selectedCollection - 1,
+          tooltipDown: this.state.selectedCollection + 1,
+        });
+      }
+    } else if (this.state.userCollections.length === 2) {
+      if (this.state.selectedCollection === 0) {
+        this.setState({
+          tooltipUp: 1,
+          tooltipDown: 1,
+        });
+      } else {
+        this.setState({
+          tooltipUp: 0,
+          tooltipDown: 0,
+        })
+      }
+    } else {
+      return;
     }
   }
 
@@ -770,7 +821,13 @@ class MainMenu2 extends React.Component {
                         </CollCountSpan></u></b>
                       </CollectionsTitle>
                       <UserCollectionsDiv>
-                        <ArrowDiv>
+                        <ArrowDiv className="tooltipUp">
+                          <span className="tooltipTextUp">
+                            {
+                              // this.state.userCollections[this.state.tooltipUp].name
+                              'blah'
+                            }
+                          </span>
                           <UpButton onClick={this.moveUp}>{`⬆`}</UpButton>
                         </ArrowDiv>
                         {
@@ -869,7 +926,13 @@ class MainMenu2 extends React.Component {
                             </>
                           )
                         }
-                        <ArrowDiv>
+                        <ArrowDiv className="tooltipDown">
+                          <span className="tooltipTextDown">
+                            {
+                              // this.state.userCollections[this.state.tooltipDown].name
+                              'blah'
+                            }
+                          </span>
                           <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>
                         </ArrowDiv>
                       </UserCollectionsDiv>

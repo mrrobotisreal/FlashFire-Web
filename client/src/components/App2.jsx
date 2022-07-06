@@ -113,10 +113,13 @@ class App2 extends React.Component {
     this.logout = this.logout.bind(this);
     this.createCookie = this.createCookie.bind(this);
     this.checkCookie = this.checkCookie.bind(this);
+    this.createJWT = this.createJWT.bind(this);
+    this.checkJWT = this.checkJWT.bind(this);
   }
 
   componentDidMount() {
     this.checkCookie();
+    this.checkJWT();
   }
 
   checkCookie() {
@@ -148,12 +151,34 @@ class App2 extends React.Component {
     localStorage.setItem('flash-user', this.state.username);
   }
 
-  createJWT() {}
+  createJWT() {
+    let options = {
+      email: this.state.email,
+    };
+    axios.post(`/create-jwt/${this.state.username}`, options)
+      .then(({ data }) => {
+        console.log('data -> ', data);
+        localStorage.setItem(`ffj-${this.state.username}`, data);
+      })
+      .catch((err) => console.error(err));
+  }
 
-  checkJWT() {}
+  checkJWT() {
+    let jwt = localStorage.getItem(`ffj-${this.state.username}`);
+    if (jwt) {
+      // verify jwt with server
+      // if verified
+        // log in to main menu
+      // else
+        // return
+    } else {
+      return;
+    }
+  }
 
   handleSignupSubmit(e) {
     e.preventDefault();
+    this.createJWT()
     axios.post('/signup', {
       name: this.state.signupName,
       email: this.state.signupEmail,
