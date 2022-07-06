@@ -47,45 +47,43 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/check-cookie/:user', (req, res) => {
-  db.checkCookie(req.params.user, req.body.cookie, (err, cookie) => {
+  db.checkCookie(req.params.user, req.body.cookie, req.body.jwt, (err, cookie) => {
     if (err) {
       console.error(err);
     } else {
       let cookieObj = {
         cookie: cookie
       };
-      // res.send(cookieObj);
-      console.log('req cookies -> ', req.cookies);
       res.cookie('username', req.params.user).send(cookieObj);
     }
   });
 });
 
-app.post('/create-jwt/:user', (req, res) => {
-  let userInfo = {
-    username: req.params.username,
-    email: req.body.email,
-  };
-  db.createJWT(userInfo, (err, jwt) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log('jwt -> ', jwt);
-      res.send(jwt);
-    }
-  });
-});
+// app.post('/create-jwt/:user', (req, res) => {
+//   let userInfo = {
+//     username: req.params.username,
+//     email: req.body.email,
+//   };
+//   db.createJWT(userInfo, (err, jwt) => {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       console.log('jwt -> ', jwt);
+//       res.send(jwt);
+//     }
+//   });
+// });
 
-app.post('/check-jwt/:user', (req, res) => {
-  db.checkJWT(req.params.user, req.body.jwt, (err, success) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log('success -> ', success);
-      res.send(success);
-    }
-  });
-});
+// app.post('/check-jwt/:user', (req, res) => {
+//   db.checkJWT(req.params.user, req.body.jwt, (err, success) => {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       console.log('success -> ', success);
+//       res.send(success);
+//     }
+//   });
+// });
 
 app.get('/collections/:user', (req, res) => {
   let user = db.users.findOne({'username': req.params.user});

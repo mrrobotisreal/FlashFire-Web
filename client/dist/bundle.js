@@ -115,23 +115,50 @@ var App2 = /*#__PURE__*/function (_React$Component) {
       if (!cookie || !user) {
         return;
       } else {
-        var options = {
-          cookie: cookie,
-          username: this.state.username,
-          email: this.state.email
-        };
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/check-cookie/".concat(user), options).then(function (_ref) {
-          var data = _ref.data;
+        var jwt = localStorage.getItem("ffj-".concat(user));
+        console.log("ffj-".concat(user));
 
-          if (data.cookie === cookie) {
-            _this2.setState({
-              username: user,
-              showMainMenu: true
-            });
-          }
-        })["catch"](function (err) {
-          return console.error(err);
-        });
+        if (!jwt) {
+          console.log('not jwt');
+          var options = {
+            cookie: cookie,
+            username: this.state.username,
+            email: this.state.email,
+            jwt: null
+          };
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post("/check-cookie/".concat(user), options).then(function (_ref) {
+            var data = _ref.data;
+
+            if (data.cookie === cookie) {
+              _this2.setState({
+                username: user,
+                showMainMenu: true
+              });
+            }
+          })["catch"](function (err) {
+            return console.error(err);
+          });
+        } else {
+          console.log('yes jwt');
+          var _options = {
+            cookie: cookie,
+            username: this.state.username,
+            email: this.state.email,
+            jwt: jwt
+          };
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post("/check-cookie/".concat(user), _options).then(function (_ref2) {
+            var data = _ref2.data;
+
+            if (data.cookie === cookie) {
+              _this2.setState({
+                username: user,
+                showMainMenu: true
+              });
+            }
+          })["catch"](function (err) {
+            return console.error(err);
+          });
+        }
       }
     }
   }, {
@@ -148,8 +175,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
       var options = {
         email: this.state.email
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/create-jwt/".concat(this.state.username), options).then(function (_ref2) {
-        var data = _ref2.data;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/create-jwt/".concat(this.state.username), options).then(function (_ref3) {
+        var data = _ref3.data;
         console.log('data -> ', data);
         localStorage.setItem("ffj-".concat(_this3.state.username), data);
       })["catch"](function (err) {
@@ -161,7 +188,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     value: function checkJWT() {
       var jwt = localStorage.getItem("ffj-".concat(this.state.username));
 
-      if (jwt) {// verify jwt with server
+      if (jwt) {
+        console.log('jwt be like -> ', jwt); // verify jwt with server
         // if verified
         // log in to main menu
         // else
@@ -175,15 +203,15 @@ var App2 = /*#__PURE__*/function (_React$Component) {
     value: function handleSignupSubmit(e) {
       var _this4 = this;
 
-      e.preventDefault();
-      this.createJWT();
+      e.preventDefault(); // this.createJWT()
+
       axios__WEBPACK_IMPORTED_MODULE_1___default().post('/signup', {
         name: this.state.signupName,
         email: this.state.signupEmail,
         username: this.state.username,
         password: this.state.password
-      }).then(function (_ref3) {
-        var data = _ref3.data;
+      }).then(function (_ref4) {
+        var data = _ref4.data;
         console.log('data -> ', data);
 
         _this4.setState({
@@ -191,6 +219,9 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         });
 
         _this4.createCookie(data.cookie);
+
+        console.log('data -> ', data);
+        localStorage.setItem("ffj-".concat(_this4.state.username), data);
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -205,8 +236,8 @@ var App2 = /*#__PURE__*/function (_React$Component) {
         username: this.state.username,
         password: this.state.password
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref4) {
-        var data = _ref4.data;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/login", userInfo).then(function (_ref5) {
+        var data = _ref5.data;
 
         if (!data) {
           alert('Wrong username or password! Please try again'); // this will need to be removed below

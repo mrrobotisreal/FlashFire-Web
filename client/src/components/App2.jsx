@@ -128,21 +128,45 @@ class App2 extends React.Component {
     if (!cookie || !user) {
       return;
     } else {
-      let options = {
-        cookie: cookie,
-        username: this.state.username,
-        email: this.state.email,
+      let jwt = localStorage.getItem(`ffj-${user}`);
+      console.log(`ffj-${user}`);
+      if (!jwt) {
+        console.log('not jwt');
+        let options = {
+          cookie: cookie,
+          username: this.state.username,
+          email: this.state.email,
+          jwt: null,
+        }
+        axios.post(`/check-cookie/${user}`, options)
+          .then(({ data }) => {
+            if (data.cookie === cookie) {
+              this.setState({
+                username: user,
+                showMainMenu: true,
+              });
+            }
+          })
+          .catch((err) => console.error(err));
+      } else {
+        console.log('yes jwt');
+        let options = {
+          cookie: cookie,
+          username: this.state.username,
+          email: this.state.email,
+          jwt: jwt,
+        }
+        axios.post(`/check-cookie/${user}`, options)
+          .then(({ data }) => {
+            if (data.cookie === cookie) {
+              this.setState({
+                username: user,
+                showMainMenu: true,
+              });
+            }
+          })
+          .catch((err) => console.error(err));
       }
-      axios.post(`/check-cookie/${user}`, options)
-        .then(({ data }) => {
-          if (data.cookie === cookie) {
-            this.setState({
-              username: user,
-              showMainMenu: true,
-            });
-          }
-        })
-        .catch((err) => console.error(err));
     }
   }
 
@@ -166,6 +190,7 @@ class App2 extends React.Component {
   checkJWT() {
     let jwt = localStorage.getItem(`ffj-${this.state.username}`);
     if (jwt) {
+      console.log('jwt be like -> ', jwt);
       // verify jwt with server
       // if verified
         // log in to main menu
@@ -178,7 +203,7 @@ class App2 extends React.Component {
 
   handleSignupSubmit(e) {
     e.preventDefault();
-    this.createJWT()
+    // this.createJWT()
     axios.post('/signup', {
       name: this.state.signupName,
       email: this.state.signupEmail,
@@ -191,6 +216,8 @@ class App2 extends React.Component {
           showMainMenu: true,
         });
         this.createCookie(data.cookie);
+        console.log('data -> ', data);
+        localStorage.setItem(`ffj-${this.state.username}`, data);
       })
       .catch((err) => console.error(err));
   }

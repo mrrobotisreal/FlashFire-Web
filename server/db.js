@@ -36,6 +36,7 @@ const userSchema = new Schema({
   email: String,
   username: String,
   password: String,
+  jwt: String,
   collections: []
 });
 
@@ -201,11 +202,16 @@ const cryptofy = (password, salt) => {
 
 const saveSignup = (signup, cb = () => {}) => {
   let cookie = cryptofy(signup.username, signup.email);
+  let token = createJWT({
+    username: signup.username,
+    email: signup.email,
+  });
   let newSignup = new User({
     name: signup.name,
     email: signup.email,
     username: signup.username,
     password: cryptofy(signup.password),
+    jwt: token,
     collections: []
   });
   newSignup.save((err, success) => {
@@ -394,13 +400,20 @@ const getScores = (username, collection, cb = () => {}) => {
   });
 };
 
-const checkCookie = (username, cookie, cb = () => {}) => {
+const checkCookie = (username, cookie, token, cb = () => {}) => {
   let user = User.findOne({'username': username});
   user.exec((err, doc) => {
     if (err) {
       console.error(err);
     } else {
       let email = doc.email;
+      let jwt = doc.jwt;
+      let checkedJWT = token;
+      console.log('jwt -> ', jwt);
+      console.log('checkedJWT -> ', checkedJWT);
+      if (jwt === checkedJWT) {
+        console.log('success!!!');
+      }
       let checkedCookie = cryptofy(username, email);
       cb(null, checkedCookie);
     }
@@ -408,8 +421,18 @@ const checkCookie = (username, cookie, cb = () => {}) => {
 };
 
 const createJWT = (userInfo, cb = () => {}) => {
-  let token = jwt.sign(userInfo, process.env.SECRET, {expiresIn: (Date.now() / 1000) + (90 * 24 * 60 * 60)});
-  cb(token);
+  let token = jwt.sign(userInfo, process.env.SECRET, {expiresIn: '90d'});
+  // cb(token);
+  // let user = User.findOne({'username': userInfo.username});
+  // user.exec((err, doc) => {
+  //   if (err) {
+  //     console.err(err);
+  //   } else {}
+  // });
+  return token;
+};
+
+const checkJWT = (jwt, cb = () => {}) => {
 };
 
 module.exports.cards = Card;
@@ -425,3 +448,4 @@ module.exports.getScores = getScores;
 module.exports.checkCookie = checkCookie;
 module.exports.editCollection = editCollection;
 module.exports.createJWT = createJWT;
+module.exports.checkJWT = checkJWT;
