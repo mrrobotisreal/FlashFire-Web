@@ -721,12 +721,12 @@ class MainMenu2 extends React.Component {
       this.setState({
         selectedCollection: this.state.userCollections.length - 1,
       });
-      updateTooltips();
+      this.updateTooltips();
     } else {
       this.setState({
         selectedCollection: this.state.selectedCollection -= 1,
       });
-      updateTooltips();
+      this.updateTooltips();
     }
   }
 
@@ -735,12 +735,12 @@ class MainMenu2 extends React.Component {
       this.setState({
         selectedCollection: 0,
       });
-      updateTooltips();
+      this.updateTooltips();
     } else {
       this.setState({
         selectedCollection: this.state.selectedCollection += 1,
       });
-      updateTooltips();
+      this.updateTooltips();
     }
   }
 
@@ -772,7 +772,7 @@ class MainMenu2 extends React.Component {
         this.setState({
           tooltipUp: 0,
           tooltipDown: 0,
-        })
+        });
       }
     } else {
       return;
@@ -824,8 +824,11 @@ class MainMenu2 extends React.Component {
                         <ArrowDiv className="tooltipUp">
                           <span className="tooltipTextUp">
                             {
-                              // this.state.userCollections[this.state.tooltipUp].name
-                              'blah'
+                              this.state.userCollections.length === 0
+                              ?
+                              'Empty'
+                              :
+                              this.state.userCollections[this.state.tooltipUp].name
                             }
                           </span>
                           <UpButton onClick={this.moveUp}>{`⬆`}</UpButton>
@@ -929,8 +932,11 @@ class MainMenu2 extends React.Component {
                         <ArrowDiv className="tooltipDown">
                           <span className="tooltipTextDown">
                             {
-                              // this.state.userCollections[this.state.tooltipDown].name
-                              'blah'
+                              this.state.userCollections.length === 0
+                              ?
+                              'Empty'
+                              :
+                              this.state.userCollections[this.state.tooltipDown].name
                             }
                           </span>
                           <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>

@@ -2360,12 +2360,12 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         this.setState({
           selectedCollection: this.state.userCollections.length - 1
         });
-        updateTooltips();
+        this.updateTooltips();
       } else {
         this.setState({
           selectedCollection: this.state.selectedCollection -= 1
         });
-        updateTooltips();
+        this.updateTooltips();
       }
     }
   }, {
@@ -2375,12 +2375,12 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
         this.setState({
           selectedCollection: 0
         });
-        updateTooltips();
+        this.updateTooltips();
       } else {
         this.setState({
           selectedCollection: this.state.selectedCollection += 1
         });
-        updateTooltips();
+        this.updateTooltips();
       }
     }
   }, {
@@ -2470,8 +2470,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                     className: "tooltipUp",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
                       className: "tooltipTextUp",
-                      children: // this.state.userCollections[this.state.tooltipUp].name
-                      'blah'
+                      children: this.state.userCollections.length === 0 ? 'Empty' : this.state.userCollections[this.state.tooltipUp].name
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(UpButton, {
                       onClick: this.moveUp,
                       children: "\u2B06"
@@ -2616,8 +2615,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                     className: "tooltipDown",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
                       className: "tooltipTextDown",
-                      children: // this.state.userCollections[this.state.tooltipDown].name
-                      'blah'
+                      children: this.state.userCollections.length === 0 ? 'Empty' : this.state.userCollections[this.state.tooltipDown].name
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(DownButton, {
                       onClick: this.moveDown,
                       children: "\u2B07"
