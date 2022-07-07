@@ -2084,7 +2084,9 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
             collectionName: data[0].name,
             tooltipUp: data.length - 1,
             tooltipDown: data.length === 1 ? data.length - 1 : 1
-          }); // console.log('data testing -> ', data[0])
+          });
+
+          _this2.updateTooltips(); // console.log('data testing -> ', data[0])
           // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
           //   this.setState({
           //     userCollections: data,
@@ -2339,6 +2341,8 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
           lastView: d
         });
 
+        _this4.updateTooltips();
+
         alert('Collection was added to your profile!');
         axios__WEBPACK_IMPORTED_MODULE_1___default().get("/collections/".concat(_this4.props.user)).then(function (_ref3) {
           var data = _ref3.data;
@@ -2387,31 +2391,47 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "moveUp",
     value: function moveUp() {
+      var _this6 = this;
+
       if (this.state.selectedCollection === 0) {
         this.setState({
-          selectedCollection: this.state.userCollections.length - 1
+          selectedCollection: this.state.userCollections.length - 1,
+          collectionName: this.state.userCollections[this.state.userCollections.length - 1].name
         });
-        this.updateTooltips();
+        setTimeout(function () {
+          _this6.updateTooltips();
+        }, 150);
       } else {
         this.setState({
-          selectedCollection: this.state.selectedCollection -= 1
+          selectedCollection: this.state.selectedCollection - 1,
+          collectionName: this.state.userCollections[this.state.selectedCollection - 1].name
         });
-        this.updateTooltips();
+        setTimeout(function () {
+          _this6.updateTooltips();
+        }, 150);
       }
     }
   }, {
     key: "moveDown",
     value: function moveDown() {
+      var _this7 = this;
+
       if (this.state.selectedCollection === this.state.userCollections.length - 1) {
         this.setState({
-          selectedCollection: 0
+          selectedCollection: 0,
+          collectionName: this.state.userCollections[0].name
         });
-        this.updateTooltips();
+        setTimeout(function () {
+          _this7.updateTooltips();
+        }, 150);
       } else {
         this.setState({
-          selectedCollection: this.state.selectedCollection += 1
+          selectedCollection: this.state.selectedCollection + 1,
+          collectionName: this.state.userCollections[this.state.selectedCollection + 1].name
         });
-        this.updateTooltips();
+        setTimeout(function () {
+          _this7.updateTooltips();
+        }, 150);
       }
     }
   }, {
@@ -2475,7 +2495,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this8 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(MainMenuDiv, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
@@ -2596,7 +2616,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               children: "Easy:"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(StartButtons, {
                               onClick: function onClick() {
-                                return _this6.chooseTestMode('easy');
+                                return _this8.chooseTestMode('easy');
                               },
                               children: "Start"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h4", {
@@ -2612,7 +2632,7 @@ var MainMenu2 = /*#__PURE__*/function (_React$Component) {
                               })
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(StartButtons, {
                               onClick: function onClick() {
-                                return _this6.chooseTestMode('difficult');
+                                return _this8.chooseTestMode('difficult');
                               },
                               children: "Start"
                             })]

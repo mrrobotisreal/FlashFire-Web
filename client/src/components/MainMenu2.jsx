@@ -449,6 +449,7 @@ class MainMenu2 extends React.Component {
               1
             ),
           });
+          this.updateTooltips();
           // console.log('data testing -> ', data[0])
           // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
           //   this.setState({
@@ -679,6 +680,7 @@ class MainMenu2 extends React.Component {
           cardCount: 0,
           lastView: d,
         });
+        this.updateTooltips();
         alert('Collection was added to your profile!');
         axios.get(`/collections/${this.props.user}`)
           .then(({ data }) => {
@@ -720,13 +722,19 @@ class MainMenu2 extends React.Component {
     if (this.state.selectedCollection  === 0) {
       this.setState({
         selectedCollection: this.state.userCollections.length - 1,
+        collectionName: this.state.userCollections[this.state.userCollections.length - 1].name,
       });
-      this.updateTooltips();
+      setTimeout(() => {
+        this.updateTooltips();
+      }, 150);
     } else {
       this.setState({
-        selectedCollection: this.state.selectedCollection -= 1,
+        selectedCollection: this.state.selectedCollection - 1,
+        collectionName: this.state.userCollections[this.state.selectedCollection - 1].name,
       });
-      this.updateTooltips();
+      setTimeout(() => {
+        this.updateTooltips();
+      }, 150);
     }
   }
 
@@ -734,13 +742,19 @@ class MainMenu2 extends React.Component {
     if (this.state.selectedCollection === this.state.userCollections.length - 1) {
       this.setState({
         selectedCollection: 0,
+        collectionName: this.state.userCollections[0].name,
       });
-      this.updateTooltips();
+      setTimeout(() => {
+        this.updateTooltips();
+      }, 150);
     } else {
       this.setState({
-        selectedCollection: this.state.selectedCollection += 1,
+        selectedCollection: this.state.selectedCollection + 1,
+        collectionName: this.state.userCollections[this.state.selectedCollection + 1].name,
       });
-      this.updateTooltips();
+      setTimeout(() => {
+        this.updateTooltips();
+      }, 150);
     }
   }
 
