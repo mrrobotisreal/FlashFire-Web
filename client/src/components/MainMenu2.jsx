@@ -9,6 +9,7 @@ import StudyStats from './StudyStats.jsx';
 import EasyStats from './EasyStats.jsx';
 import DifficultStats from './DifficultStats.jsx';
 import EditMode from './EditMode.jsx';
+import Settings from './Settings.jsx';
 import './MainMenu2.css';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
@@ -148,7 +149,7 @@ const CreateCollectionButton = styled.button`
   border-radius: 12px;
   background-color: black;
   color: white;
-  width: fit-content;
+  width: 115%;
   transition: .2s;
   margin-top: 4%;
   font-family: 'Bangers', cursive;
@@ -358,6 +359,10 @@ const ModalButton = styled.button`
   box-shadow: 10px 5px 5px black;
 `;
 
+const ButtonDiv = styled.div`
+  display: grid;
+`;
+
 class MainMenu2 extends React.Component {
   constructor(props) {
     super(props);
@@ -382,6 +387,7 @@ class MainMenu2 extends React.Component {
       isEditing: false,
       isTesting: false,
       isViewingCollectionStats: false,
+      isViewingOverallStats: false,
       keyCount: 0,
       keyPressed: '',
       modesDisplayed: false,
@@ -397,6 +403,7 @@ class MainMenu2 extends React.Component {
       totalScoresDifficult: [],
       tooltipUp: 0,
       tooltipDown: 0,
+      settingsAreOpen: false,
     };
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
@@ -419,6 +426,8 @@ class MainMenu2 extends React.Component {
     this.viewCollectionStats = this.viewCollectionStats.bind(this);
     this.closeCollectionStats = this.closeCollectionStats.bind(this);
     this.updateTooltips = this.updateTooltips.bind(this);
+    this.openSettings = this.openSettings.bind(this);
+    this.viewOverallStats = this.viewOverallStats.bind(this);
   }
 
   componentDidMount() {
@@ -498,9 +507,16 @@ class MainMenu2 extends React.Component {
   }
 
   viewCollectionStats() {
-    this.setState({
-      isViewingCollectionStats: true,
-    });
+    axios.get(`/collections/${this.props.user}/scores/${this.state.userCollections[this.state.selectedCollection].name}`)
+    .then(({ data }) => {
+      this.setState({
+        totalScoresStudy: data.totalScores,
+        totalScoresEasy: data.totalGradesEasy,
+        totalScoresDifficult: data.totalGradesDifficult,
+        isViewingCollectionStats: true,
+      });
+    })
+    .catch((err) => console.error(err));
   }
 
   closeCollectionStats() {
@@ -710,9 +726,13 @@ class MainMenu2 extends React.Component {
         isChoosing: false,
         isEditing: false,
         isTesting: false,
+        settingsAreOpen: false,
         lastViewStudy: data[this.state.selectedCollection].lastViewStudy,
         lastViewEasy: data[this.state.selectedCollection].lastViewEasy,
         lastViewDifficult: data[this.state.selectedCollection].lastViewDifficult,
+        totalScoresStudy: data[this.state.selectedCollection].totalScores,
+        totalScoresEasy: data[this.state.selectedCollection].totalGradesEasy,
+        totalScoresDifficult: data[this.state.selectedCollection].totalGradesDifficult,
       });
     })
     .catch((err) => console.error(err));
@@ -720,18 +740,40 @@ class MainMenu2 extends React.Component {
 
   moveUp() {
     if (this.state.selectedCollection  === 0) {
-      this.setState({
-        selectedCollection: this.state.userCollections.length - 1,
-        collectionName: this.state.userCollections[this.state.userCollections.length - 1].name,
-      });
+      axios.get(`/collections/${this.props.user}/scores/${this.state.userCollections[this.state.userCollections.length - 1].name}`)
+      .then(({ data }) => {
+        this.setState({
+          totalScoresStudy: data.totalScores,
+          totalScoresEasy: data.totalGradesEasy,
+          totalScoresDifficult: data.totalGradesDifficult,
+          selectedCollection: this.state.userCollections.length - 1,
+          collectionName: this.state.userCollections[this.state.userCollections.length - 1].name,
+        });
+      })
+      .catch((err) => console.error(err));
+      // this.setState({
+      //   selectedCollection: this.state.userCollections.length - 1,
+      //   collectionName: this.state.userCollections[this.state.userCollections.length - 1].name,
+      // });
       setTimeout(() => {
         this.updateTooltips();
       }, 150);
     } else {
-      this.setState({
-        selectedCollection: this.state.selectedCollection - 1,
-        collectionName: this.state.userCollections[this.state.selectedCollection - 1].name,
-      });
+      axios.get(`/collections/${this.props.user}/scores/${this.state.userCollections[this.state.selectedCollection - 1].name}`)
+      .then(({ data }) => {
+        this.setState({
+          totalScoresStudy: data.totalScores,
+          totalScoresEasy: data.totalGradesEasy,
+          totalScoresDifficult: data.totalGradesDifficult,
+          selectedCollection: this.state.selectedCollection - 1,
+          collectionName: this.state.userCollections[this.state.selectedCollection - 1].name,
+        });
+      })
+      .catch((err) => console.error(err));
+      // this.setState({
+      //   selectedCollection: this.state.selectedCollection - 1,
+      //   collectionName: this.state.userCollections[this.state.selectedCollection - 1].name,
+      // });
       setTimeout(() => {
         this.updateTooltips();
       }, 150);
@@ -740,18 +782,40 @@ class MainMenu2 extends React.Component {
 
   moveDown() {
     if (this.state.selectedCollection === this.state.userCollections.length - 1) {
-      this.setState({
-        selectedCollection: 0,
-        collectionName: this.state.userCollections[0].name,
-      });
+      axios.get(`/collections/${this.props.user}/scores/${this.state.userCollections[0].name}`)
+      .then(({ data }) => {
+        this.setState({
+          totalScoresStudy: data.totalScores,
+          totalScoresEasy: data.totalGradesEasy,
+          totalScoresDifficult: data.totalGradesDifficult,
+          selectedCollection: 0,
+          collectionName: this.state.userCollections[0].name,
+        });
+      })
+      .catch((err) => console.error(err));
+      // this.setState({
+      //   selectedCollection: 0,
+      //   collectionName: this.state.userCollections[0].name,
+      // });
       setTimeout(() => {
         this.updateTooltips();
       }, 150);
     } else {
-      this.setState({
-        selectedCollection: this.state.selectedCollection + 1,
-        collectionName: this.state.userCollections[this.state.selectedCollection + 1].name,
-      });
+      axios.get(`/collections/${this.props.user}/scores/${this.state.userCollections[this.state.selectedCollection + 1].name}`)
+      .then(({ data }) => {
+        this.setState({
+          totalScoresStudy: data.totalScores,
+          totalScoresEasy: data.totalGradesEasy,
+          totalScoresDifficult: data.totalGradesDifficult,
+          selectedCollection: this.state.selectedCollection + 1,
+          collectionName: this.state.userCollections[this.state.selectedCollection + 1].name,
+        });
+      })
+      .catch((err) => console.error(err));
+      // this.setState({
+      //   selectedCollection: this.state.selectedCollection + 1,
+      //   collectionName: this.state.userCollections[this.state.selectedCollection + 1].name,
+      // });
       setTimeout(() => {
         this.updateTooltips();
       }, 150);
@@ -814,6 +878,17 @@ class MainMenu2 extends React.Component {
     }
   }
 
+  openSettings() {
+    // open the settings
+    this.setState({
+      settingsAreOpen: true,
+    });
+  }
+
+  viewOverallStats() {
+    // view overall stats
+  }
+
   render() {
     return (
       <MainMenuDiv>
@@ -861,7 +936,16 @@ class MainMenu2 extends React.Component {
                           (
                             <>
                               <TimeFormatDiv>
-                                <UserCollections onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
+                                <UserCollections className="collection tooltipUp" onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
+                                <span className="tooltipTextUp">
+                                  {
+                                    this.state.userCollections.length === 0
+                                    ?
+                                    'Empty'
+                                    :
+                                    `${this.state.userCollections[this.state.selectedCollection].cardList.length} cards`
+                                  }
+                                </span>
                                   {
                                     `${this.state.selectedCollection + 1}. ${this.state.userCollections[this.state.selectedCollection].name}`
                                   }
@@ -956,53 +1040,58 @@ class MainMenu2 extends React.Component {
                           <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>
                         </ArrowDiv>
                       </UserCollectionsDiv>
-                      <CreateCollectionButton onClick={this.viewCollectionStats}>
-                        {`View ${this.state.collectionName} Stats`}
-                      </CreateCollectionButton>
-                      <CreateCollectionButton onClick={this.createCollection}>
-                        Create New Collection
-                      </CreateCollectionButton>
-                      <Modal open={this.state.isViewingCollectionStats}>
-                        <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
-                          <ModalButton onClick={this.closeCollectionStats}>X</ModalButton>
-                          <h1><u>{`${this.props.user}'s Stats for ${this.state.collectionName}`}</u></h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '4%'}}>
-                            <h3 style={{marginTop: '1%'}}>
-                              {`Study Scores`}
-                            </h3>
-                            <hr />
-                            <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
+                      <ButtonDiv>
+                        <CreateCollectionButton onClick={this.viewCollectionStats}>
+                          {`View ${this.state.collectionName} Stats`}
+                        </CreateCollectionButton>
+                        <CreateCollectionButton onClick={this.viewOverallStats}>
+                          View Overall Stats
+                        </CreateCollectionButton>
+                        <CreateCollectionButton onClick={this.createCollection}>
+                          Create New Collection
+                        </CreateCollectionButton>
+                        <CreateCollectionButton onClick={this.openSettings}>
+                        ⚙️-Settings-⚙️
+                        </CreateCollectionButton>
+                        <Modal open={this.state.isViewingCollectionStats}>
+                          <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                            <ModalButton onClick={this.closeCollectionStats}>X</ModalButton>
+                            <h1><u>{`${this.props.user}'s Stats for ${this.state.collectionName}`}</u></h1>
+                            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '4%'}}>
+                              <h3 style={{marginTop: '1%'}}>
+                                {`Study Scores`}
+                              </h3>
+                              <hr />
+                              <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                  <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
+                              </div>
+                              <h3>
+                                {`Test Grades (Easy)`}
+                              </h3>
+                              <hr />
+                              <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                  <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
+                              </div>
+                              <h3>
+                                {`Test Grades (Difficult)`}
+                              </h3>
+                              <hr />
+                              <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                  <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
+                              </div>
                             </div>
-                            <h3>
-                              {`Test Grades (Easy)`}
-                            </h3>
-                            <hr />
-                            <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
-                            </div>
-                            <h3>
-                              {`Test Grades (Difficult)`}
-                            </h3>
-                            <hr />
-                            <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
-                            </div>
-                          </div>
-                          {/* <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                            <CollectionStats totalScoresStudy={this.state.totalScoresStudy} totalScoresEasy={this.state.totalScoresEasy} totalScoresDifficult={this.state.totalScoresDifficult} />
-                            <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                              <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
-                            </div>
-                            <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                              <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
-                            </div>
-                            <div style={{width: '60%', height: '40%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                              <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
-                            </div>
-                          </div> */}
-                        </HighScoreDiv>
-                      </Modal>
+                          </HighScoreDiv>
+                        </Modal>
+                        <Modal open={this.state.isViewingOverallStats}>
+                          <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                          </HighScoreDiv>
+                        </Modal>
+                        <Modal open={this.state.settingsAreOpen}>
+                          <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                            <Settings goBack={this.goBack} />
+                          </HighScoreDiv>
+                        </Modal>
+                      </ButtonDiv>
                     </CollectionsDiv>
                     <LogoutDiv>
                       <LogoutButton onClick={this.props.logout}>

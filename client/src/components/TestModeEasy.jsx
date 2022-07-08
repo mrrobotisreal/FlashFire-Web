@@ -847,7 +847,7 @@ class TestModeEasy extends React.Component {
               </FailSuccessDiv>
               <FailSuccessDiv style={{display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                 <h5>Grade:</h5>
-                {`${this.state.grade}%`}
+                {`${(this.state.grade).toFixed(2)}%`}
               </FailSuccessDiv>
             </FailSuccessDiv>
           </FlashCardDiv>
@@ -877,15 +877,15 @@ class TestModeEasy extends React.Component {
             <ModalButton onClick={this.closeStats}>X</ModalButton>
             <h1><u>{`${this.props.user}'s Stats for ${this.props.collectionName}`}</u></h1>
             <h3 style={{marginTop: '1%'}}>
-              {`Highest Grade: ${this.state.highScore / this.props.cardList.length * 100}%`}
+              {`Highest Grade: ${(this.state.highScore / this.props.cardList.length * 100).toFixed(2)}%`}
             </h3>
             <hr />
             <h3>
-              {`Most Recent Grade: ${this.state.prevScore / this.props.cardList.length * 100}%`}
+              {`Most Recent Grade: ${(this.state.prevScore / this.props.cardList.length * 100).toFixed(2)}%`}
             </h3>
             <hr />
             <h3>
-              {`Average Grade: ${this.state.averageScore / this.props.cardList.length * 100}%`}
+              {`Average Grade: ${(this.state.averageScore / this.props.cardList.length * 100).toFixed(2)}%`}
             </h3>
             <hr />
             <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>

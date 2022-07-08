@@ -632,7 +632,7 @@ class FlashCards extends React.Component {
               </h3>
               <hr />
               <h3>
-                {`Average Score: ${this.state.averageScore}`}
+                {`Average Score: ${(this.state.averageScore).toFixed(2)}`}
               </h3>
               <hr />
               <div style={{width: '60%', height: '40%', backgroundColor: 'white'}}>
