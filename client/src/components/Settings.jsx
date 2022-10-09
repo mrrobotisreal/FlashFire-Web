@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SharingStats from './SharingStats.jsx';
-import Themes from './Themes.jsx';
+import Themes from './_Themes/_Themes.jsx';
 import Account from './_Account/_Account.jsx';
 import {
   SettingsDiv,
