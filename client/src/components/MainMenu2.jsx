@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import FlashCards from './FlashCards.jsx';
 import TestModeEasy from './TestModeEasy.jsx';
@@ -51,6 +51,7 @@ import {
   ModalButton,
   ButtonDiv
 } from './MainMenu2/MainMenu2StyledComponents.js';
+// import App2Context from './App2/App2Context.js';
 // import FlashAudioRecorder from './FlashAudioRecorder.jsx';
 // import ChooseModal from './ChooseModal.jsx';
 const moment = require('moment');
@@ -97,6 +98,8 @@ class MainMenu2 extends React.Component {
       tooltipDown: 0,
       settingsAreOpen: false,
     };
+    // this.{ username } = useContext(App2Context);
+
     this.chooseCollection = this.chooseCollection.bind(this);
     this.createCollection = this.createCollection.bind(this);
     this.handleCollectionName = this.handleCollectionName.bind(this);

@@ -13,6 +13,7 @@ import {
   InputLabel,
   Input
 } from './App2/App2StyledComponents.js';
+// import App2Context from './App2/App2Context.js';
 
 class App2 extends React.Component {
   constructor(props) {
