@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import MainMenu from './MainMenu2.jsx';
+import MainMenu from '../_MainMenu/_MainMenu.jsx';
 import {
   Title,
   LoginSignupDiv,
@@ -12,7 +12,7 @@ import {
   AlreadyAMemberButton,
   InputLabel,
   Input
-} from './App2/App2StyledComponents.js';
+} from './_AppStyledComponents.js';
 import { _AppContextProvider, _AppContext } from './_AppContext.js';
 
 export default function _App() {
@@ -47,39 +47,39 @@ export default function _App() {
   return (
     <_AppContextProvider>
       {
-        !this.state.showMainMenu
+        !showMainMenu
         ?
         (
           <>
             <Title>🔥Flash Fire🔥</Title>
             <LoginSignupDiv>
-              <LoginSignupTitle><b><u>{!this.state.isAlreadyAMember ? 'Sign Up' : 'Log In'}</u></b></LoginSignupTitle>
+              <LoginSignupTitle><b><u>{!isAlreadyAMember ? 'Sign Up' : 'Log In'}</u></b></LoginSignupTitle>
               {
-                !this.state.isAlreadyAMember
+                !isAlreadyAMember
                 ?
                 (
-                  <LoginSignupForm onSubmit={this.handleSignupSubmit}>
+                  <LoginSignupForm onSubmit={handleSignupSubmit}>
                     <InputLabel style={{gridColumn: '1', gridRow: '1', textAlign: 'left', backgroundColor: 'black', color: 'white', width: 'fit-content', padding: '1%', borderRadius: '12px'}}>
                     <b>Name:</b>
                     </InputLabel>
-                    <input style={{gridColumn: '1', gridRow: '2', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={this.handleNameInput} />
+                    <input style={{gridColumn: '1', gridRow: '2', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={handleNameInput} />
                     <InputLabel style={{gridColumn: '1', gridRow: '3', textAlign: 'left', backgroundColor: 'black', color: 'white', width: 'fit-content', padding: '1%', borderRadius: '12px'}}>
                     <b>Email:</b>
                     </InputLabel>
-                    <input style={{gridColumn: '1', gridRow: '4', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={this.handleEmailInput} />
+                    <input style={{gridColumn: '1', gridRow: '4', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={handleEmailInput} />
                     <InputLabel style={{gridColumn: '1', gridRow: '5', textAlign: 'left', backgroundColor: 'black', color: 'white', width: 'fit-content', padding: '1%', borderRadius: '12px'}}>
                     <b>Username:</b>
                     </InputLabel>
-                    <input style={{gridColumn: '1', gridRow: '6', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={this.handleUsernameInput} />
+                    <input style={{gridColumn: '1', gridRow: '6', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} type="text" onChange={handleUsernameInput} />
                     <InputLabel style={{gridColumn: '1', gridRow: '7', textAlign: 'left', backgroundColor: 'black', color: 'white', width: 'fit-content', padding: '1%', borderRadius: '12px'}}>
                       <b>Password:</b>
                     </InputLabel>
-                    <input type="password" style={{gridColumn: '1', gridRow: '8', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} onChange={this.handlePasswordInput} />
+                    <input type="password" style={{gridColumn: '1', gridRow: '8', marginBottom: '3%', textAlign: 'left', backgroundColor: 'black', color: 'white'}} onChange={handlePasswordInput} />
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                      <LoginSignupSubmit type="submit" onClick={this.handleSignupSubmit}>
+                      <LoginSignupSubmit type="submit" onClick={handleSignupSubmit}>
                       <b>Submit</b>
                       </LoginSignupSubmit>
-                      <AlreadyAMemberButton style={{gridColumn: '2', gridRow: '1', color: 'blue', textAlign: 'right'}} onClick={this.showLoginForm}>
+                      <AlreadyAMemberButton style={{gridColumn: '2', gridRow: '1', color: 'blue', textAlign: 'right'}} onClick={showLoginForm}>
                         <b><u>Already a member?</u></b>
                       </AlreadyAMemberButton>
                     </div>
@@ -87,21 +87,21 @@ export default function _App() {
                 )
                 :
                 (
-                  <LoginSignupForm onSubmit={this.handleLoginSubmit}>
+                  <LoginSignupForm onSubmit={handleLoginSubmit}>
                     <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>
                     <InputLabel style={{gridRow: '1'}}>
                       <b>Username:</b>
                     </InputLabel>
-                    <Input type="text" style={{gridRow: '2'}} onChange={this.handleUsernameInput} />
+                    <Input type="text" style={{gridRow: '2'}} onChange={handleUsernameInput} />
                     <InputLabel style={{gridRow: '3'}}>
                       <b>Password:</b>
                     </InputLabel>
-                    <Input type="password" style={{gridRow: '4'}} onChange={this.handlePasswordInput} />
+                    <Input type="password" style={{gridRow: '4'}} onChange={handlePasswordInput} />
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                      <LoginSignupSubmit type="submit" onClick={this.handleLoginSubmit}>
+                      <LoginSignupSubmit type="submit" onClick={handleLoginSubmit}>
                         <b>Submit</b>
                       </LoginSignupSubmit>
-                      <AlreadyAMemberButton style={{gridColumn: '2', gridRow: '1', color: 'blue', textAlign: 'right'}} onClick={this.showSignupForm}>
+                      <AlreadyAMemberButton style={{gridColumn: '2', gridRow: '1', color: 'blue', textAlign: 'right'}} onClick={showSignupForm}>
                         <b><u>Want to register?</u></b>
                       </AlreadyAMemberButton>
                     </div>
@@ -113,7 +113,7 @@ export default function _App() {
         )
         :
         (
-          <MainMenu logout={this.logout} user={this.state.username} />
+          <MainMenu logout={logout} user={username} />
         )
       }
   </_AppContextProvider>

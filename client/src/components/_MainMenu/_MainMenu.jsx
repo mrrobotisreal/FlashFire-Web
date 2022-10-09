@@ -9,7 +9,7 @@ import EasyStats from './EasyStats.jsx';
 import DifficultStats from './DifficultStats.jsx';
 import EditMode from './EditMode.jsx';
 import Settings from './Settings.jsx';
-import './MainMenu2.css';
+import './index.css';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -50,8 +50,9 @@ import {
   HighScoreDiv,
   ModalButton,
   ButtonDiv
-} from './MainMenu2/MainMenu2StyledComponents.js';
-import { _MainMenuContextProvider, _MainMenuContext } from './_MainMenu/_MainMenuContext.js';
+} from './_MainMenuStyledComponents.js';
+import { _MainMenuContextProvider, _MainMenuContext } from './_MainMenuContext.js';
+import _AppContext from '../_App/_AppContext.js';
 const moment = require('moment');
 
 export default function _MainMenu() {
@@ -156,6 +157,53 @@ export default function _MainMenu() {
     openSettings,
     viewOverallStats
   } = useContext(_MainMenuContext);
+  const { username, logout } = useContext(_AppContext);
+
+  useEffect(() => {
+    axios.get(`/collections/${username}`)
+      .then(({ data }) => {
+        if (data.length !== 0) {
+          setUserCollections(prevState => data);
+          setLastViewStudy(prevState => data[0].lastViewStudy);
+          setLastViewEasy(prevState => data[0].lastViewEasy);
+          setLastViewDifficult(prevState => data[0].lastViewDifficult);
+          setHighScoreStudy(prevState => data[0].highScore);
+          setHighGradeEasy(prevState => data[0].highGradeEasy);
+          setHighGradeDifficult(prevState => data[0].highGradeDifficult);
+          setRecentScoreStudy(prevState => data[0].mostRecentScore);
+          setRecentScoreEasy(prevState => data[0].mostRecentGradeEasy);
+          setRecentScoreDifficult(prevState => data[0].mostRecentGradeDifficult);
+          setTotalScoresStudy(prevState => data[0].totalScores);
+          setTotalScoresEasy(prevState => data[0].totalGradesEasy);
+          setTotalScoresDifficult(prevState => data[0].totalGradesDifficult);
+          setCollectionName(prevState => data[0].name);
+          setTooltipUp(prevState => data.length - 1);
+          setTooltipDown(prevState => (
+            data.length === 1 ? data.length - 1 : 1
+          ));
+          updateTooltips();
+          // console.log('data testing -> ', data[0])
+          // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
+          //   this.setState({
+          //     userCollections: data,
+          //     lastViewStudy: data[0].lastViewStudy,
+          //     lastViewEasy: data[0].lastViewEasy,
+          //     lastViewDifficult: data[0].lastViewDifficult,
+          //   });
+          // } else {
+          //   this.setState({
+          //     userCollections: data,
+          //     lastViewStudy: 'Have Not Studied',
+          //     lastViewEasy: 'Have Not Tested (Easy)',
+          //     lastViewDifficult: 'Have Not Tested (Difficult)',
+          //   });
+          // }
+        } else if (!data) {
+          // Say sorry, that user does not exist, please create an account
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <_MainMenuContextProvider>
@@ -461,64 +509,4 @@ export default function _MainMenu() {
       </MainMenuDiv>
     </_MainMenuContextProvider>
   );
-};
-
-class MainMenu2 extends React.Component {
-  componentDidMount() {
-    axios.get(`/collections/${this.props.user}`)
-      .then(({ data }) => {
-        if (data.length !== 0) {
-          this.setState({
-            userCollections: data,
-            lastViewStudy: data[0].lastViewStudy,
-            lastViewEasy: data[0].lastViewEasy,
-            lastViewDifficult: data[0].lastViewDifficult,
-            highScoreStudy: data[0].highScore,
-            highGradeEasy: data[0].highGradeEasy,
-            highGradeDifficult: data[0].highGradeDifficult,
-            recentScoreStudy: data[0].mostRecentScore,
-            recentScoreEasy: data[0].mostRecentGradeEasy,
-            recentScoreDifficult: data[0].mostRecentGradeDifficult,
-            totalScoresStudy: data[0].totalScores,
-            totalScoresEasy: data[0].totalGradesEasy,
-            totalScoresDifficult: data[0].totalGradesDifficult,
-            collectionName: data[0].name,
-            tooltipUp: data.length - 1,
-            tooltipDown: (
-              data.length === 1
-              ?
-              data.length - 1
-              :
-              1
-            ),
-          });
-          this.updateTooltips();
-          // console.log('data testing -> ', data[0])
-          // if ((data[0].lastViewEasy || data[0].lastViewDifficult) || data[0].lastViewStudy) {
-          //   this.setState({
-          //     userCollections: data,
-          //     lastViewStudy: data[0].lastViewStudy,
-          //     lastViewEasy: data[0].lastViewEasy,
-          //     lastViewDifficult: data[0].lastViewDifficult,
-          //   });
-          // } else {
-          //   this.setState({
-          //     userCollections: data,
-          //     lastViewStudy: 'Have Not Studied',
-          //     lastViewEasy: 'Have Not Tested (Easy)',
-          //     lastViewDifficult: 'Have Not Tested (Difficult)',
-          //   });
-          // }
-        } else if (!data) {
-          // Say sorry, that user does not exist, please create an account
-        }
-      })
-      .catch((err) => console.error(err));
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.isCreating !== this.state.isCreating) {
-      console.log('state is changed');
-    }
-  }
 };
