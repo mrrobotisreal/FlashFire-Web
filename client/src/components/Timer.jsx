@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTimer } from 'react-timer-hook';
-import styled from 'styled-components';
 import {
   Pause,
   Resume,

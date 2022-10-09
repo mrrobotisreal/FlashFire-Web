@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import SharingStats from './SharingStats.jsx';
 import Themes from './Themes.jsx';

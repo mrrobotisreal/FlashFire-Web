@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Timer from './Timer.jsx';
-import styled from 'styled-components';
 import { Start } from './SetTimer/SetTimerStyledComponents.js';
 
 export default function SetTimer({ expire }) {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import FlashCards from './FlashCards.jsx';
 import TestModeEasy from './TestModeEasy.jsx';
 import TestModeDifficult from './TestModeDifficult.jsx';
