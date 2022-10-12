@@ -1,5 +1,6 @@
 # 🔥Flash-Fire©🔥
 A flashcard web application designed to help you increase your knowledge exponentially, incredibly fast, just like a flash fire🔥🤯.
+Visit [flash-fire.io](http://flash-fire.io) to view and interact with the live application.
 (Android app version is currently in the making)
 
 !['Test-Mode-Easy](/Documentation/FlashFire-easy.gif)
