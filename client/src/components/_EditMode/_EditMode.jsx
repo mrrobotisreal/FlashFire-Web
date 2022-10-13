@@ -22,7 +22,7 @@ import {
   MainMenuButton,
   Image,
   ImageDiv
-} from './EditMode/EditModeStyledComponents.js';
+} from './_EditModeStyledComponents.js';
 import { _EditModeContext, _EditModeContextProvider } from './_EditModeContext.js';
 import { _MainMenuContext } from '../_MainMenu/_MainMenuContext.js';
 
