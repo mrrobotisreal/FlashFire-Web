@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Chart, { Line, Bar } from 'react-chartjs-2';
 import { _EasyContext, _EasyContextProvider } from './_EasyContext.js';
 
@@ -14,7 +14,7 @@ export default function _EasyStats() {
             },
           },
         }}
-        data={this.state.data}
+        data={data}
       />
     </_EasyContextProvider>
   );

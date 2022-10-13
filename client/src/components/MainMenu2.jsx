@@ -51,7 +51,7 @@ import {
   ModalButton,
   ButtonDiv
 } from './MainMenu2/MainMenu2StyledComponents.js';
-import _MainMenuContextProvider from './_MainMenu/_MainMenuContext.js';
+// import _MainMenuContextProvider from './_MainMenu/_MainMenuContext.js';
 // import FlashAudioRecorder from './FlashAudioRecorder.jsx';
 // import ChooseModal from './ChooseModal.jsx';
 const moment = require('moment');
@@ -584,308 +584,306 @@ class MainMenu2 extends React.Component {
 
   render() {
     return (
-      <_MainMenuContextProvider>
-        <MainMenuDiv>
-          <>
-            {
-              !this.state.isCreating
-              ?
-              (
-                <>
-                  {
-                    !this.state.modesDisplayed
+      <MainMenuDiv>
+        <>
+          {
+            !this.state.isCreating
+            ?
+            (
+              <>
+                {
+                  !this.state.modesDisplayed
+                  ?
+                  (
+                    <>
+                      <MainMenuTitle><b><u>Main Menu</u></b></MainMenuTitle>
+                      <CollectionsDiv>
+                        <CollectionsTitle>
+                          <b><u>Total Collections<CollCountSpan>{` (${this.state.userCollections.length})`}
+                          </CollCountSpan></u></b>
+                        </CollectionsTitle>
+                        <UserCollectionsDiv>
+                          <ArrowDiv className="tooltipUp">
+                            <span className="tooltipTextUp">
+                              {
+                                this.state.userCollections.length === 0
+                                ?
+                                'Empty'
+                                :
+                                this.state.userCollections[this.state.tooltipUp].name
+                              }
+                            </span>
+                            <UpButton onClick={this.moveUp}>{`⬆`}</UpButton>
+                          </ArrowDiv>
+                          {
+                            // map over the collections
+                            this.state.userCollections.length === 0
+                            ?
+                            (
+                              <>
+                                <span style={{fontFamily: 'Shadows Into Light'}}>You don't have any collections yet!</span>
+                                <span style={{fontFamily: 'Shadows Into Light'}}>Click the button below to create a collection</span>
+                              </>
+                            )
+                            :
+                            (
+                              <>
+                                <TimeFormatDiv>
+                                  <UserCollections className="collection tooltipUp" onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
+                                  <span className="tooltipTextUp">
+                                    {
+                                      this.state.userCollections.length === 0
+                                      ?
+                                      'Empty'
+                                      :
+                                      `${this.state.userCollections[this.state.selectedCollection].cardList.length} cards`
+                                    }
+                                  </span>
+                                    {
+                                      `${this.state.selectedCollection + 1}. ${this.state.userCollections[this.state.selectedCollection].name}`
+                                    }
+                                  </UserCollections>
+                                  <b><span style={{fontFamily: 'Shadows Into Light', color: 'yellow'}}>
+                                        {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
+                                  </span></b>
+                                  <LastViewSpan>
+                                    <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                  </LastViewSpan>
+                                </TimeFormatDiv>
+                                <Modal open={this.state.isChoosing}>
+                                  <ChooseDiv>
+                                    <ChooseTitle><u><b>Choose A Mode:</b></u></ChooseTitle>
+                                    <ModesDiv style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
+                                      <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                        <ModeTitles><b>Study Mode:</b></ModeTitles>
+                                        <LastViewSpan>
+                                          {/* <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
+                                          {
+                                            this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined
+                                            ?
+                                            (
+                                              <b>{'Have Not Studied Yet'}</b>
+                                            )
+                                            :
+                                            (
+                                              <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                            )
+                                          }
+                                        </LastViewSpan>
+                                        <StartButtons onClick={this.chooseStudyMode}>Start</StartButtons>
+                                      </ChoiceDivs>
+                                      <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                        <ModeTitles><b>Test Mode:</b></ModeTitles>
+                                        <LastViewSpan>
+                                          {/* <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
+                                          {
+                                            this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined
+                                            ?
+                                            (
+                                              <b>{'Have Not Tested (Easy) Yet'}</b>
+                                            )
+                                            :
+                                            (
+                                              <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                            )
+                                          }
+                                        </LastViewSpan>
+                                        <h4>Easy:</h4>
+                                        <StartButtons onClick={() => this.chooseTestMode('easy')}>Start</StartButtons>
+                                        <h4 style={{marginTop: '2%'}}>Difficult:</h4>
+                                        <LastViewSpan>
+                                          {/* <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
+                                          {
+                                            this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined
+                                            ?
+                                            (
+                                              <b>{'Have Not Tested (Difficult) Yet'}</b>
+                                            )
+                                            :
+                                            (
+                                              <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
+                                            )
+                                          }
+                                        </LastViewSpan>
+                                        <StartButtons onClick={() => this.chooseTestMode('difficult')}>Start</StartButtons>
+                                      </ChoiceDivs>
+                                      <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                        <ModeTitles><b>Edit Mode:</b></ModeTitles>
+                                        <StartButtons onClick={this.chooseEditMode}>Start</StartButtons>
+                                      </ChoiceDivs>
+                                    </ModesDiv>
+                                    <LogoutButton onClick={this.goBack} style={{marginTop: '2%', padding: '1%'}}>
+                                      Main Menu
+                                    </LogoutButton>
+                                  </ChooseDiv>
+                                </Modal>
+                              </>
+                            )
+                          }
+                          <ArrowDiv className="tooltipDown">
+                            <span className="tooltipTextDown">
+                              {
+                                this.state.userCollections.length === 0
+                                ?
+                                'Empty'
+                                :
+                                this.state.userCollections[this.state.tooltipDown].name
+                              }
+                            </span>
+                            <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>
+                          </ArrowDiv>
+                        </UserCollectionsDiv>
+                        <ButtonDiv>
+                          <CreateCollectionButton onClick={this.viewCollectionStats}>
+                            {`View ${this.state.collectionName} Stats`}
+                          </CreateCollectionButton>
+                          <CreateCollectionButton onClick={this.viewOverallStats}>
+                            View Overall Stats
+                          </CreateCollectionButton>
+                          <CreateCollectionButton onClick={this.createCollection}>
+                            Create New Collection
+                          </CreateCollectionButton>
+                          <CreateCollectionButton onClick={this.openSettings}>
+                          ⚙️-Settings-⚙️
+                          </CreateCollectionButton>
+                          <Modal open={this.state.isViewingCollectionStats}>
+                            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                              <ModalButton onClick={this.closeCollectionStats}>X</ModalButton>
+                              <h1><u>{`${this.props.user}'s Stats for ${this.state.collectionName}`}</u></h1>
+                              <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '4%'}}>
+                                <h3 style={{marginTop: '1%'}}>
+                                  {`Study Scores`}
+                                </h3>
+                                <hr />
+                                <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                    <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
+                                </div>
+                                <h3>
+                                  {`Test Grades (Easy)`}
+                                </h3>
+                                <hr />
+                                <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                    <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
+                                </div>
+                                <h3>
+                                  {`Test Grades (Difficult)`}
+                                </h3>
+                                <hr />
+                                <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                                    <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
+                                </div>
+                              </div>
+                            </HighScoreDiv>
+                          </Modal>
+                          <Modal open={this.state.isViewingOverallStats}>
+                            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                            </HighScoreDiv>
+                          </Modal>
+                          <Modal open={this.state.settingsAreOpen}>
+                            <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
+                              <Settings goBack={this.goBack} />
+                            </HighScoreDiv>
+                          </Modal>
+                        </ButtonDiv>
+                      </CollectionsDiv>
+                      <LogoutDiv>
+                        <LogoutButton onClick={this.props.logout}>
+                          Logout
+                        </LogoutButton>
+                      </LogoutDiv>
+                    </>
+                  )
+                  :
+                  (
+                    !this.state.isEditing
                     ?
                     (
-                      <>
-                        <MainMenuTitle><b><u>Main Menu</u></b></MainMenuTitle>
-                        <CollectionsDiv>
-                          <CollectionsTitle>
-                            <b><u>Total Collections<CollCountSpan>{` (${this.state.userCollections.length})`}
-                            </CollCountSpan></u></b>
-                          </CollectionsTitle>
-                          <UserCollectionsDiv>
-                            <ArrowDiv className="tooltipUp">
-                              <span className="tooltipTextUp">
-                                {
-                                  this.state.userCollections.length === 0
-                                  ?
-                                  'Empty'
-                                  :
-                                  this.state.userCollections[this.state.tooltipUp].name
-                                }
-                              </span>
-                              <UpButton onClick={this.moveUp}>{`⬆`}</UpButton>
-                            </ArrowDiv>
-                            {
-                              // map over the collections
-                              this.state.userCollections.length === 0
-                              ?
-                              (
-                                <>
-                                  <span style={{fontFamily: 'Shadows Into Light'}}>You don't have any collections yet!</span>
-                                  <span style={{fontFamily: 'Shadows Into Light'}}>Click the button below to create a collection</span>
-                                </>
-                              )
-                              :
-                              (
-                                <>
-                                  <TimeFormatDiv>
-                                    <UserCollections className="collection tooltipUp" onClick={this.chooseCollection} id={this.state.userCollections[this.state.selectedCollection].name}>
-                                    <span className="tooltipTextUp">
-                                      {
-                                        this.state.userCollections.length === 0
-                                        ?
-                                        'Empty'
-                                        :
-                                        `${this.state.userCollections[this.state.selectedCollection].cardList.length} cards`
-                                      }
-                                    </span>
-                                      {
-                                        `${this.state.selectedCollection + 1}. ${this.state.userCollections[this.state.selectedCollection].name}`
-                                      }
-                                    </UserCollections>
-                                    <b><span style={{fontFamily: 'Shadows Into Light', color: 'yellow'}}>
-                                          {`Created ${moment(this.state.userCollections[this.state.selectedCollection].creationDate, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}
-                                    </span></b>
-                                    <LastViewSpan>
-                                      <b>{`Last Viewed ${moment(this.state.userCollections[this.state.selectedCollection].lastView, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
-                                    </LastViewSpan>
-                                  </TimeFormatDiv>
-                                  <Modal open={this.state.isChoosing}>
-                                    <ChooseDiv>
-                                      <ChooseTitle><u><b>Choose A Mode:</b></u></ChooseTitle>
-                                      <ModesDiv style={{backgroundColor: 'black', border: '2px ridge darkred', borderRadius: '12px', width: '60%'}}>
-                                        <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                          <ModeTitles><b>Study Mode:</b></ModeTitles>
-                                          <LastViewSpan>
-                                            {/* <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
-                                            {
-                                              this.state.lastViewStudy === '' || this.state.lastViewStudy === undefined
-                                              ?
-                                              (
-                                                <b>{'Have Not Studied Yet'}</b>
-                                              )
-                                              :
-                                              (
-                                                <b>{`Last Studied ${moment(this.state.userCollections[this.state.selectedCollection].lastViewStudy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
-                                              )
-                                            }
-                                          </LastViewSpan>
-                                          <StartButtons onClick={this.chooseStudyMode}>Start</StartButtons>
-                                        </ChoiceDivs>
-                                        <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                          <ModeTitles><b>Test Mode:</b></ModeTitles>
-                                          <LastViewSpan>
-                                            {/* <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
-                                            {
-                                              this.state.lastViewEasy === '' || this.state.lastViewEasy === undefined
-                                              ?
-                                              (
-                                                <b>{'Have Not Tested (Easy) Yet'}</b>
-                                              )
-                                              :
-                                              (
-                                                <b>{`Last Tested (Easy) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewEasy, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
-                                              )
-                                            }
-                                          </LastViewSpan>
-                                          <h4>Easy:</h4>
-                                          <StartButtons onClick={() => this.chooseTestMode('easy')}>Start</StartButtons>
-                                          <h4 style={{marginTop: '2%'}}>Difficult:</h4>
-                                          <LastViewSpan>
-                                            {/* <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b> */}
-                                            {
-                                              this.state.lastViewDifficult === '' || this.state.lastViewDifficult === undefined
-                                              ?
-                                              (
-                                                <b>{'Have Not Tested (Difficult) Yet'}</b>
-                                              )
-                                              :
-                                              (
-                                                <b>{`Last Tested (Difficult) ${moment(this.state.userCollections[this.state.selectedCollection].lastViewDifficult, "dd MMM DD YYYY HH:mm:ss ZZ", "en").fromNow()}`}</b>
-                                              )
-                                            }
-                                          </LastViewSpan>
-                                          <StartButtons onClick={() => this.chooseTestMode('difficult')}>Start</StartButtons>
-                                        </ChoiceDivs>
-                                        <ChoiceDivs style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                          <ModeTitles><b>Edit Mode:</b></ModeTitles>
-                                          <StartButtons onClick={this.chooseEditMode}>Start</StartButtons>
-                                        </ChoiceDivs>
-                                      </ModesDiv>
-                                      <LogoutButton onClick={this.goBack} style={{marginTop: '2%', padding: '1%'}}>
-                                        Main Menu
-                                      </LogoutButton>
-                                    </ChooseDiv>
-                                  </Modal>
-                                </>
-                              )
-                            }
-                            <ArrowDiv className="tooltipDown">
-                              <span className="tooltipTextDown">
-                                {
-                                  this.state.userCollections.length === 0
-                                  ?
-                                  'Empty'
-                                  :
-                                  this.state.userCollections[this.state.tooltipDown].name
-                                }
-                              </span>
-                              <DownButton onClick={this.moveDown}>{`⬇`}</DownButton>
-                            </ArrowDiv>
-                          </UserCollectionsDiv>
-                          <ButtonDiv>
-                            <CreateCollectionButton onClick={this.viewCollectionStats}>
-                              {`View ${this.state.collectionName} Stats`}
-                            </CreateCollectionButton>
-                            <CreateCollectionButton onClick={this.viewOverallStats}>
-                              View Overall Stats
-                            </CreateCollectionButton>
-                            <CreateCollectionButton onClick={this.createCollection}>
-                              Create New Collection
-                            </CreateCollectionButton>
-                            <CreateCollectionButton onClick={this.openSettings}>
-                            ⚙️-Settings-⚙️
-                            </CreateCollectionButton>
-                            <Modal open={this.state.isViewingCollectionStats}>
-                              <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
-                                <ModalButton onClick={this.closeCollectionStats}>X</ModalButton>
-                                <h1><u>{`${this.props.user}'s Stats for ${this.state.collectionName}`}</u></h1>
-                                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: '4%'}}>
-                                  <h3 style={{marginTop: '1%'}}>
-                                    {`Study Scores`}
-                                  </h3>
-                                  <hr />
-                                  <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                      <StudyStats totalScoresStudy={this.state.totalScoresStudy} />
-                                  </div>
-                                  <h3>
-                                    {`Test Grades (Easy)`}
-                                  </h3>
-                                  <hr />
-                                  <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                      <EasyStats totalScoresEasy={this.state.totalScoresEasy} />
-                                  </div>
-                                  <h3>
-                                    {`Test Grades (Difficult)`}
-                                  </h3>
-                                  <hr />
-                                  <div style={{width: '20%', height: '14%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                      <DifficultStats totalScoresDifficult={this.state.totalScoresDifficult} />
-                                  </div>
-                                </div>
-                              </HighScoreDiv>
-                            </Modal>
-                            <Modal open={this.state.isViewingOverallStats}>
-                              <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
-                              </HighScoreDiv>
-                            </Modal>
-                            <Modal open={this.state.settingsAreOpen}>
-                              <HighScoreDiv style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', backgroundColor: 'none', backgroundImage: 'linear-gradient(to bottom, black, orangered, yellow)'}}>
-                                <Settings goBack={this.goBack} />
-                              </HighScoreDiv>
-                            </Modal>
-                          </ButtonDiv>
-                        </CollectionsDiv>
-                        <LogoutDiv>
-                          <LogoutButton onClick={this.props.logout}>
-                            Logout
-                          </LogoutButton>
-                        </LogoutDiv>
-                      </>
-                    )
-                    :
-                    (
-                      !this.state.isEditing
+                      !this.state.isTesting
                       ?
                       (
-                        !this.state.isTesting
-                        ?
-                        (
-                          <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
-                        )
-                        :
-                        (
-                          !this.state.isDifficult
-                          ?
-                          (
-                            // easy test goes here
-                            <TestModeEasy collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
-                          )
-                          : (
-                            // difficult test goes here
-                            <TestModeDifficult collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
-                          )
-                        )
+                        <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                       )
                       :
                       (
-                        // editing goes here
-                        <EditMode collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                        !this.state.isDifficult
+                        ?
+                        (
+                          // easy test goes here
+                          <TestModeEasy collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                        )
+                        : (
+                          // difficult test goes here
+                          <TestModeDifficult collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                        )
                       )
-                      // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
                     )
-                  }
-                </>
-              )
-              :
-              (
-                <>
-                  <CreateCollectionsTitle style={{fontFamily: 'Luckiest Guy'}}>
-                    <b><u>Create Collection</u></b>
-                  </CreateCollectionsTitle>
-                  <NewCollectionDiv style={{fontFamily: 'Luckiest Guy'}}>
+                    :
+                    (
+                      // editing goes here
+                      <EditMode collectionName={this.state.collectionName} cardList={this.state.currentCollection} isDifficult={this.state.isDifficult} user={this.props.user} goBack={this.goBack} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                    )
+                    // <FlashCards collectionName={this.state.collectionName} cardList={this.state.currentCollection} goBack={this.goBack} user={this.props.user} keydown={this.handleFlashKeydown} pressedKey={this.state.pressedKey} />
+                  )
+                }
+              </>
+            )
+            :
+            (
+              <>
+                <CreateCollectionsTitle style={{fontFamily: 'Luckiest Guy'}}>
+                  <b><u>Create Collection</u></b>
+                </CreateCollectionsTitle>
+                <NewCollectionDiv style={{fontFamily: 'Luckiest Guy'}}>
+                  <CollectionLabel style={{gridRow: '1'}}>
+                    <b>Collection Name:</b>
+                  </CollectionLabel>
+                  <CollectionInput id="collectionName" style={{gridRow: '2'}} onChange={this.handleCollectionName} />
+                  <CollectionLabel style={{gridRow: '3'}}>
+                    <b>Category:</b>
+                  </CollectionLabel>
+                  <CollectionInput id="category" style={{gridRow: '4'}} onChange={this.handleCategory} />
+                  <CollectionLabel style={{gridRow: '5'}}>
+                    <b>Add Cards:</b>
+                  </CollectionLabel>
+                  <CardDiv style={{gridRow: '6'}}>
+                    {/* <FlashAudioRecorder /> */}
+                    <AddImageDiv>
+                      <CollectionLabel>
+                        <b>Add an image?</b>
+                      </CollectionLabel>
+                      <AddImageInput type="file" accept=".jpg, .png" id="image-input" onChange={this.setPhotos} style={{overflowWrap: 'break-word'}} />
+                      {/* <CollectionLabel>
+                        <b>Add audio?</b>
+                      </CollectionLabel>
+                      <input type="file" accept=".m4a" id="audio-input" onChange={this.setAudio} /> */}
+                    </AddImageDiv>
                     <CollectionLabel style={{gridRow: '1'}}>
-                      <b>Collection Name:</b>
+                      <b>Question:</b>
                     </CollectionLabel>
-                    <CollectionInput id="collectionName" style={{gridRow: '2'}} onChange={this.handleCollectionName} />
+                    <CollectionTextArea type="text" id="question" style={{gridRow: '2'}} onChange={this.handleQuestion} />
                     <CollectionLabel style={{gridRow: '3'}}>
-                      <b>Category:</b>
+                      <b>Answer:</b>
                     </CollectionLabel>
-                    <CollectionInput id="category" style={{gridRow: '4'}} onChange={this.handleCategory} />
-                    <CollectionLabel style={{gridRow: '5'}}>
-                      <b>Add Cards:</b>
-                    </CollectionLabel>
-                    <CardDiv style={{gridRow: '6'}}>
-                      {/* <FlashAudioRecorder /> */}
-                      <AddImageDiv>
-                        <CollectionLabel>
-                          <b>Add an image?</b>
-                        </CollectionLabel>
-                        <AddImageInput type="file" accept=".jpg, .png" id="image-input" onChange={this.setPhotos} style={{overflowWrap: 'break-word'}} />
-                        {/* <CollectionLabel>
-                          <b>Add audio?</b>
-                        </CollectionLabel>
-                        <input type="file" accept=".m4a" id="audio-input" onChange={this.setAudio} /> */}
-                      </AddImageDiv>
-                      <CollectionLabel style={{gridRow: '1'}}>
-                        <b>Question:</b>
-                      </CollectionLabel>
-                      <CollectionTextArea type="text" id="question" style={{gridRow: '2'}} onChange={this.handleQuestion} />
-                      <CollectionLabel style={{gridRow: '3'}}>
-                        <b>Answer:</b>
-                      </CollectionLabel>
-                      <CollectionTextArea type="text" id="answer" style={{gridRow: '4'}} onChange={this.handleAnswer} />
-                      <AddCardButton style={{gridRow: '5'}} onClick={this.submitCard}>
-                        <b>{`Add Card:`}</b>
-                      </AddCardButton>
-                      <TotalCardsSpan>
-                        <b>{`Total Cards: ${this.state.cardCount}`}</b>
-                      </TotalCardsSpan>
-                    </CardDiv>
-                    <FinishCollectionButton style={{gridRow: '7', gridColumn: '1'}} onClick={this.finishCollection}>
-                      <b>Finish Collection</b>
-                    </FinishCollectionButton>
-                    <FinishCollectionButton style={{gridRow: '7', gridColumn: '2'}} onClick={this.goToMainMenu}>
-                      <b>Back to Main Menu</b>
-                    </FinishCollectionButton>
-                  </NewCollectionDiv>
-                </>
-              )
-            }
-          </>
-        </MainMenuDiv>
-      </_MainMenuContextProvider>
+                    <CollectionTextArea type="text" id="answer" style={{gridRow: '4'}} onChange={this.handleAnswer} />
+                    <AddCardButton style={{gridRow: '5'}} onClick={this.submitCard}>
+                      <b>{`Add Card:`}</b>
+                    </AddCardButton>
+                    <TotalCardsSpan>
+                      <b>{`Total Cards: ${this.state.cardCount}`}</b>
+                    </TotalCardsSpan>
+                  </CardDiv>
+                  <FinishCollectionButton style={{gridRow: '7', gridColumn: '1'}} onClick={this.finishCollection}>
+                    <b>Finish Collection</b>
+                  </FinishCollectionButton>
+                  <FinishCollectionButton style={{gridRow: '7', gridColumn: '2'}} onClick={this.goToMainMenu}>
+                    <b>Back to Main Menu</b>
+                  </FinishCollectionButton>
+                </NewCollectionDiv>
+              </>
+            )
+          }
+        </>
+      </MainMenuDiv>
     )
   }
 };
